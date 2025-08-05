@@ -1,8 +1,9 @@
 # 🌊 Deep Sales Analysis of Olist Marketplace
-[![Python](https://img.shields.io/badge/Python-3.11+-blue?logo=python)](https://github.com/your-username/olist-analysis/blob/main/requirements.txt)
-[![Kaggle](https://img.shields.io/badge/View_on_Kaggle-20BEFF?logo=kaggle)](https://www.kaggle.com/your-username)
+[![Python](https://img.shields.io/badge/Python-3.11+-blue?logo=python)](https://github.com/PavelGrigoryevDS/olist-deep-dive/blob/main/pyproject.toml)
+[![Web Report](https://img.shields.io/badge/📚_Web_Report-2563EB?logoColor=white)](https://pavelgrigoryevds.github.io/olist-deep-dive/)
+[![Kaggle](https://img.shields.io/badge/View_on_Kaggle-20BEFF?logo=kaggle&logoColor=white)](https://www.kaggle.com/code/pavelgrigoryev/olist-deep-dive-eda-viz-rfm-nlp-geo)
 [![Presentation](https://img.shields.io/badge/Slides-Google%20Slides-red)](https://docs.google.com/presentation/d/1sOYi3MWXedIEnuSn41H8lBeZ9aGnnTi5iV-DEMbfCvc/present)
-[![Notebook](https://img.shields.io/badge/Notebook-Jupyter-orange)](https://github.com/your-username/olist-analysis/blob/main/analysis.ipynb)
+[![Jupyter Notebook](https://img.shields.io/badge/Notebook-Lightweight-FF7F0E?logo=jupyter)](https://github.com/PavelGrigoryevDS/olist-deep-dive/blob/main/olist_deep_dive/olist_deep_dive.ipynb)
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
 **Tech Stack:**  
@@ -36,16 +37,14 @@ This analysis aims to:
    - Develop data-backed recommendations for business growth  
    - Propose customer experience improvements  
 
-**Data Source:** [Olist Brazilian E-Commerce Dataset](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce)
-
 ---
 
 ## 📂 Project Resources
 
-- **[Web Report](https://your-username.github.io/olist-analysis/)** - Best for comfortable reading  
-- **[Presentation Slides](https://docs.google.com/...)** - Key findings summary  
-- **[Kaggle Notebook](https://www.kaggle.com/your-username/)** - Kaggle-integrated version
-- **[Jupyter Notebook](analysis.ipynb)** - Full analysis code  
+- **[Web Report](https://pavelgrigoryevds.github.io/olist-deep-dive/)** - Best for comfortable reading  
+- **[Presentation Slides](https://docs.google.com/presentation/d/1sOYi3MWXedIEnuSn41H8lBeZ9aGnnTi5iV-DEMbfCvc/present)** - Key findings summary  
+- **[Kaggle Notebook](https://www.kaggle.com/code/pavelgrigoryev/olist-deep-dive-eda-viz-rfm-nlp-geo)** - Kaggle-integrated version
+- **[Source Notebook](https://github.com/PavelGrigoryevDS/olist-deep-dive/blob/main/olist_deep_dive.ipynb)** - Raw Jupyter notebook *(code only, no outputs)*  
 - **[Raw Dataset](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce)** - Olist Brazilian E-Commerce Dataset 
   
 ---

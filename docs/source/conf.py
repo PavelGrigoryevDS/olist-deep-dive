@@ -59,7 +59,8 @@ html_sidebars = {
 }
 
 html_theme = 'sphinx_book_theme'
-
+html_title = "🌊 Deep Sales Analysis of Olist Marketplace"
+html_short_title = "🌊 Deep Sales Analysis of Olist Marketplace"
 html_static_path = ['_static']
 
 # Theme options
