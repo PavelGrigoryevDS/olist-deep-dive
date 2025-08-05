@@ -1,0 +1,20 @@
+.output.text_html {
+    background-color: transparent !important;
+    padding: 0 !important;
+    border: none !important;
+}
+
+.bd-content div.cell_output img {
+    background-color: transparent !important;
+    padding: 0 !important;
+    border: none !important;
+}
+
+body.examples-ipynb-layout .bd-article {
+    padding-left: 1rem !important;
+}
+
+.dataframe {
+    font-size: 12px !important;
+    margin-left: 0 !important; 
+}
