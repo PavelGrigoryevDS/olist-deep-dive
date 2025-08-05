@@ -1,0 +1,129 @@
+# 🌊 Deep Sales Analysis of Olist Marketplace
+[![Python](https://img.shields.io/badge/Python-3.11+-blue?logo=python)](https://github.com/your-username/olist-analysis/blob/main/requirements.txt)
+[![Kaggle](https://img.shields.io/badge/View_on_Kaggle-20BEFF?logo=kaggle)](https://www.kaggle.com/your-username)
+[![Presentation](https://img.shields.io/badge/Slides-Google%20Slides-red)](https://docs.google.com/presentation/d/1sOYi3MWXedIEnuSn41H8lBeZ9aGnnTi5iV-DEMbfCvc/present)
+[![Notebook](https://img.shields.io/badge/Notebook-Jupyter-orange)](https://github.com/your-username/olist-analysis/blob/main/analysis.ipynb)
+[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
+
+**Tech Stack:**  
+
+`Python` | `Pandas` | `Plotly` | `StatsModels` | `SciPy` | `NLTK` | `TextBlob` | `Sklearn` | `Pingouin`
+
+---
+
+## 📌 Project Overview
+Olist is a Brazilian e-commerce platform that connects sellers and buyers, offering a wide range of products and convenient conditions for online sales. Olist also acts as an intermediary, allowing sellers to connect to multiple marketplaces simultaneously, thereby increasing their reach.
+
+This analysis aims to:  
+
+- **Evaluate sales performance**  
+   - Identify geographical trends and seasonal patterns  
+   - Analyze revenue fluctuations and growth metrics  
+
+- **Understand customer behavior**  
+   - Examine purchasing frequency and retention drivers  
+   - Segment buyers by value and payment preferences  
+
+- **Assess operational efficiency**  
+   - Map delivery timelines and bottleneck correlations  
+   - Evaluate carrier performance across regions  
+
+- **Optimize payment systems**  
+   - Compare payment method success rates  
+   - Identify risk factors for cancellations  
+
+- **Generate actionable insights**  
+   - Develop data-backed recommendations for business growth  
+   - Propose customer experience improvements  
+
+**Data Source:** [Olist Brazilian E-Commerce Dataset](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce)
+
+---
+
+## 📂 Project Resources
+
+- **[Web Report](https://your-username.github.io/olist-analysis/)** - Best for comfortable reading  
+- **[Presentation Slides](https://docs.google.com/...)** - Key findings summary  
+- **[Kaggle Notebook](https://www.kaggle.com/your-username/)** - Kaggle-integrated version
+- **[Jupyter Notebook](analysis.ipynb)** - Full analysis code  
+- **[Raw Dataset](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce)** - Olist Brazilian E-Commerce Dataset 
+  
+---
+
+## 🔍 Main Conclusions
+
+### Sales Trends:
+  - **Growth & Stabilization**: Sales volume and revenue grew until 2018, then stabilized at 6–7K orders and 1–1.2M R$ per month.
+  - **Black Friday (11/24/2017)**: Record spikes in orders, revenue, and buyers.
+  - **Geography**: Sao Paulo dominates (42% of sales), with steady growth in 2018, unlike other regions.
+
+### Customer Behavior:
+  - **Low Retention**: 97% of buyers made only one purchase; repeat buyers are rare.
+  - **High-Value Buyers**: Clients using installment plans (50%) spend 2x more (higher average order value/weight).
+  - **Loyalty**: Promoters (58% of buyers) leave positive reviews but rarely return. Critics (13%) spend more but churn faster due to delivery delays.
+
+### Operational Insights:
+  - Delayed orders correlate with lower ratings (avg. rating: 1–2 vs. 4–5 for on-time).
+  - Heavy/expensive orders take longer to deliver and are more likely to be delayed.
+  - Orders with installments process faster, have higher AOV, and show better retention.
+
+### Payment & Risk:
+  - **Credit cards dominate**: 74% of transactions, with 35% higher AOV vs. other methods.
+  - **Installments boost value**: Orders with installments have 2x higher AOV (premium/heavy items).
+  - **Voucher Payments**: Orders paid with vouchers have 3x higher cancellation rates (16% vs. 5% for credit cards).
+
+### Product & Logistics:
+  - **Top Categories**: Electronics (27% of sales) and furniture (18%) drive revenue.
+  - Northern states take 2x longer delivery.
+  - Heavy orders (+40% delivery time) and premium items face delays.
+  - **Delivery Bottlenecks**: 70% of total delivery time is spent with carriers, notably slower in Rio de Janeiro and Salvador.
+
+### Critical Challenges:
+  - **Declining Ratings**: Average review scores dropped from 4.5 (2017) to 3.9 (2018), linked to delivery delays.
+  - **Peak Season Failures**: Black Friday 2017 caused a surge in delayed deliveries, with complaints tied to carrier handoff bottlenecks.
+  - **Abandoned Carts**: Canceled orders spike in February/August 2018, often for high-value items paid via vouchers.
+
+### Customer Feedback & Ratings:
+  - **Majority of reviews are positive**: 58% of reviews received a rating of 5. Only 12% of reviews received a rating of 1, while a mere 3% received a rating of 2.
+  - **Negative Reviews**: 15% of review text mentions "slow delivery" or "missing items," heavily impacting NPS.
+
+### Data Highlights:
+  - **Negative Feedback Drivers**: Low ratings correlate with longer delivery times, higher order value, and heavier items.
+  - **Success Factors**: Fast carrier handoff (≤3 days) and installment options boost ratings and repeat purchases.
+
+---
+
+## 🚀 Key Recommendations
+
+### Boost Customer Retention & Repeat Purchases:
+  - Launch a loyalty program targeting one-time buyers (97% of customers), offering discounts on second purchases or bonus points.
+  - Personalized win-back campaigns for high-value clients (top 1% driving 15% of revenue) with exclusive offers.
+  - Reduce time between purchases (currently 29+ days for 50% of repeat buyers) via time-bound promotions (e.g., "7-day discount").
+  
+### Improve Product & Pricing Strategy:
+  - Expand "Beauty & Health" and "Home & Garden" (18% YoY growth categories) with curated bundles or subscriptions.
+  - Reprice problem categories (e.g., "Watches & Gifts") to offset delivery costs or offer guaranteed faster shipping.
+
+### Enhance High-Value Segments:
+  - Premium installment plans for big spenders (avg. 3+ orders) with perks like free shipping or priority support.
+  - Target voucher users (3x higher cancellation risk) with limited-time combo deals to convert abandoned carts.
+
+### Fix Delivery Pain Points:
+  - Prioritize carrier performance in critical regions (e.g., Rio de Janeiro, Salvador), where delays are 30% longer than average.
+  - Expedite high-value/heavy orders (>500 R$ or >10kg), which face 2x more 1-star ratings due to delays.
+  - Optimize Black Friday logistics to prevent repeat of 2017’s 4x surge in delays (pre-stock inventory, add temporary carriers).
+
+### Regional Growth Tactics:
+  - Hyper-local campaigns in São Paulo (42% of sales): Leverage its 20% faster delivery and 30% higher retention to test scalable models.
+  - Fix underperformers (e.g., Maranhão, Ceará) with subsidized shipping or partner pickup points.
+
+### Mitigate Negative Reviews:
+  - Automate compensation for delayed orders (e.g., 10% off next purchase if delivery exceeds 15 days).
+  - Sunday support surge: Add staff to cut response times, reducing low weekend ratings.
+
+---
+
+## 📜 License  
+
+This analysis is shared under [MIT License](LICENSE).  
+Original data from Olist remains under its [Kaggle license](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce).
