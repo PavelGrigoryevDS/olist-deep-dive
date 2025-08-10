@@ -1,6 +1,6 @@
 {
-  "id": "pavelgrigoryev/deep-dive-into-olist-e-commerce-eda-viz-rfm-nlp-geo-ml",
-  "title": "🌊 Deep Dive into Olist E-Commerce: EDA | Viz | RFM | NLP | Geo | ML",
+  "id": "pavelgrigoryev/deep-sales-analysis-eda-viz-rfm-nlp-geo",
+  "title": "🌊Deep Sales Analysis: EDA | Viz | RFM | NLP | Geo",
   "code_file": "olist_deep_dive_kaggle.ipynb",
   "language": "python",
   "kernel_type": "notebook",
