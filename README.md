@@ -188,14 +188,14 @@ The analysis uses the **Olist Brazilian E-Commerce Dataset** ([Kaggle](https://w
 - Python 3.11+ installed
 - Git (for cloning)
 
-### Clone the repository
+### Clone the Repository
 
 ```bash
 git clone https://github.com/PavelGrigoryevDS/olist-deep-dive.git
 cd olist-deep-dive
 ```
 
-### Install and run
+### Install and Run
 
 - If Poetry is NOT installed on your system, use Option 1
 - If Poetry IS installed, use Option 2
