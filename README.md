@@ -9,17 +9,21 @@
 
 Comprehensive analysis of Brazilian e-commerce data, uncovering key insights and actionable business recommendations.
 
+<a id="contents"></a>
+
 ## 📑 Contents
 
-- [🔗 Project Resources](#-project-resources)
-- [🛠️ Tech Stack \& Methods](#--tech-stack--methods)
-- [📌 Project Overview](#-project-overview)
-- [🗃️ Data Source](#️-data-source)
-- [🎯 Main Conclusions](#-main-conclusions)
-- [✨ Key Recommendations](#-key-recommendations)
-- [🚀 How to Run This Project](#-how-to-run-this-project)
+- [🔗 Project Resources](#project-resources)
+- [🛠️ Tech Stack \& Methods](#tech-stack-methods)
+- [📌 Project Overview](#project-overview)
+- [🗃️ Data Source](#data-source)
+- [🎯 Main Conclusions](#main-conclusions)
+- [✨ Key Recommendations](#key-recommendations)
+- [🚀 How to Run This Project](#how-to-run-this-project)
 
 ---
+
+<a id="project-resources"></a>
 
 ## 🔗 Project Resources
 
@@ -28,9 +32,11 @@ Comprehensive analysis of Brazilian e-commerce data, uncovering key insights and
 - **[Kaggle Notebook](https://www.kaggle.com/code/pavelgrigoryev/deep-sales-analysis-eda-viz-rfm-nlp-geo)** - Kaggle-integrated version
 - **[Source Notebook](https://github.com/PavelGrigoryevDS/olist-deep-dive/blob/main/olist_deep_dive/olist_deep_dive.ipynb)** - Raw Jupyter notebook *(code only, no outputs)*  
 
-[⬆ back to top](#-contents)
+[⬆ back to top](#contents)
 
 ---
+
+<a id="tech-stack-methods"></a>
 
 ## 🛠️ Tech Stack & Methods
 
@@ -49,9 +55,11 @@ Comprehensive analysis of Brazilian e-commerce data, uncovering key insights and
 - **NLP Sentiment Analysis**: Review text processing with NLTK and TextBlob
 - **Statistical Testing**: correlation analysis and hypothesis testing
   
-[⬆ back to top](#-contents)
+[⬆ back to top](#contents)
 
 ---
+
+<a id="project-overview"></a>
 
 ## 📌 Project Overview
 
@@ -79,17 +87,21 @@ This analysis aims to:
    - Develop data-backed recommendations for business growth  
    - Propose customer experience improvements  
 
-[⬆ back to top](#-contents)
+[⬆ back to top](#contents)
 
 ---
+
+<a id="data-source"></a>
 
 ## 🗃️ Data Source
 
 The analysis uses the **Olist Brazilian E-Commerce Dataset** ([Kaggle](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce)) 
 
-[⬆ back to top](#-contents)
+[⬆ back to top](#contents)
 
 ---
+
+<a id="main-conclusions"></a>
 
 ## 🎯 Main Conclusions
 
@@ -139,9 +151,11 @@ The analysis uses the **Olist Brazilian E-Commerce Dataset** ([Kaggle](https://w
   - **Negative Feedback Drivers**: Low ratings correlate with longer delivery times, higher order value, and heavier items.
   - **Success Factors**: Fast carrier handoff (≤3 days) and installment options boost ratings and repeat purchases.
 
-[⬆ back to top](#-contents)
+[⬆ back to top](#contents)
 
 ---
+
+<a id="key-recommendations"></a>
 
 ## ✨ Key Recommendations
 
@@ -177,9 +191,11 @@ The analysis uses the **Olist Brazilian E-Commerce Dataset** ([Kaggle](https://w
   - Automate compensation for delayed orders (e.g., 10% off next purchase if delivery exceeds 15 days).
   - Sunday support surge: Add staff to cut response times, reducing low weekend ratings.
 
-[⬆ back to top](#-contents)
+[⬆ back to top](#contents)
 
 ---
+
+<a id="how-to-run-this-project"></a>
 
 ## 🚀 How to Run This Project
 
@@ -219,7 +235,7 @@ poetry install
 poetry run jupyter lab olist_deep_dive/olist_deep_dive.ipynb
 ```
 
-[⬆ back to top](#-contents)
+[⬆ back to top](#contents)
 
 ## 📜 License  
 
