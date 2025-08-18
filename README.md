@@ -12,13 +12,13 @@ Comprehensive analysis of Brazilian e-commerce data, uncovering key insights and
 ## 📑 Contents
 
 - [🔗 Project Resources](#-project-resources)
-- [🛠️ Tech Stack & Methods ](#-tech-stack--methods)
+- [🛠️ Tech Stack \& Methods ](#-tech-stack--methods)
 - [📌 Project Overview](#-project-overview)
-- [🗃️ Dataset](#️-dataset)
+- [🗃️ Dataset](#-dataset)
 - [🎯 Main Conclusions](#-main-conclusions)
 - [✨ Key Recommendations](#-key-recommendations)
 - [🚀 How to Run This Project](#-how-to-run-this-project)
-
+  
 ---
 
 ## 🔗 Project Resources
@@ -225,5 +225,3 @@ poetry run jupyter lab olist_deep_dive/olist_deep_dive.ipynb
 
 This analysis is shared under [MIT License](LICENSE).  
 Original data from Olist remains under its [Kaggle license](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce).
-
-[⬆ back to top](#-contents)
