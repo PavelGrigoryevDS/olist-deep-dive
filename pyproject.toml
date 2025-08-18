@@ -12,15 +12,11 @@ dependencies = [
     "frameon (>=0.1.2,<0.2.0)",
     "geopandas (>=1.1.1,<2.0.0)",
     "ipykernel (>=6.30.0,<7.0.0)",
-    "jupyter (>=1.1.1,<2.0.0)",
-    "linkify-it-py (>=2.0.3,<3.0.0)"
+    "jupyter (>=1.1.1,<2.0.0)"
 ]
 
-
-[build-system]
-requires = ["poetry-core>=2.0.0,<3.0.0"]
-build-backend = "poetry.core.masonry.api"
-
+[tool.poetry.group.docs]
+optional = true
 [tool.poetry.group.docs.dependencies]
 sphinx = "^8.2.3"
 myst-parser = "^4.0.1"
@@ -31,8 +27,16 @@ sphinx-favicon = "^1.0.1"
 sphinx-copybutton = "^0.5.2"
 sphinx-book-theme = "^1.1.4"
 sphinx-inline-tabs = "^2023.4.21"
+linkify-it-py = "^2.0.3"
 
-
+[tool.poetry.group.kaggle]
+optional = true
 [tool.poetry.group.kaggle.dependencies]
 kaggle = "^1.7.4.5"
 
+[tool.poetry]
+package-mode = false
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"

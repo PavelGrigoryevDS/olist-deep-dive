@@ -175,13 +175,16 @@ cd olist-deep-dive
 ```bash
 python -m venv olist_venv
 source olist_venv/bin/activate  
-pip install -e .
+pip install poetry
+poetry config virtualenvs.in-project true --local
+poetry install
 jupyter notebook olist_deep_dive/olist_deep_dive.ipynb
 ```
 
 ### Option 2: Poetry
 
 ```bash
+poetry config virtualenvs.in-project true --local
 poetry install
 poetry run jupyter notebook olist_deep_dive/olist_deep_dive.ipynb
 ```
