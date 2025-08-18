@@ -1,0 +1,1212 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Payment Analysis &#8212; 🌊 Deep Sales Analysis of Olist Marketplace</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=aa5847ba" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/custom.js?v=f9582d1e"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'contents/03_data_analysis/09_payment_analysis';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Geographical Analysis" href="10_geographical_analysis.html" />
+    <link rel="prev" title="Delivery Analysis" href="08_delivery_analysis.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo-light.png" class="logo__image only-light" alt="🌊 Deep Sales Analysis of Olist Marketplace - Home"/>
+    <script>document.write(`<img src="../../_static/logo-dark.png" class="logo__image only-dark" alt="🌊 Deep Sales Analysis of Olist Marketplace - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Description and Exploration</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../01_data_description_and_exploration/01_data_description.html">Data Description</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_data_description_and_exploration/02_data_loading.html">Data Loading</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_data_description_and_exploration/03_data_exploration.html">Data Exploration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_data_description_and_exploration/04_intermediate_conclusion.html">Intermediate Conclusion</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Preprocessing</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../02_data_preprocessing/01_initial_data_filtering.html">Initial Data Filtering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_data_preprocessing/02_outlier_handling.html">Outlier Handling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_data_preprocessing/03_missing_value_handling.html">Missing Value Handling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_data_preprocessing/04_duplicate_handling.html">Duplicate Handling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_data_preprocessing/05_creating_new_metrics.html">Creating New Metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_data_preprocessing/06_creating_new_dimensions.html">Creating New Dimensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_data_preprocessing/07_converting_data_to_a_convenient_format.html">Converting Data to a Convenient Format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_data_preprocessing/08_data_merging.html">Data Merging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_data_preprocessing/09_intermediate_conclusion.html">Intermediate Conclusion</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Analysis</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_creating_analysis_class.html">Creating Analysis Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_time_series_analysis.html">Time Series Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_customer_analysis.html">Customer Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_seller_analysis.html">Seller Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_sales_analysis.html">Sales Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_product_analysis.html">Product Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_review_analysis.html">Review Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_delivery_analysis.html">Delivery Analysis</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Payment Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_geographical_analysis.html">Geographical Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_cohort_analysis.html">Cohort Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_correlation_analysis.html">Correlation Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_slice_analysis.html">Slice Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14_analysis_of_customer_segments.html">Analysis of Customer Segments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15_rfm_analysis.html">RFM Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="16_customer_clustering.html">Customer Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="17_hypothesis_testing.html">Hypothesis Testing</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">General Conclusion</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/01_time_dynamics.html">Time Dynamics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/02_customers.html">Customers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/03_sales.html">Sales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/04_products.html">Products</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/05_reviews.html">Reviews</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/06_delivery.html">Delivery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/07_payments.html">Payments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/08_sellers.html">Sellers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/09_cohort_analysis.html">Cohort Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/10_correlation_analysis.html">Correlation Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/11_black_friday.html">Black Friday</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/12_cancelled_orders.html">Cancelled Orders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/13_hypothesis_testing_results.html">Hypothesis Testing Results</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/14_detected_anomalies.html">Detected Anomalies</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Recommendations</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/01_product_market_fit.html">Product market fit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/02_customer_loyalty_enhancement.html">Customer loyalty Enhancement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/03_customer_experience_improvement.html">Customer Experience Improvement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/04_logistics_and_delivery_optimization.html">Logistics and Delivery Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/05_financial_optimization.html">Financial optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/06_average_order_value_and_basket_optimization.html">Average Order Value and Basket Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/07_segment_specific_strategies.html">Segment-Specific Strategies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/08_product_and_assortment_management.html">Product and Assortment Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/09_marketing_and_promotion.html">Marketing and Promotion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/10_peak_season_preparedness.html">Peak Season Preparedness</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/11_analytics_and_monitoring.html">Analytics and Monitoring</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/12_ab_testing.html">A/B Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/13_anomaly.html">Anomaly</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/PavelGrigoryevDS/olist-deep-dive" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/contents/03_data_analysis/09_payment_analysis.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Payment Analysis</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> On this page </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#number-of-payments">Number of Payments</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#payment-value">Payment Value</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#number-of-payment-installments">Number of Payment Installments</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="payment-analysis">
+<h1>Payment Analysis<a class="headerlink" href="#payment-analysis" title="Link to this heading">#</a></h1>
+<section id="number-of-payments">
+<h2>Number of Payments<a class="headerlink" href="#number-of-payments" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pb</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df_payments</span>
+    <span class="p">,</span> <span class="n">metric</span> <span class="o">=</span> <span class="s1">&#39;payment_sequential&#39;</span>
+    <span class="p">,</span> <span class="n">metric_label</span> <span class="o">=</span> <span class="s1">&#39;Share of Payments&#39;</span>
+    <span class="p">,</span> <span class="n">metric_label_for_distribution</span> <span class="o">=</span> <span class="s1">&#39;Number of Payments&#39;</span> 
+    <span class="p">,</span> <span class="n">agg_func</span> <span class="o">=</span> <span class="s1">&#39;count&#39;</span>
+    <span class="p">,</span> <span class="n">norm_by</span> <span class="o">=</span> <span class="s1">&#39;all&#39;</span>
+    <span class="p">,</span> <span class="n">axis_sort_order</span><span class="o">=</span><span class="s1">&#39;descending&#39;</span>
+    <span class="p">,</span> <span class="n">text_auto</span><span class="o">=</span><span class="s1">&#39;.1%&#39;</span>
+    <span class="p">,</span> <span class="n">update_fig</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;xaxis&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;tickformat&#39;</span><span class="p">:</span> <span class="s1">&#39;.0%&#39;</span><span class="p">}}</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Total number of payments in order: </span><span class="si">{</span><span class="n">df_payments</span><span class="o">.</span><span class="n">payment_sequential</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="si">:</span><span class="s1">,</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Total number of payments in order: 103,520
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s look at the statistics and distribution of the number of payments per day.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tmp_df_res</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">df_orders</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df_payments</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;order_id&#39;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Grouper</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="s1">&#39;order_purchase_dt&#39;</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s1">&#39;D&#39;</span><span class="p">),</span> <span class="n">observed</span><span class="o">=</span><span class="kc">False</span><span class="p">)[</span><span class="s1">&#39;payment_sequential&#39;</span><span class="p">]</span>
+    <span class="o">.</span><span class="n">count</span><span class="p">()</span>
+    <span class="o">.</span><span class="n">to_frame</span><span class="p">(</span><span class="s1">&#39;payments_cnt_per_day&#39;</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tmp_df_res</span><span class="p">[</span><span class="s1">&#39;payments_cnt_per_day&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">explore</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+    <span class="n">labels</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">payments_cnt_per_day</span><span class="o">=</span><span class="s1">&#39;Number of Payments per Day&#39;</span><span class="p">)</span>
+    <span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Distribution of Number of Payments per Day&#39;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style type="text/css">
+#T_a1c73 caption {
+  font-size: 16px;
+  text-align: left;
+  font-weight: bold;
+  white-space: nowrap;
+}
+#T_a1c73 th {
+  text-align: center;
+}
+#T_a1c73_row0_col0, #T_a1c73_row0_col1, #T_a1c73_row0_col2, #T_a1c73_row0_col3, #T_a1c73_row0_col4, #T_a1c73_row0_col5, #T_a1c73_row0_col6, #T_a1c73_row0_col7, #T_a1c73_row0_col8, #T_a1c73_row0_col9, #T_a1c73_row0_col10, #T_a1c73_row1_col0, #T_a1c73_row1_col1, #T_a1c73_row1_col2, #T_a1c73_row1_col3, #T_a1c73_row1_col4, #T_a1c73_row1_col5, #T_a1c73_row1_col6, #T_a1c73_row1_col7, #T_a1c73_row1_col8, #T_a1c73_row1_col9, #T_a1c73_row1_col10, #T_a1c73_row2_col0, #T_a1c73_row2_col1, #T_a1c73_row2_col2, #T_a1c73_row2_col3, #T_a1c73_row2_col4, #T_a1c73_row2_col5, #T_a1c73_row2_col6, #T_a1c73_row2_col7, #T_a1c73_row2_col8, #T_a1c73_row2_col9, #T_a1c73_row2_col10, #T_a1c73_row3_col0, #T_a1c73_row3_col1, #T_a1c73_row3_col2, #T_a1c73_row3_col3, #T_a1c73_row3_col4, #T_a1c73_row3_col5, #T_a1c73_row3_col6, #T_a1c73_row3_col7, #T_a1c73_row3_col8, #T_a1c73_row3_col9, #T_a1c73_row3_col10, #T_a1c73_row4_col0, #T_a1c73_row4_col1, #T_a1c73_row4_col2, #T_a1c73_row4_col3, #T_a1c73_row4_col4, #T_a1c73_row4_col5, #T_a1c73_row4_col6, #T_a1c73_row4_col7, #T_a1c73_row4_col8, #T_a1c73_row4_col9, #T_a1c73_row4_col10, #T_a1c73_row5_col0, #T_a1c73_row5_col1, #T_a1c73_row5_col2, #T_a1c73_row5_col3, #T_a1c73_row5_col4, #T_a1c73_row5_col5, #T_a1c73_row5_col6, #T_a1c73_row5_col7, #T_a1c73_row5_col8, #T_a1c73_row5_col9, #T_a1c73_row5_col10, #T_a1c73_row6_col0, #T_a1c73_row6_col1, #T_a1c73_row6_col2, #T_a1c73_row6_col3, #T_a1c73_row6_col4, #T_a1c73_row6_col5, #T_a1c73_row6_col6, #T_a1c73_row6_col7, #T_a1c73_row6_col8, #T_a1c73_row6_col9, #T_a1c73_row6_col10, #T_a1c73_row7_col0, #T_a1c73_row7_col1, #T_a1c73_row7_col2, #T_a1c73_row7_col3, #T_a1c73_row7_col4, #T_a1c73_row7_col5, #T_a1c73_row7_col6, #T_a1c73_row7_col7, #T_a1c73_row7_col8, #T_a1c73_row7_col9, #T_a1c73_row7_col10, #T_a1c73_row8_col0, #T_a1c73_row8_col1, #T_a1c73_row8_col2, #T_a1c73_row8_col3, #T_a1c73_row8_col4, #T_a1c73_row8_col5, #T_a1c73_row8_col6, #T_a1c73_row8_col7, #T_a1c73_row8_col8, #T_a1c73_row8_col9, #T_a1c73_row8_col10 {
+  text-align: left;
+}
+</style>
+<table id="T_a1c73">
+  <caption>Summary Statistics for "payments_cnt_per_day" (Type: Integer)</caption>
+  <thead>
+    <tr>
+      <th id="T_a1c73_level0_col0" class="col_heading level0 col0" colspan="2">Summary</th>
+      <th id="T_a1c73_level0_col2" class="col_heading level0 col2" > </th>
+      <th id="T_a1c73_level0_col3" class="col_heading level0 col3" colspan="2">Percentiles</th>
+      <th id="T_a1c73_level0_col5" class="col_heading level0 col5" >  </th>
+      <th id="T_a1c73_level0_col6" class="col_heading level0 col6" colspan="2">Detailed Stats</th>
+      <th id="T_a1c73_level0_col8" class="col_heading level0 col8" >   </th>
+      <th id="T_a1c73_level0_col9" class="col_heading level0 col9" colspan="2">Value Counts</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td id="T_a1c73_row0_col0" class="data row0 col0" >Total</td>
+      <td id="T_a1c73_row0_col1" class="data row0 col1" >604 (100%)</td>
+      <td id="T_a1c73_row0_col2" class="data row0 col2" >          </td>
+      <td id="T_a1c73_row0_col3" class="data row0 col3" >Max</td>
+      <td id="T_a1c73_row0_col4" class="data row0 col4" >1.21k</td>
+      <td id="T_a1c73_row0_col5" class="data row0 col5" >          </td>
+      <td id="T_a1c73_row0_col6" class="data row0 col6" >Mean</td>
+      <td id="T_a1c73_row0_col7" class="data row0 col7" >171.39</td>
+      <td id="T_a1c73_row0_col8" class="data row0 col8" >          </td>
+      <td id="T_a1c73_row0_col9" class="data row0 col9" >202</td>
+      <td id="T_a1c73_row0_col10" class="data row0 col10" >10 (2%)</td>
+    </tr>
+    <tr>
+      <td id="T_a1c73_row1_col0" class="data row1 col0" >Missing</td>
+      <td id="T_a1c73_row1_col1" class="data row1 col1" >---</td>
+      <td id="T_a1c73_row1_col2" class="data row1 col2" >          </td>
+      <td id="T_a1c73_row1_col3" class="data row1 col3" >99%</td>
+      <td id="T_a1c73_row1_col4" class="data row1 col4" >379</td>
+      <td id="T_a1c73_row1_col5" class="data row1 col5" >          </td>
+      <td id="T_a1c73_row1_col6" class="data row1 col6" >Trimmed Mean (10%)</td>
+      <td id="T_a1c73_row1_col7" class="data row1 col7" >166.52</td>
+      <td id="T_a1c73_row1_col8" class="data row1 col8" >          </td>
+      <td id="T_a1c73_row1_col9" class="data row1 col9" >160</td>
+      <td id="T_a1c73_row1_col10" class="data row1 col10" >9 (1%)</td>
+    </tr>
+    <tr>
+      <td id="T_a1c73_row2_col0" class="data row2 col0" >Distinct</td>
+      <td id="T_a1c73_row2_col1" class="data row2 col1" >268 (44%)</td>
+      <td id="T_a1c73_row2_col2" class="data row2 col2" >          </td>
+      <td id="T_a1c73_row2_col3" class="data row2 col3" >95%</td>
+      <td id="T_a1c73_row2_col4" class="data row2 col4" >312.55</td>
+      <td id="T_a1c73_row2_col5" class="data row2 col5" >          </td>
+      <td id="T_a1c73_row2_col6" class="data row2 col6" >Mode</td>
+      <td id="T_a1c73_row2_col7" class="data row2 col7" >202</td>
+      <td id="T_a1c73_row2_col8" class="data row2 col8" >          </td>
+      <td id="T_a1c73_row2_col9" class="data row2 col9" >80</td>
+      <td id="T_a1c73_row2_col10" class="data row2 col10" >7 (1%)</td>
+    </tr>
+    <tr>
+      <td id="T_a1c73_row3_col0" class="data row3 col0" >Non-Duplicate</td>
+      <td id="T_a1c73_row3_col1" class="data row3 col1" >102 (17%)</td>
+      <td id="T_a1c73_row3_col2" class="data row3 col2" >          </td>
+      <td id="T_a1c73_row3_col3" class="data row3 col3" >75%</td>
+      <td id="T_a1c73_row3_col4" class="data row3 col4" >229</td>
+      <td id="T_a1c73_row3_col5" class="data row3 col5" >          </td>
+      <td id="T_a1c73_row3_col6" class="data row3 col6" >Range</td>
+      <td id="T_a1c73_row3_col7" class="data row3 col7" >1213</td>
+      <td id="T_a1c73_row3_col8" class="data row3 col8" >          </td>
+      <td id="T_a1c73_row3_col9" class="data row3 col9" >147</td>
+      <td id="T_a1c73_row3_col10" class="data row3 col10" >7 (1%)</td>
+    </tr>
+    <tr>
+      <td id="T_a1c73_row4_col0" class="data row4 col0" >Duplicates</td>
+      <td id="T_a1c73_row4_col1" class="data row4 col1" >336 (56%)</td>
+      <td id="T_a1c73_row4_col2" class="data row4 col2" >          </td>
+      <td id="T_a1c73_row4_col3" class="data row4 col3" >50%</td>
+      <td id="T_a1c73_row4_col4" class="data row4 col4" >160</td>
+      <td id="T_a1c73_row4_col5" class="data row4 col5" >          </td>
+      <td id="T_a1c73_row4_col6" class="data row4 col6" >IQR</td>
+      <td id="T_a1c73_row4_col7" class="data row4 col7" >121</td>
+      <td id="T_a1c73_row4_col8" class="data row4 col8" >          </td>
+      <td id="T_a1c73_row4_col9" class="data row4 col9" >138</td>
+      <td id="T_a1c73_row4_col10" class="data row4 col10" >6 (<1%)</td>
+    </tr>
+    <tr>
+      <td id="T_a1c73_row5_col0" class="data row5 col0" >Dup. Values</td>
+      <td id="T_a1c73_row5_col1" class="data row5 col1" >166 (27%)</td>
+      <td id="T_a1c73_row5_col2" class="data row5 col2" >          </td>
+      <td id="T_a1c73_row5_col3" class="data row5 col3" >25%</td>
+      <td id="T_a1c73_row5_col4" class="data row5 col4" >108</td>
+      <td id="T_a1c73_row5_col5" class="data row5 col5" >          </td>
+      <td id="T_a1c73_row5_col6" class="data row5 col6" >Std</td>
+      <td id="T_a1c73_row5_col7" class="data row5 col7" >93.56</td>
+      <td id="T_a1c73_row5_col8" class="data row5 col8" >          </td>
+      <td id="T_a1c73_row5_col9" class="data row5 col9" >204</td>
+      <td id="T_a1c73_row5_col10" class="data row5 col10" >6 (<1%)</td>
+    </tr>
+    <tr>
+      <td id="T_a1c73_row6_col0" class="data row6 col0" >Zeros</td>
+      <td id="T_a1c73_row6_col1" class="data row6 col1" >---</td>
+      <td id="T_a1c73_row6_col2" class="data row6 col2" >          </td>
+      <td id="T_a1c73_row6_col3" class="data row6 col3" >5%</td>
+      <td id="T_a1c73_row6_col4" class="data row6 col4" >47.15</td>
+      <td id="T_a1c73_row6_col5" class="data row6 col5" >          </td>
+      <td id="T_a1c73_row6_col6" class="data row6 col6" >MAD</td>
+      <td id="T_a1c73_row6_col7" class="data row6 col7" >84.51</td>
+      <td id="T_a1c73_row6_col8" class="data row6 col8" >          </td>
+      <td id="T_a1c73_row6_col9" class="data row6 col9" >108</td>
+      <td id="T_a1c73_row6_col10" class="data row6 col10" >6 (<1%)</td>
+    </tr>
+    <tr>
+      <td id="T_a1c73_row7_col0" class="data row7 col0" >Negative</td>
+      <td id="T_a1c73_row7_col1" class="data row7 col1" >---</td>
+      <td id="T_a1c73_row7_col2" class="data row7 col2" >          </td>
+      <td id="T_a1c73_row7_col3" class="data row7 col3" >1%</td>
+      <td id="T_a1c73_row7_col4" class="data row7 col4" >8.12</td>
+      <td id="T_a1c73_row7_col5" class="data row7 col5" >          </td>
+      <td id="T_a1c73_row7_col6" class="data row7 col6" >Kurt</td>
+      <td id="T_a1c73_row7_col7" class="data row7 col7" >24.75</td>
+      <td id="T_a1c73_row7_col8" class="data row7 col8" >          </td>
+      <td id="T_a1c73_row7_col9" class="data row7 col9" >122</td>
+      <td id="T_a1c73_row7_col10" class="data row7 col10" >5 (<1%)</td>
+    </tr>
+    <tr>
+      <td id="T_a1c73_row8_col0" class="data row8 col0" >Memory Usage</td>
+      <td id="T_a1c73_row8_col1" class="data row8 col1" ><1 Mb</td>
+      <td id="T_a1c73_row8_col2" class="data row8 col2" >          </td>
+      <td id="T_a1c73_row8_col3" class="data row8 col3" >Min</td>
+      <td id="T_a1c73_row8_col4" class="data row8 col4" >1</td>
+      <td id="T_a1c73_row8_col5" class="data row8 col5" >          </td>
+      <td id="T_a1c73_row8_col6" class="data row8 col6" >Skew</td>
+      <td id="T_a1c73_row8_col7" class="data row8 col7" >2.58</td>
+      <td id="T_a1c73_row8_col8" class="data row8 col8" >          </td>
+      <td id="T_a1c73_row8_col9" class="data row8 col9" >128</td>
+      <td id="T_a1c73_row8_col10" class="data row8 col10" >5 (<1%)</td>
+    </tr>
+  </tbody>
+</table>
+</div><img alt="../../_images/7bf247aa40695251ace7df85f752ad247b86ea87dbd95609336d4bc2234406f9.jpg" src="../../_images/7bf247aa40695251ace7df85f752ad247b86ea87dbd95609336d4bc2234406f9.jpg" />
+</div>
+</div>
+<p><strong>Key Observations:</strong></p>
+<ul class="simple">
+<li><p>75% of days have ≤230 payments</p></li>
+<li><p>Top 5% have ≥312 payments</p></li>
+<li><p>Several days exceeded 500 payments</p></li>
+</ul>
+<p>Let’s look at top days.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tmp_df_res</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;payments_cnt_per_day&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>payments_cnt_per_day</th>
+    </tr>
+    <tr>
+      <th>order_purchase_dt</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2017-11-24</th>
+      <td>1214</td>
+    </tr>
+    <tr>
+      <th>2017-11-25</th>
+      <td>538</td>
+    </tr>
+    <tr>
+      <th>2017-11-27</th>
+      <td>420</td>
+    </tr>
+    <tr>
+      <th>2017-11-26</th>
+      <td>411</td>
+    </tr>
+    <tr>
+      <th>2017-11-28</th>
+      <td>393</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p><strong>Key Observations:</strong></p>
+<ul class="simple">
+<li><p>Black Friday had anomalous payment volumes</p></li>
+</ul>
+<p><strong>By Payment Type</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pb</span><span class="o">.</span><span class="n">bar_groupby</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="s1">&#39;payment_type&#39;</span><span class="p">,</span> <span class="n">to_slide</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/83bf92bf0017920a4df54035108bfb8125ba0969c3b3593e05e8d768e5d0fff0.jpg" src="../../_images/83bf92bf0017920a4df54035108bfb8125ba0969c3b3593e05e8d768e5d0fff0.jpg" />
+</div>
+</div>
+<p><strong>Key Observations:</strong></p>
+<ul class="simple">
+<li><p>Payment method distribution:</p>
+<ul>
+<li><p>Credit card: 74%</p></li>
+<li><p>Boleto: 19%</p></li>
+<li><p>Voucher: 5.5%</p></li>
+<li><p>Debit card: 1.5%</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="payment-value">
+<h2>Payment Value<a class="headerlink" href="#payment-value" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pb</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df_payments</span>
+    <span class="p">,</span> <span class="n">metric</span> <span class="o">=</span> <span class="s1">&#39;payment_value&#39;</span>
+    <span class="p">,</span> <span class="n">metric_label</span> <span class="o">=</span> <span class="s1">&#39;Average Payment Value, R$&#39;</span>
+    <span class="p">,</span> <span class="n">metric_label_for_distribution</span> <span class="o">=</span> <span class="s1">&#39;Payment Value, R$&#39;</span>
+    <span class="p">,</span> <span class="n">agg_func</span> <span class="o">=</span> <span class="s1">&#39;mean&#39;</span>
+    <span class="p">,</span> <span class="n">axis_sort_order</span><span class="o">=</span><span class="s1">&#39;descending&#39;</span>
+    <span class="p">,</span> <span class="n">text_auto</span><span class="o">=</span><span class="s1">&#39;.3s&#39;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s see at statistics and distribution of the metric.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pb</span><span class="o">.</span><span class="n">metric_info</span><span class="p">(</span>
+    <span class="n">upper_quantile</span><span class="o">=</span><span class="mf">0.95</span>
+    <span class="p">,</span> <span class="n">hist_mode</span><span class="o">=</span><span class="s1">&#39;dual_hist_trim&#39;</span>        
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style type="text/css">
+#T_5fada caption {
+  font-size: 16px;
+  text-align: left;
+  font-weight: bold;
+  white-space: nowrap;
+}
+#T_5fada th {
+  text-align: center;
+}
+#T_5fada_row0_col0, #T_5fada_row0_col1, #T_5fada_row0_col2, #T_5fada_row0_col3, #T_5fada_row0_col4, #T_5fada_row0_col5, #T_5fada_row0_col6, #T_5fada_row0_col7, #T_5fada_row0_col8, #T_5fada_row0_col9, #T_5fada_row0_col10, #T_5fada_row1_col0, #T_5fada_row1_col1, #T_5fada_row1_col2, #T_5fada_row1_col3, #T_5fada_row1_col4, #T_5fada_row1_col5, #T_5fada_row1_col6, #T_5fada_row1_col7, #T_5fada_row1_col8, #T_5fada_row1_col9, #T_5fada_row1_col10, #T_5fada_row2_col0, #T_5fada_row2_col1, #T_5fada_row2_col2, #T_5fada_row2_col3, #T_5fada_row2_col4, #T_5fada_row2_col5, #T_5fada_row2_col6, #T_5fada_row2_col7, #T_5fada_row2_col8, #T_5fada_row2_col9, #T_5fada_row2_col10, #T_5fada_row3_col0, #T_5fada_row3_col1, #T_5fada_row3_col2, #T_5fada_row3_col3, #T_5fada_row3_col4, #T_5fada_row3_col5, #T_5fada_row3_col6, #T_5fada_row3_col7, #T_5fada_row3_col8, #T_5fada_row3_col9, #T_5fada_row3_col10, #T_5fada_row4_col0, #T_5fada_row4_col1, #T_5fada_row4_col2, #T_5fada_row4_col3, #T_5fada_row4_col4, #T_5fada_row4_col5, #T_5fada_row4_col6, #T_5fada_row4_col7, #T_5fada_row4_col8, #T_5fada_row4_col9, #T_5fada_row4_col10, #T_5fada_row5_col0, #T_5fada_row5_col1, #T_5fada_row5_col2, #T_5fada_row5_col3, #T_5fada_row5_col4, #T_5fada_row5_col5, #T_5fada_row5_col6, #T_5fada_row5_col7, #T_5fada_row5_col8, #T_5fada_row5_col9, #T_5fada_row5_col10, #T_5fada_row6_col0, #T_5fada_row6_col1, #T_5fada_row6_col2, #T_5fada_row6_col3, #T_5fada_row6_col4, #T_5fada_row6_col5, #T_5fada_row6_col6, #T_5fada_row6_col7, #T_5fada_row6_col8, #T_5fada_row6_col9, #T_5fada_row6_col10, #T_5fada_row7_col0, #T_5fada_row7_col1, #T_5fada_row7_col2, #T_5fada_row7_col3, #T_5fada_row7_col4, #T_5fada_row7_col5, #T_5fada_row7_col6, #T_5fada_row7_col7, #T_5fada_row7_col8, #T_5fada_row7_col9, #T_5fada_row7_col10, #T_5fada_row8_col0, #T_5fada_row8_col1, #T_5fada_row8_col2, #T_5fada_row8_col3, #T_5fada_row8_col4, #T_5fada_row8_col5, #T_5fada_row8_col6, #T_5fada_row8_col7, #T_5fada_row8_col8, #T_5fada_row8_col9, #T_5fada_row8_col10 {
+  text-align: left;
+}
+</style>
+<table id="T_5fada">
+  <caption>Summary Statistics for "payment_value" (Type: Float)</caption>
+  <thead>
+    <tr>
+      <th id="T_5fada_level0_col0" class="col_heading level0 col0" colspan="2">Summary</th>
+      <th id="T_5fada_level0_col2" class="col_heading level0 col2" > </th>
+      <th id="T_5fada_level0_col3" class="col_heading level0 col3" colspan="2">Percentiles</th>
+      <th id="T_5fada_level0_col5" class="col_heading level0 col5" >  </th>
+      <th id="T_5fada_level0_col6" class="col_heading level0 col6" colspan="2">Detailed Stats</th>
+      <th id="T_5fada_level0_col8" class="col_heading level0 col8" >   </th>
+      <th id="T_5fada_level0_col9" class="col_heading level0 col9" colspan="2">Value Counts</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td id="T_5fada_row0_col0" class="data row0 col0" >Total</td>
+      <td id="T_5fada_row0_col1" class="data row0 col1" >103.52k (100%)</td>
+      <td id="T_5fada_row0_col2" class="data row0 col2" >          </td>
+      <td id="T_5fada_row0_col3" class="data row0 col3" >Max</td>
+      <td id="T_5fada_row0_col4" class="data row0 col4" >13.66k</td>
+      <td id="T_5fada_row0_col5" class="data row0 col5" >          </td>
+      <td id="T_5fada_row0_col6" class="data row0 col6" >Mean</td>
+      <td id="T_5fada_row0_col7" class="data row0 col7" >154.02</td>
+      <td id="T_5fada_row0_col8" class="data row0 col8" >          </td>
+      <td id="T_5fada_row0_col9" class="data row0 col9" >50</td>
+      <td id="T_5fada_row0_col10" class="data row0 col10" >323 (<1%)</td>
+    </tr>
+    <tr>
+      <td id="T_5fada_row1_col0" class="data row1 col0" >Missing</td>
+      <td id="T_5fada_row1_col1" class="data row1 col1" >---</td>
+      <td id="T_5fada_row1_col2" class="data row1 col2" >          </td>
+      <td id="T_5fada_row1_col3" class="data row1 col3" >99%</td>
+      <td id="T_5fada_row1_col4" class="data row1 col4" >1.04k</td>
+      <td id="T_5fada_row1_col5" class="data row1 col5" >          </td>
+      <td id="T_5fada_row1_col6" class="data row1 col6" >Trimmed Mean (10%)</td>
+      <td id="T_5fada_row1_col7" class="data row1 col7" >114.80</td>
+      <td id="T_5fada_row1_col8" class="data row1 col8" >          </td>
+      <td id="T_5fada_row1_col9" class="data row1 col9" >20</td>
+      <td id="T_5fada_row1_col10" class="data row1 col10" >272 (<1%)</td>
+    </tr>
+    <tr>
+      <td id="T_5fada_row2_col0" class="data row2 col0" >Distinct</td>
+      <td id="T_5fada_row2_col1" class="data row2 col1" >28.99k (28%)</td>
+      <td id="T_5fada_row2_col2" class="data row2 col2" >          </td>
+      <td id="T_5fada_row2_col3" class="data row2 col3" >95%</td>
+      <td id="T_5fada_row2_col4" class="data row2 col4" >437.19</td>
+      <td id="T_5fada_row2_col5" class="data row2 col5" >          </td>
+      <td id="T_5fada_row2_col6" class="data row2 col6" >Mode</td>
+      <td id="T_5fada_row2_col7" class="data row2 col7" >50</td>
+      <td id="T_5fada_row2_col8" class="data row2 col8" >          </td>
+      <td id="T_5fada_row2_col9" class="data row2 col9" >100</td>
+      <td id="T_5fada_row2_col10" class="data row2 col10" >254 (<1%)</td>
+    </tr>
+    <tr>
+      <td id="T_5fada_row3_col0" class="data row3 col0" >Non-Duplicate</td>
+      <td id="T_5fada_row3_col1" class="data row3 col1" >13.06k (13%)</td>
+      <td id="T_5fada_row3_col2" class="data row3 col2" >          </td>
+      <td id="T_5fada_row3_col3" class="data row3 col3" >75%</td>
+      <td id="T_5fada_row3_col4" class="data row3 col4" >171.77</td>
+      <td id="T_5fada_row3_col5" class="data row3 col5" >          </td>
+      <td id="T_5fada_row3_col6" class="data row3 col6" >Range</td>
+      <td id="T_5fada_row3_col7" class="data row3 col7" >13.66k</td>
+      <td id="T_5fada_row3_col8" class="data row3 col8" >          </td>
+      <td id="T_5fada_row3_col9" class="data row3 col9" >77.57</td>
+      <td id="T_5fada_row3_col10" class="data row3 col10" >250 (<1%)</td>
+    </tr>
+    <tr>
+      <td id="T_5fada_row4_col0" class="data row4 col0" >Duplicates</td>
+      <td id="T_5fada_row4_col1" class="data row4 col1" >74.53k (72%)</td>
+      <td id="T_5fada_row4_col2" class="data row4 col2" >          </td>
+      <td id="T_5fada_row4_col3" class="data row4 col3" >50%</td>
+      <td id="T_5fada_row4_col4" class="data row4 col4" >100</td>
+      <td id="T_5fada_row4_col5" class="data row4 col5" >          </td>
+      <td id="T_5fada_row4_col6" class="data row4 col6" >IQR</td>
+      <td id="T_5fada_row4_col7" class="data row4 col7" >114.99</td>
+      <td id="T_5fada_row4_col8" class="data row4 col8" >          </td>
+      <td id="T_5fada_row4_col9" class="data row4 col9" >35</td>
+      <td id="T_5fada_row4_col10" class="data row4 col10" >165 (<1%)</td>
+    </tr>
+    <tr>
+      <td id="T_5fada_row5_col0" class="data row5 col0" >Dup. Values</td>
+      <td id="T_5fada_row5_col1" class="data row5 col1" >15.93k (15%)</td>
+      <td id="T_5fada_row5_col2" class="data row5 col2" >          </td>
+      <td id="T_5fada_row5_col3" class="data row5 col3" >25%</td>
+      <td id="T_5fada_row5_col4" class="data row5 col4" >56.78</td>
+      <td id="T_5fada_row5_col5" class="data row5 col5" >          </td>
+      <td id="T_5fada_row5_col6" class="data row5 col6" >Std</td>
+      <td id="T_5fada_row5_col7" class="data row5 col7" >217.46</td>
+      <td id="T_5fada_row5_col8" class="data row5 col8" >          </td>
+      <td id="T_5fada_row5_col9" class="data row5 col9" >73.34</td>
+      <td id="T_5fada_row5_col10" class="data row5 col10" >160 (<1%)</td>
+    </tr>
+    <tr>
+      <td id="T_5fada_row6_col0" class="data row6 col0" >Zeros</td>
+      <td id="T_5fada_row6_col1" class="data row6 col1" >8 (<1%)</td>
+      <td id="T_5fada_row6_col2" class="data row6 col2" >          </td>
+      <td id="T_5fada_row6_col3" class="data row6 col3" >5%</td>
+      <td id="T_5fada_row6_col4" class="data row6 col4" >26.13</td>
+      <td id="T_5fada_row6_col5" class="data row6 col5" >          </td>
+      <td id="T_5fada_row6_col6" class="data row6 col6" >MAD</td>
+      <td id="T_5fada_row6_col7" class="data row6 col7" >76.40</td>
+      <td id="T_5fada_row6_col8" class="data row6 col8" >          </td>
+      <td id="T_5fada_row6_col9" class="data row6 col9" >30</td>
+      <td id="T_5fada_row6_col10" class="data row6 col10" >133 (<1%)</td>
+    </tr>
+    <tr>
+      <td id="T_5fada_row7_col0" class="data row7 col0" >Negative</td>
+      <td id="T_5fada_row7_col1" class="data row7 col1" >---</td>
+      <td id="T_5fada_row7_col2" class="data row7 col2" >          </td>
+      <td id="T_5fada_row7_col3" class="data row7 col3" >1%</td>
+      <td id="T_5fada_row7_col4" class="data row7 col4" >6.71</td>
+      <td id="T_5fada_row7_col5" class="data row7 col5" >          </td>
+      <td id="T_5fada_row7_col6" class="data row7 col6" >Kurt</td>
+      <td id="T_5fada_row7_col7" class="data row7 col7" >242.72</td>
+      <td id="T_5fada_row7_col8" class="data row7 col8" >          </td>
+      <td id="T_5fada_row7_col9" class="data row7 col9" >116.94</td>
+      <td id="T_5fada_row7_col10" class="data row7 col10" >131 (<1%)</td>
+    </tr>
+    <tr>
+      <td id="T_5fada_row8_col0" class="data row8 col0" >Memory Usage</td>
+      <td id="T_5fada_row8_col1" class="data row8 col1" >1</td>
+      <td id="T_5fada_row8_col2" class="data row8 col2" >          </td>
+      <td id="T_5fada_row8_col3" class="data row8 col3" >Min</td>
+      <td id="T_5fada_row8_col4" class="data row8 col4" >0</td>
+      <td id="T_5fada_row8_col5" class="data row8 col5" >          </td>
+      <td id="T_5fada_row8_col6" class="data row8 col6" >Skew</td>
+      <td id="T_5fada_row8_col7" class="data row8 col7" >9.27</td>
+      <td id="T_5fada_row8_col8" class="data row8 col8" >          </td>
+      <td id="T_5fada_row8_col9" class="data row8 col9" >56.78</td>
+      <td id="T_5fada_row8_col10" class="data row8 col10" >122 (<1%)</td>
+    </tr>
+  </tbody>
+</table>
+</div><img alt="../../_images/69842b221ed5ccc90ff5b9b9c9189fef0be2b367fceee286641f0b6eefd228d6.jpg" src="../../_images/69842b221ed5ccc90ff5b9b9c9189fef0be2b367fceee286641f0b6eefd228d6.jpg" />
+</div>
+</div>
+<p><strong>Key Observations:</strong></p>
+<ul class="simple">
+<li><p>75% of payments are ≤172 R$</p></li>
+<li><p>Top 5% are ≥440 R$</p></li>
+<li><p>Several exceed 6,000 R$</p></li>
+</ul>
+<p><strong>By Payment Type</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pb</span><span class="o">.</span><span class="n">bar_groupby</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="s1">&#39;payment_type&#39;</span><span class="p">,</span> <span class="n">to_slide</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/5fc3ff06f077da6143f410501034662b9eaa0bce7252dfb975c15516efad2dca.jpg" src="../../_images/5fc3ff06f077da6143f410501034662b9eaa0bce7252dfb975c15516efad2dca.jpg" />
+</div>
+</div>
+<p><strong>Key Observations:</strong></p>
+<ul class="simple">
+<li><p>Credit card payments have highest average value</p></li>
+<li><p>Vouchers have lowest</p></li>
+</ul>
+</section>
+<section id="number-of-payment-installments">
+<h2>Number of Payment Installments<a class="headerlink" href="#number-of-payment-installments" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pb</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df_payments</span>
+    <span class="p">,</span> <span class="n">metric</span> <span class="o">=</span> <span class="s1">&#39;payment_installments&#39;</span>
+    <span class="p">,</span> <span class="n">metric_label</span> <span class="o">=</span> <span class="s1">&#39;Average Payment Installments&#39;</span>
+    <span class="p">,</span> <span class="n">metric_label_for_distribution</span> <span class="o">=</span> <span class="s1">&#39;Payment Installments&#39;</span>
+    <span class="p">,</span> <span class="n">agg_func</span> <span class="o">=</span> <span class="s1">&#39;mean&#39;</span>
+    <span class="p">,</span> <span class="n">axis_sort_order</span><span class="o">=</span><span class="s1">&#39;descending&#39;</span>
+    <span class="p">,</span> <span class="n">text_auto</span><span class="o">=</span><span class="s1">&#39;.2s&#39;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s see at statistics and distribution of the metric.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pb</span><span class="o">.</span><span class="n">metric_info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style type="text/css">
+#T_a56b5 caption {
+  font-size: 16px;
+  text-align: left;
+  font-weight: bold;
+  white-space: nowrap;
+}
+#T_a56b5 th {
+  text-align: center;
+}
+#T_a56b5_row0_col0, #T_a56b5_row0_col1, #T_a56b5_row0_col2, #T_a56b5_row0_col3, #T_a56b5_row0_col4, #T_a56b5_row0_col5, #T_a56b5_row0_col6, #T_a56b5_row0_col7, #T_a56b5_row0_col8, #T_a56b5_row0_col9, #T_a56b5_row0_col10, #T_a56b5_row1_col0, #T_a56b5_row1_col1, #T_a56b5_row1_col2, #T_a56b5_row1_col3, #T_a56b5_row1_col4, #T_a56b5_row1_col5, #T_a56b5_row1_col6, #T_a56b5_row1_col7, #T_a56b5_row1_col8, #T_a56b5_row1_col9, #T_a56b5_row1_col10, #T_a56b5_row2_col0, #T_a56b5_row2_col1, #T_a56b5_row2_col2, #T_a56b5_row2_col3, #T_a56b5_row2_col4, #T_a56b5_row2_col5, #T_a56b5_row2_col6, #T_a56b5_row2_col7, #T_a56b5_row2_col8, #T_a56b5_row2_col9, #T_a56b5_row2_col10, #T_a56b5_row3_col0, #T_a56b5_row3_col1, #T_a56b5_row3_col2, #T_a56b5_row3_col3, #T_a56b5_row3_col4, #T_a56b5_row3_col5, #T_a56b5_row3_col6, #T_a56b5_row3_col7, #T_a56b5_row3_col8, #T_a56b5_row3_col9, #T_a56b5_row3_col10, #T_a56b5_row4_col0, #T_a56b5_row4_col1, #T_a56b5_row4_col2, #T_a56b5_row4_col3, #T_a56b5_row4_col4, #T_a56b5_row4_col5, #T_a56b5_row4_col6, #T_a56b5_row4_col7, #T_a56b5_row4_col8, #T_a56b5_row4_col9, #T_a56b5_row4_col10, #T_a56b5_row5_col0, #T_a56b5_row5_col1, #T_a56b5_row5_col2, #T_a56b5_row5_col3, #T_a56b5_row5_col4, #T_a56b5_row5_col5, #T_a56b5_row5_col6, #T_a56b5_row5_col7, #T_a56b5_row5_col8, #T_a56b5_row5_col9, #T_a56b5_row5_col10, #T_a56b5_row6_col0, #T_a56b5_row6_col1, #T_a56b5_row6_col2, #T_a56b5_row6_col3, #T_a56b5_row6_col4, #T_a56b5_row6_col5, #T_a56b5_row6_col6, #T_a56b5_row6_col7, #T_a56b5_row6_col8, #T_a56b5_row6_col9, #T_a56b5_row6_col10, #T_a56b5_row7_col0, #T_a56b5_row7_col1, #T_a56b5_row7_col2, #T_a56b5_row7_col3, #T_a56b5_row7_col4, #T_a56b5_row7_col5, #T_a56b5_row7_col6, #T_a56b5_row7_col7, #T_a56b5_row7_col8, #T_a56b5_row7_col9, #T_a56b5_row7_col10, #T_a56b5_row8_col0, #T_a56b5_row8_col1, #T_a56b5_row8_col2, #T_a56b5_row8_col3, #T_a56b5_row8_col4, #T_a56b5_row8_col5, #T_a56b5_row8_col6, #T_a56b5_row8_col7, #T_a56b5_row8_col8, #T_a56b5_row8_col9, #T_a56b5_row8_col10 {
+  text-align: left;
+}
+</style>
+<table id="T_a56b5">
+  <caption>Summary Statistics for "payment_installments" (Type: Integer)</caption>
+  <thead>
+    <tr>
+      <th id="T_a56b5_level0_col0" class="col_heading level0 col0" colspan="2">Summary</th>
+      <th id="T_a56b5_level0_col2" class="col_heading level0 col2" > </th>
+      <th id="T_a56b5_level0_col3" class="col_heading level0 col3" colspan="2">Percentiles</th>
+      <th id="T_a56b5_level0_col5" class="col_heading level0 col5" >  </th>
+      <th id="T_a56b5_level0_col6" class="col_heading level0 col6" colspan="2">Detailed Stats</th>
+      <th id="T_a56b5_level0_col8" class="col_heading level0 col8" >   </th>
+      <th id="T_a56b5_level0_col9" class="col_heading level0 col9" colspan="2">Value Counts</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td id="T_a56b5_row0_col0" class="data row0 col0" >Total</td>
+      <td id="T_a56b5_row0_col1" class="data row0 col1" >103.52k (100%)</td>
+      <td id="T_a56b5_row0_col2" class="data row0 col2" >          </td>
+      <td id="T_a56b5_row0_col3" class="data row0 col3" >Max</td>
+      <td id="T_a56b5_row0_col4" class="data row0 col4" >24</td>
+      <td id="T_a56b5_row0_col5" class="data row0 col5" >          </td>
+      <td id="T_a56b5_row0_col6" class="data row0 col6" >Mean</td>
+      <td id="T_a56b5_row0_col7" class="data row0 col7" >2.85</td>
+      <td id="T_a56b5_row0_col8" class="data row0 col8" >          </td>
+      <td id="T_a56b5_row0_col9" class="data row0 col9" >1</td>
+      <td id="T_a56b5_row0_col10" class="data row0 col10" >52.38k (51%)</td>
+    </tr>
+    <tr>
+      <td id="T_a56b5_row1_col0" class="data row1 col0" >Missing</td>
+      <td id="T_a56b5_row1_col1" class="data row1 col1" >---</td>
+      <td id="T_a56b5_row1_col2" class="data row1 col2" >          </td>
+      <td id="T_a56b5_row1_col3" class="data row1 col3" >99%</td>
+      <td id="T_a56b5_row1_col4" class="data row1 col4" >10</td>
+      <td id="T_a56b5_row1_col5" class="data row1 col5" >          </td>
+      <td id="T_a56b5_row1_col6" class="data row1 col6" >Trimmed Mean (10%)</td>
+      <td id="T_a56b5_row1_col7" class="data row1 col7" >2.28</td>
+      <td id="T_a56b5_row1_col8" class="data row1 col8" >          </td>
+      <td id="T_a56b5_row1_col9" class="data row1 col9" >2</td>
+      <td id="T_a56b5_row1_col10" class="data row1 col10" >12.38k (12%)</td>
+    </tr>
+    <tr>
+      <td id="T_a56b5_row2_col0" class="data row2 col0" >Distinct</td>
+      <td id="T_a56b5_row2_col1" class="data row2 col1" >23 (<1%)</td>
+      <td id="T_a56b5_row2_col2" class="data row2 col2" >          </td>
+      <td id="T_a56b5_row2_col3" class="data row2 col3" >95%</td>
+      <td id="T_a56b5_row2_col4" class="data row2 col4" >10</td>
+      <td id="T_a56b5_row2_col5" class="data row2 col5" >          </td>
+      <td id="T_a56b5_row2_col6" class="data row2 col6" >Mode</td>
+      <td id="T_a56b5_row2_col7" class="data row2 col7" >1</td>
+      <td id="T_a56b5_row2_col8" class="data row2 col8" >          </td>
+      <td id="T_a56b5_row2_col9" class="data row2 col9" >3</td>
+      <td id="T_a56b5_row2_col10" class="data row2 col10" >10.42k (10%)</td>
+    </tr>
+    <tr>
+      <td id="T_a56b5_row3_col0" class="data row3 col0" >Non-Duplicate</td>
+      <td id="T_a56b5_row3_col1" class="data row3 col1" >2 (<1%)</td>
+      <td id="T_a56b5_row3_col2" class="data row3 col2" >          </td>
+      <td id="T_a56b5_row3_col3" class="data row3 col3" >75%</td>
+      <td id="T_a56b5_row3_col4" class="data row3 col4" >4</td>
+      <td id="T_a56b5_row3_col5" class="data row3 col5" >          </td>
+      <td id="T_a56b5_row3_col6" class="data row3 col6" >Range</td>
+      <td id="T_a56b5_row3_col7" class="data row3 col7" >23</td>
+      <td id="T_a56b5_row3_col8" class="data row3 col8" >          </td>
+      <td id="T_a56b5_row3_col9" class="data row3 col9" >4</td>
+      <td id="T_a56b5_row3_col10" class="data row3 col10" >7.07k (7%)</td>
+    </tr>
+    <tr>
+      <td id="T_a56b5_row4_col0" class="data row4 col0" >Duplicates</td>
+      <td id="T_a56b5_row4_col1" class="data row4 col1" >103.50k (99%)</td>
+      <td id="T_a56b5_row4_col2" class="data row4 col2" >          </td>
+      <td id="T_a56b5_row4_col3" class="data row4 col3" >50%</td>
+      <td id="T_a56b5_row4_col4" class="data row4 col4" >1</td>
+      <td id="T_a56b5_row4_col5" class="data row4 col5" >          </td>
+      <td id="T_a56b5_row4_col6" class="data row4 col6" >IQR</td>
+      <td id="T_a56b5_row4_col7" class="data row4 col7" >3</td>
+      <td id="T_a56b5_row4_col8" class="data row4 col8" >          </td>
+      <td id="T_a56b5_row4_col9" class="data row4 col9" >10</td>
+      <td id="T_a56b5_row4_col10" class="data row4 col10" >5.29k (5%)</td>
+    </tr>
+    <tr>
+      <td id="T_a56b5_row5_col0" class="data row5 col0" >Dup. Values</td>
+      <td id="T_a56b5_row5_col1" class="data row5 col1" >21 (<1%)</td>
+      <td id="T_a56b5_row5_col2" class="data row5 col2" >          </td>
+      <td id="T_a56b5_row5_col3" class="data row5 col3" >25%</td>
+      <td id="T_a56b5_row5_col4" class="data row5 col4" >1</td>
+      <td id="T_a56b5_row5_col5" class="data row5 col5" >          </td>
+      <td id="T_a56b5_row5_col6" class="data row5 col6" >Std</td>
+      <td id="T_a56b5_row5_col7" class="data row5 col7" >2.69</td>
+      <td id="T_a56b5_row5_col8" class="data row5 col8" >          </td>
+      <td id="T_a56b5_row5_col9" class="data row5 col9" >5</td>
+      <td id="T_a56b5_row5_col10" class="data row5 col10" >5.22k (5%)</td>
+    </tr>
+    <tr>
+      <td id="T_a56b5_row6_col0" class="data row6 col0" >Zeros</td>
+      <td id="T_a56b5_row6_col1" class="data row6 col1" >---</td>
+      <td id="T_a56b5_row6_col2" class="data row6 col2" >          </td>
+      <td id="T_a56b5_row6_col3" class="data row6 col3" >5%</td>
+      <td id="T_a56b5_row6_col4" class="data row6 col4" >1</td>
+      <td id="T_a56b5_row6_col5" class="data row6 col5" >          </td>
+      <td id="T_a56b5_row6_col6" class="data row6 col6" >MAD</td>
+      <td id="T_a56b5_row6_col7" class="data row6 col7" >0</td>
+      <td id="T_a56b5_row6_col8" class="data row6 col8" >          </td>
+      <td id="T_a56b5_row6_col9" class="data row6 col9" >8</td>
+      <td id="T_a56b5_row6_col10" class="data row6 col10" >4.26k (4%)</td>
+    </tr>
+    <tr>
+      <td id="T_a56b5_row7_col0" class="data row7 col0" >Negative</td>
+      <td id="T_a56b5_row7_col1" class="data row7 col1" >---</td>
+      <td id="T_a56b5_row7_col2" class="data row7 col2" >          </td>
+      <td id="T_a56b5_row7_col3" class="data row7 col3" >1%</td>
+      <td id="T_a56b5_row7_col4" class="data row7 col4" >1</td>
+      <td id="T_a56b5_row7_col5" class="data row7 col5" >          </td>
+      <td id="T_a56b5_row7_col6" class="data row7 col6" >Kurt</td>
+      <td id="T_a56b5_row7_col7" class="data row7 col7" >2.56</td>
+      <td id="T_a56b5_row7_col8" class="data row7 col8" >          </td>
+      <td id="T_a56b5_row7_col9" class="data row7 col9" >6</td>
+      <td id="T_a56b5_row7_col10" class="data row7 col10" >3.90k (4%)</td>
+    </tr>
+    <tr>
+      <td id="T_a56b5_row8_col0" class="data row8 col0" >Memory Usage</td>
+      <td id="T_a56b5_row8_col1" class="data row8 col1" >1</td>
+      <td id="T_a56b5_row8_col2" class="data row8 col2" >          </td>
+      <td id="T_a56b5_row8_col3" class="data row8 col3" >Min</td>
+      <td id="T_a56b5_row8_col4" class="data row8 col4" >1</td>
+      <td id="T_a56b5_row8_col5" class="data row8 col5" >          </td>
+      <td id="T_a56b5_row8_col6" class="data row8 col6" >Skew</td>
+      <td id="T_a56b5_row8_col7" class="data row8 col7" >1.66</td>
+      <td id="T_a56b5_row8_col8" class="data row8 col8" >          </td>
+      <td id="T_a56b5_row8_col9" class="data row8 col9" >7</td>
+      <td id="T_a56b5_row8_col10" class="data row8 col10" >1.61k (2%)</td>
+    </tr>
+  </tbody>
+</table>
+</div><img alt="../../_images/45dfbff7ce8f0a7087486fea3336d141d9a9910c1cddafe6ea56a6060195b544.jpg" src="../../_images/45dfbff7ce8f0a7087486fea3336d141d9a9910c1cddafe6ea56a6060195b544.jpg" />
+</div>
+</div>
+<p><strong>Key Observations:</strong></p>
+<ul class="simple">
+<li><p>51% of payments are single-installment</p></li>
+<li><p>Some have ≥9 installments</p></li>
+</ul>
+<p><strong>By Payment Type</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pb</span><span class="o">.</span><span class="n">bar_groupby</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="s1">&#39;payment_type&#39;</span><span class="p">,</span> <span class="n">to_slide</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/1bc5c2e04b9992f588e1660f8490c6949ec8dc1d59c8f717bd718c1ed82a4a83.jpg" src="../../_images/1bc5c2e04b9992f588e1660f8490c6949ec8dc1d59c8f717bd718c1ed82a4a83.jpg" />
+</div>
+</div>
+<p><strong>Key Observations:</strong></p>
+<ul class="simple">
+<li><p>Credit cards average 3.5 installments</p></li>
+<li><p>Other methods have no installments</p></li>
+</ul>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="08_delivery_analysis.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Delivery Analysis</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="10_geographical_analysis.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Geographical Analysis</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#number-of-payments">Number of Payments</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#payment-value">Payment Value</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#number-of-payment-installments">Number of Payment Installments</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Pavel Grigoryev
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025, Pavel Grigoryev.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

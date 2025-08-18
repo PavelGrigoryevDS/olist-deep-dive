@@ -1,0 +1,1316 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Creating Analysis Class &#8212; 🌊 Deep Sales Analysis of Olist Marketplace</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=aa5847ba" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/custom.js?v=f9582d1e"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'contents/03_data_analysis/01_creating_analysis_class';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Time Series Analysis" href="02_time_series_analysis.html" />
+    <link rel="prev" title="Intermediate Conclusion" href="../02_data_preprocessing/09_intermediate_conclusion.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo-light.png" class="logo__image only-light" alt="🌊 Deep Sales Analysis of Olist Marketplace - Home"/>
+    <script>document.write(`<img src="../../_static/logo-dark.png" class="logo__image only-dark" alt="🌊 Deep Sales Analysis of Olist Marketplace - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Description and Exploration</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../01_data_description_and_exploration/01_data_description.html">Data Description</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_data_description_and_exploration/02_data_loading.html">Data Loading</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_data_description_and_exploration/03_data_exploration.html">Data Exploration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_data_description_and_exploration/04_intermediate_conclusion.html">Intermediate Conclusion</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Preprocessing</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../02_data_preprocessing/01_initial_data_filtering.html">Initial Data Filtering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_data_preprocessing/02_outlier_handling.html">Outlier Handling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_data_preprocessing/03_missing_value_handling.html">Missing Value Handling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_data_preprocessing/04_duplicate_handling.html">Duplicate Handling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_data_preprocessing/05_creating_new_metrics.html">Creating New Metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_data_preprocessing/06_creating_new_dimensions.html">Creating New Dimensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_data_preprocessing/07_converting_data_to_a_convenient_format.html">Converting Data to a Convenient Format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_data_preprocessing/08_data_merging.html">Data Merging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_data_preprocessing/09_intermediate_conclusion.html">Intermediate Conclusion</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Analysis</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Creating Analysis Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_time_series_analysis.html">Time Series Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_customer_analysis.html">Customer Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_seller_analysis.html">Seller Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_sales_analysis.html">Sales Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_product_analysis.html">Product Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_review_analysis.html">Review Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_delivery_analysis.html">Delivery Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_payment_analysis.html">Payment Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_geographical_analysis.html">Geographical Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_cohort_analysis.html">Cohort Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_correlation_analysis.html">Correlation Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_slice_analysis.html">Slice Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14_analysis_of_customer_segments.html">Analysis of Customer Segments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15_rfm_analysis.html">RFM Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="16_customer_clustering.html">Customer Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="17_hypothesis_testing.html">Hypothesis Testing</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">General Conclusion</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/01_time_dynamics.html">Time Dynamics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/02_customers.html">Customers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/03_sales.html">Sales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/04_products.html">Products</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/05_reviews.html">Reviews</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/06_delivery.html">Delivery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/07_payments.html">Payments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/08_sellers.html">Sellers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/09_cohort_analysis.html">Cohort Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/10_correlation_analysis.html">Correlation Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/11_black_friday.html">Black Friday</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/12_cancelled_orders.html">Cancelled Orders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/13_hypothesis_testing_results.html">Hypothesis Testing Results</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/14_detected_anomalies.html">Detected Anomalies</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Recommendations</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/01_product_market_fit.html">Product market fit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/02_customer_loyalty_enhancement.html">Customer loyalty Enhancement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/03_customer_experience_improvement.html">Customer Experience Improvement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/04_logistics_and_delivery_optimization.html">Logistics and Delivery Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/05_financial_optimization.html">Financial optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/06_average_order_value_and_basket_optimization.html">Average Order Value and Basket Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/07_segment_specific_strategies.html">Segment-Specific Strategies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/08_product_and_assortment_management.html">Product and Assortment Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/09_marketing_and_promotion.html">Marketing and Promotion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/10_peak_season_preparedness.html">Peak Season Preparedness</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/11_analytics_and_monitoring.html">Analytics and Monitoring</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/12_ab_testing.html">A/B Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/13_anomaly.html">Anomaly</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/PavelGrigoryevDS/olist-deep-dive" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/contents/03_data_analysis/01_creating_analysis_class.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Creating Analysis Class</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="creating-analysis-class">
+<h1>Creating Analysis Class<a class="headerlink" href="#creating-analysis-class" title="Link to this heading">#</a></h1>
+<p>We’ll establish labels and category ordering for our visualizations, then integrate these specifications into our dataframes.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">base_labels</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+    <span class="c1"># df_orders</span>
+    <span class="n">year</span> <span class="o">=</span> <span class="s1">&#39;Year&#39;</span>
+    <span class="p">,</span> <span class="n">purchase_year</span> <span class="o">=</span> <span class="s1">&#39;Year&#39;</span>
+    <span class="p">,</span> <span class="n">purchase_month</span> <span class="o">=</span> <span class="s1">&#39;Month&#39;</span>
+    <span class="p">,</span> <span class="n">purchase_season</span> <span class="o">=</span> <span class="s1">&#39;Season&#39;</span>
+    <span class="p">,</span> <span class="n">purchase_weekday</span> <span class="o">=</span> <span class="s1">&#39;Day of Week&#39;</span>
+    <span class="p">,</span> <span class="n">purchase_day_type</span> <span class="o">=</span> <span class="s1">&#39;Day Type&#39;</span>
+    <span class="p">,</span> <span class="n">purchase_time_of_day</span> <span class="o">=</span> <span class="s1">&#39;Time of Day&#39;</span>
+    <span class="p">,</span> <span class="n">purchase_hour</span> <span class="o">=</span> <span class="s1">&#39;Hour&#39;</span>
+    <span class="p">,</span> <span class="n">order_status</span> <span class="o">=</span> <span class="s1">&#39;Order Status&#39;</span>
+    <span class="p">,</span> <span class="n">is_delayed</span> <span class="o">=</span> <span class="s1">&#39;Delivery Delay Status&#39;</span>
+    <span class="p">,</span> <span class="n">is_canceled</span> <span class="o">=</span> <span class="s1">&#39;Order Cancellation Status&#39;</span>
+    <span class="p">,</span> <span class="n">is_delivered</span> <span class="o">=</span> <span class="s1">&#39;Delivery Status&#39;</span>
+    <span class="p">,</span> <span class="n">delivery_time_days_cat</span> <span class="o">=</span> <span class="s1">&#39;Delivery Time Category&#39;</span>
+    <span class="p">,</span> <span class="n">delivery_issue_reason</span> <span class="o">=</span> <span class="s1">&#39;Delivery Issue Reason&#39;</span>
+    <span class="p">,</span> <span class="n">is_purchase</span> <span class="o">=</span> <span class="s1">&#39;Purchase Status&#39;</span>
+        <span class="c1"># from df_paymetns</span>
+    <span class="p">,</span> <span class="n">order_has_installment</span> <span class="o">=</span> <span class="s1">&#39;Installment Status&#39;</span>
+    <span class="p">,</span> <span class="n">order_total_payment_cat</span> <span class="o">=</span> <span class="s1">&#39;Order Payment Category&#39;</span>
+    <span class="p">,</span> <span class="n">order_payment_types</span> <span class="o">=</span> <span class="s1">&#39;Order Payment Types&#39;</span>
+        <span class="c1"># from df_items and df_products</span>
+    <span class="p">,</span> <span class="n">order_is_free_shipping</span> <span class="o">=</span> <span class="s1">&#39;Free Shipping Status&#39;</span>
+    <span class="p">,</span> <span class="n">order_general_product_categories</span> <span class="o">=</span> <span class="s1">&#39;General Product Categories&#39;</span>
+    <span class="p">,</span> <span class="n">order_product_categories</span> <span class="o">=</span> <span class="s1">&#39;Product Categories&#39;</span>
+    <span class="p">,</span> <span class="n">order_total_weight_cat</span> <span class="o">=</span> <span class="s1">&#39;Order Weight Category&#39;</span>
+    <span class="p">,</span> <span class="n">order_total_volume_cat</span> <span class="o">=</span> <span class="s1">&#39;Order Volume Category&#39;</span>
+        <span class="c1"># from df_reviews</span>
+    <span class="p">,</span> <span class="n">order_avg_reviews_score</span> <span class="o">=</span> <span class="s1">&#39;Order Review Score&#39;</span>
+    <span class="p">,</span> <span class="n">order_review_sentiment</span> <span class="o">=</span> <span class="s1">&#39;Order Review Sentiment&#39;</span>
+    <span class="c1"># df_sales</span>
+    <span class="p">,</span> <span class="n">sale_is_customer_first_purchase</span> <span class="o">=</span> <span class="s1">&#39;First-Time Purchase&#39;</span>
+    <span class="p">,</span> <span class="n">sale_is_customer_first_purchase_month</span> <span class="o">=</span> <span class="s1">&#39;First Purchase Month&#39;</span>
+    <span class="c1"># df_customers</span>
+    <span class="p">,</span> <span class="n">customer_state</span> <span class="o">=</span> <span class="s1">&#39;Customer State&#39;</span>
+    <span class="p">,</span> <span class="n">customer_city</span> <span class="o">=</span> <span class="s1">&#39;Customer City&#39;</span>
+    <span class="p">,</span> <span class="n">customer_top_purchase_weekdays</span> <span class="o">=</span> <span class="s1">&#39;Top Purchase Weekdays&#39;</span>
+    <span class="p">,</span> <span class="n">customer_payment_types</span> <span class="o">=</span> <span class="s1">&#39;Payment Methods&#39;</span>
+    <span class="p">,</span> <span class="n">customer_top_product_categories</span> <span class="o">=</span> <span class="s1">&#39;Top Product Categories&#39;</span>
+    <span class="p">,</span> <span class="n">customer_top_general_product_categories</span> <span class="o">=</span> <span class="s1">&#39;Top General Product Categories&#39;</span>       
+    <span class="p">,</span> <span class="n">activity_segment</span> <span class="o">=</span> <span class="s1">&#39;Activity Segment&#39;</span>
+    <span class="p">,</span> <span class="n">value_segment</span> <span class="o">=</span> <span class="s1">&#39;Value Segment&#39;</span>
+    <span class="p">,</span> <span class="n">purchase_freq_segment</span> <span class="o">=</span> <span class="s1">&#39;Purchase Frequency Segment&#39;</span>
+    <span class="p">,</span> <span class="n">repeat_segment</span> <span class="o">=</span> <span class="s1">&#39;Repeat Segment&#39;</span>
+    <span class="p">,</span> <span class="n">loyalty_segment</span> <span class="o">=</span> <span class="s1">&#39;Loyalty Segment&#39;</span>
+    <span class="p">,</span> <span class="n">risk_segment</span> <span class="o">=</span> <span class="s1">&#39;Risk Segment&#39;</span>
+    <span class="p">,</span> <span class="n">weekday_segment</span> <span class="o">=</span> <span class="s1">&#39;Weekday Segment&#39;</span>
+    <span class="p">,</span> <span class="n">installment_segment</span> <span class="o">=</span> <span class="s1">&#39;Installment Segment&#39;</span>
+    <span class="p">,</span> <span class="n">products_cnt_segment</span> <span class="o">=</span> <span class="s1">&#39;Products Count Segment&#39;</span>
+    <span class="p">,</span> <span class="n">weight_segment</span> <span class="o">=</span> <span class="s1">&#39;Weight Segment&#39;</span>    
+    <span class="c1"># df_payments</span>
+    <span class="p">,</span> <span class="n">has_installments</span> <span class="o">=</span> <span class="s1">&#39;Installment Status&#39;</span>
+    <span class="p">,</span> <span class="n">payment_type</span> <span class="o">=</span> <span class="s1">&#39;Payment Type&#39;</span>
+    <span class="c1"># df_products</span>
+    <span class="p">,</span> <span class="n">general_product_category</span> <span class="o">=</span> <span class="s1">&#39;General Product Category&#39;</span>
+    <span class="p">,</span> <span class="n">product_category</span> <span class="o">=</span> <span class="s1">&#39;Product Category&#39;</span>
+    <span class="c1"># df_review</span>
+    <span class="p">,</span> <span class="n">review_score</span> <span class="o">=</span> <span class="s1">&#39;Review Score&#39;</span>
+    <span class="p">,</span> <span class="n">season_review</span> <span class="o">=</span> <span class="s1">&#39;Season&#39;</span>
+    <span class="p">,</span> <span class="n">review_day_type</span> <span class="o">=</span> <span class="s1">&#39;Day Type&#39;</span>
+    <span class="p">,</span> <span class="n">review_creation_weekday</span> <span class="o">=</span> <span class="s1">&#39;Day of Week&#39;</span>
+    <span class="c1"># df_sellers</span>
+    <span class="p">,</span> <span class="n">seller_state</span> <span class="o">=</span> <span class="s1">&#39;Seller State&#39;</span>
+    <span class="p">,</span> <span class="n">seller_city</span> <span class="o">=</span> <span class="s1">&#39;Seller City&#39;</span>
+    <span class="c1"># for all tables</span>
+    <span class="p">,</span> <span class="n">day_of_month</span> <span class="o">=</span> <span class="s1">&#39;Day of Month&#39;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">base_category_orders</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+    <span class="n">is_purchase</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Purchase&#39;</span><span class="p">,</span> <span class="s1">&#39;Not Purchase&#39;</span><span class="p">]</span>
+    <span class="p">,</span> <span class="n">purchase_year</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;2017&#39;</span><span class="p">,</span> <span class="s1">&#39;2018&#39;</span><span class="p">]</span>
+    <span class="p">,</span> <span class="n">purchase_season</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Spring&#39;</span><span class="p">,</span> <span class="s1">&#39;Summer&#39;</span><span class="p">,</span> <span class="s1">&#39;Autumn&#39;</span><span class="p">,</span> <span class="s1">&#39;Winter&#39;</span><span class="p">]</span>
+    <span class="p">,</span> <span class="n">purchase_month</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;January&#39;</span><span class="p">,</span> <span class="s1">&#39;February&#39;</span><span class="p">,</span> <span class="s1">&#39;March&#39;</span><span class="p">,</span> <span class="s1">&#39;April&#39;</span><span class="p">,</span> <span class="s1">&#39;May&#39;</span><span class="p">,</span> <span class="s1">&#39;June&#39;</span><span class="p">,</span> <span class="s1">&#39;July&#39;</span><span class="p">,</span> <span class="s1">&#39;August&#39;</span><span class="p">,</span> <span class="s1">&#39;September&#39;</span><span class="p">,</span> <span class="s1">&#39;October&#39;</span><span class="p">,</span> <span class="s1">&#39;November&#39;</span><span class="p">,</span> <span class="s1">&#39;December&#39;</span><span class="p">]</span>
+    <span class="p">,</span> <span class="n">purchase_weekday</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Monday&#39;</span><span class="p">,</span> <span class="s1">&#39;Tuesday&#39;</span><span class="p">,</span> <span class="s1">&#39;Wednesday&#39;</span><span class="p">,</span> <span class="s1">&#39;Thursday&#39;</span><span class="p">,</span> <span class="s1">&#39;Friday&#39;</span><span class="p">,</span> <span class="s1">&#39;Saturday&#39;</span><span class="p">,</span> <span class="s1">&#39;Sunday&#39;</span><span class="p">]</span>
+    <span class="p">,</span> <span class="n">purchase_day_type</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Weekday&#39;</span><span class="p">,</span> <span class="s1">&#39;Weekend&#39;</span><span class="p">]</span>
+    <span class="p">,</span> <span class="n">purchase_time_of_day</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Morning&#39;</span><span class="p">,</span> <span class="s1">&#39;Afternoon&#39;</span><span class="p">,</span> <span class="s1">&#39;Evening&#39;</span><span class="p">,</span> <span class="s1">&#39;Night&#39;</span><span class="p">]</span>
+    <span class="p">,</span> <span class="n">purchase_hour</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">24</span><span class="p">)))</span>
+    <span class="p">,</span> <span class="n">season_review</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Spring&#39;</span><span class="p">,</span> <span class="s1">&#39;Summer&#39;</span><span class="p">,</span> <span class="s1">&#39;Autumn&#39;</span><span class="p">,</span> <span class="s1">&#39;Winter&#39;</span><span class="p">]</span>
+    <span class="p">,</span> <span class="n">review_day_type</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Weekday&#39;</span><span class="p">,</span> <span class="s1">&#39;Weekend&#39;</span><span class="p">]</span>
+    <span class="p">,</span> <span class="n">review_creation_weekday</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Monday&#39;</span><span class="p">,</span> <span class="s1">&#39;Tuesday&#39;</span><span class="p">,</span> <span class="s1">&#39;Wednesday&#39;</span><span class="p">,</span> <span class="s1">&#39;Thursday&#39;</span><span class="p">,</span> <span class="s1">&#39;Friday&#39;</span><span class="p">,</span> <span class="s1">&#39;Saturday&#39;</span><span class="p">,</span> <span class="s1">&#39;Sunday&#39;</span><span class="p">]</span>    
+    <span class="p">,</span> <span class="n">order_avg_reviews_score</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">)))</span>
+    <span class="p">,</span> <span class="n">review_score</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">)))</span>
+    <span class="p">,</span> <span class="n">order_review_sentiment</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Positive&#39;</span><span class="p">,</span> <span class="s1">&#39;Neutral&#39;</span><span class="p">,</span> <span class="s1">&#39;Negative&#39;</span><span class="p">]</span>
+    <span class="p">,</span> <span class="n">is_delayed</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Delayed&#39;</span><span class="p">,</span> <span class="s1">&#39;Not Delayed&#39;</span><span class="p">]</span>
+    <span class="p">,</span> <span class="n">is_delivered</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Delivered&#39;</span><span class="p">,</span> <span class="s1">&#39;Not Delivered&#39;</span><span class="p">]</span>
+    <span class="p">,</span> <span class="n">order_status</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Delivered&#39;</span><span class="p">,</span> <span class="s1">&#39;Shipped&#39;</span><span class="p">,</span> <span class="s1">&#39;Processing&#39;</span><span class="p">,</span> <span class="s1">&#39;Unavailable&#39;</span><span class="p">,</span> <span class="s1">&#39;Canceled&#39;</span><span class="p">,</span> <span class="s1">&#39;Invoiced&#39;</span><span class="p">,</span> <span class="s1">&#39;Approved&#39;</span><span class="p">,</span> <span class="s1">&#39;Created&#39;</span><span class="p">]</span>
+    <span class="p">,</span> <span class="n">delivery_issue_reason</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Service Issue&#39;</span><span class="p">,</span> <span class="s1">&#39;Customer Issue&#39;</span><span class="p">,</span> <span class="s1">&#39;No Issues&#39;</span><span class="p">]</span>
+    <span class="p">,</span> <span class="n">delivery_time_days_cat</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Fast&#39;</span><span class="p">,</span> <span class="s1">&#39;Medium&#39;</span><span class="p">,</span> <span class="s1">&#39;Long&#39;</span><span class="p">]</span>
+    <span class="p">,</span> <span class="n">order_total_payment_cat</span> <span class="o">=</span>  <span class="p">[</span><span class="s1">&#39;Cheap&#39;</span><span class="p">,</span> <span class="s1">&#39;Medium&#39;</span><span class="p">,</span> <span class="s1">&#39;Expensive&#39;</span><span class="p">]</span>
+    <span class="p">,</span> <span class="n">order_total_weight_cat</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Light&#39;</span><span class="p">,</span> <span class="s1">&#39;Medium&#39;</span><span class="p">,</span> <span class="s1">&#39;Heavy&#39;</span><span class="p">]</span>
+    <span class="p">,</span> <span class="n">order_total_volume_cat</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Small&#39;</span><span class="p">,</span> <span class="s1">&#39;Medium&#39;</span><span class="p">,</span> <span class="s1">&#39;Large&#39;</span><span class="p">]</span>
+    <span class="p">,</span> <span class="n">order_has_installment</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Has Installments&#39;</span><span class="p">,</span> <span class="s1">&#39;No Installments&#39;</span><span class="p">]</span>
+    <span class="p">,</span> <span class="n">has_installments</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Has Installments&#39;</span><span class="p">,</span> <span class="s1">&#39;No Installments&#39;</span><span class="p">]</span>
+    <span class="p">,</span> <span class="n">order_is_free_shipping</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Free Shipping&#39;</span><span class="p">,</span> <span class="s1">&#39;Paid Shipping&#39;</span><span class="p">]</span> 
+    <span class="p">,</span> <span class="n">day_of_month</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">31</span><span class="p">)))</span>
+    <span class="c1"># segments</span>
+    <span class="p">,</span> <span class="n">value_segment</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Low&#39;</span><span class="p">,</span> <span class="s1">&#39;Medium&#39;</span><span class="p">,</span> <span class="s1">&#39;High&#39;</span><span class="p">]</span>
+    <span class="p">,</span> <span class="n">activity_segment</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Core&#39;</span><span class="p">,</span> <span class="s1">&#39;Potential Core&#39;</span><span class="p">,</span> <span class="s1">&#39;Short-Lived Repeat&#39;</span><span class="p">,</span> <span class="s1">&#39;One Time&#39;</span><span class="p">,</span> <span class="s1">&#39;Never Converted&#39;</span><span class="p">]</span>
+    <span class="p">,</span> <span class="n">purchase_freq_segment</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Weekly&#39;</span><span class="p">,</span> <span class="s1">&#39;Monthly&#39;</span><span class="p">,</span> <span class="s1">&#39;Quarterly&#39;</span><span class="p">,</span> <span class="s1">&#39;Semiannual&#39;</span><span class="p">,</span> <span class="s1">&#39;Annual&#39;</span><span class="p">]</span>
+    <span class="p">,</span> <span class="n">repeat_segment</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Fast Repeat&#39;</span><span class="p">,</span> <span class="s1">&#39;Medium Repeat&#39;</span><span class="p">,</span> <span class="s1">&#39;Slow Repeat&#39;</span><span class="p">]</span>
+    <span class="p">,</span> <span class="n">loyalty_segment</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Critic&#39;</span><span class="p">,</span> <span class="s1">&#39;Neutral&#39;</span><span class="p">,</span> <span class="s1">&#39;Promoter&#39;</span><span class="p">]</span>
+    <span class="p">,</span> <span class="n">risk_segment</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Reliable&#39;</span><span class="p">,</span> <span class="s1">&#39;Risky&#39;</span><span class="p">]</span>
+    <span class="p">,</span> <span class="n">weekday_segment</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Weekday&#39;</span><span class="p">,</span> <span class="s1">&#39;Weekend&#39;</span><span class="p">]</span>
+    <span class="p">,</span> <span class="n">installment_segment</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Full Pay&#39;</span><span class="p">,</span> <span class="s1">&#39;Installment&#39;</span><span class="p">]</span>
+    <span class="p">,</span> <span class="n">products_cnt_segment</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Single Product&#39;</span><span class="p">,</span> <span class="s1">&#39;Multi Product&#39;</span><span class="p">,</span> <span class="s1">&#39;Bulk Buyer&#39;</span><span class="p">]</span>
+    <span class="p">,</span> <span class="n">weight_segment</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Light&#39;</span><span class="p">,</span> <span class="s1">&#39;Medium&#39;</span><span class="p">,</span> <span class="s1">&#39;Heavy&#39;</span><span class="p">]</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">df</span> <span class="ow">in</span> <span class="p">[</span><span class="n">df_orders</span><span class="p">,</span> <span class="n">df_sales</span><span class="p">,</span> <span class="n">df_items</span><span class="p">,</span> <span class="n">df_customers</span><span class="p">,</span> <span class="n">df_products</span><span class="p">,</span> <span class="n">df_sellers</span><span class="p">,</span> <span class="n">df_reviews</span><span class="p">,</span> <span class="n">df_payments</span><span class="p">]:</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">viz</span><span class="o">.</span><span class="n">update_plotly_settings</span><span class="p">(</span>
+        <span class="n">labels</span><span class="o">=</span><span class="n">base_labels</span>
+        <span class="p">,</span> <span class="n">category_orders</span><span class="o">=</span><span class="n">base_category_orders</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We’ll develop a dedicated class for generating standardized visualizations.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">PlotBuilder</span><span class="p">:</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">time_column</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">time_column_label</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">metric</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">metric_label</span> <span class="o">=</span> <span class="kc">None</span> <span class="c1"># for axis label</span>
+    <span class="n">metric_label_for_distribution</span> <span class="o">=</span> <span class="kc">None</span> <span class="c1"># if metric_lable is aggregated</span>
+    <span class="n">agg_func</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">freq</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">title_base</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">norm_by</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">cur_dim</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">dimensions</span> <span class="o">=</span> <span class="n">base_labels</span>
+    <span class="n">axis_sort_order</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">text_auto</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">plotly_kwargs</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">update_fig</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">block_save_fig_for_slides</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">slide_path</span> <span class="o">=</span> <span class="s1">&#39;for_slides/svg/&#39;</span>
+    <span class="n">slide_img_fmt</span> <span class="o">=</span> <span class="s1">&#39;svg&#39;</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">reset_configure</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Reset global settings&quot;&quot;&quot;</span>
+        <span class="bp">cls</span><span class="o">.</span><span class="n">df</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">cls</span><span class="o">.</span><span class="n">time_column</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">cls</span><span class="o">.</span><span class="n">time_column_label</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">cls</span><span class="o">.</span><span class="n">metric</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">cls</span><span class="o">.</span><span class="n">metric_label</span> <span class="o">=</span> <span class="kc">None</span> 
+        <span class="bp">cls</span><span class="o">.</span><span class="n">metric_label_for_distribution</span> <span class="o">=</span> <span class="kc">None</span> 
+        <span class="bp">cls</span><span class="o">.</span><span class="n">agg_func</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">cls</span><span class="o">.</span><span class="n">freq</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">cls</span><span class="o">.</span><span class="n">title_base</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">cls</span><span class="o">.</span><span class="n">norm_by</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">cls</span><span class="o">.</span><span class="n">cur_dim</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">cls</span><span class="o">.</span><span class="n">dimensions</span> <span class="o">=</span> <span class="n">base_labels</span>
+        <span class="bp">cls</span><span class="o">.</span><span class="n">axis_sort_order</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">cls</span><span class="o">.</span><span class="n">text_auto</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">cls</span><span class="o">.</span><span class="n">plotly_kwargs</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">cls</span><span class="o">.</span><span class="n">update_fig</span> <span class="o">=</span> <span class="p">{}</span>
+        
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">metric_info</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">agg_func</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Display distribution information and statistics for the metric column.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters:</span>
+<span class="sd">        -----------</span>
+<span class="sd">        freq : str, optional</span>
+<span class="sd">            The time frequency for aggregation (e.g., &#39;ME&#39; for month, &#39;W&#39; for week, &#39;D&#39; for day).</span>
+<span class="sd">            If not provided, the analysis will be performed on raw, non-aggregated data.</span>
+<span class="sd">        agg_func : str or function, optional</span>
+<span class="sd">            The aggregation function to apply when freq is specified (e.g., &#39;mean&#39;, &#39;sum&#39;, &#39;count&#39;).</span>
+<span class="sd">            If not provided, uses the class&#39;s default agg_func.</span>
+<span class="sd">        **kwargs : dict</span>
+<span class="sd">            Additional arguments to pass to the underlying visualization function.</span>
+<span class="sd">            Commonly used to customize labels, titles, or plot parameters.</span>
+<span class="sd">            </span>
+<span class="sd">        Notes:</span>
+<span class="sd">        ------</span>
+<span class="sd">        - When freq is specified, each data point represents an aggregated value</span>
+<span class="sd">          for the given time period, providing insights into temporal patterns.</span>
+<span class="sd">        - Without freq, the analysis shows the raw distribution of individual values.</span>
+<span class="sd">        - The method automatically handles axis labels and titles, but these can be</span>
+<span class="sd">          overridden through kwargs if needed.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        
+        <span class="n">metric_label_for_title</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">get_metric_label_for_title_for_metric_info</span><span class="p">()</span>
+        
+        <span class="k">if</span> <span class="n">freq</span><span class="p">:</span>
+            <span class="n">period_map</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;ME&#39;</span><span class="p">:</span> <span class="s1">&#39;Month&#39;</span><span class="p">,</span> <span class="s1">&#39;W&#39;</span><span class="p">:</span> <span class="s1">&#39;Week&#39;</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">:</span> <span class="s1">&#39;Day&#39;</span><span class="p">}</span>
+            
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">agg_func</span><span class="p">:</span>
+                <span class="n">agg_func</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">agg_func</span>
+            <span class="n">agg_metric</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">agg_func</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="bp">cls</span><span class="o">.</span><span class="n">metric</span><span class="si">}</span><span class="s1">_per_</span><span class="si">{</span><span class="n">period_map</span><span class="p">[</span><span class="n">freq</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="si">}</span><span class="s1">&#39;</span> 
+            <span class="c1"># Aggregate data by specified frequency</span>
+            <span class="n">df_metric_per_period</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="bp">cls</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Grouper</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="bp">cls</span><span class="o">.</span><span class="n">time_column</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="n">freq</span><span class="p">),</span> <span class="n">observed</span><span class="o">=</span><span class="kc">False</span><span class="p">)[</span><span class="bp">cls</span><span class="o">.</span><span class="n">metric</span><span class="p">]</span>
+                <span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="n">agg_func</span><span class="p">)</span>
+                <span class="o">.</span><span class="n">to_frame</span><span class="p">(</span><span class="n">agg_metric</span><span class="p">)</span>
+            <span class="p">)</span>
+            
+            <span class="c1"># Enhance title with aggregation info</span>
+            <span class="n">metric_label_for_title</span> <span class="o">+=</span> <span class="sa">f</span><span class="s1">&#39; per </span><span class="si">{</span><span class="n">period_map</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">freq</span><span class="p">,</span><span class="w"> </span><span class="n">freq</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span>
+            
+            <span class="c1"># Set default labels if none provided</span>
+            <span class="k">if</span> <span class="s1">&#39;labels&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+                <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;labels&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+                    <span class="n">agg_metric</span><span class="p">:</span> <span class="bp">cls</span><span class="o">.</span><span class="n">metric_label_for_distribution</span> <span class="k">if</span> <span class="bp">cls</span><span class="o">.</span><span class="n">metric_label_for_distribution</span> <span class="k">else</span> <span class="bp">cls</span><span class="o">.</span><span class="n">metric_label</span>
+                <span class="p">}</span>
+            <span class="c1"># Set default title if none provided</span>
+            <span class="k">if</span> <span class="s1">&#39;title&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+                <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;Distribution of </span><span class="si">{</span><span class="n">metric_label_for_title</span><span class="si">}</span><span class="s1">&#39;</span>
+            
+            <span class="k">return</span> <span class="n">df_metric_per_period</span><span class="p">[</span><span class="n">agg_metric</span><span class="p">]</span><span class="o">.</span><span class="n">explore</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Handle non-aggregated case</span>
+            <span class="k">if</span> <span class="s1">&#39;labels&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+                <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;labels&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+                    <span class="bp">cls</span><span class="o">.</span><span class="n">metric</span><span class="p">:</span> <span class="bp">cls</span><span class="o">.</span><span class="n">metric_label_for_distribution</span> <span class="k">if</span> <span class="bp">cls</span><span class="o">.</span><span class="n">metric_label_for_distribution</span> <span class="k">else</span> <span class="bp">cls</span><span class="o">.</span><span class="n">metric_label</span>
+                <span class="p">}</span>
+            
+            <span class="k">if</span> <span class="s1">&#39;title&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+                <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;Distribution of </span><span class="si">{</span><span class="n">metric_label_for_title</span><span class="si">}</span><span class="s1">&#39;</span>
+            
+            <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">df</span><span class="p">[</span><span class="bp">cls</span><span class="o">.</span><span class="n">metric</span><span class="p">]</span><span class="o">.</span><span class="n">explore</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_metric_label_for_title_for_metric_info</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Helper method to get the appropriate metric label for titles.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">cls</span><span class="o">.</span><span class="n">metric_label_for_distribution</span><span class="p">:</span>
+            <span class="n">label_source</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">metric_label_for_distribution</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">label_source</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">metric_label</span>
+            
+        <span class="c1"># Use only the first part if multiple labels are comma-separated</span>
+        <span class="k">return</span> <span class="n">label_source</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="s1">&#39;,&#39;</span> <span class="ow">in</span> <span class="n">label_source</span> <span class="k">else</span> <span class="n">label_source</span>
+    
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">metric_top</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">id_column</span><span class="o">=</span><span class="s1">&#39;order_id&#39;</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">agg_func</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Display top n entries based on the metric, with optional temporal aggregation.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters:</span>
+<span class="sd">        -----------</span>
+<span class="sd">        id_column : str, optional (default=&#39;order_id&#39;)</span>
+<span class="sd">            The column name to display as identifier along with the metric.</span>
+<span class="sd">        n : int, optional (default=10)</span>
+<span class="sd">            Number of top entries to return.</span>
+<span class="sd">        freq : str, optional</span>
+<span class="sd">            The time frequency for aggregation (e.g., &#39;ME&#39; for month, &#39;W&#39; for week, &#39;D&#39; for day).</span>
+<span class="sd">            If not provided, the analysis will be performed on raw, non-aggregated data.</span>
+<span class="sd">        agg_func : str or function, optional</span>
+<span class="sd">            The aggregation function to apply when freq is specified (e.g., &#39;mean&#39;, &#39;sum&#39;, &#39;count&#39;).</span>
+<span class="sd">            If not provided, uses the class&#39;s default agg_func.</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">        --------</span>
+<span class="sd">        pd.DataFrame</span>
+<span class="sd">            DataFrame containing the top n entries with the specified identifier column and metric values.</span>
+<span class="sd">            When aggregation is applied, returns top time periods with aggregated metric values.</span>
+<span class="sd">            </span>
+<span class="sd">        Notes:</span>
+<span class="sd">        ------</span>
+<span class="sd">        - Without aggregation: shows top individual records sorted by raw metric values.</span>
+<span class="sd">        - With aggregation: shows top time periods sorted by aggregated metric values.</span>
+<span class="sd">        - The method preserves the original class metric labels for proper display.</span>
+<span class="sd">        - For aggregated results, the identifier column will be the time period.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        
+        <span class="k">if</span> <span class="n">freq</span><span class="p">:</span>
+            <span class="c1"># Handle aggregated case</span>
+            <span class="n">period_map</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;ME&#39;</span><span class="p">:</span> <span class="s1">&#39;Month&#39;</span><span class="p">,</span> <span class="s1">&#39;W&#39;</span><span class="p">:</span> <span class="s1">&#39;Week&#39;</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">:</span> <span class="s1">&#39;Day&#39;</span><span class="p">}</span>
+            
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">agg_func</span><span class="p">:</span>
+                <span class="n">agg_func</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">agg_func</span>
+            
+            <span class="c1"># Aggregate data by specified frequency</span>
+            <span class="n">df_agg</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="bp">cls</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Grouper</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="bp">cls</span><span class="o">.</span><span class="n">time_column</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="n">freq</span><span class="p">),</span> <span class="n">observed</span><span class="o">=</span><span class="kc">False</span><span class="p">)[</span><span class="bp">cls</span><span class="o">.</span><span class="n">metric</span><span class="p">]</span>
+                <span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="n">agg_func</span><span class="p">)</span>
+            <span class="p">)</span>
+            
+            <span class="k">return</span> <span class="n">df_agg</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="o">.</span><span class="n">to_frame</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Handle non-aggregated case</span>
+            <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="n">id_column</span><span class="p">)[</span><span class="bp">cls</span><span class="o">.</span><span class="n">metric</span><span class="p">]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="o">.</span><span class="n">to_frame</span><span class="p">()</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_dim</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">print_by_chunk</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="nb">list</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns a list of specified measurements</span>
+<span class="sd">        You can get a line in the form of a line to conveniently copy and immediately create a variable.</span>
+<span class="sd">        And you can just in the form of a list</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">print_by_chunk</span><span class="p">:</span>
+            <span class="n">dims</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">dimensions</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="s2">&quot;[&quot;</span>
+            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">item</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">dims</span><span class="p">):</span>
+                <span class="n">result</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;&#39;</span><span class="si">{</span><span class="n">item</span><span class="si">}</span><span class="s2">&#39;&quot;</span>
+                <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">dims</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+                    <span class="n">result</span> <span class="o">+=</span> <span class="s2">&quot;, &quot;</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="mi">5</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="n">result</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="n">result</span> <span class="o">+=</span> <span class="s2">&quot;]&quot;</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">dimensions</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">check_cur_dim</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Helps not to indicate the name of the measurements when you need to sort out all the excessions</span>
+<span class="sd">        Also displays the line with the name of the section for the report and the name of the measurement itself</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="s1">&#39;x&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">],</span> <span class="nb">int</span><span class="p">):</span>
+            <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">cur_dim</span><span class="p">[</span><span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">]]</span>
+            <span class="n">res</span> <span class="o">=</span> <span class="s1">&#39;**By &#39;</span> <span class="o">+</span> <span class="bp">cls</span><span class="o">.</span><span class="n">dimensions</span><span class="p">[</span><span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">]]</span> <span class="o">+</span> <span class="s1">&#39;**&#39;</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;x: &#39;</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">])</span>
+        <span class="k">if</span> <span class="s1">&#39;y&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">],</span> <span class="nb">int</span><span class="p">):</span>
+            <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">cur_dim</span><span class="p">[</span><span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">]]</span>
+            <span class="n">res</span> <span class="o">=</span> <span class="s1">&#39;**By &#39;</span> <span class="o">+</span> <span class="bp">cls</span><span class="o">.</span><span class="n">dimensions</span><span class="p">[</span><span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">]]</span> <span class="o">+</span> <span class="s1">&#39;**&#39;</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;y: &#39;</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">])</span>
+        <span class="k">if</span> <span class="s1">&#39;color&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;color&#39;</span><span class="p">],</span> <span class="nb">int</span><span class="p">):</span>
+            <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;color&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">cur_dim</span><span class="p">[</span><span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;color&#39;</span><span class="p">]]</span>
+            <span class="n">res</span> <span class="o">=</span> <span class="s1">&#39;**By &#39;</span> <span class="o">+</span> <span class="bp">cls</span><span class="o">.</span><span class="n">dimensions</span><span class="p">[</span><span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;color&#39;</span><span class="p">]]</span> <span class="o">+</span> <span class="s1">&#39;**&#39;</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;color: &#39;</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;color&#39;</span><span class="p">])</span>
+        <span class="k">if</span> <span class="s1">&#39;cat1&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;cat1&#39;</span><span class="p">],</span> <span class="nb">int</span><span class="p">):</span>
+            <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;cat1&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">cur_dim</span><span class="p">[</span><span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;cat1&#39;</span><span class="p">]]</span>
+            <span class="n">res</span> <span class="o">=</span> <span class="s1">&#39;**By &#39;</span> <span class="o">+</span> <span class="bp">cls</span><span class="o">.</span><span class="n">dimensions</span><span class="p">[</span><span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;cat1&#39;</span><span class="p">]]</span> <span class="o">+</span> <span class="s1">&#39;**&#39;</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;cat1: &#39;</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;cat1&#39;</span><span class="p">])</span>
+        <span class="k">if</span> <span class="s1">&#39;cat2&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;cat2&#39;</span><span class="p">],</span> <span class="nb">int</span><span class="p">):</span>
+            <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;cat2&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">cur_dim</span><span class="p">[</span><span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;cat2&#39;</span><span class="p">]]</span>
+            <span class="n">res</span> <span class="o">=</span> <span class="s1">&#39;**By &#39;</span> <span class="o">+</span> <span class="bp">cls</span><span class="o">.</span><span class="n">dimensions</span><span class="p">[</span><span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;cat2&#39;</span><span class="p">]]</span> <span class="o">+</span> <span class="s1">&#39;**&#39;</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;cat2: &#39;</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;cat2&#39;</span><span class="p">])</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">configure</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set global settings&quot;&quot;&quot;</span>
+        <span class="bp">cls</span><span class="o">.</span><span class="n">reset_configure</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+                <span class="nb">setattr</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Invalid config parameter: </span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">to_slide</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">fig</span><span class="p">:</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">,</span> <span class="n">title_postfix</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">cls</span><span class="o">.</span><span class="n">block_save_fig_for_slides</span><span class="p">:</span>
+            <span class="n">title</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">layout</span><span class="o">.</span><span class="n">title</span><span class="o">.</span><span class="n">text</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">title_postfix</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+                <span class="n">title</span> <span class="o">+=</span> <span class="n">title_postfix</span>
+            <span class="n">fig</span><span class="o">.</span><span class="n">write_image</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">cls</span><span class="o">.</span><span class="n">slide_path</span><span class="si">}{</span><span class="n">title</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="bp">cls</span><span class="o">.</span><span class="n">slide_img_fmt</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">line</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create line plot&quot;&quot;&quot;</span>
+        <span class="n">to_slide</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">if</span> <span class="s1">&#39;to_slide&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+            <span class="n">to_slide</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;to_slide&#39;</span><span class="p">]</span>
+            <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;to_slide&#39;</span><span class="p">)</span>
+        <span class="n">kwargs</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_prepare_common_settings</span><span class="p">(</span><span class="n">kwargs</span><span class="p">,</span> <span class="s1">&#39;line&#39;</span><span class="p">)</span>
+        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;labels&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_prepare_labels</span><span class="p">(</span><span class="n">kwargs</span><span class="p">,</span> <span class="s1">&#39;line&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">):</span>
+            <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_prepare_title</span><span class="p">(</span><span class="n">kwargs</span><span class="p">,</span> <span class="s1">&#39;line&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;data_frame&#39;</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">fig</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;data_frame&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">viz</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">fig</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">viz</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">fig</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_update_fig</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">,</span> <span class="s1">&#39;line&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">to_slide</span><span class="p">:</span>
+            <span class="bp">cls</span><span class="o">.</span><span class="n">to_slide</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">to_slide</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">fig</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">bar_groupby</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create bar plot with groupby&quot;&quot;&quot;</span>
+        <span class="n">to_slide</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">if</span> <span class="s1">&#39;to_slide&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+            <span class="n">to_slide</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;to_slide&#39;</span><span class="p">]</span>
+            <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;to_slide&#39;</span><span class="p">)</span>
+        <span class="n">kwargs</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_prepare_common_settings</span><span class="p">(</span><span class="n">kwargs</span><span class="p">,</span> <span class="s1">&#39;bar_groupby&#39;</span><span class="p">)</span>
+        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;labels&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_prepare_labels</span><span class="p">(</span><span class="n">kwargs</span><span class="p">,</span> <span class="s1">&#39;bar_groupby&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">):</span>
+            <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_prepare_title</span><span class="p">(</span><span class="n">kwargs</span><span class="p">,</span> <span class="s1">&#39;bar_groupby&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;data_frame&#39;</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">fig</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;data_frame&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">viz</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">fig</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">viz</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">fig</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_update_fig</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">,</span> <span class="s1">&#39;bar_groupby&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">to_slide</span><span class="p">:</span>
+            <span class="bp">cls</span><span class="o">.</span><span class="n">to_slide</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">to_slide</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">fig</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">line_resample</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create line plot with resample&quot;&quot;&quot;</span>
+        <span class="n">to_slide</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">if</span> <span class="s1">&#39;to_slide&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+            <span class="n">to_slide</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;to_slide&#39;</span><span class="p">]</span>
+            <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;to_slide&#39;</span><span class="p">)</span>
+        <span class="n">kwargs</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_prepare_common_settings</span><span class="p">(</span><span class="n">kwargs</span><span class="p">,</span> <span class="s1">&#39;line_resample&#39;</span><span class="p">)</span>
+        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;labels&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_prepare_labels</span><span class="p">(</span><span class="n">kwargs</span><span class="p">,</span> <span class="s1">&#39;line_resample&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">):</span>
+            <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_prepare_title</span><span class="p">(</span><span class="n">kwargs</span><span class="p">,</span> <span class="s1">&#39;line_resample&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;data_frame&#39;</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">fig</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;data_frame&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">viz</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">fig</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">viz</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">fig</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_update_fig</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">,</span> <span class="s1">&#39;line&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">to_slide</span><span class="p">:</span>
+            <span class="bp">cls</span><span class="o">.</span><span class="n">to_slide</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">to_slide</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">fig</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">area_resample</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create line plot with resample&quot;&quot;&quot;</span>
+        <span class="n">to_slide</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">if</span> <span class="s1">&#39;to_slide&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+            <span class="n">to_slide</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;to_slide&#39;</span><span class="p">]</span>
+            <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;to_slide&#39;</span><span class="p">)</span>
+        <span class="n">kwargs</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_prepare_common_settings</span><span class="p">(</span><span class="n">kwargs</span><span class="p">,</span> <span class="s1">&#39;line_resample&#39;</span><span class="p">)</span>
+        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;labels&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_prepare_labels</span><span class="p">(</span><span class="n">kwargs</span><span class="p">,</span> <span class="s1">&#39;line_resample&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">):</span>
+            <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_prepare_title</span><span class="p">(</span><span class="n">kwargs</span><span class="p">,</span> <span class="s1">&#39;line_resample&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;data_frame&#39;</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">fig</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;data_frame&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">viz</span><span class="o">.</span><span class="n">area</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">fig</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">viz</span><span class="o">.</span><span class="n">area</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">fig</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_update_fig</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">,</span> <span class="s1">&#39;area&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">to_slide</span><span class="p">:</span>
+            <span class="bp">cls</span><span class="o">.</span><span class="n">to_slide</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">to_slide</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">fig</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">heatmap</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create heatmap plot&quot;&quot;&quot;</span>
+        <span class="n">to_slide</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">if</span> <span class="s1">&#39;to_slide&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+            <span class="n">to_slide</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;to_slide&#39;</span><span class="p">]</span>
+            <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;to_slide&#39;</span><span class="p">)</span>
+        <span class="n">kwargs</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_prepare_common_settings</span><span class="p">(</span><span class="n">kwargs</span><span class="p">,</span> <span class="s1">&#39;heatmap&#39;</span><span class="p">)</span>
+        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;labels&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_prepare_labels</span><span class="p">(</span><span class="n">kwargs</span><span class="p">,</span> <span class="s1">&#39;heatmap&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">):</span>
+            <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_prepare_title</span><span class="p">(</span><span class="n">kwargs</span><span class="p">,</span> <span class="s1">&#39;heatmap&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;data_frame&#39;</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">fig</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;data_frame&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">viz</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">fig</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">viz</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">fig</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_update_fig</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">,</span> <span class="s1">&#39;heatmap&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">to_slide</span><span class="p">:</span>
+            <span class="bp">cls</span><span class="o">.</span><span class="n">to_slide</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">to_slide</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">fig</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">pie_bar</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create pie_bar plot&quot;&quot;&quot;</span>
+        <span class="n">to_slide</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">if</span> <span class="s1">&#39;to_slide&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+            <span class="n">to_slide</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;to_slide&#39;</span><span class="p">]</span>
+            <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;to_slide&#39;</span><span class="p">)</span>
+        <span class="n">kwargs</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_prepare_common_settings</span><span class="p">(</span><span class="n">kwargs</span><span class="p">,</span> <span class="s1">&#39;pie_bar&#39;</span><span class="p">)</span>
+        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;labels&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_prepare_labels</span><span class="p">(</span><span class="n">kwargs</span><span class="p">,</span> <span class="s1">&#39;pie_bar&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">):</span>
+            <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_prepare_title</span><span class="p">(</span><span class="n">kwargs</span><span class="p">,</span> <span class="s1">&#39;pie_bar&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;data_frame&#39;</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">fig</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;data_frame&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">viz</span><span class="o">.</span><span class="n">pie_bar</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">fig</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">viz</span><span class="o">.</span><span class="n">pie_bar</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">fig</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_update_fig</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">,</span> <span class="s1">&#39;pie_bar&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">to_slide</span><span class="p">:</span>
+            <span class="bp">cls</span><span class="o">.</span><span class="n">to_slide</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">to_slide</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">fig</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">box</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create boxplot&quot;&quot;&quot;</span>
+        <span class="n">to_slide</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">if</span> <span class="s1">&#39;to_slide&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+            <span class="n">to_slide</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;to_slide&#39;</span><span class="p">]</span>
+            <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;to_slide&#39;</span><span class="p">)</span>
+        <span class="n">kwargs</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_prepare_common_settings</span><span class="p">(</span><span class="n">kwargs</span><span class="p">,</span> <span class="s1">&#39;box&#39;</span><span class="p">)</span>
+        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;labels&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_prepare_labels</span><span class="p">(</span><span class="n">kwargs</span><span class="p">,</span> <span class="s1">&#39;box&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">):</span>
+            <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_prepare_title</span><span class="p">(</span><span class="n">kwargs</span><span class="p">,</span> <span class="s1">&#39;box&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;data_frame&#39;</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">fig</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;data_frame&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">viz</span><span class="o">.</span><span class="n">box</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">fig</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">viz</span><span class="o">.</span><span class="n">box</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">fig</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_update_fig</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">,</span> <span class="s1">&#39;box&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">to_slide</span><span class="p">:</span>
+            <span class="bp">cls</span><span class="o">.</span><span class="n">to_slide</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">to_slide</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">fig</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">histogram</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create histogram plot&quot;&quot;&quot;</span>
+        <span class="n">to_slide</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">if</span> <span class="s1">&#39;to_slide&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+            <span class="n">to_slide</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;to_slide&#39;</span><span class="p">]</span>
+            <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;to_slide&#39;</span><span class="p">)</span>
+        <span class="n">kwargs</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_prepare_common_settings</span><span class="p">(</span><span class="n">kwargs</span><span class="p">,</span> <span class="s1">&#39;histogram&#39;</span><span class="p">)</span>
+        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;labels&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_prepare_labels</span><span class="p">(</span><span class="n">kwargs</span><span class="p">,</span> <span class="s1">&#39;histogram&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">):</span>
+            <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_prepare_title</span><span class="p">(</span><span class="n">kwargs</span><span class="p">,</span> <span class="s1">&#39;histogram&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;data_frame&#39;</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">fig</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;data_frame&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">viz</span><span class="o">.</span><span class="n">histogram</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Since order_avg_reviews_score is numerical, it is better to convert to string for plotly</span>
+            <span class="k">if</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;color&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;order_avg_reviews_score&#39;</span><span class="p">:</span>
+                <span class="n">df</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+                <span class="n">df</span><span class="p">[</span><span class="s1">&#39;order_avg_reviews_score&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;order_avg_reviews_score&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;category&#39;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">df</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">df</span>
+            <span class="n">fig</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">viz</span><span class="o">.</span><span class="n">histogram</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">fig</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_update_fig</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">,</span> <span class="s1">&#39;histogram&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">to_slide</span><span class="p">:</span>
+            <span class="bp">cls</span><span class="o">.</span><span class="n">to_slide</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">to_slide</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">fig</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">cat_compare</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create plots for compare categorical columns&quot;&quot;&quot;</span>
+        <span class="n">to_slide</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">if</span> <span class="s1">&#39;to_slide&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+            <span class="n">to_slide</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;to_slide&#39;</span><span class="p">]</span>
+            <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;to_slide&#39;</span><span class="p">)</span>
+        <span class="n">kwargs</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_prepare_common_settings</span><span class="p">(</span><span class="n">kwargs</span><span class="p">,</span> <span class="s1">&#39;cat_compare&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="s1">&#39;category_orders&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+            <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;category_orders&#39;</span><span class="p">]</span><span class="o">=</span><span class="p">{</span><span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;cat1&#39;</span><span class="p">):</span> <span class="s1">&#39;descending&#39;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;cat2&#39;</span><span class="p">):</span> <span class="s1">&#39;descending&#39;</span><span class="p">}</span>
+            <span class="k">if</span> <span class="bp">cls</span><span class="o">.</span><span class="n">plotly_kwargs</span> <span class="ow">and</span> <span class="s1">&#39;category_orders&#39;</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="n">plotly_kwargs</span><span class="p">:</span>
+                <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;category_orders&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">plotly_kwargs</span><span class="p">[</span><span class="s1">&#39;category_orders&#39;</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;data_frame&#39;</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">fig</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;data_frame&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">viz</span><span class="o">.</span><span class="n">cat_compare</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">fig</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">viz</span><span class="o">.</span><span class="n">cat_compare</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">fig</span> <span class="o">=</span> <span class="n">fig</span>
+        <span class="k">if</span> <span class="n">to_slide</span><span class="p">:</span>
+            <span class="bp">cls</span><span class="o">.</span><span class="n">to_slide</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">to_slide</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">fig</span>
+    
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">period_change</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Plot period-over-period changes&quot;&quot;&quot;</span>
+        <span class="n">to_slide</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">if</span> <span class="s1">&#39;to_slide&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+            <span class="n">to_slide</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;to_slide&#39;</span><span class="p">]</span>
+            <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;to_slide&#39;</span><span class="p">)</span>
+        <span class="n">kwargs</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_prepare_common_settings</span><span class="p">(</span><span class="n">kwargs</span><span class="p">,</span> <span class="s1">&#39;period_change&#39;</span><span class="p">)</span>
+        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;labels&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_prepare_labels</span><span class="p">(</span><span class="n">kwargs</span><span class="p">,</span> <span class="s1">&#39;period_change&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">):</span>
+            <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_prepare_title</span><span class="p">(</span><span class="n">kwargs</span><span class="p">,</span> <span class="s1">&#39;period_change&#39;</span><span class="p">)</span>        
+        <span class="n">kwargs</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_prepare_common_settings</span><span class="p">(</span><span class="n">kwargs</span><span class="p">,</span> <span class="s1">&#39;period_change&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;data_frame&#39;</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">fig</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;data_frame&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">viz</span><span class="o">.</span><span class="n">period_change</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">fig</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">viz</span><span class="o">.</span><span class="n">period_change</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">fig</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_update_fig</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">,</span> <span class="s1">&#39;period_change&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">to_slide</span><span class="p">:</span>
+            <span class="bp">cls</span><span class="o">.</span><span class="n">to_slide</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">to_slide</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">fig</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_prepare_labels</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">graph_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Labels preparation for graphs&quot;&quot;&quot;</span>
+        <span class="n">labels</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+
+        <span class="c1"># Label for base metric</span>
+        <span class="k">if</span> <span class="n">graph_type</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;line&#39;</span><span class="p">,</span> <span class="s1">&#39;bar_groupby&#39;</span><span class="p">,</span> <span class="s1">&#39;line_resample&#39;</span><span class="p">,</span> <span class="s1">&#39;pie_bar&#39;</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="bp">cls</span><span class="o">.</span><span class="n">metric</span> <span class="ow">and</span> <span class="bp">cls</span><span class="o">.</span><span class="n">metric_label</span><span class="p">:</span>
+                <span class="n">labels</span><span class="p">[</span><span class="bp">cls</span><span class="o">.</span><span class="n">metric</span><span class="p">]</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">metric_label</span>
+        <span class="k">elif</span> <span class="n">graph_type</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;box&#39;</span><span class="p">,</span> <span class="s1">&#39;histogram&#39;</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="bp">cls</span><span class="o">.</span><span class="n">metric</span> <span class="ow">and</span> <span class="bp">cls</span><span class="o">.</span><span class="n">metric_label_for_distribution</span><span class="p">:</span>
+                <span class="n">labels</span><span class="p">[</span><span class="bp">cls</span><span class="o">.</span><span class="n">metric</span><span class="p">]</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">metric_label_for_distribution</span>
+
+        <span class="c1"># labels for time_column</span>
+        <span class="k">if</span> <span class="n">graph_type</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;line&#39;</span><span class="p">,</span> <span class="s1">&#39;line_resample&#39;</span><span class="p">,</span> <span class="s1">&#39;box&#39;</span><span class="p">,</span> <span class="s1">&#39;period_change&#39;</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="bp">cls</span><span class="o">.</span><span class="n">time_column</span> <span class="ow">and</span> <span class="bp">cls</span><span class="o">.</span><span class="n">time_column_label</span><span class="p">:</span>
+                <span class="n">labels</span><span class="p">[</span><span class="bp">cls</span><span class="o">.</span><span class="n">time_column</span><span class="p">]</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">time_column_label</span>
+
+        <span class="c1"># labels for specific graph_type</span>
+        <span class="k">if</span> <span class="n">graph_type</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;heatmap&#39;</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">],</span> <span class="n">pd</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">resample</span><span class="o">.</span><span class="n">TimeGrouper</span><span class="p">):</span>
+                <span class="n">labels</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">time_column_label</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="n">dimensions</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> not in cls.dimensions&quot;</span><span class="p">)</span>
+                <span class="n">labels</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">dimensions</span><span class="p">[</span><span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">]]</span>
+            <span class="k">if</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="n">dimensions</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> not in cls.dimensions&quot;</span><span class="p">)</span>
+            <span class="n">labels</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">dimensions</span><span class="p">[</span><span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">]]</span>
+            <span class="n">labels</span><span class="p">[</span><span class="s1">&#39;color&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">metric_label</span>
+        <span class="k">if</span> <span class="s1">&#39;labels&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+            <span class="n">labels</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;labels&#39;</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">labels</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_prepare_title</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">graph_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Title preparation for graphs&quot;&quot;&quot;</span>
+        <span class="c1"># Determin axis_dimension</span>
+        <span class="k">if</span> <span class="n">graph_type</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;bar_groupby&#39;</span><span class="p">,</span> <span class="s1">&#39;pie_bar&#39;</span><span class="p">]</span> <span class="ow">or</span> <span class="p">(</span><span class="n">graph_type</span> <span class="o">==</span> <span class="s1">&#39;box&#39;</span> <span class="ow">and</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;mode&#39;</span><span class="p">)</span> <span class="o">!=</span> <span class="s1">&#39;time_series&#39;</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="bp">cls</span><span class="o">.</span><span class="n">metric</span><span class="p">:</span>
+                <span class="n">axis_dimension</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">]</span>
+            <span class="k">elif</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="bp">cls</span><span class="o">.</span><span class="n">metric</span><span class="p">:</span>
+                <span class="n">axis_dimension</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Can not define axis_dimension&#39;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">graph_type</span> <span class="o">!=</span> <span class="s1">&#39;box&#39;</span> <span class="ow">and</span> <span class="bp">cls</span><span class="o">.</span><span class="n">axis_sort_order</span> <span class="ow">and</span> <span class="n">axis_dimension</span> <span class="o">!=</span> <span class="s1">&#39;purchase_season&#39;</span> <span class="ow">and</span> <span class="n">axis_dimension</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;category_orders&#39;</span><span class="p">,</span> <span class="p">{}):</span>
+                <span class="n">axis_sort_order</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">axis_sort_order</span>
+                <span class="c1"># For bottom direction change sorting direction</span>
+                <span class="k">if</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;trim_top_n_direction&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;bottom&#39;</span><span class="p">:</span>
+                    <span class="n">axis_sort_order</span> <span class="o">=</span> <span class="s1">&#39;ascending&#39;</span>
+                <span class="n">kwargs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s1">&#39;category_orders&#39;</span><span class="p">,</span> <span class="p">{})</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">axis_dimension</span><span class="p">:</span> <span class="n">axis_sort_order</span><span class="p">})</span>
+            <span class="k">if</span> <span class="n">graph_type</span> <span class="o">==</span> <span class="s1">&#39;box&#39;</span> <span class="ow">and</span> <span class="bp">cls</span><span class="o">.</span><span class="n">agg_func</span> <span class="ow">and</span> <span class="bp">cls</span><span class="o">.</span><span class="n">axis_sort_order</span> <span class="ow">and</span> <span class="n">axis_dimension</span> <span class="o">!=</span> <span class="s1">&#39;purchase_season&#39;</span> <span class="ow">and</span> <span class="n">axis_dimension</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;category_orders&#39;</span><span class="p">,</span> <span class="p">{}):</span>
+                <span class="n">axis_sort_order</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">axis_sort_order</span>
+                <span class="c1"># For bottom direction change sorting direction</span>
+                <span class="k">if</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;trim_top_n_direction&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;bottom&#39;</span><span class="p">:</span>
+                    <span class="n">axis_sort_order</span> <span class="o">=</span> <span class="s1">&#39;ascending&#39;</span>
+                <span class="n">kwargs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s1">&#39;category_orders&#39;</span><span class="p">,</span> <span class="p">{})</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">axis_dimension</span><span class="p">:</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="bp">cls</span><span class="o">.</span><span class="n">agg_func</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">axis_sort_order</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">})</span>
+            <span class="k">if</span> <span class="n">axis_dimension</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="n">dimensions</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">axis_dimension</span><span class="si">}</span><span class="s1"> not in cls.dimensions&#39;</span><span class="p">)</span>
+
+        <span class="c1"># Base part of titke</span>
+        <span class="c1"># if metric label contain &#39;,&#39; cut that part of metric label</span>
+        <span class="k">if</span> <span class="n">graph_type</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;box&#39;</span><span class="p">,</span> <span class="s1">&#39;histogram&#39;</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="bp">cls</span><span class="o">.</span><span class="n">metric_label_for_distribution</span><span class="p">:</span>
+                <span class="n">metric_label_for_distribution</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">metric_label_for_distribution</span> <span class="k">if</span> <span class="s1">&#39;,&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="n">metric_label_for_distribution</span> <span class="k">else</span> <span class="bp">cls</span><span class="o">.</span><span class="n">metric_label_for_distribution</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">metric_label_for_distribution</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">metric_label</span> <span class="k">if</span> <span class="s1">&#39;,&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="n">metric_label</span> <span class="k">else</span> <span class="bp">cls</span><span class="o">.</span><span class="n">metric_label</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">graph_type</span> <span class="o">==</span> <span class="s1">&#39;box&#39;</span><span class="p">:</span>
+                <span class="n">title</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;Boxplots of </span><span class="si">{</span><span class="n">metric_label_for_distribution</span><span class="si">}</span><span class="s1">&#39;</span>
+            <span class="k">elif</span> <span class="n">graph_type</span> <span class="o">==</span> <span class="s1">&#39;histogram&#39;</span><span class="p">:</span>
+                <span class="n">title</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;Distribution of </span><span class="si">{</span><span class="n">metric_label_for_distribution</span><span class="si">}</span><span class="s1">&#39;</span>
+        <span class="k">elif</span> <span class="n">graph_type</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;period_change&#39;</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="bp">cls</span><span class="o">.</span><span class="n">title_base</span><span class="p">:</span>
+                <span class="n">title</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">title_base</span>
+            <span class="k">elif</span> <span class="bp">cls</span><span class="o">.</span><span class="n">metric_label</span><span class="p">:</span>
+                <span class="n">title</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">metric_label</span> <span class="k">if</span> <span class="s1">&#39;,&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="n">metric_label</span> <span class="k">else</span> <span class="bp">cls</span><span class="o">.</span><span class="n">metric_label</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;For auto create title, title_base or metric_label must be define&#39;</span><span class="p">)</span>
+
+        <span class="c1"># Color part of title</span>
+        <span class="k">if</span> <span class="n">graph_type</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;line&#39;</span><span class="p">,</span> <span class="s1">&#39;bar_groupby&#39;</span><span class="p">,</span> <span class="s1">&#39;line_resample&#39;</span><span class="p">,</span> <span class="s1">&#39;pie_bar&#39;</span><span class="p">,</span> <span class="s1">&#39;box&#39;</span><span class="p">,</span> <span class="s1">&#39;histogram&#39;</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">graph_type</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;line&#39;</span><span class="p">,</span> <span class="s1">&#39;line_resample&#39;</span><span class="p">,</span> <span class="s1">&#39;histogram&#39;</span><span class="p">]</span> <span class="ow">or</span> <span class="p">(</span><span class="n">graph_type</span> <span class="o">==</span> <span class="s1">&#39;box&#39;</span> <span class="ow">and</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;mode&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;time_series&#39;</span><span class="p">)):</span>
+                <span class="n">title</span> <span class="o">+=</span> <span class="sa">f</span><span class="s1">&#39; by </span><span class="si">{</span><span class="bp">cls</span><span class="o">.</span><span class="n">dimensions</span><span class="p">[</span><span class="n">axis_dimension</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span>
+            <span class="k">if</span> <span class="s1">&#39;color&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;color&#39;</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="n">dimensions</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;color&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> not in cls.dimensions&quot;</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">graph_type</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;line&#39;</span><span class="p">,</span> <span class="s1">&#39;line_resample&#39;</span><span class="p">,</span> <span class="s1">&#39;histogram&#39;</span><span class="p">]</span> <span class="ow">or</span> <span class="p">(</span><span class="n">graph_type</span> <span class="o">==</span> <span class="s1">&#39;box&#39;</span> <span class="ow">and</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;mode&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;time_series&#39;</span><span class="p">):</span>
+                    <span class="n">title</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot; by </span><span class="si">{</span><span class="bp">cls</span><span class="o">.</span><span class="n">dimensions</span><span class="p">[</span><span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;color&#39;</span><span class="p">]]</span><span class="si">}</span><span class="s2">&quot;</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">title</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot; and </span><span class="si">{</span><span class="bp">cls</span><span class="o">.</span><span class="n">dimensions</span><span class="p">[</span><span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;color&#39;</span><span class="p">]]</span><span class="si">}</span><span class="s2">&quot;</span>
+
+        <span class="c1"># Datetime part of title</span>
+        <span class="k">if</span> <span class="n">graph_type</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;line&#39;</span><span class="p">,</span> <span class="s1">&#39;line_resample&#39;</span><span class="p">]</span> <span class="ow">or</span> <span class="p">(</span><span class="n">graph_type</span> <span class="o">==</span> <span class="s1">&#39;box&#39;</span> <span class="ow">and</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;mode&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;time_series&#39;</span><span class="p">):</span>
+            <span class="k">if</span> <span class="s1">&#39;freq&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+                <span class="n">resample_freq_for_title</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;freq&#39;</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">resample_freq_for_title</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">freq</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">resample_freq_for_title</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;freq must be define&#39;</span><span class="p">)</span>
+            <span class="n">freq_map</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;h&#39;</span><span class="p">:</span> <span class="s1">&#39;Hour&#39;</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">:</span> <span class="s1">&#39;Day&#39;</span><span class="p">,</span> <span class="s1">&#39;W&#39;</span><span class="p">:</span> <span class="s1">&#39;Week&#39;</span><span class="p">,</span> <span class="s1">&#39;ME&#39;</span><span class="p">:</span> <span class="s1">&#39;Month&#39;</span><span class="p">,</span> <span class="s1">&#39;M&#39;</span><span class="p">:</span> <span class="s1">&#39;Month&#39;</span><span class="p">}</span>
+            <span class="k">if</span> <span class="s1">&#39;color&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+                <span class="n">title</span> <span class="o">+=</span> <span class="sa">f</span><span class="s1">&#39; and </span><span class="si">{</span><span class="n">freq_map</span><span class="p">[</span><span class="n">resample_freq_for_title</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">title</span> <span class="o">+=</span> <span class="sa">f</span><span class="s1">&#39; by </span><span class="si">{</span><span class="n">freq_map</span><span class="p">[</span><span class="n">resample_freq_for_title</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span>
+        <span class="c1"># Part for specific graph_type</span>
+        <span class="k">if</span> <span class="n">graph_type</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;heatmap&#39;</span><span class="p">]:</span>
+            <span class="n">title</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot; by </span><span class="si">{</span><span class="bp">cls</span><span class="o">.</span><span class="n">dimensions</span><span class="p">[</span><span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">]]</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="n">title</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot; and </span><span class="si">{</span><span class="bp">cls</span><span class="o">.</span><span class="n">dimensions</span><span class="p">[</span><span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">]]</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="k">elif</span> <span class="n">graph_type</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;histogram&#39;</span><span class="p">,</span> <span class="s1">&#39;box&#39;</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="s1">&#39;lower_quantile&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span> <span class="ow">or</span> <span class="s1">&#39;upper_quantile&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+                <span class="n">quantile_for_title</span> <span class="o">=</span> <span class="s1">&#39; (&#39;</span>
+                <span class="k">if</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;mode&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;dual_box_trim&#39;</span><span class="p">:</span>
+                    <span class="n">quantile_for_title</span> <span class="o">+=</span> <span class="s1">&#39;Right: &#39;</span>
+                <span class="k">if</span> <span class="s1">&#39;lower_quantile&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+                    <span class="n">quantile_for_title</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;from </span><span class="si">{</span><span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;lower_quantile&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> &quot;</span>
+                <span class="k">if</span> <span class="s1">&#39;upper_quantile&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+                    <span class="n">quantile_for_title</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;to </span><span class="si">{</span><span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;upper_quantile&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> &quot;</span>
+                <span class="n">quantile_for_title</span> <span class="o">+=</span> <span class="s1">&#39;Quantile)&#39;</span>
+                <span class="n">title</span> <span class="o">+=</span> <span class="n">quantile_for_title</span>
+        <span class="k">if</span> <span class="n">graph_type</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;period_change&#39;</span><span class="p">]:</span>
+            <span class="n">title_map</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s1">&#39;mom&#39;</span><span class="p">:</span> <span class="s1">&#39;Monthly Change in </span><span class="si">{metric}</span><span class="s1">&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;wow&#39;</span><span class="p">:</span> <span class="s1">&#39;Weekly Change in </span><span class="si">{metric}</span><span class="s1">&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;dod&#39;</span><span class="p">:</span> <span class="s1">&#39;Daily Change in </span><span class="si">{metric}</span><span class="s1">&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;yoy&#39;</span><span class="p">:</span> <span class="s1">&#39;Yearly Change in </span><span class="si">{metric}</span><span class="s1">&#39;</span>
+            <span class="p">}</span>
+            <span class="n">period</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;period&#39;</span><span class="p">,</span> <span class="s1">&#39;mom&#39;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="bp">cls</span><span class="o">.</span><span class="n">metric_label</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;metric_label must be define&#39;</span><span class="p">)</span>
+            <span class="n">metric_label</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">metric_label</span> <span class="k">if</span> <span class="s1">&#39;,&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="n">metric_label</span> <span class="k">else</span> <span class="bp">cls</span><span class="o">.</span><span class="n">metric_label</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">title</span> <span class="o">=</span> <span class="n">title_map</span><span class="p">[</span><span class="n">period</span><span class="p">]</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">metric</span><span class="o">=</span><span class="n">metric_label</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">title</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_prepare_common_settings</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">graph_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Preparation of general settings for graphs&quot;&quot;&quot;</span>
+        <span class="bp">cls</span><span class="o">.</span><span class="n">check_cur_dim</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">graph_type</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;heatmap&#39;</span><span class="p">,</span> <span class="s1">&#39;cat_compare&#39;</span><span class="p">]:</span>
+            <span class="n">kwargs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s1">&#39;hover_data&#39;</span><span class="p">,</span> <span class="p">{})</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="bp">cls</span><span class="o">.</span><span class="n">metric</span><span class="p">:</span> <span class="s1">&#39;:.3f&#39;</span><span class="p">})</span>
+        <span class="k">if</span> <span class="n">graph_type</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;cat_compare&#39;</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="s1">&#39;cat1&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span> <span class="ow">and</span> <span class="s1">&#39;cat2&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+                <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;cat2&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">metric</span>
+            <span class="k">elif</span> <span class="s1">&#39;cat2&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span> <span class="ow">and</span> <span class="s1">&#39;cat1&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+                <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;cat1&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">metric</span>
+
+        <span class="c1"># top_n settings</span>
+        <span class="k">if</span> <span class="n">graph_type</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;line&#39;</span><span class="p">,</span> <span class="s1">&#39;line_resample&#39;</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;color&#39;</span><span class="p">)</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;customer_state&#39;</span><span class="p">,</span> <span class="s1">&#39;customer_city&#39;</span><span class="p">,</span> <span class="s1">&#39;order_product_categories&#39;</span><span class="p">,</span> <span class="s1">&#39;order_general_product_categories&#39;</span><span class="p">,</span> <span class="s1">&#39;seller_state&#39;</span><span class="p">,</span> <span class="s1">&#39;seller_city&#39;</span><span class="p">]</span>
+                <span class="ow">and</span> <span class="s1">&#39;trim_top_n_color&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">):</span>
+                <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;trim_top_n_color&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">5</span>
+
+        <span class="k">if</span> <span class="n">graph_type</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;bar_groupby&#39;</span><span class="p">,</span> <span class="s1">&#39;box&#39;</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;customer_state&#39;</span><span class="p">,</span> <span class="s1">&#39;customer_city&#39;</span><span class="p">,</span> <span class="s1">&#39;order_product_categories&#39;</span><span class="p">,</span> <span class="s1">&#39;order_general_product_categories&#39;</span><span class="p">,</span>
+                                   <span class="s1">&#39;product_category&#39;</span><span class="p">,</span> <span class="s1">&#39;general_product_category&#39;</span><span class="p">,</span> <span class="s1">&#39;seller_state&#39;</span><span class="p">,</span> <span class="s1">&#39;seller_city&#39;</span><span class="p">]:</span>
+                <span class="k">if</span> <span class="s1">&#39;trim_top_n_y&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+                    <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;trim_top_n_y&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">15</span>
+                <span class="k">if</span> <span class="s1">&#39;height&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+                    <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;height&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">500</span>
+
+        <span class="c1"># aggregation</span>
+        <span class="k">if</span> <span class="n">graph_type</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;bar_groupby&#39;</span><span class="p">,</span> <span class="s1">&#39;line_resample&#39;</span><span class="p">,</span> <span class="s1">&#39;pie_bar&#39;</span><span class="p">,</span> <span class="s1">&#39;heatmap&#39;</span><span class="p">]:</span>
+            <span class="n">kwargs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s1">&#39;agg_func&#39;</span><span class="p">,</span> <span class="bp">cls</span><span class="o">.</span><span class="n">agg_func</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">graph_type</span> <span class="o">!=</span> <span class="s1">&#39;heatmap&#39;</span><span class="p">:</span>
+                <span class="n">kwargs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s1">&#39;agg_column&#39;</span><span class="p">,</span> <span class="bp">cls</span><span class="o">.</span><span class="n">metric</span><span class="p">)</span>
+        <span class="c1"># normalization</span>
+        <span class="k">if</span> <span class="n">graph_type</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;bar_groupby&#39;</span><span class="p">,</span> <span class="s1">&#39;pie_bar&#39;</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="bp">cls</span><span class="o">.</span><span class="n">text_auto</span><span class="p">:</span>
+                <span class="n">kwargs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s1">&#39;text_auto&#39;</span><span class="p">,</span> <span class="bp">cls</span><span class="o">.</span><span class="n">text_auto</span><span class="p">)</span>
+            <span class="n">kwargs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s1">&#39;norm_by&#39;</span><span class="p">,</span> <span class="bp">cls</span><span class="o">.</span><span class="n">norm_by</span><span class="p">)</span>
+        <span class="c1"># time freq</span>
+        <span class="k">if</span> <span class="n">graph_type</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;line_resample&#39;</span><span class="p">]:</span>
+            <span class="n">kwargs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s1">&#39;freq&#39;</span><span class="p">,</span> <span class="bp">cls</span><span class="o">.</span><span class="n">freq</span><span class="p">)</span>
+
+        <span class="c1"># settings for specific graph_type</span>
+        <span class="k">if</span> <span class="n">graph_type</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;line&#39;</span><span class="p">,</span> <span class="s1">&#39;line_resample&#39;</span><span class="p">]:</span>
+            <span class="n">kwargs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="bp">cls</span><span class="o">.</span><span class="n">time_column</span><span class="p">)</span>
+            <span class="n">kwargs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="bp">cls</span><span class="o">.</span><span class="n">metric</span><span class="p">)</span>
+
+        <span class="k">elif</span> <span class="n">graph_type</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;bar_groupby&#39;</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="s1">&#39;x&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kwargs</span> <span class="ow">and</span> <span class="s1">&#39;y&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;x or y must be define&#39;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="s1">&#39;y&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+                <span class="n">kwargs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="bp">cls</span><span class="o">.</span><span class="n">metric</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="s1">&#39;x&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+                <span class="n">kwargs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="bp">cls</span><span class="o">.</span><span class="n">metric</span><span class="p">)</span>
+
+        <span class="k">elif</span> <span class="n">graph_type</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;heatmap&#39;</span><span class="p">]:</span>
+            <span class="n">kwargs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s1">&#39;do_pivot&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+            <span class="n">kwargs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s1">&#39;z&#39;</span><span class="p">,</span> <span class="bp">cls</span><span class="o">.</span><span class="n">metric</span><span class="p">)</span>
+            <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;width&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1100</span>
+        <span class="k">elif</span> <span class="n">graph_type</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;pie_bar&#39;</span><span class="p">]:</span>
+            <span class="n">kwargs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s1">&#39;hole&#39;</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
+            <span class="k">if</span> <span class="s1">&#39;x&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kwargs</span> <span class="ow">and</span> <span class="s1">&#39;y&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;x or y must be define&#39;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="s1">&#39;y&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+                <span class="n">kwargs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="bp">cls</span><span class="o">.</span><span class="n">metric</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="s1">&#39;x&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+                <span class="n">kwargs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="bp">cls</span><span class="o">.</span><span class="n">metric</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">graph_type</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;box&#39;</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;mode&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;time_series&#39;</span><span class="p">:</span>
+                <span class="n">kwargs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="bp">cls</span><span class="o">.</span><span class="n">time_column</span><span class="p">)</span>
+                <span class="n">kwargs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="bp">cls</span><span class="o">.</span><span class="n">metric</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;show_dual&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+                <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;upper_quantile&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.95</span>
+
+                <span class="k">if</span> <span class="s1">&#39;x&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kwargs</span> <span class="ow">and</span> <span class="s1">&#39;y&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;x or y must be define&#39;</span><span class="p">)</span>
+                <span class="k">if</span> <span class="s1">&#39;y&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+                    <span class="n">kwargs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="bp">cls</span><span class="o">.</span><span class="n">metric</span><span class="p">)</span>
+                <span class="k">elif</span> <span class="s1">&#39;x&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+                    <span class="n">kwargs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="bp">cls</span><span class="o">.</span><span class="n">metric</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">graph_type</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;histogram&#39;</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="s1">&#39;x&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">],</span> <span class="nb">str</span><span class="p">)</span> <span class="ow">or</span> <span class="s1">&#39;color&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+                <span class="n">kwargs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s1">&#39;show_hist&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+                <span class="n">kwargs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s1">&#39;show_kde&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+                <span class="n">kwargs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s1">&#39;mode&#39;</span><span class="p">,</span> <span class="s1">&#39;dual_box_trim&#39;</span><span class="p">)</span>
+                <span class="n">kwargs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s1">&#39;show_legend_title&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">kwargs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s1">&#39;mode&#39;</span><span class="p">,</span> <span class="s1">&#39;dual_hist_trim&#39;</span><span class="p">)</span>
+            <span class="n">kwargs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="bp">cls</span><span class="o">.</span><span class="n">metric</span><span class="p">)</span>
+            <span class="n">kwargs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s1">&#39;upper_quantile&#39;</span><span class="p">,</span> <span class="mf">0.95</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">graph_type</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;period_change&#39;</span><span class="p">]:</span>
+            <span class="n">kwargs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s1">&#39;metric_col&#39;</span><span class="p">,</span> <span class="bp">cls</span><span class="o">.</span><span class="n">metric</span><span class="p">)</span>
+            <span class="n">kwargs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s1">&#39;date_col&#39;</span><span class="p">,</span> <span class="bp">cls</span><span class="o">.</span><span class="n">time_column</span><span class="p">)</span>
+            <span class="n">kwargs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s1">&#39;agg_func&#39;</span><span class="p">,</span> <span class="bp">cls</span><span class="o">.</span><span class="n">agg_func</span><span class="p">)</span>
+            <span class="k">if</span> <span class="bp">cls</span><span class="o">.</span><span class="n">plotly_kwargs</span><span class="p">:</span>
+                <span class="n">kwargs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">plotly_kwargs</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">kwargs</span>
+    
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_update_fig</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">fig</span><span class="p">:</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">graph_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+        <span class="n">update_fig</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">param</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="n">update_fig</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">fig</span><span class="o">.</span><span class="n">layout</span><span class="p">,</span> <span class="n">param</span><span class="p">):</span>
+                <span class="n">update_fig</span><span class="p">[</span><span class="n">param</span><span class="p">]</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">update_fig</span><span class="p">[</span><span class="n">param</span><span class="p">]</span>
+        <span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="o">**</span><span class="n">update_fig</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">fig</span>
+
+<span class="n">pb</span> <span class="o">=</span> <span class="n">PlotBuilder</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../02_data_preprocessing/09_intermediate_conclusion.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Intermediate Conclusion</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="02_time_series_analysis.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Time Series Analysis</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Pavel Grigoryev
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025, Pavel Grigoryev.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

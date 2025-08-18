@@ -1,0 +1,1289 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Missing Value Handling &#8212; 🌊 Deep Sales Analysis of Olist Marketplace</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=aa5847ba" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/custom.js?v=f9582d1e"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'contents/02_data_preprocessing/03_missing_value_handling';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Duplicate Handling" href="04_duplicate_handling.html" />
+    <link rel="prev" title="Outlier Handling" href="02_outlier_handling.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo-light.png" class="logo__image only-light" alt="🌊 Deep Sales Analysis of Olist Marketplace - Home"/>
+    <script>document.write(`<img src="../../_static/logo-dark.png" class="logo__image only-dark" alt="🌊 Deep Sales Analysis of Olist Marketplace - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Description and Exploration</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../01_data_description_and_exploration/01_data_description.html">Data Description</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_data_description_and_exploration/02_data_loading.html">Data Loading</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_data_description_and_exploration/03_data_exploration.html">Data Exploration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_data_description_and_exploration/04_intermediate_conclusion.html">Intermediate Conclusion</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Preprocessing</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_initial_data_filtering.html">Initial Data Filtering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_outlier_handling.html">Outlier Handling</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Missing Value Handling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_duplicate_handling.html">Duplicate Handling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_creating_new_metrics.html">Creating New Metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_creating_new_dimensions.html">Creating New Dimensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_converting_data_to_a_convenient_format.html">Converting Data to a Convenient Format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_data_merging.html">Data Merging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_intermediate_conclusion.html">Intermediate Conclusion</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Analysis</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../03_data_analysis/01_creating_analysis_class.html">Creating Analysis Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_analysis/02_time_series_analysis.html">Time Series Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_analysis/03_customer_analysis.html">Customer Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_analysis/04_seller_analysis.html">Seller Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_analysis/05_sales_analysis.html">Sales Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_analysis/06_product_analysis.html">Product Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_analysis/07_review_analysis.html">Review Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_analysis/08_delivery_analysis.html">Delivery Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_analysis/09_payment_analysis.html">Payment Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_analysis/10_geographical_analysis.html">Geographical Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_analysis/11_cohort_analysis.html">Cohort Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_analysis/12_correlation_analysis.html">Correlation Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_analysis/13_slice_analysis.html">Slice Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_analysis/14_analysis_of_customer_segments.html">Analysis of Customer Segments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_analysis/15_rfm_analysis.html">RFM Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_analysis/16_customer_clustering.html">Customer Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_analysis/17_hypothesis_testing.html">Hypothesis Testing</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">General Conclusion</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/01_time_dynamics.html">Time Dynamics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/02_customers.html">Customers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/03_sales.html">Sales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/04_products.html">Products</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/05_reviews.html">Reviews</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/06_delivery.html">Delivery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/07_payments.html">Payments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/08_sellers.html">Sellers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/09_cohort_analysis.html">Cohort Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/10_correlation_analysis.html">Correlation Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/11_black_friday.html">Black Friday</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/12_cancelled_orders.html">Cancelled Orders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/13_hypothesis_testing_results.html">Hypothesis Testing Results</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/14_detected_anomalies.html">Detected Anomalies</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Recommendations</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/01_product_market_fit.html">Product market fit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/02_customer_loyalty_enhancement.html">Customer loyalty Enhancement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/03_customer_experience_improvement.html">Customer Experience Improvement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/04_logistics_and_delivery_optimization.html">Logistics and Delivery Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/05_financial_optimization.html">Financial optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/06_average_order_value_and_basket_optimization.html">Average Order Value and Basket Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/07_segment_specific_strategies.html">Segment-Specific Strategies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/08_product_and_assortment_management.html">Product and Assortment Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/09_marketing_and_promotion.html">Marketing and Promotion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/10_peak_season_preparedness.html">Peak Season Preparedness</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/11_analytics_and_monitoring.html">Analytics and Monitoring</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/12_ab_testing.html">A/B Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/13_anomaly.html">Anomaly</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/PavelGrigoryevDS/olist-deep-dive" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/contents/02_data_preprocessing/03_missing_value_handling.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Missing Value Handling</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> On this page </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#table-orders">Table orders</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#table-df-products">Table df_products</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="missing-value-handling">
+<h1>Missing Value Handling<a class="headerlink" href="#missing-value-handling" title="Link to this heading">#</a></h1>
+<section id="table-orders">
+<h2>Table orders<a class="headerlink" href="#table-orders" title="Link to this heading">#</a></h2>
+<p>Let’s examine missing values.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tmp_miss</span> <span class="o">=</span> <span class="n">df_orders</span><span class="o">.</span><span class="n">explore</span><span class="o">.</span><span class="n">detect_anomalies</span><span class="p">(</span><span class="n">return_mode</span><span class="o">=</span><span class="s1">&#39;by_column&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style type="text/css">
+#T_6571a caption {
+  font-size: 16px;
+  text-align: left;
+  font-weight: bold;
+  white-space: nowrap;
+}
+#T_6571a th {
+  text-align: left;
+}
+#T_6571a_row0_col0, #T_6571a_row0_col1, #T_6571a_row1_col0, #T_6571a_row1_col1, #T_6571a_row2_col0, #T_6571a_row2_col1 {
+  text-align: left;
+}
+</style>
+<table id="T_6571a">
+  <caption>Missings by Column</caption>
+  <thead>
+    <tr>
+      <th class="blank level0" >&nbsp;</th>
+      <th id="T_6571a_level0_col0" class="col_heading level0 col0" >Count</th>
+      <th id="T_6571a_level0_col1" class="col_heading level0 col1" >Percent</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_6571a_level0_row0" class="row_heading level0 row0" >order_approved_dt</th>
+      <td id="T_6571a_row0_col0" class="data row0 col0" >135</td>
+      <td id="T_6571a_row0_col1" class="data row0 col1" >0.14%</td>
+    </tr>
+    <tr>
+      <th id="T_6571a_level0_row1" class="row_heading level0 row1" >order_delivered_carrier_dt</th>
+      <td id="T_6571a_row1_col0" class="data row1 col0" >1716</td>
+      <td id="T_6571a_row1_col1" class="data row1 col1" >1.73%</td>
+    </tr>
+    <tr>
+      <th id="T_6571a_level0_row2" class="row_heading level0 row2" >order_delivered_customer_dt</th>
+      <td id="T_6571a_row2_col0" class="data row2 col0" >2888</td>
+      <td id="T_6571a_row2_col1" class="data row2 col1" >2.91%</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p>To calculate time intervals between different dates, we should ideally fill missing values between dates if the next stage’s date is present.</p>
+<p>We’ll replace missing timestamps.</p>
+<p><strong>order_delivered_carrier_dt</strong></p>
+<p>Let’s look at orders missing the carrier handoff date but having a delivery date or delivery status.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tmp_miss</span><span class="p">[</span><span class="s1">&#39;order_delivered_carrier_dt&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">order_status</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>order_status
+Unavailable    602
+Canceled       510
+Processing     299
+Invoiced       296
+Created          5
+Approved         2
+Delivered        2
+Shipped          0
+Name: count, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tmp_mask</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">order_delivered_carrier_dt</span><span class="o">.</span><span class="n">isna</span><span class="p">())</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">order_delivered_customer_dt</span><span class="o">.</span><span class="n">notna</span><span class="p">()</span> <span class="o">|</span> <span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">order_status</span> <span class="o">==</span> <span class="s1">&#39;Delivered&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_orders</span><span class="p">[</span><span class="n">tmp_mask</span><span class="p">]</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>order_id</th>
+      <th>customer_id</th>
+      <th>order_status</th>
+      <th>order_purchase_dt</th>
+      <th>order_approved_dt</th>
+      <th>order_delivered_carrier_dt</th>
+      <th>order_delivered_customer_dt</th>
+      <th>order_estimated_delivery_dt</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>73222</th>
+      <td>2aa91108853cecb43c84a5dc5b277475</td>
+      <td>afeb16c7f46396c0ed54acb45ccaaa40</td>
+      <td>Delivered</td>
+      <td>2017-09-29 08:52:58</td>
+      <td>2017-09-29 09:07:16</td>
+      <td>NaT</td>
+      <td>2017-11-20 19:44:47</td>
+      <td>2017-11-14</td>
+    </tr>
+    <tr>
+      <th>92643</th>
+      <td>2d858f451373b04fb5c984a1cc2defaf</td>
+      <td>e08caf668d499a6d643dafd7c5cc498a</td>
+      <td>Delivered</td>
+      <td>2017-05-25 23:22:43</td>
+      <td>2017-05-25 23:30:16</td>
+      <td>NaT</td>
+      <td>NaT</td>
+      <td>2017-06-23</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>There are only 2 such orders—we’ll replace them with the median value.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">order_carrier_time</span> <span class="o">=</span> <span class="p">(</span><span class="n">df_orders</span><span class="o">.</span><span class="n">order_delivered_carrier_dt</span> <span class="o">-</span> <span class="n">df_orders</span><span class="o">.</span><span class="n">order_approved_dt</span><span class="p">)</span><span class="o">.</span><span class="n">median</span><span class="p">()</span>
+<span class="n">order_carrier_time</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Timedelta(&#39;1 days 19:28:14.500000&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_orders</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">tmp_mask</span><span class="p">,</span> <span class="s1">&#39;order_delivered_carrier_dt&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_orders</span><span class="o">.</span><span class="n">order_approved_dt</span> <span class="o">+</span> <span class="n">order_carrier_time</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>order_approved_dt</strong></p>
+<p>Let’s examine orders missing the payment approval date but having a carrier handoff timestamp.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tmp_miss</span><span class="p">[</span><span class="s1">&#39;order_approved_dt&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">order_status</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>order_status
+Canceled       116
+Delivered       14
+Created          5
+Approved         0
+Invoiced         0
+Processing       0
+Shipped          0
+Unavailable      0
+Name: count, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tmp_mask</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">order_approved_dt</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span> <span class="o">&amp;</span> <span class="n">x</span><span class="o">.</span><span class="n">order_delivered_carrier_dt</span><span class="o">.</span><span class="n">notna</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Rows count: </span><span class="si">{</span><span class="n">df_orders</span><span class="p">[</span><span class="n">tmp_mask</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">df_orders</span><span class="p">[</span><span class="n">tmp_mask</span><span class="p">]</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Rows count: 14
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>order_id</th>
+      <th>customer_id</th>
+      <th>order_status</th>
+      <th>order_purchase_dt</th>
+      <th>order_approved_dt</th>
+      <th>order_delivered_carrier_dt</th>
+      <th>order_delivered_customer_dt</th>
+      <th>order_estimated_delivery_dt</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>5323</th>
+      <td>e04abd8149ef81b95221e88f6ed9ab6a</td>
+      <td>2127dc6603ac33544953ef05ec155771</td>
+      <td>Delivered</td>
+      <td>2017-02-18 14:40:00</td>
+      <td>NaT</td>
+      <td>2017-02-23 12:04:47</td>
+      <td>2017-03-01 13:25:33</td>
+      <td>2017-03-17</td>
+    </tr>
+    <tr>
+      <th>16567</th>
+      <td>8a9adc69528e1001fc68dd0aaebbb54a</td>
+      <td>4c1ccc74e00993733742a3c786dc3c1f</td>
+      <td>Delivered</td>
+      <td>2017-02-18 12:45:31</td>
+      <td>NaT</td>
+      <td>2017-02-23 09:01:52</td>
+      <td>2017-03-02 10:05:06</td>
+      <td>2017-03-21</td>
+    </tr>
+    <tr>
+      <th>19031</th>
+      <td>7013bcfc1c97fe719a7b5e05e61c12db</td>
+      <td>2941af76d38100e0f8740a374f1a5dc3</td>
+      <td>Delivered</td>
+      <td>2017-02-18 13:29:47</td>
+      <td>NaT</td>
+      <td>2017-02-22 16:25:25</td>
+      <td>2017-03-01 08:07:38</td>
+      <td>2017-03-17</td>
+    </tr>
+    <tr>
+      <th>22663</th>
+      <td>5cf925b116421afa85ee25e99b4c34fb</td>
+      <td>29c35fc91fc13fb5073c8f30505d860d</td>
+      <td>Delivered</td>
+      <td>2017-02-18 16:48:35</td>
+      <td>NaT</td>
+      <td>2017-02-22 11:23:10</td>
+      <td>2017-03-09 07:28:47</td>
+      <td>2017-03-31</td>
+    </tr>
+    <tr>
+      <th>23156</th>
+      <td>12a95a3c06dbaec84bcfb0e2da5d228a</td>
+      <td>1e101e0daffaddce8159d25a8e53f2b2</td>
+      <td>Delivered</td>
+      <td>2017-02-17 13:05:55</td>
+      <td>NaT</td>
+      <td>2017-02-22 11:23:11</td>
+      <td>2017-03-02 11:09:19</td>
+      <td>2017-03-20</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Since there are only 14 such orders, we’ll simply fill the gaps using this time.</p>
+<p>Let’s check the median time from order creation to payment approval.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">order_processing_time_hours</span> <span class="o">=</span> <span class="p">(</span><span class="n">df_orders</span><span class="o">.</span><span class="n">order_approved_dt</span> <span class="o">-</span> <span class="n">df_orders</span><span class="o">.</span><span class="n">order_purchase_dt</span><span class="p">)</span><span class="o">.</span><span class="n">median</span><span class="p">()</span>
+<span class="n">order_processing_time_hours</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Timedelta(&#39;0 days 00:20:31&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_orders</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">tmp_mask</span><span class="p">,</span> <span class="s1">&#39;order_approved_dt&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_orders</span><span class="o">.</span><span class="n">order_purchase_dt</span> <span class="o">+</span> <span class="n">order_processing_time_hours</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>order_delivered_customer_dt</strong></p>
+<p>Let’s examine delivered orders missing the customer receipt date.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tmp_miss</span><span class="p">[</span><span class="s1">&#39;order_delivered_customer_dt&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">order_status</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>order_status
+Shipped        1097
+Unavailable     602
+Canceled        579
+Processing      299
+Invoiced        296
+Delivered         8
+Created           5
+Approved          2
+Name: count, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tmp_miss</span><span class="p">[</span><span class="s1">&#39;order_delivered_customer_dt&#39;</span><span class="p">][</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">order_status</span> <span class="o">==</span> <span class="s1">&#39;Delivered&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>order_id</th>
+      <th>customer_id</th>
+      <th>order_status</th>
+      <th>order_purchase_dt</th>
+      <th>order_approved_dt</th>
+      <th>order_delivered_carrier_dt</th>
+      <th>order_delivered_customer_dt</th>
+      <th>order_estimated_delivery_dt</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>3002</th>
+      <td>2d1e2d5bf4dc7227b3bfebb81328c15f</td>
+      <td>ec05a6d8558c6455f0cbbd8a420ad34f</td>
+      <td>Delivered</td>
+      <td>2017-11-28 17:44:07</td>
+      <td>2017-11-28 17:56:40</td>
+      <td>2017-11-30 18:12:23</td>
+      <td>NaT</td>
+      <td>2017-12-18</td>
+    </tr>
+    <tr>
+      <th>20618</th>
+      <td>f5dd62b788049ad9fc0526e3ad11a097</td>
+      <td>5e89028e024b381dc84a13a3570decb4</td>
+      <td>Delivered</td>
+      <td>2018-06-20 06:58:43</td>
+      <td>2018-06-20 07:19:05</td>
+      <td>2018-06-25 08:05:00</td>
+      <td>NaT</td>
+      <td>2018-07-16</td>
+    </tr>
+    <tr>
+      <th>43834</th>
+      <td>2ebdfc4f15f23b91474edf87475f108e</td>
+      <td>29f0540231702fda0cfdee0a310f11aa</td>
+      <td>Delivered</td>
+      <td>2018-07-01 17:05:11</td>
+      <td>2018-07-01 17:15:12</td>
+      <td>2018-07-03 13:57:00</td>
+      <td>NaT</td>
+      <td>2018-07-30</td>
+    </tr>
+    <tr>
+      <th>79263</th>
+      <td>e69f75a717d64fc5ecdfae42b2e8e086</td>
+      <td>cfda40ca8dd0a5d486a9635b611b398a</td>
+      <td>Delivered</td>
+      <td>2018-07-01 22:05:55</td>
+      <td>2018-07-01 22:15:14</td>
+      <td>2018-07-03 13:57:00</td>
+      <td>NaT</td>
+      <td>2018-07-30</td>
+    </tr>
+    <tr>
+      <th>82868</th>
+      <td>0d3268bad9b086af767785e3f0fc0133</td>
+      <td>4f1d63d35fb7c8999853b2699f5c7649</td>
+      <td>Delivered</td>
+      <td>2018-07-01 21:14:02</td>
+      <td>2018-07-01 21:29:54</td>
+      <td>2018-07-03 09:28:00</td>
+      <td>NaT</td>
+      <td>2018-07-24</td>
+    </tr>
+    <tr>
+      <th>92643</th>
+      <td>2d858f451373b04fb5c984a1cc2defaf</td>
+      <td>e08caf668d499a6d643dafd7c5cc498a</td>
+      <td>Delivered</td>
+      <td>2017-05-25 23:22:43</td>
+      <td>2017-05-25 23:30:16</td>
+      <td>NaT</td>
+      <td>NaT</td>
+      <td>2017-06-23</td>
+    </tr>
+    <tr>
+      <th>97647</th>
+      <td>ab7c89dc1bf4a1ead9d6ec1ec8968a84</td>
+      <td>dd1b84a7286eb4524d52af4256c0ba24</td>
+      <td>Delivered</td>
+      <td>2018-06-08 12:09:39</td>
+      <td>2018-06-08 12:36:39</td>
+      <td>2018-06-12 14:10:00</td>
+      <td>NaT</td>
+      <td>2018-06-26</td>
+    </tr>
+    <tr>
+      <th>98038</th>
+      <td>20edc82cf5400ce95e1afacc25798b31</td>
+      <td>28c37425f1127d887d7337f284080a0f</td>
+      <td>Delivered</td>
+      <td>2018-06-27 16:09:12</td>
+      <td>2018-06-27 16:29:30</td>
+      <td>2018-07-03 19:26:00</td>
+      <td>NaT</td>
+      <td>2018-07-19</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>There are only 8 such orders—we’ll also replace them with the median value.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">order_customer_time</span> <span class="o">=</span> <span class="p">(</span><span class="n">df_orders</span><span class="o">.</span><span class="n">order_delivered_customer_dt</span> <span class="o">-</span> <span class="n">df_orders</span><span class="o">.</span><span class="n">order_delivered_carrier_dt</span><span class="p">)</span><span class="o">.</span><span class="n">median</span><span class="p">()</span>
+<span class="n">order_customer_time</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Timedelta(&#39;7 days 02:29:46&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tmp_mask</span> <span class="o">=</span> <span class="n">df_orders</span><span class="o">.</span><span class="n">order_delivered_customer_dt</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df_orders</span><span class="o">.</span><span class="n">order_status</span><span class="o">==</span><span class="s1">&#39;Delivered&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_orders</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">tmp_mask</span><span class="p">,</span> <span class="s1">&#39;order_delivered_customer_dt&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_orders</span><span class="o">.</span><span class="n">order_delivered_carrier_dt</span> <span class="o">+</span> <span class="n">order_customer_time</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Missing values in review_comment_title and review_comment_message indicate these fields were left blank, so processing them is unnecessary.</p>
+</section>
+<section id="table-df-products">
+<h2>Table df_products<a class="headerlink" href="#table-df-products" title="Link to this heading">#</a></h2>
+<p>Let’s examine missing values in df_products.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tmp_miss</span> <span class="o">=</span> <span class="n">df_products</span><span class="o">.</span><span class="n">explore</span><span class="o">.</span><span class="n">detect_anomalies</span><span class="p">(</span><span class="n">return_mode</span><span class="o">=</span><span class="s1">&#39;by_column&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style type="text/css">
+#T_3ec54 caption {
+  font-size: 16px;
+  text-align: left;
+  font-weight: bold;
+  white-space: nowrap;
+}
+#T_3ec54 th {
+  text-align: left;
+}
+#T_3ec54_row0_col0, #T_3ec54_row0_col1, #T_3ec54_row1_col0, #T_3ec54_row1_col1, #T_3ec54_row2_col0, #T_3ec54_row2_col1, #T_3ec54_row3_col0, #T_3ec54_row3_col1, #T_3ec54_row4_col0, #T_3ec54_row4_col1, #T_3ec54_row5_col0, #T_3ec54_row5_col1, #T_3ec54_row6_col0, #T_3ec54_row6_col1, #T_3ec54_row7_col0, #T_3ec54_row7_col1 {
+  text-align: left;
+}
+</style>
+<table id="T_3ec54">
+  <caption>Missings by Column</caption>
+  <thead>
+    <tr>
+      <th class="blank level0" >&nbsp;</th>
+      <th id="T_3ec54_level0_col0" class="col_heading level0 col0" >Count</th>
+      <th id="T_3ec54_level0_col1" class="col_heading level0 col1" >Percent</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_3ec54_level0_row0" class="row_heading level0 row0" >product_category_name</th>
+      <td id="T_3ec54_row0_col0" class="data row0 col0" >610</td>
+      <td id="T_3ec54_row0_col1" class="data row0 col1" >1.85%</td>
+    </tr>
+    <tr>
+      <th id="T_3ec54_level0_row1" class="row_heading level0 row1" >product_name_lenght</th>
+      <td id="T_3ec54_row1_col0" class="data row1 col0" >610</td>
+      <td id="T_3ec54_row1_col1" class="data row1 col1" >1.85%</td>
+    </tr>
+    <tr>
+      <th id="T_3ec54_level0_row2" class="row_heading level0 row2" >product_description_lenght</th>
+      <td id="T_3ec54_row2_col0" class="data row2 col0" >610</td>
+      <td id="T_3ec54_row2_col1" class="data row2 col1" >1.85%</td>
+    </tr>
+    <tr>
+      <th id="T_3ec54_level0_row3" class="row_heading level0 row3" >product_photos_qty</th>
+      <td id="T_3ec54_row3_col0" class="data row3 col0" >610</td>
+      <td id="T_3ec54_row3_col1" class="data row3 col1" >1.85%</td>
+    </tr>
+    <tr>
+      <th id="T_3ec54_level0_row4" class="row_heading level0 row4" >product_weight_g</th>
+      <td id="T_3ec54_row4_col0" class="data row4 col0" >2</td>
+      <td id="T_3ec54_row4_col1" class="data row4 col1" >0.01%</td>
+    </tr>
+    <tr>
+      <th id="T_3ec54_level0_row5" class="row_heading level0 row5" >product_length_cm</th>
+      <td id="T_3ec54_row5_col0" class="data row5 col0" >2</td>
+      <td id="T_3ec54_row5_col1" class="data row5 col1" >0.01%</td>
+    </tr>
+    <tr>
+      <th id="T_3ec54_level0_row6" class="row_heading level0 row6" >product_height_cm</th>
+      <td id="T_3ec54_row6_col0" class="data row6 col0" >2</td>
+      <td id="T_3ec54_row6_col1" class="data row6 col1" >0.01%</td>
+    </tr>
+    <tr>
+      <th id="T_3ec54_level0_row7" class="row_heading level0 row7" >product_width_cm</th>
+      <td id="T_3ec54_row7_col0" class="data row7 col0" >2</td>
+      <td id="T_3ec54_row7_col1" class="data row7 col1" >0.01%</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p>In product_category_name, we’ll replace missing values with ‘Missing in Products’.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_products</span><span class="p">[</span><span class="s1">&#39;product_category_name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_products</span><span class="p">[</span><span class="s1">&#39;product_category_name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">cat</span><span class="o">.</span><span class="n">add_categories</span><span class="p">([</span><span class="s1">&#39;Missing in Products&#39;</span><span class="p">])</span>
+<span class="n">df_products</span><span class="p">[</span><span class="s1">&#39;product_category_name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_products</span><span class="p">[</span><span class="s1">&#39;product_category_name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="s1">&#39;Missing in Products&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Since only 2 orders lack specifications, we’ll replace them with the median value for their product category.</p>
+<p>Let’s check group sizes if we replace within these groups.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">category_columns</span> <span class="o">=</span> <span class="s1">&#39;product_category_name&#39;</span>
+<span class="n">df_products</span><span class="p">[</span><span class="s1">&#39;product_weight_g&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">preproc</span><span class="o">.</span><span class="n">check_group_counts</span><span class="p">(</span><span class="n">category_columns</span><span class="o">=</span><span class="n">category_columns</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>============================ Group Analysis Report =============================
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Grouping columns: product_category_name
+Value column: product_weight_g
+
+Total groups:                            74
+Groups with missing values:              2.7%
+Groups with ALL values missing:          0.0%
+Total missing values:                    2
+Missing in non-empty groups:             2
+
+---------------------------- Group Size Statistics -----------------------------
+Mean group size:               445.3
+Median group size:             94.5
+Minimum group size:            1
+Maximum group size:            3,029
+Standard deviation:            731.1
+
+-------------------------- Missing Value Distribution --------------------------
+Groups with 1 missing value:   2.7%
+Groups with 2-5 missing values: 0.0%
+Groups with 5+ missing values: 0.0%
+
+---------------- Threshold Analysis (ontly groups with missings)----------------
+Groups with 5+ elements:       100.0%
+Groups with 10+ elements:      100.0%
+Groups with 20+ elements:      100.0%
+Groups with 30+ elements:      100.0%
+Groups with 40+ elements:      100.0%
+Groups with 50+ elements:      100.0%
+================================================================================
+</pre></div>
+</div>
+</div>
+</div>
+<p>The group sizes are sufficient, so we’ll replace with the group median.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_products</span><span class="p">[</span><span class="n">df_products</span><span class="p">[[</span><span class="s1">&#39;product_weight_g&#39;</span><span class="p">,</span> <span class="s1">&#39;product_length_cm&#39;</span><span class="p">,</span> <span class="s1">&#39;product_height_cm&#39;</span><span class="p">,</span> <span class="s1">&#39;product_width_cm&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>product_id</th>
+      <th>product_category_name</th>
+      <th>product_name_lenght</th>
+      <th>product_description_lenght</th>
+      <th>product_photos_qty</th>
+      <th>product_weight_g</th>
+      <th>product_length_cm</th>
+      <th>product_height_cm</th>
+      <th>product_width_cm</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>8578</th>
+      <td>09ff539a621711667c43eba6a3bd8466</td>
+      <td>bebes</td>
+      <td>60.00</td>
+      <td>865.00</td>
+      <td>3.00</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>18851</th>
+      <td>5eb564652db742ff8f28759cd8d2652a</td>
+      <td>Missing in Products</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_products</span><span class="p">[</span><span class="s1">&#39;product_weight_g&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">preproc</span><span class="o">.</span><span class="n">fill_missing_by_category</span><span class="p">(</span><span class="n">category_columns</span><span class="o">=</span><span class="n">category_columns</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">df_products</span><span class="p">[</span><span class="s1">&#39;product_length_cm&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">preproc</span><span class="o">.</span><span class="n">fill_missing_by_category</span><span class="p">(</span><span class="n">category_columns</span><span class="o">=</span><span class="n">category_columns</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">df_products</span><span class="p">[</span><span class="s1">&#39;product_height_cm&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">preproc</span><span class="o">.</span><span class="n">fill_missing_by_category</span><span class="p">(</span><span class="n">category_columns</span><span class="o">=</span><span class="n">category_columns</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">df_products</span><span class="p">[</span><span class="s1">&#39;product_width_cm&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">preproc</span><span class="o">.</span><span class="n">fill_missing_by_category</span><span class="p">(</span><span class="n">category_columns</span><span class="o">=</span><span class="n">category_columns</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Missing values in product name length and product description length won’t be filled, as we won’t use them for analysis.</p>
+<p>Missing values in photo count will be replaced with 1, as it’s both the median and mode.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_products</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df_products</span><span class="o">.</span><span class="n">product_photos_qty</span><span class="o">.</span><span class="n">isna</span><span class="p">(),</span> <span class="s1">&#39;product_photos_qty&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s check how many missing values remain.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_products</span><span class="o">.</span><span class="n">explore</span><span class="o">.</span><span class="n">detect_anomalies</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style type="text/css">
+#T_d750f caption {
+  font-size: 16px;
+  text-align: left;
+  font-weight: bold;
+  white-space: nowrap;
+}
+#T_d750f th {
+  text-align: left;
+}
+#T_d750f_row0_col0, #T_d750f_row0_col1, #T_d750f_row1_col0, #T_d750f_row1_col1 {
+  text-align: left;
+}
+</style>
+<table id="T_d750f">
+  <caption>Missings by Column</caption>
+  <thead>
+    <tr>
+      <th class="blank level0" >&nbsp;</th>
+      <th id="T_d750f_level0_col0" class="col_heading level0 col0" >Count</th>
+      <th id="T_d750f_level0_col1" class="col_heading level0 col1" >Percent</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_d750f_level0_row0" class="row_heading level0 row0" >product_name_lenght</th>
+      <td id="T_d750f_row0_col0" class="data row0 col0" >610</td>
+      <td id="T_d750f_row0_col1" class="data row0 col1" >1.85%</td>
+    </tr>
+    <tr>
+      <th id="T_d750f_level0_row1" class="row_heading level0 row1" >product_description_lenght</th>
+      <td id="T_d750f_row1_col0" class="data row1 col0" >610</td>
+      <td id="T_d750f_row1_col1" class="data row1 col1" >1.85%</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">del</span> <span class="n">tmp_miss</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="02_outlier_handling.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Outlier Handling</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="04_duplicate_handling.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Duplicate Handling</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#table-orders">Table orders</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#table-df-products">Table df_products</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Pavel Grigoryev
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025, Pavel Grigoryev.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

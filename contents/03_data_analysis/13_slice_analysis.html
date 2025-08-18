@@ -1,0 +1,1655 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Slice Analysis &#8212; 🌊 Deep Sales Analysis of Olist Marketplace</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=aa5847ba" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/custom.js?v=f9582d1e"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'contents/03_data_analysis/13_slice_analysis';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Analysis of Customer Segments" href="14_analysis_of_customer_segments.html" />
+    <link rel="prev" title="Correlation Analysis" href="12_correlation_analysis.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo-light.png" class="logo__image only-light" alt="🌊 Deep Sales Analysis of Olist Marketplace - Home"/>
+    <script>document.write(`<img src="../../_static/logo-dark.png" class="logo__image only-dark" alt="🌊 Deep Sales Analysis of Olist Marketplace - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Description and Exploration</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../01_data_description_and_exploration/01_data_description.html">Data Description</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_data_description_and_exploration/02_data_loading.html">Data Loading</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_data_description_and_exploration/03_data_exploration.html">Data Exploration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_data_description_and_exploration/04_intermediate_conclusion.html">Intermediate Conclusion</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Preprocessing</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../02_data_preprocessing/01_initial_data_filtering.html">Initial Data Filtering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_data_preprocessing/02_outlier_handling.html">Outlier Handling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_data_preprocessing/03_missing_value_handling.html">Missing Value Handling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_data_preprocessing/04_duplicate_handling.html">Duplicate Handling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_data_preprocessing/05_creating_new_metrics.html">Creating New Metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_data_preprocessing/06_creating_new_dimensions.html">Creating New Dimensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_data_preprocessing/07_converting_data_to_a_convenient_format.html">Converting Data to a Convenient Format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_data_preprocessing/08_data_merging.html">Data Merging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_data_preprocessing/09_intermediate_conclusion.html">Intermediate Conclusion</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Analysis</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_creating_analysis_class.html">Creating Analysis Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_time_series_analysis.html">Time Series Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_customer_analysis.html">Customer Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_seller_analysis.html">Seller Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_sales_analysis.html">Sales Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_product_analysis.html">Product Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_review_analysis.html">Review Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_delivery_analysis.html">Delivery Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_payment_analysis.html">Payment Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_geographical_analysis.html">Geographical Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_cohort_analysis.html">Cohort Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_correlation_analysis.html">Correlation Analysis</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Slice Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14_analysis_of_customer_segments.html">Analysis of Customer Segments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15_rfm_analysis.html">RFM Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="16_customer_clustering.html">Customer Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="17_hypothesis_testing.html">Hypothesis Testing</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">General Conclusion</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/01_time_dynamics.html">Time Dynamics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/02_customers.html">Customers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/03_sales.html">Sales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/04_products.html">Products</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/05_reviews.html">Reviews</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/06_delivery.html">Delivery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/07_payments.html">Payments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/08_sellers.html">Sellers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/09_cohort_analysis.html">Cohort Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/10_correlation_analysis.html">Correlation Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/11_black_friday.html">Black Friday</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/12_cancelled_orders.html">Cancelled Orders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/13_hypothesis_testing_results.html">Hypothesis Testing Results</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/14_detected_anomalies.html">Detected Anomalies</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Recommendations</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/01_product_market_fit.html">Product market fit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/02_customer_loyalty_enhancement.html">Customer loyalty Enhancement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/03_customer_experience_improvement.html">Customer Experience Improvement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/04_logistics_and_delivery_optimization.html">Logistics and Delivery Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/05_financial_optimization.html">Financial optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/06_average_order_value_and_basket_optimization.html">Average Order Value and Basket Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/07_segment_specific_strategies.html">Segment-Specific Strategies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/08_product_and_assortment_management.html">Product and Assortment Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/09_marketing_and_promotion.html">Marketing and Promotion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/10_peak_season_preparedness.html">Peak Season Preparedness</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/11_analytics_and_monitoring.html">Analytics and Monitoring</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/12_ab_testing.html">A/B Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/13_anomaly.html">Anomaly</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/PavelGrigoryevDS/olist-deep-dive" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/contents/03_data_analysis/13_slice_analysis.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Slice Analysis</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> On this page </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#black-friday">Black Friday</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#number-of-sales">Number of Sales</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sum-of-sales">Sum of Sales</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#average-order-value">Average Order Value</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#number-of-customers">Number of Customers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#share-of-unavailable-orders">Share of Unavailable Orders</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reviews-score">Reviews Score</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#canceled-orders">Canceled Orders</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#number-of-orders">Number of Orders</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sum-of-orders">Sum of Orders</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Average Order Value</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="slice-analysis">
+<h1>Slice Analysis<a class="headerlink" href="#slice-analysis" title="Link to this heading">#</a></h1>
+<section id="black-friday">
+<h2>Black Friday<a class="headerlink" href="#black-friday" title="Link to this heading">#</a></h2>
+<p>Let’s examine Black Friday, specifically November 24, 2017.</p>
+<p>We will consider November 23-25 to account for one day before and one day after.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mask</span> <span class="o">=</span> <span class="n">df_orders</span><span class="o">.</span><span class="n">order_purchase_dt</span><span class="o">.</span><span class="n">between</span><span class="p">(</span><span class="s1">&#39;2017-11-23&#39;</span><span class="p">,</span> <span class="s1">&#39;2017-11-26&#39;</span><span class="p">)</span>
+<span class="n">df_black_orders</span> <span class="o">=</span> <span class="n">df_orders</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span>
+<span class="n">mask</span> <span class="o">=</span> <span class="n">df_sales</span><span class="o">.</span><span class="n">order_purchase_dt</span><span class="o">.</span><span class="n">between</span><span class="p">(</span><span class="s1">&#39;2017-11-23&#39;</span><span class="p">,</span> <span class="s1">&#39;2017-11-26&#39;</span><span class="p">)</span>
+<span class="n">df_black_sales</span> <span class="o">=</span> <span class="n">df_sales</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="number-of-sales">
+<h3>Number of Sales<a class="headerlink" href="#number-of-sales" title="Link to this heading">#</a></h3>
+<p><strong>By Hour</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pb</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df_black_sales</span>
+    <span class="p">,</span> <span class="n">time_column</span> <span class="o">=</span> <span class="s1">&#39;order_purchase_dt&#39;</span>
+    <span class="p">,</span> <span class="n">time_column_label</span> <span class="o">=</span> <span class="s1">&#39;Date&#39;</span>
+    <span class="p">,</span> <span class="n">metric</span> <span class="o">=</span> <span class="s1">&#39;order_id&#39;</span>
+    <span class="p">,</span> <span class="n">metric_label</span> <span class="o">=</span> <span class="s1">&#39;Number of Sales&#39;</span>
+    <span class="p">,</span> <span class="n">agg_func</span> <span class="o">=</span> <span class="s1">&#39;nunique&#39;</span>
+    <span class="p">,</span> <span class="n">freq</span> <span class="o">=</span> <span class="s1">&#39;h&#39;</span>
+<span class="p">)</span>
+<span class="n">pb</span><span class="o">.</span><span class="n">line_resample</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/cf49bab2d5703b4c89bd883c05b7c9d3131ea0766d2d7a09e6f6f9cbe1b2c637.jpg" src="../../_images/cf49bab2d5703b4c89bd883c05b7c9d3131ea0766d2d7a09e6f6f9cbe1b2c637.jpg" />
+</div>
+</div>
+<p><strong>Key Observations:</strong></p>
+<ul class="simple">
+<li><p>Sales grew from 5AM-10AM (first peak)</p></li>
+<li><p>Second peak at 1PM</p></li>
+<li><p>Decline until 6PM</p></li>
+<li><p>Evening growth until 10PM peak</p></li>
+<li><p>Anomalous spike at midnight Nov 24 (Black Friday start)</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pb</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df_black_sales</span>
+    <span class="p">,</span> <span class="n">time_column</span> <span class="o">=</span> <span class="s1">&#39;order_purchase_dt&#39;</span>
+    <span class="p">,</span> <span class="n">time_column_label</span> <span class="o">=</span> <span class="s1">&#39;Date&#39;</span>
+    <span class="p">,</span> <span class="n">metric</span> <span class="o">=</span> <span class="s1">&#39;order_id&#39;</span>
+    <span class="p">,</span> <span class="n">metric_label</span> <span class="o">=</span> <span class="s1">&#39;Share of Sales&#39;</span>
+    <span class="p">,</span> <span class="n">agg_func</span> <span class="o">=</span> <span class="s1">&#39;nunique&#39;</span>
+    <span class="p">,</span> <span class="n">freq</span> <span class="o">=</span> <span class="s1">&#39;h&#39;</span>
+    <span class="p">,</span> <span class="n">norm_by</span><span class="o">=</span><span class="s1">&#39;all&#39;</span>
+    <span class="p">,</span> <span class="n">axis_sort_order</span><span class="o">=</span><span class="s1">&#39;descending&#39;</span>    
+    <span class="p">,</span> <span class="n">text_auto</span><span class="o">=</span><span class="s1">&#39;.1%&#39;</span>
+    <span class="p">,</span> <span class="n">update_fig</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;xaxis&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;tickformat&#39;</span><span class="p">:</span> <span class="s1">&#39;.0%&#39;</span><span class="p">}}</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>By Payment Category</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pb</span><span class="o">.</span><span class="n">bar_groupby</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="s1">&#39;order_total_payment_cat&#39;</span><span class="p">,</span> <span class="n">to_slide</span><span class="o">=</span><span class="s1">&#39;_black_friday&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/6e355c79a3e104ca6097acc2b1ca597e0ac990ae89179caa36faeaac5fb604ea.jpg" src="../../_images/6e355c79a3e104ca6097acc2b1ca597e0ac990ae89179caa36faeaac5fb604ea.jpg" />
+</div>
+</div>
+<p><strong>Key Observations:</strong></p>
+<ul class="simple">
+<li><p>64% of orders are medium-priced</p></li>
+</ul>
+<p><strong>By Order Weight Category</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pb</span><span class="o">.</span><span class="n">bar_groupby</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="s1">&#39;order_total_weight_cat&#39;</span><span class="p">,</span> <span class="n">to_slide</span><span class="o">=</span><span class="s1">&#39;_black_friday&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/7c36c6585dcab88e6312a9369d4e1b0ece508367cb600cb2bf7eb8388d318495.jpg" src="../../_images/7c36c6585dcab88e6312a9369d4e1b0ece508367cb600cb2bf7eb8388d318495.jpg" />
+</div>
+</div>
+<p><strong>Key Observations:</strong></p>
+<ul class="simple">
+<li><p>52% medium weight, 36% light</p></li>
+</ul>
+<p><strong>By Delivery Time Category</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pb</span><span class="o">.</span><span class="n">bar_groupby</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="s1">&#39;delivery_time_days_cat&#39;</span><span class="p">,</span> <span class="n">to_slide</span><span class="o">=</span><span class="s1">&#39;_black_friday&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/95438ca68dc73c589ae66199ea6aca1469c01f5a422457edaed026cc56a4816d.jpg" src="../../_images/95438ca68dc73c589ae66199ea6aca1469c01f5a422457edaed026cc56a4816d.jpg" />
+</div>
+</div>
+<p><strong>Key Observations:</strong></p>
+<ul class="simple">
+<li><p>Delivery time categories:</p>
+<ul>
+<li><p>Long: 49%</p></li>
+<li><p>Medium: 46%</p></li>
+<li><p>Fast: 6%</p></li>
+</ul>
+</li>
+<li><p>Black Friday increased delivery times</p></li>
+</ul>
+<p><strong>By Presence of Installment Payments</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pb</span><span class="o">.</span><span class="n">bar_groupby</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="s1">&#39;order_has_installment&#39;</span><span class="p">,</span> <span class="n">to_slide</span><span class="o">=</span><span class="s1">&#39;_black_friday&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/7d26c966b51567c4fc1f6e6b7d88592da556ebb73d00aa6099cbe1fec32b13cd.jpg" src="../../_images/7d26c966b51567c4fc1f6e6b7d88592da556ebb73d00aa6099cbe1fec32b13cd.jpg" />
+</div>
+</div>
+<p><strong>Key Observations:</strong></p>
+<ul class="simple">
+<li><p>58% of orders used installments</p></li>
+</ul>
+<p><strong>By Payment Type</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pb</span><span class="o">.</span><span class="n">bar_groupby</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="s1">&#39;order_payment_types&#39;</span><span class="p">,</span> <span class="n">to_slide</span><span class="o">=</span><span class="s1">&#39;_black_friday&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/7173af2c581d81aa58e8e2d0f3a268eeb11f02e4f7aeb079089659add33e264f.jpg" src="../../_images/7173af2c581d81aa58e8e2d0f3a268eeb11f02e4f7aeb079089659add33e264f.jpg" />
+</div>
+</div>
+<p><strong>Key Observations:</strong></p>
+<ul class="simple">
+<li><p>Payment methods:</p>
+<ul>
+<li><p>Credit card: 79%</p></li>
+<li><p>Boleto: 18%</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>By Product Category</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pb</span><span class="o">.</span><span class="n">bar_groupby</span><span class="p">(</span>
+    <span class="n">y</span><span class="o">=</span><span class="s1">&#39;order_product_categories&#39;</span>
+    <span class="p">,</span> <span class="n">to_slide</span><span class="o">=</span><span class="s1">&#39;_black_friday&#39;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/eb3ddb62170202b9a53480b4c53d9b6afa892d34cee9f17ccd9c19bc8c5b9888.jpg" src="../../_images/eb3ddb62170202b9a53480b4c53d9b6afa892d34cee9f17ccd9c19bc8c5b9888.jpg" />
+</div>
+</div>
+<p><strong>Key Observations:</strong></p>
+<ul class="simple">
+<li><p>The majority of orders consisted of products from the Bed Bath Table category (13%).</p></li>
+</ul>
+<p><strong>By Generalized Product Category</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pb</span><span class="o">.</span><span class="n">bar_groupby</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="s1">&#39;order_general_product_categories&#39;</span><span class="p">,</span> <span class="n">to_slide</span><span class="o">=</span><span class="s1">&#39;_black_friday&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/886f0e5df05dfbbaa67076b435b12e41c3079dc3f91bfb57f9789f7a13c09ce3.jpg" src="../../_images/886f0e5df05dfbbaa67076b435b12e41c3079dc3f91bfb57f9789f7a13c09ce3.jpg" />
+</div>
+</div>
+<p><strong>Key Observations:</strong></p>
+<ul class="simple">
+<li><p>Top generalized categories:</p>
+<ul>
+<li><p>Bed Bath Table: 25%</p></li>
+<li><p>Furniture: 23%</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>By Review Score</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pb</span><span class="o">.</span><span class="n">bar_groupby</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="s1">&#39;order_avg_reviews_score&#39;</span><span class="p">,</span> <span class="n">to_slide</span><span class="o">=</span><span class="s1">&#39;_black_friday&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/5de0b195183fabec1f9fe1460a10444b04ebc075449f769095463ead93f06f1e.jpg" src="../../_images/5de0b195183fabec1f9fe1460a10444b04ebc075449f769095463ead93f06f1e.jpg" />
+</div>
+</div>
+<p><strong>Key Observations:</strong></p>
+<ul class="simple">
+<li><p>Review scores:</p>
+<ul>
+<li><p>5 stars: 49%</p></li>
+<li><p>1 star: 17.5%</p></li>
+<li><p>3 stars: 10.7%</p></li>
+<li><p>2 stars: 4.3%</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>By Top Customer States</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pb</span><span class="o">.</span><span class="n">bar_groupby</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="s1">&#39;customer_state&#39;</span><span class="p">,</span> <span class="n">to_slide</span><span class="o">=</span><span class="s1">&#39;_black_friday&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/194ea5a6a7e4499830b74dcad4ad20d58a3f630af654778ae1abaf1cdb21fa74.jpg" src="../../_images/194ea5a6a7e4499830b74dcad4ad20d58a3f630af654778ae1abaf1cdb21fa74.jpg" />
+</div>
+</div>
+<p><strong>Key Observations:</strong></p>
+<ul class="simple">
+<li><p>Sales by state:</p>
+<ul>
+<li><p>São Paulo: 37%</p></li>
+<li><p>Rio/Minas: 14% each</p></li>
+<li><p>Others: ≤6%</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>By Top Customer Cities</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pb</span><span class="o">.</span><span class="n">bar_groupby</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="s1">&#39;customer_city&#39;</span><span class="p">,</span> <span class="n">to_slide</span><span class="o">=</span><span class="s1">&#39;_black_friday&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/78238d7c6cc8f90666cac16941b9df8d03f6a22b197a4f17ad1941c44c47765a.jpg" src="../../_images/78238d7c6cc8f90666cac16941b9df8d03f6a22b197a4f17ad1941c44c47765a.jpg" />
+</div>
+</div>
+<p><strong>Key Observations:</strong></p>
+<ul class="simple">
+<li><p>Sales by city:</p>
+<ul>
+<li><p>São Paulo: 14%</p></li>
+<li><p>Rio: 8%</p></li>
+<li><p>Others: ≤3%</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="sum-of-sales">
+<h3>Sum of Sales<a class="headerlink" href="#sum-of-sales" title="Link to this heading">#</a></h3>
+<p><strong>By Hour</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pb</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df_black_sales</span>
+    <span class="p">,</span> <span class="n">time_column</span> <span class="o">=</span> <span class="s1">&#39;order_purchase_dt&#39;</span>
+    <span class="p">,</span> <span class="n">time_column_label</span> <span class="o">=</span> <span class="s1">&#39;Date&#39;</span>
+    <span class="p">,</span> <span class="n">metric</span> <span class="o">=</span> <span class="s1">&#39;total_payment&#39;</span>
+    <span class="p">,</span> <span class="n">metric_label</span> <span class="o">=</span> <span class="s1">&#39;Sales Amount, R$&#39;</span>
+    <span class="p">,</span> <span class="n">title_base</span> <span class="o">=</span> <span class="s1">&#39;Sales Amount&#39;</span>
+    <span class="p">,</span> <span class="n">agg_func</span> <span class="o">=</span> <span class="s1">&#39;sum&#39;</span>
+    <span class="p">,</span> <span class="n">freq</span> <span class="o">=</span> <span class="s1">&#39;h&#39;</span>
+<span class="p">)</span>
+<span class="n">pb</span><span class="o">.</span><span class="n">line_resample</span><span class="p">(</span><span class="n">to_slide</span><span class="o">=</span><span class="s1">&#39;_black_friday&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/54397cf2eadf8ddc57b67c4e8c89aa311ebf4ad6f997025a3595e058675d09bd.jpg" src="../../_images/54397cf2eadf8ddc57b67c4e8c89aa311ebf4ad6f997025a3595e058675d09bd.jpg" />
+</div>
+</div>
+<p><strong>Key Observations:</strong></p>
+<ul class="simple">
+<li><p>Revenue peaked 10-11AM, declined until 6PM, then rose without surpassing morning peak</p></li>
+</ul>
+</section>
+<section id="average-order-value">
+<h3>Average Order Value<a class="headerlink" href="#average-order-value" title="Link to this heading">#</a></h3>
+<p><strong>By Hour</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pb</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df_black_sales</span>
+    <span class="p">,</span> <span class="n">time_column</span> <span class="o">=</span> <span class="s1">&#39;order_purchase_dt&#39;</span>
+    <span class="p">,</span> <span class="n">time_column_label</span> <span class="o">=</span> <span class="s1">&#39;Date&#39;</span>
+    <span class="p">,</span> <span class="n">metric</span> <span class="o">=</span> <span class="s1">&#39;total_payment&#39;</span>
+    <span class="p">,</span> <span class="n">metric_label</span> <span class="o">=</span> <span class="s1">&#39;Average Order Value, R$&#39;</span>
+    <span class="p">,</span> <span class="n">metric_label_for_distribution</span> <span class="o">=</span> <span class="s1">&#39;Order Value, R$&#39;</span>
+    <span class="p">,</span> <span class="n">title_base</span> <span class="o">=</span> <span class="s1">&#39;Average Order Value&#39;</span>
+    <span class="p">,</span> <span class="n">agg_func</span> <span class="o">=</span> <span class="s1">&#39;mean&#39;</span>
+    <span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s1">&#39;h&#39;</span>
+<span class="p">)</span>
+<span class="n">pb</span><span class="o">.</span><span class="n">line_resample</span><span class="p">(</span><span class="n">to_slide</span><span class="o">=</span><span class="s1">&#39;_black_friday&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/6337899e7bc274b1939bcb7d971392fb32dea1b9c7ae3824e03b9faa3c2a9a07.jpg" src="../../_images/6337899e7bc274b1939bcb7d971392fb32dea1b9c7ae3824e03b9faa3c2a9a07.jpg" />
+</div>
+</div>
+<p><strong>Key Observations:</strong></p>
+<ul class="simple">
+<li><p>There is an anomalous hour (4 AM) on November 25, 2017, in the average order value.</p></li>
+<li><p>It is not clear that the average order value was higher on Black Friday compared to the neighboring days.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pb</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df_black_sales</span>
+    <span class="p">,</span> <span class="n">metric</span> <span class="o">=</span> <span class="s1">&#39;total_payment&#39;</span>
+    <span class="p">,</span> <span class="n">metric_label</span> <span class="o">=</span> <span class="s1">&#39;Average Order Value, R$&#39;</span>
+    <span class="p">,</span> <span class="n">metric_label_for_distribution</span> <span class="o">=</span> <span class="s1">&#39;Order Value, R$&#39;</span>
+    <span class="p">,</span> <span class="n">agg_func</span> <span class="o">=</span> <span class="s1">&#39;mean&#39;</span>
+    <span class="p">,</span> <span class="n">title_base</span> <span class="o">=</span> <span class="s1">&#39;Average Order Value and Number of Sales&#39;</span>
+    <span class="p">,</span> <span class="n">axis_sort_order</span><span class="o">=</span><span class="s1">&#39;descending&#39;</span>
+    <span class="p">,</span> <span class="n">text_auto</span><span class="o">=</span><span class="s1">&#39;.0f&#39;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Top Orders.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pb</span><span class="o">.</span><span class="n">metric_top</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>total_payment</th>
+    </tr>
+    <tr>
+      <th>order_id</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2cc9089445046817a7539d90805e6e5a</th>
+      <td>6,081.54</td>
+    </tr>
+    <tr>
+      <th>27db1a079a22bec1453d0f24f630005f</th>
+      <td>2,429.68</td>
+    </tr>
+    <tr>
+      <th>acf01c9262ddb5d9adae8daa34e31568</th>
+      <td>2,416.00</td>
+    </tr>
+    <tr>
+      <th>7eb6bfea5daf19a607f08fd25ea7672a</th>
+      <td>2,106.55</td>
+    </tr>
+    <tr>
+      <th>a123264c1f8bef4f19be2d4245017920</th>
+      <td>1,798.01</td>
+    </tr>
+    <tr>
+      <th>c9dff4871bed0bc5d4b917767a22d67d</th>
+      <td>1,740.39</td>
+    </tr>
+    <tr>
+      <th>404ae63d165e7de5dd0bade9787b50c0</th>
+      <td>1,425.56</td>
+    </tr>
+    <tr>
+      <th>6ddfbf514959b49b6410c01ad93054bb</th>
+      <td>1,359.40</td>
+    </tr>
+    <tr>
+      <th>3b6bf8d07e34c52b0f65c58afb3df15b</th>
+      <td>1,334.28</td>
+    </tr>
+    <tr>
+      <th>2a1f2a555014d3eb75492fd0a08942a1</th>
+      <td>1,274.51</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Let’s see at statistics and distribution of the metric.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pb</span><span class="o">.</span><span class="n">metric_info</span><span class="p">(</span>
+    <span class="n">labels</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">total_payment</span><span class="o">=</span><span class="s1">&#39;Order Value, R$&#39;</span><span class="p">)</span>
+    <span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Distribution of Order Value&#39;</span>
+    <span class="p">,</span> <span class="n">upper_quantile</span><span class="o">=</span><span class="mf">0.95</span>
+    <span class="p">,</span> <span class="n">hist_mode</span><span class="o">=</span><span class="s1">&#39;dual_hist_trim&#39;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style type="text/css">
+#T_1de5a caption {
+  font-size: 16px;
+  text-align: left;
+  font-weight: bold;
+  white-space: nowrap;
+}
+#T_1de5a th {
+  text-align: center;
+}
+#T_1de5a_row0_col0, #T_1de5a_row0_col1, #T_1de5a_row0_col2, #T_1de5a_row0_col3, #T_1de5a_row0_col4, #T_1de5a_row0_col5, #T_1de5a_row0_col6, #T_1de5a_row0_col7, #T_1de5a_row0_col8, #T_1de5a_row0_col9, #T_1de5a_row0_col10, #T_1de5a_row1_col0, #T_1de5a_row1_col1, #T_1de5a_row1_col2, #T_1de5a_row1_col3, #T_1de5a_row1_col4, #T_1de5a_row1_col5, #T_1de5a_row1_col6, #T_1de5a_row1_col7, #T_1de5a_row1_col8, #T_1de5a_row1_col9, #T_1de5a_row1_col10, #T_1de5a_row2_col0, #T_1de5a_row2_col1, #T_1de5a_row2_col2, #T_1de5a_row2_col3, #T_1de5a_row2_col4, #T_1de5a_row2_col5, #T_1de5a_row2_col6, #T_1de5a_row2_col7, #T_1de5a_row2_col8, #T_1de5a_row2_col9, #T_1de5a_row2_col10, #T_1de5a_row3_col0, #T_1de5a_row3_col1, #T_1de5a_row3_col2, #T_1de5a_row3_col3, #T_1de5a_row3_col4, #T_1de5a_row3_col5, #T_1de5a_row3_col6, #T_1de5a_row3_col7, #T_1de5a_row3_col8, #T_1de5a_row3_col9, #T_1de5a_row3_col10, #T_1de5a_row4_col0, #T_1de5a_row4_col1, #T_1de5a_row4_col2, #T_1de5a_row4_col3, #T_1de5a_row4_col4, #T_1de5a_row4_col5, #T_1de5a_row4_col6, #T_1de5a_row4_col7, #T_1de5a_row4_col8, #T_1de5a_row4_col9, #T_1de5a_row4_col10, #T_1de5a_row5_col0, #T_1de5a_row5_col1, #T_1de5a_row5_col2, #T_1de5a_row5_col3, #T_1de5a_row5_col4, #T_1de5a_row5_col5, #T_1de5a_row5_col6, #T_1de5a_row5_col7, #T_1de5a_row5_col8, #T_1de5a_row5_col9, #T_1de5a_row5_col10, #T_1de5a_row6_col0, #T_1de5a_row6_col1, #T_1de5a_row6_col2, #T_1de5a_row6_col3, #T_1de5a_row6_col4, #T_1de5a_row6_col5, #T_1de5a_row6_col6, #T_1de5a_row6_col7, #T_1de5a_row6_col8, #T_1de5a_row6_col9, #T_1de5a_row6_col10, #T_1de5a_row7_col0, #T_1de5a_row7_col1, #T_1de5a_row7_col2, #T_1de5a_row7_col3, #T_1de5a_row7_col4, #T_1de5a_row7_col5, #T_1de5a_row7_col6, #T_1de5a_row7_col7, #T_1de5a_row7_col8, #T_1de5a_row7_col9, #T_1de5a_row7_col10, #T_1de5a_row8_col0, #T_1de5a_row8_col1, #T_1de5a_row8_col2, #T_1de5a_row8_col3, #T_1de5a_row8_col4, #T_1de5a_row8_col5, #T_1de5a_row8_col6, #T_1de5a_row8_col7, #T_1de5a_row8_col8, #T_1de5a_row8_col9, #T_1de5a_row8_col10 {
+  text-align: left;
+}
+</style>
+<table id="T_1de5a">
+  <caption>Summary Statistics for "total_payment" (Type: Float)</caption>
+  <thead>
+    <tr>
+      <th id="T_1de5a_level0_col0" class="col_heading level0 col0" colspan="2">Summary</th>
+      <th id="T_1de5a_level0_col2" class="col_heading level0 col2" > </th>
+      <th id="T_1de5a_level0_col3" class="col_heading level0 col3" colspan="2">Percentiles</th>
+      <th id="T_1de5a_level0_col5" class="col_heading level0 col5" >  </th>
+      <th id="T_1de5a_level0_col6" class="col_heading level0 col6" colspan="2">Detailed Stats</th>
+      <th id="T_1de5a_level0_col8" class="col_heading level0 col8" >   </th>
+      <th id="T_1de5a_level0_col9" class="col_heading level0 col9" colspan="2">Value Counts</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td id="T_1de5a_row0_col0" class="data row0 col0" >Total</td>
+      <td id="T_1de5a_row0_col1" class="data row0 col1" >1.90k (100%)</td>
+      <td id="T_1de5a_row0_col2" class="data row0 col2" >          </td>
+      <td id="T_1de5a_row0_col3" class="data row0 col3" >Max</td>
+      <td id="T_1de5a_row0_col4" class="data row0 col4" >6.08k</td>
+      <td id="T_1de5a_row0_col5" class="data row0 col5" >          </td>
+      <td id="T_1de5a_row0_col6" class="data row0 col6" >Mean</td>
+      <td id="T_1de5a_row0_col7" class="data row0 col7" >155.46</td>
+      <td id="T_1de5a_row0_col8" class="data row0 col8" >          </td>
+      <td id="T_1de5a_row0_col9" class="data row0 col9" >66.67</td>
+      <td id="T_1de5a_row0_col10" class="data row0 col10" >37 (2%)</td>
+    </tr>
+    <tr>
+      <td id="T_1de5a_row1_col0" class="data row1 col0" >Missing</td>
+      <td id="T_1de5a_row1_col1" class="data row1 col1" >---</td>
+      <td id="T_1de5a_row1_col2" class="data row1 col2" >          </td>
+      <td id="T_1de5a_row1_col3" class="data row1 col3" >99%</td>
+      <td id="T_1de5a_row1_col4" class="data row1 col4" >957.54</td>
+      <td id="T_1de5a_row1_col5" class="data row1 col5" >          </td>
+      <td id="T_1de5a_row1_col6" class="data row1 col6" >Trimmed Mean (10%)</td>
+      <td id="T_1de5a_row1_col7" class="data row1 col7" >116.09</td>
+      <td id="T_1de5a_row1_col8" class="data row1 col8" >          </td>
+      <td id="T_1de5a_row1_col9" class="data row1 col9" >66.64</td>
+      <td id="T_1de5a_row1_col10" class="data row1 col10" >22 (1%)</td>
+    </tr>
+    <tr>
+      <td id="T_1de5a_row2_col0" class="data row2 col0" >Distinct</td>
+      <td id="T_1de5a_row2_col1" class="data row2 col1" >1.38k (73%)</td>
+      <td id="T_1de5a_row2_col2" class="data row2 col2" >          </td>
+      <td id="T_1de5a_row2_col3" class="data row2 col3" >95%</td>
+      <td id="T_1de5a_row2_col4" class="data row2 col4" >427.99</td>
+      <td id="T_1de5a_row2_col5" class="data row2 col5" >          </td>
+      <td id="T_1de5a_row2_col6" class="data row2 col6" >Mode</td>
+      <td id="T_1de5a_row2_col7" class="data row2 col7" >66.67</td>
+      <td id="T_1de5a_row2_col8" class="data row2 col8" >          </td>
+      <td id="T_1de5a_row2_col9" class="data row2 col9" >62.44</td>
+      <td id="T_1de5a_row2_col10" class="data row2 col10" >14 (<1%)</td>
+    </tr>
+    <tr>
+      <td id="T_1de5a_row3_col0" class="data row3 col0" >Non-Duplicate</td>
+      <td id="T_1de5a_row3_col1" class="data row3 col1" >1.12k (59%)</td>
+      <td id="T_1de5a_row3_col2" class="data row3 col2" >          </td>
+      <td id="T_1de5a_row3_col3" class="data row3 col3" >75%</td>
+      <td id="T_1de5a_row3_col4" class="data row3 col4" >168.90</td>
+      <td id="T_1de5a_row3_col5" class="data row3 col5" >          </td>
+      <td id="T_1de5a_row3_col6" class="data row3 col6" >Range</td>
+      <td id="T_1de5a_row3_col7" class="data row3 col7" >6.07k</td>
+      <td id="T_1de5a_row3_col8" class="data row3 col8" >          </td>
+      <td id="T_1de5a_row3_col9" class="data row3 col9" >62.41</td>
+      <td id="T_1de5a_row3_col10" class="data row3 col10" >11 (<1%)</td>
+    </tr>
+    <tr>
+      <td id="T_1de5a_row4_col0" class="data row4 col0" >Duplicates</td>
+      <td id="T_1de5a_row4_col1" class="data row4 col1" >523 (27%)</td>
+      <td id="T_1de5a_row4_col2" class="data row4 col2" >          </td>
+      <td id="T_1de5a_row4_col3" class="data row4 col3" >50%</td>
+      <td id="T_1de5a_row4_col4" class="data row4 col4" >99.78</td>
+      <td id="T_1de5a_row4_col5" class="data row4 col5" >          </td>
+      <td id="T_1de5a_row4_col6" class="data row4 col6" >IQR</td>
+      <td id="T_1de5a_row4_col7" class="data row4 col7" >106.89</td>
+      <td id="T_1de5a_row4_col8" class="data row4 col8" >          </td>
+      <td id="T_1de5a_row4_col9" class="data row4 col9" >39.60</td>
+      <td id="T_1de5a_row4_col10" class="data row4 col10" >8 (<1%)</td>
+    </tr>
+    <tr>
+      <td id="T_1de5a_row5_col0" class="data row5 col0" >Dup. Values</td>
+      <td id="T_1de5a_row5_col1" class="data row5 col1" >256 (13%)</td>
+      <td id="T_1de5a_row5_col2" class="data row5 col2" >          </td>
+      <td id="T_1de5a_row5_col3" class="data row5 col3" >25%</td>
+      <td id="T_1de5a_row5_col4" class="data row5 col4" >62.01</td>
+      <td id="T_1de5a_row5_col5" class="data row5 col5" >          </td>
+      <td id="T_1de5a_row5_col6" class="data row5 col6" >Std</td>
+      <td id="T_1de5a_row5_col7" class="data row5 col7" >230.49</td>
+      <td id="T_1de5a_row5_col8" class="data row5 col8" >          </td>
+      <td id="T_1de5a_row5_col9" class="data row5 col9" >168.36</td>
+      <td id="T_1de5a_row5_col10" class="data row5 col10" >7 (<1%)</td>
+    </tr>
+    <tr>
+      <td id="T_1de5a_row6_col0" class="data row6 col0" >Zeros</td>
+      <td id="T_1de5a_row6_col1" class="data row6 col1" >---</td>
+      <td id="T_1de5a_row6_col2" class="data row6 col2" >          </td>
+      <td id="T_1de5a_row6_col3" class="data row6 col3" >5%</td>
+      <td id="T_1de5a_row6_col4" class="data row6 col4" >33.84</td>
+      <td id="T_1de5a_row6_col5" class="data row6 col5" >          </td>
+      <td id="T_1de5a_row6_col6" class="data row6 col6" >MAD</td>
+      <td id="T_1de5a_row6_col7" class="data row6 col7" >70.10</td>
+      <td id="T_1de5a_row6_col8" class="data row6 col8" >          </td>
+      <td id="T_1de5a_row6_col9" class="data row6 col9" >116.94</td>
+      <td id="T_1de5a_row6_col10" class="data row6 col10" >7 (<1%)</td>
+    </tr>
+    <tr>
+      <td id="T_1de5a_row7_col0" class="data row7 col0" >Negative</td>
+      <td id="T_1de5a_row7_col1" class="data row7 col1" >---</td>
+      <td id="T_1de5a_row7_col2" class="data row7 col2" >          </td>
+      <td id="T_1de5a_row7_col3" class="data row7 col3" >1%</td>
+      <td id="T_1de5a_row7_col4" class="data row7 col4" >23.78</td>
+      <td id="T_1de5a_row7_col5" class="data row7 col5" >          </td>
+      <td id="T_1de5a_row7_col6" class="data row7 col6" >Kurt</td>
+      <td id="T_1de5a_row7_col7" class="data row7 col7" >246.85</td>
+      <td id="T_1de5a_row7_col8" class="data row7 col8" >          </td>
+      <td id="T_1de5a_row7_col9" class="data row7 col9" >117.85</td>
+      <td id="T_1de5a_row7_col10" class="data row7 col10" >7 (<1%)</td>
+    </tr>
+    <tr>
+      <td id="T_1de5a_row8_col0" class="data row8 col0" >Memory Usage</td>
+      <td id="T_1de5a_row8_col1" class="data row8 col1" ><1 Mb</td>
+      <td id="T_1de5a_row8_col2" class="data row8 col2" >          </td>
+      <td id="T_1de5a_row8_col3" class="data row8 col3" >Min</td>
+      <td id="T_1de5a_row8_col4" class="data row8 col4" >13.78</td>
+      <td id="T_1de5a_row8_col5" class="data row8 col5" >          </td>
+      <td id="T_1de5a_row8_col6" class="data row8 col6" >Skew</td>
+      <td id="T_1de5a_row8_col7" class="data row8 col7" >11.68</td>
+      <td id="T_1de5a_row8_col8" class="data row8 col8" >          </td>
+      <td id="T_1de5a_row8_col9" class="data row8 col9" >30</td>
+      <td id="T_1de5a_row8_col10" class="data row8 col10" >7 (<1%)</td>
+    </tr>
+  </tbody>
+</table>
+</div><img alt="../../_images/58599fa3b08ada592f9a2e7ff399ea7b239f4eb53bc0dedfae0aebee23458835.jpg" src="../../_images/58599fa3b08ada592f9a2e7ff399ea7b239f4eb53bc0dedfae0aebee23458835.jpg" />
+</div>
+</div>
+<p><strong>Key Observations:</strong></p>
+<ul class="simple">
+<li><p>75% of Black Friday orders ≤170 R<span class="math notranslate nohighlight">\( (many &gt;1000 R\)</span> outliers)</p></li>
+</ul>
+<p><strong>By Top Customer States</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pb</span><span class="o">.</span><span class="n">bar_groupby</span><span class="p">(</span>
+    <span class="n">y</span><span class="o">=</span><span class="s1">&#39;customer_state&#39;</span>
+    <span class="p">,</span> <span class="n">show_count</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/dfc0b70ebca9f9f4220b804e7c6641cda94ba1e72a3d9fc9ef1020e718b26f77.jpg" src="../../_images/dfc0b70ebca9f9f4220b804e7c6641cda94ba1e72a3d9fc9ef1020e718b26f77.jpg" />
+</div>
+</div>
+<p><strong>Key Observations:</strong></p>
+<ul class="simple">
+<li><p>Highest order values in:</p>
+<ol class="arabic simple">
+<li><p>Espírito Santo</p></li>
+<li><p>Mato Grosso</p></li>
+<li><p>Minas Gerais</p></li>
+</ol>
+</li>
+</ul>
+</section>
+<section id="number-of-customers">
+<h3>Number of Customers<a class="headerlink" href="#number-of-customers" title="Link to this heading">#</a></h3>
+<p><strong>By Hour</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pb</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df_black_sales</span>
+    <span class="p">,</span> <span class="n">time_column</span> <span class="o">=</span> <span class="s1">&#39;order_purchase_dt&#39;</span>
+    <span class="p">,</span> <span class="n">time_column_label</span> <span class="o">=</span> <span class="s1">&#39;Date&#39;</span>
+    <span class="p">,</span> <span class="n">metric</span> <span class="o">=</span> <span class="s1">&#39;customer_unique_id&#39;</span>
+    <span class="p">,</span> <span class="n">metric_label</span> <span class="o">=</span> <span class="s1">&#39;Number of Customers&#39;</span>
+    <span class="p">,</span> <span class="n">agg_func</span> <span class="o">=</span> <span class="s1">&#39;nunique&#39;</span>
+    <span class="p">,</span> <span class="n">freq</span> <span class="o">=</span> <span class="s1">&#39;h&#39;</span>
+<span class="p">)</span>
+<span class="n">pb</span><span class="o">.</span><span class="n">line_resample</span><span class="p">(</span><span class="n">to_slide</span><span class="o">=</span><span class="s1">&#39;_black_friday&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/c1503fbc36402813cc6dd73386303df938216b1e3de0a926dd0b40dbfd275340.jpg" src="../../_images/c1503fbc36402813cc6dd73386303df938216b1e3de0a926dd0b40dbfd275340.jpg" />
+</div>
+</div>
+<p><strong>Key Observations:</strong></p>
+<ul class="simple">
+<li><p>Customer count trend matches order count (mostly single orders)</p></li>
+</ul>
+<p>There is no sense in looking at it by segments, as customers primarily made only one order, and the results would be similar to the order count.</p>
+</section>
+<section id="share-of-unavailable-orders">
+<h3>Share of Unavailable Orders<a class="headerlink" href="#share-of-unavailable-orders" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pb</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span>
+    <span class="n">time_column</span> <span class="o">=</span> <span class="s1">&#39;order_purchase_dt&#39;</span>
+    <span class="p">,</span> <span class="n">time_column_label</span> <span class="o">=</span> <span class="s1">&#39;Date&#39;</span>
+    <span class="p">,</span> <span class="n">metric</span> <span class="o">=</span> <span class="s1">&#39;target_share&#39;</span>
+    <span class="p">,</span> <span class="n">metric_label</span> <span class="o">=</span> <span class="s1">&#39;Share of Unavailable Orders&#39;</span>
+    <span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s1">&#39;ME&#39;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tmp_tmp_df_res</span> <span class="o">=</span> <span class="n">df_black_orders</span><span class="p">[</span><span class="s1">&#39;order_status&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">preproc</span><span class="o">.</span><span class="n">calc_target_category_share</span><span class="p">(</span>
+    <span class="n">target_category</span><span class="o">=</span><span class="s1">&#39;Unavailable&#39;</span>
+    <span class="p">,</span> <span class="n">group_columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;order_purchase_dt&#39;</span><span class="p">]</span>
+    <span class="p">,</span> <span class="n">resample_freq</span> <span class="o">=</span> <span class="s1">&#39;h&#39;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pb</span><span class="o">.</span><span class="n">line</span><span class="p">(</span>
+    <span class="n">data_frame</span><span class="o">=</span><span class="n">tmp_tmp_df_res</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/29bc04db8a4f4e33987d66f47aff43ee24feccacbadbde9ea0d3939a86e9c47a.jpg" src="../../_images/29bc04db8a4f4e33987d66f47aff43ee24feccacbadbde9ea0d3939a86e9c47a.jpg" />
+</div>
+</div>
+<p><strong>Key Observations:</strong></p>
+<ul class="simple">
+<li><p>The proportion of orders with the status unavailable has spikes at 0 AM and 10 AM on November 23, 2017, and at 3 AM on November 24, 2017. There is also a very strong spike on November 26, 2017.</p></li>
+<li><p>It is not clear that there was a shortage of products specifically on Black Friday.</p></li>
+</ul>
+</section>
+<section id="reviews-score">
+<h3>Reviews Score<a class="headerlink" href="#reviews-score" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pb</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df_black_sales</span>
+    <span class="p">,</span> <span class="n">metric</span> <span class="o">=</span> <span class="s1">&#39;order_avg_reviews_score&#39;</span>
+    <span class="p">,</span> <span class="n">metric_label</span> <span class="o">=</span> <span class="s1">&#39;Average Order Reviews Score&#39;</span>
+    <span class="p">,</span> <span class="n">metric_label_for_distribution</span> <span class="o">=</span> <span class="s1">&#39;Order Reviews Score&#39;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pb</span><span class="o">.</span><span class="n">metric_info</span><span class="p">(</span>
+    <span class="n">labels</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">order_avg_reviews_score</span><span class="o">=</span><span class="s1">&#39;Order Reviews Score&#39;</span><span class="p">)</span>
+    <span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Distribution of Order Reviews Score&#39;</span>
+    <span class="p">,</span> <span class="n">xaxis_type</span><span class="o">=</span><span class="s1">&#39;category&#39;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style type="text/css">
+#T_a561c caption {
+  font-size: 16px;
+  text-align: left;
+  font-weight: bold;
+  white-space: nowrap;
+}
+#T_a561c th {
+  text-align: center;
+}
+#T_a561c_row0_col0, #T_a561c_row0_col1, #T_a561c_row0_col2, #T_a561c_row0_col3, #T_a561c_row0_col4, #T_a561c_row0_col5, #T_a561c_row0_col6, #T_a561c_row0_col7, #T_a561c_row0_col8, #T_a561c_row0_col9, #T_a561c_row0_col10, #T_a561c_row1_col0, #T_a561c_row1_col1, #T_a561c_row1_col2, #T_a561c_row1_col3, #T_a561c_row1_col4, #T_a561c_row1_col5, #T_a561c_row1_col6, #T_a561c_row1_col7, #T_a561c_row1_col8, #T_a561c_row1_col9, #T_a561c_row1_col10, #T_a561c_row2_col0, #T_a561c_row2_col1, #T_a561c_row2_col2, #T_a561c_row2_col3, #T_a561c_row2_col4, #T_a561c_row2_col5, #T_a561c_row2_col6, #T_a561c_row2_col7, #T_a561c_row2_col8, #T_a561c_row2_col9, #T_a561c_row2_col10, #T_a561c_row3_col0, #T_a561c_row3_col1, #T_a561c_row3_col2, #T_a561c_row3_col3, #T_a561c_row3_col4, #T_a561c_row3_col5, #T_a561c_row3_col6, #T_a561c_row3_col7, #T_a561c_row3_col8, #T_a561c_row3_col9, #T_a561c_row3_col10, #T_a561c_row4_col0, #T_a561c_row4_col1, #T_a561c_row4_col2, #T_a561c_row4_col3, #T_a561c_row4_col4, #T_a561c_row4_col5, #T_a561c_row4_col6, #T_a561c_row4_col7, #T_a561c_row4_col8, #T_a561c_row4_col9, #T_a561c_row4_col10, #T_a561c_row5_col0, #T_a561c_row5_col1, #T_a561c_row5_col2, #T_a561c_row5_col3, #T_a561c_row5_col4, #T_a561c_row5_col5, #T_a561c_row5_col6, #T_a561c_row5_col7, #T_a561c_row5_col8, #T_a561c_row5_col9, #T_a561c_row5_col10, #T_a561c_row6_col0, #T_a561c_row6_col1, #T_a561c_row6_col2, #T_a561c_row6_col3, #T_a561c_row6_col4, #T_a561c_row6_col5, #T_a561c_row6_col6, #T_a561c_row6_col7, #T_a561c_row6_col8, #T_a561c_row6_col9, #T_a561c_row6_col10, #T_a561c_row7_col0, #T_a561c_row7_col1, #T_a561c_row7_col2, #T_a561c_row7_col3, #T_a561c_row7_col4, #T_a561c_row7_col5, #T_a561c_row7_col6, #T_a561c_row7_col7, #T_a561c_row7_col8, #T_a561c_row7_col9, #T_a561c_row7_col10, #T_a561c_row8_col0, #T_a561c_row8_col1, #T_a561c_row8_col2, #T_a561c_row8_col3, #T_a561c_row8_col4, #T_a561c_row8_col5, #T_a561c_row8_col6, #T_a561c_row8_col7, #T_a561c_row8_col8, #T_a561c_row8_col9, #T_a561c_row8_col10 {
+  text-align: left;
+}
+</style>
+<table id="T_a561c">
+  <caption>Summary Statistics for "order_avg_reviews_score" (Type: Integer)</caption>
+  <thead>
+    <tr>
+      <th id="T_a561c_level0_col0" class="col_heading level0 col0" colspan="2">Summary</th>
+      <th id="T_a561c_level0_col2" class="col_heading level0 col2" > </th>
+      <th id="T_a561c_level0_col3" class="col_heading level0 col3" colspan="2">Percentiles</th>
+      <th id="T_a561c_level0_col5" class="col_heading level0 col5" >  </th>
+      <th id="T_a561c_level0_col6" class="col_heading level0 col6" colspan="2">Detailed Stats</th>
+      <th id="T_a561c_level0_col8" class="col_heading level0 col8" >   </th>
+      <th id="T_a561c_level0_col9" class="col_heading level0 col9" colspan="2">Value Counts</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td id="T_a561c_row0_col0" class="data row0 col0" >Total</td>
+      <td id="T_a561c_row0_col1" class="data row0 col1" >1.90k (100%)</td>
+      <td id="T_a561c_row0_col2" class="data row0 col2" >          </td>
+      <td id="T_a561c_row0_col3" class="data row0 col3" >Max</td>
+      <td id="T_a561c_row0_col4" class="data row0 col4" >5</td>
+      <td id="T_a561c_row0_col5" class="data row0 col5" >          </td>
+      <td id="T_a561c_row0_col6" class="data row0 col6" >Mean</td>
+      <td id="T_a561c_row0_col7" class="data row0 col7" >3.77</td>
+      <td id="T_a561c_row0_col8" class="data row0 col8" >          </td>
+      <td id="T_a561c_row0_col9" class="data row0 col9" >5</td>
+      <td id="T_a561c_row0_col10" class="data row0 col10" >933 (49%)</td>
+    </tr>
+    <tr>
+      <td id="T_a561c_row1_col0" class="data row1 col0" >Missing</td>
+      <td id="T_a561c_row1_col1" class="data row1 col1" >---</td>
+      <td id="T_a561c_row1_col2" class="data row1 col2" >          </td>
+      <td id="T_a561c_row1_col3" class="data row1 col3" >99%</td>
+      <td id="T_a561c_row1_col4" class="data row1 col4" >5</td>
+      <td id="T_a561c_row1_col5" class="data row1 col5" >          </td>
+      <td id="T_a561c_row1_col6" class="data row1 col6" >Trimmed Mean (10%)</td>
+      <td id="T_a561c_row1_col7" class="data row1 col7" >3.97</td>
+      <td id="T_a561c_row1_col8" class="data row1 col8" >          </td>
+      <td id="T_a561c_row1_col9" class="data row1 col9" >4</td>
+      <td id="T_a561c_row1_col10" class="data row1 col10" >351 (18%)</td>
+    </tr>
+    <tr>
+      <td id="T_a561c_row2_col0" class="data row2 col0" >Distinct</td>
+      <td id="T_a561c_row2_col1" class="data row2 col1" >5 (<1%)</td>
+      <td id="T_a561c_row2_col2" class="data row2 col2" >          </td>
+      <td id="T_a561c_row2_col3" class="data row2 col3" >95%</td>
+      <td id="T_a561c_row2_col4" class="data row2 col4" >5</td>
+      <td id="T_a561c_row2_col5" class="data row2 col5" >          </td>
+      <td id="T_a561c_row2_col6" class="data row2 col6" >Mode</td>
+      <td id="T_a561c_row2_col7" class="data row2 col7" >5</td>
+      <td id="T_a561c_row2_col8" class="data row2 col8" >          </td>
+      <td id="T_a561c_row2_col9" class="data row2 col9" >1</td>
+      <td id="T_a561c_row2_col10" class="data row2 col10" >333 (18%)</td>
+    </tr>
+    <tr>
+      <td id="T_a561c_row3_col0" class="data row3 col0" >Non-Duplicate</td>
+      <td id="T_a561c_row3_col1" class="data row3 col1" >0 (<1%)</td>
+      <td id="T_a561c_row3_col2" class="data row3 col2" >          </td>
+      <td id="T_a561c_row3_col3" class="data row3 col3" >75%</td>
+      <td id="T_a561c_row3_col4" class="data row3 col4" >5</td>
+      <td id="T_a561c_row3_col5" class="data row3 col5" >          </td>
+      <td id="T_a561c_row3_col6" class="data row3 col6" >Range</td>
+      <td id="T_a561c_row3_col7" class="data row3 col7" >4</td>
+      <td id="T_a561c_row3_col8" class="data row3 col8" >          </td>
+      <td id="T_a561c_row3_col9" class="data row3 col9" >3</td>
+      <td id="T_a561c_row3_col10" class="data row3 col10" >204 (11%)</td>
+    </tr>
+    <tr>
+      <td id="T_a561c_row4_col0" class="data row4 col0" >Duplicates</td>
+      <td id="T_a561c_row4_col1" class="data row4 col1" >1.90k (99%)</td>
+      <td id="T_a561c_row4_col2" class="data row4 col2" >          </td>
+      <td id="T_a561c_row4_col3" class="data row4 col3" >50%</td>
+      <td id="T_a561c_row4_col4" class="data row4 col4" >4</td>
+      <td id="T_a561c_row4_col5" class="data row4 col5" >          </td>
+      <td id="T_a561c_row4_col6" class="data row4 col6" >IQR</td>
+      <td id="T_a561c_row4_col7" class="data row4 col7" >2</td>
+      <td id="T_a561c_row4_col8" class="data row4 col8" >          </td>
+      <td id="T_a561c_row4_col9" class="data row4 col9" >2</td>
+      <td id="T_a561c_row4_col10" class="data row4 col10" >81 (4%)</td>
+    </tr>
+    <tr>
+      <td id="T_a561c_row5_col0" class="data row5 col0" >Dup. Values</td>
+      <td id="T_a561c_row5_col1" class="data row5 col1" >5 (<1%)</td>
+      <td id="T_a561c_row5_col2" class="data row5 col2" >          </td>
+      <td id="T_a561c_row5_col3" class="data row5 col3" >25%</td>
+      <td id="T_a561c_row5_col4" class="data row5 col4" >3</td>
+      <td id="T_a561c_row5_col5" class="data row5 col5" >          </td>
+      <td id="T_a561c_row5_col6" class="data row5 col6" >Std</td>
+      <td id="T_a561c_row5_col7" class="data row5 col7" >1.51</td>
+      <td id="T_a561c_row5_col8" class="data row5 col8" >          </td>
+      <td id="T_a561c_row5_col9" class="data row5 col9" ></td>
+      <td id="T_a561c_row5_col10" class="data row5 col10" ></td>
+    </tr>
+    <tr>
+      <td id="T_a561c_row6_col0" class="data row6 col0" >Zeros</td>
+      <td id="T_a561c_row6_col1" class="data row6 col1" >---</td>
+      <td id="T_a561c_row6_col2" class="data row6 col2" >          </td>
+      <td id="T_a561c_row6_col3" class="data row6 col3" >5%</td>
+      <td id="T_a561c_row6_col4" class="data row6 col4" >1</td>
+      <td id="T_a561c_row6_col5" class="data row6 col5" >          </td>
+      <td id="T_a561c_row6_col6" class="data row6 col6" >MAD</td>
+      <td id="T_a561c_row6_col7" class="data row6 col7" >1.48</td>
+      <td id="T_a561c_row6_col8" class="data row6 col8" >          </td>
+      <td id="T_a561c_row6_col9" class="data row6 col9" ></td>
+      <td id="T_a561c_row6_col10" class="data row6 col10" ></td>
+    </tr>
+    <tr>
+      <td id="T_a561c_row7_col0" class="data row7 col0" >Negative</td>
+      <td id="T_a561c_row7_col1" class="data row7 col1" >---</td>
+      <td id="T_a561c_row7_col2" class="data row7 col2" >          </td>
+      <td id="T_a561c_row7_col3" class="data row7 col3" >1%</td>
+      <td id="T_a561c_row7_col4" class="data row7 col4" >1</td>
+      <td id="T_a561c_row7_col5" class="data row7 col5" >          </td>
+      <td id="T_a561c_row7_col6" class="data row7 col6" >Kurt</td>
+      <td id="T_a561c_row7_col7" class="data row7 col7" >-0.73</td>
+      <td id="T_a561c_row7_col8" class="data row7 col8" >          </td>
+      <td id="T_a561c_row7_col9" class="data row7 col9" ></td>
+      <td id="T_a561c_row7_col10" class="data row7 col10" ></td>
+    </tr>
+    <tr>
+      <td id="T_a561c_row8_col0" class="data row8 col0" >Memory Usage</td>
+      <td id="T_a561c_row8_col1" class="data row8 col1" ><1 Mb</td>
+      <td id="T_a561c_row8_col2" class="data row8 col2" >          </td>
+      <td id="T_a561c_row8_col3" class="data row8 col3" >Min</td>
+      <td id="T_a561c_row8_col4" class="data row8 col4" >1</td>
+      <td id="T_a561c_row8_col5" class="data row8 col5" >          </td>
+      <td id="T_a561c_row8_col6" class="data row8 col6" >Skew</td>
+      <td id="T_a561c_row8_col7" class="data row8 col7" >-0.90</td>
+      <td id="T_a561c_row8_col8" class="data row8 col8" >          </td>
+      <td id="T_a561c_row8_col9" class="data row8 col9" ></td>
+      <td id="T_a561c_row8_col10" class="data row8 col10" ></td>
+    </tr>
+  </tbody>
+</table>
+</div><img alt="../../_images/0a048a4a9f368e141d1a52e0a980c5d11f945844561245f0ec2942f583d59db3.jpg" src="../../_images/0a048a4a9f368e141d1a52e0a980c5d11f945844561245f0ec2942f583d59db3.jpg" />
+</div>
+</div>
+<p><strong>Key Observations:</strong></p>
+<ul class="simple">
+<li><p>49% of Nov 23-25 orders had 5-star reviews</p></li>
+</ul>
+</section>
+</section>
+<section id="canceled-orders">
+<h2>Canceled Orders<a class="headerlink" href="#canceled-orders" title="Link to this heading">#</a></h2>
+<p>Analyze canceled orders.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_canceled</span> <span class="o">=</span> <span class="n">df_orders</span><span class="p">[</span><span class="n">df_orders</span><span class="o">.</span><span class="n">order_status</span><span class="o">==</span><span class="s1">&#39;Canceled&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="number-of-orders">
+<h3>Number of Orders<a class="headerlink" href="#number-of-orders" title="Link to this heading">#</a></h3>
+<p><strong>By month</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pb</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df_canceled</span>
+    <span class="p">,</span> <span class="n">time_column</span> <span class="o">=</span> <span class="s1">&#39;order_purchase_dt&#39;</span>
+    <span class="p">,</span> <span class="n">time_column_label</span> <span class="o">=</span> <span class="s1">&#39;Date&#39;</span>
+    <span class="p">,</span> <span class="n">metric</span> <span class="o">=</span> <span class="s1">&#39;order_id&#39;</span>
+    <span class="p">,</span> <span class="n">metric_label</span> <span class="o">=</span> <span class="s1">&#39;Number of Canceled Orders&#39;</span>
+    <span class="p">,</span> <span class="n">agg_func</span> <span class="o">=</span> <span class="s1">&#39;nunique&#39;</span>
+    <span class="p">,</span> <span class="n">freq</span> <span class="o">=</span> <span class="s1">&#39;ME&#39;</span>
+<span class="p">)</span>
+<span class="n">pb</span><span class="o">.</span><span class="n">line_resample</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/92c63209bc68596f551b1c4de2b0deb39edec2ce5d66e0d33005aaf27ded0b1e.jpg" src="../../_images/92c63209bc68596f551b1c4de2b0deb39edec2ce5d66e0d33005aaf27ded0b1e.jpg" />
+</div>
+</div>
+<p><strong>Key Observations:</strong></p>
+<ul class="simple">
+<li><p>Typically 20-40 canceled orders/month</p></li>
+<li><p>Anomalous spikes in Feb/Aug 2018</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pb</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df_canceled</span>
+    <span class="p">,</span> <span class="n">time_column</span> <span class="o">=</span> <span class="s1">&#39;order_purchase_dt&#39;</span>
+    <span class="p">,</span> <span class="n">time_column_label</span> <span class="o">=</span> <span class="s1">&#39;Date&#39;</span>
+    <span class="p">,</span> <span class="n">metric</span> <span class="o">=</span> <span class="s1">&#39;order_id&#39;</span>
+    <span class="p">,</span> <span class="n">metric_label</span> <span class="o">=</span> <span class="s1">&#39;Share of Canceled Orders&#39;</span>
+    <span class="p">,</span> <span class="n">agg_func</span> <span class="o">=</span> <span class="s1">&#39;nunique&#39;</span>
+    <span class="p">,</span> <span class="n">freq</span> <span class="o">=</span> <span class="s1">&#39;h&#39;</span>
+    <span class="p">,</span> <span class="n">norm_by</span><span class="o">=</span><span class="s1">&#39;all&#39;</span>
+    <span class="p">,</span> <span class="n">axis_sort_order</span><span class="o">=</span><span class="s1">&#39;descending&#39;</span>    
+    <span class="p">,</span> <span class="n">text_auto</span><span class="o">=</span><span class="s1">&#39;.1%&#39;</span>
+    <span class="p">,</span> <span class="n">update_fig</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;xaxis&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;tickformat&#39;</span><span class="p">:</span> <span class="s1">&#39;.0%&#39;</span><span class="p">}}</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>By Payment Category</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pb</span><span class="o">.</span><span class="n">bar_groupby</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="s1">&#39;order_total_payment_cat&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/f0435b6bf9f80f4b3c1735d7837831af46d4d123177a2bc1a8b360e799812d7c.jpg" src="../../_images/f0435b6bf9f80f4b3c1735d7837831af46d4d123177a2bc1a8b360e799812d7c.jpg" />
+</div>
+</div>
+<p><strong>Key Observations:</strong></p>
+<ul class="simple">
+<li><p>Canceled orders:</p>
+<ul>
+<li><p>Medium price: 55%</p></li>
+<li><p>Expensive: 28%</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>By Order Weight Category</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pb</span><span class="o">.</span><span class="n">bar_groupby</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="s1">&#39;order_total_weight_cat&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/c7fa5814c1c323348a47b18ccb64255c4541d89ffa207137ef02ac9533cd81e5.jpg" src="../../_images/c7fa5814c1c323348a47b18ccb64255c4541d89ffa207137ef02ac9533cd81e5.jpg" />
+</div>
+</div>
+<p><strong>Key Observations:</strong></p>
+<ul class="simple">
+<li><p>Canceled order weights:</p>
+<ul>
+<li><p>Medium: 36%</p></li>
+<li><p>Light: 31%</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>By Presence of Installment Payments</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pb</span><span class="o">.</span><span class="n">bar_groupby</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="s1">&#39;order_has_installment&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/848f2c685eca7f1d9b5defec30ab9da07701ac00f3bcc4ab9f2be7b936160cbb.jpg" src="../../_images/848f2c685eca7f1d9b5defec30ab9da07701ac00f3bcc4ab9f2be7b936160cbb.jpg" />
+</div>
+</div>
+<p><strong>Key Observations:</strong></p>
+<ul class="simple">
+<li><p>51% of canceled orders didn’t use installments</p></li>
+</ul>
+<p><strong>By Payment Type</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pb</span><span class="o">.</span><span class="n">bar_groupby</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="s1">&#39;order_payment_types&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/1960f567ef3af5f4c1b196e7f7896ee033574426c68d0a1770483ec6b6f13055.jpg" src="../../_images/1960f567ef3af5f4c1b196e7f7896ee033574426c68d0a1770483ec6b6f13055.jpg" />
+</div>
+</div>
+<p><strong>Key Observations:</strong></p>
+<ul class="simple">
+<li><p>Canceled order payments:</p>
+<ul>
+<li><p>Credit card: 70%</p></li>
+<li><p>Boleto: 16%</p></li>
+<li><p>Voucher: 10% (higher than overall)</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>By Product Category</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pb</span><span class="o">.</span><span class="n">bar_groupby</span><span class="p">(</span>
+    <span class="n">y</span><span class="o">=</span><span class="s1">&#39;order_product_categories&#39;</span>
+    <span class="p">,</span> <span class="n">text_auto</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/531d1f337a0e1e743524bba2628dc5329e9f19b9fc1be40a692ed6cdfef8ea24.jpg" src="../../_images/531d1f337a0e1e743524bba2628dc5329e9f19b9fc1be40a692ed6cdfef8ea24.jpg" />
+</div>
+</div>
+<p><strong>Key Observations:</strong></p>
+<ul class="simple">
+<li><p>Top canceled order categories:</p>
+<ol class="arabic simple">
+<li><p>Bed Bath Table</p></li>
+<li><p>Health Beauty</p></li>
+<li><p>Sports Leisure</p></li>
+</ol>
+</li>
+</ul>
+<p><strong>By Generalized Product Category</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pb</span><span class="o">.</span><span class="n">bar_groupby</span><span class="p">(</span>
+    <span class="n">y</span><span class="o">=</span><span class="s1">&#39;order_general_product_categories&#39;</span>
+    <span class="p">,</span> <span class="n">text_auto</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/9042e171571a11ccb5404c1c301f9ac717cce7f76859e03b630638cf15181d7f.jpg" src="../../_images/9042e171571a11ccb5404c1c301f9ac717cce7f76859e03b630638cf15181d7f.jpg" />
+</div>
+</div>
+<p><strong>Key Observations:</strong></p>
+<ul class="simple">
+<li><p>Top generalized canceled categories:</p>
+<ol class="arabic simple">
+<li><p>Electronics</p></li>
+<li><p>Furniture</p></li>
+<li><p>Home &amp; Garden</p></li>
+</ol>
+</li>
+</ul>
+<p><strong>By Top Customer States</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pb</span><span class="o">.</span><span class="n">bar_groupby</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="s1">&#39;customer_state&#39;</span><span class="p">,</span> <span class="n">text_auto</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/b0315c9de83f5f4bbce7ed03e5104c8689090c157a910005e8cabed7ed792691.jpg" src="../../_images/b0315c9de83f5f4bbce7ed03e5104c8689090c157a910005e8cabed7ed792691.jpg" />
+</div>
+</div>
+<p><strong>Key Observations:</strong></p>
+<ul class="simple">
+<li><p>Canceled orders by state:</p>
+<ul>
+<li><p>São Paulo: 42%</p></li>
+<li><p>Rio: 13%</p></li>
+<li><p>Minas: 12%</p></li>
+<li><p>Others: ≤6%</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="sum-of-orders">
+<h3>Sum of Orders<a class="headerlink" href="#sum-of-orders" title="Link to this heading">#</a></h3>
+<p><strong>By month</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pb</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df_canceled</span>
+    <span class="p">,</span> <span class="n">time_column</span> <span class="o">=</span> <span class="s1">&#39;order_purchase_dt&#39;</span>
+    <span class="p">,</span> <span class="n">time_column_label</span> <span class="o">=</span> <span class="s1">&#39;Date&#39;</span>
+    <span class="p">,</span> <span class="n">metric</span> <span class="o">=</span> <span class="s1">&#39;total_payment&#39;</span>
+    <span class="p">,</span> <span class="n">metric_label</span> <span class="o">=</span> <span class="s1">&#39;Canceled Orders Amount, R$&#39;</span>
+    <span class="p">,</span> <span class="n">title_base</span> <span class="o">=</span> <span class="s1">&#39;Canceled Orders Amount&#39;</span>
+    <span class="p">,</span> <span class="n">agg_func</span> <span class="o">=</span> <span class="s1">&#39;sum&#39;</span>
+    <span class="p">,</span> <span class="n">freq</span> <span class="o">=</span> <span class="s1">&#39;ME&#39;</span>
+<span class="p">)</span>
+<span class="n">pb</span><span class="o">.</span><span class="n">line_resample</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/2aad82236527049d2bb4869214ae52ea50e03a8c7545f39afe1cd56f7795f719.jpg" src="../../_images/2aad82236527049d2bb4869214ae52ea50e03a8c7545f39afe1cd56f7795f719.jpg" />
+</div>
+</div>
+<p><strong>Key Observations:</strong></p>
+<ul class="simple">
+<li><p>Canceled order revenue typically 4K-8K R$/month</p></li>
+<li><p>Anomalous spikes in Jul/Aug 2018</p></li>
+</ul>
+</section>
+<section id="id1">
+<h3>Average Order Value<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<p><strong>By month</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pb</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df_canceled</span>
+    <span class="p">,</span> <span class="n">time_column</span> <span class="o">=</span> <span class="s1">&#39;order_purchase_dt&#39;</span>
+    <span class="p">,</span> <span class="n">time_column_label</span> <span class="o">=</span> <span class="s1">&#39;Date&#39;</span>
+    <span class="p">,</span> <span class="n">metric</span> <span class="o">=</span> <span class="s1">&#39;total_payment&#39;</span>
+    <span class="p">,</span> <span class="n">metric_label</span> <span class="o">=</span> <span class="s1">&#39;AOV (Canceled), R$&#39;</span>
+    <span class="p">,</span> <span class="n">title_base</span> <span class="o">=</span> <span class="s1">&#39;AOV (Canceled)&#39;</span>
+    <span class="p">,</span> <span class="n">agg_func</span> <span class="o">=</span> <span class="s1">&#39;mean&#39;</span>
+    <span class="p">,</span> <span class="n">freq</span> <span class="o">=</span> <span class="s1">&#39;ME&#39;</span>
+<span class="p">)</span>
+<span class="n">pb</span><span class="o">.</span><span class="n">line_resample</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/bfe4e29d95166f2d90316ba2b671cb82a24e7be753e39b7cd76a479c8a2c7b93.jpg" src="../../_images/bfe4e29d95166f2d90316ba2b671cb82a24e7be753e39b7cd76a479c8a2c7b93.jpg" />
+</div>
+</div>
+<p><strong>Key Observations:</strong></p>
+<ul class="simple">
+<li><p>Canceled order value spikes in Apr 2017 and Jul 2018</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="12_correlation_analysis.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Correlation Analysis</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="14_analysis_of_customer_segments.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Analysis of Customer Segments</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#black-friday">Black Friday</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#number-of-sales">Number of Sales</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sum-of-sales">Sum of Sales</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#average-order-value">Average Order Value</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#number-of-customers">Number of Customers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#share-of-unavailable-orders">Share of Unavailable Orders</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reviews-score">Reviews Score</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#canceled-orders">Canceled Orders</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#number-of-orders">Number of Orders</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sum-of-orders">Sum of Orders</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Average Order Value</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Pavel Grigoryev
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025, Pavel Grigoryev.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

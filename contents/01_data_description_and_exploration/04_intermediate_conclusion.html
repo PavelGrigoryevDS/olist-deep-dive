@@ -1,0 +1,605 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Intermediate Conclusion &#8212; 🌊 Deep Sales Analysis of Olist Marketplace</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=aa5847ba" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/custom.js?v=f9582d1e"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'contents/01_data_description_and_exploration/04_intermediate_conclusion';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Initial Data Filtering" href="../02_data_preprocessing/01_initial_data_filtering.html" />
+    <link rel="prev" title="Data Exploration" href="03_data_exploration.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo-light.png" class="logo__image only-light" alt="🌊 Deep Sales Analysis of Olist Marketplace - Home"/>
+    <script>document.write(`<img src="../../_static/logo-dark.png" class="logo__image only-dark" alt="🌊 Deep Sales Analysis of Olist Marketplace - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Description and Exploration</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_data_description.html">Data Description</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_data_loading.html">Data Loading</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_data_exploration.html">Data Exploration</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Intermediate Conclusion</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Preprocessing</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../02_data_preprocessing/01_initial_data_filtering.html">Initial Data Filtering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_data_preprocessing/02_outlier_handling.html">Outlier Handling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_data_preprocessing/03_missing_value_handling.html">Missing Value Handling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_data_preprocessing/04_duplicate_handling.html">Duplicate Handling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_data_preprocessing/05_creating_new_metrics.html">Creating New Metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_data_preprocessing/06_creating_new_dimensions.html">Creating New Dimensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_data_preprocessing/07_converting_data_to_a_convenient_format.html">Converting Data to a Convenient Format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_data_preprocessing/08_data_merging.html">Data Merging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_data_preprocessing/09_intermediate_conclusion.html">Intermediate Conclusion</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Analysis</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../03_data_analysis/01_creating_analysis_class.html">Creating Analysis Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_analysis/02_time_series_analysis.html">Time Series Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_analysis/03_customer_analysis.html">Customer Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_analysis/04_seller_analysis.html">Seller Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_analysis/05_sales_analysis.html">Sales Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_analysis/06_product_analysis.html">Product Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_analysis/07_review_analysis.html">Review Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_analysis/08_delivery_analysis.html">Delivery Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_analysis/09_payment_analysis.html">Payment Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_analysis/10_geographical_analysis.html">Geographical Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_analysis/11_cohort_analysis.html">Cohort Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_analysis/12_correlation_analysis.html">Correlation Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_analysis/13_slice_analysis.html">Slice Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_analysis/14_analysis_of_customer_segments.html">Analysis of Customer Segments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_analysis/15_rfm_analysis.html">RFM Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_analysis/16_customer_clustering.html">Customer Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_analysis/17_hypothesis_testing.html">Hypothesis Testing</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">General Conclusion</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/01_time_dynamics.html">Time Dynamics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/02_customers.html">Customers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/03_sales.html">Sales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/04_products.html">Products</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/05_reviews.html">Reviews</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/06_delivery.html">Delivery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/07_payments.html">Payments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/08_sellers.html">Sellers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/09_cohort_analysis.html">Cohort Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/10_correlation_analysis.html">Correlation Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/11_black_friday.html">Black Friday</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/12_cancelled_orders.html">Cancelled Orders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/13_hypothesis_testing_results.html">Hypothesis Testing Results</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/14_detected_anomalies.html">Detected Anomalies</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Recommendations</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/01_product_market_fit.html">Product market fit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/02_customer_loyalty_enhancement.html">Customer loyalty Enhancement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/03_customer_experience_improvement.html">Customer Experience Improvement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/04_logistics_and_delivery_optimization.html">Logistics and Delivery Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/05_financial_optimization.html">Financial optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/06_average_order_value_and_basket_optimization.html">Average Order Value and Basket Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/07_segment_specific_strategies.html">Segment-Specific Strategies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/08_product_and_assortment_management.html">Product and Assortment Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/09_marketing_and_promotion.html">Marketing and Promotion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/10_peak_season_preparedness.html">Peak Season Preparedness</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/11_analytics_and_monitoring.html">Analytics and Monitoring</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/12_ab_testing.html">A/B Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/13_anomaly.html">Anomaly</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/PavelGrigoryevDS/olist-deep-dive" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/contents/01_data_description_and_exploration/04_intermediate_conclusion.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Intermediate Conclusion</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="intermediate-conclusion">
+<h1>Intermediate Conclusion<a class="headerlink" href="#intermediate-conclusion" title="Link to this heading">#</a></h1>
+<p>Table Relationships</p>
+<ul class="simple">
+<li><p>Orders table contains 1 order missing from payments table</p></li>
+<li><p>Orders table contains 775 orders missing from order items table (mostly canceled/unavailable status)</p></li>
+<li><p>Customers table has 157 zip_code_prefixes missing from geolocations</p></li>
+<li><p>Geolocations table has 4,178 zip_code_prefixes missing from customers</p></li>
+<li><p>Sellers table has 7 zip_code_prefixes missing from geolocations</p></li>
+<li><p>Geolocations table has 16,776 zip_code_prefixes missing from sellers</p></li>
+</ul>
+<p>Duplicates</p>
+<ul class="simple">
+<li><p>df_geolocations: 26% full row duplicates</p></li>
+<li><p>df_reviews: 827 duplicate review_ids</p></li>
+<li><p>df_reviews: 559 duplicate order_ids</p></li>
+<li><p>df_geolocations: 97% duplicates in geolocation_zip_code_prefix</p></li>
+<li><p>Some zip prefixes map to:</p>
+<ul>
+<li><p>2 unique states</p></li>
+<li><p>5 unique cities</p></li>
+</ul>
+</li>
+</ul>
+<p>Missing Values</p>
+<ul class="simple">
+<li><p>There are 160 missing values in order_approved_dt (&lt;1% of the total number of rows).</p></li>
+<li><p>There are 14 missing values in order_approved_dt for orders with the delivered status.</p></li>
+<li><p>All delivered orders with missing values in order_approved_dt have the payment type boleto.</p></li>
+<li><p>There are 1.78k missing values in order_delivered_carrier_dt (2% of the total number of rows).</p></li>
+<li><p>There are 2 delivered orders with missing values in order_delivered_carrier_dt.</p></li>
+<li><p>All orders with the status unavailable have missing values in order_delivered_carrier_dt.</p></li>
+<li><p>Both orders with missing values in order_delivered_carrier_dt were paid with a credit card.</p></li>
+<li><p>There are 2.96k missing values in order_delivered_customer_dt (3% of the total number of rows).</p></li>
+<li><p>There are 2% missing values in product_description_lenght.</p></li>
+<li><p>There are 2% missing values in product_photos_qty.</p></li>
+<li><p>There are 2 missing values in product_weight_g.</p></li>
+<li><p>There are 2 missing values in product_length_cm.</p></li>
+<li><p>There are 2% missing values in product_category_name.</p></li>
+<li><p>There are 2 missing values in product_height_cm.</p></li>
+<li><p>There are 2 missing values in product_width_cm.</p></li>
+<li><p>Missing values in product category name, product description length, product description length, and product photos quantity are located in the same rows.</p></li>
+<li><p>Missing values in product length, width, height, and weight are located in the same rows.</p></li>
+</ul>
+<p>Zero Values</p>
+<ul class="simple">
+<li><p>There are 383 zero values in freight_value.</p></li>
+<li><p>There are 2 orders that have a value of 0 in payment_installments.</p></li>
+<li><p>There are 9 zero payments in payment_value.</p></li>
+<li><p>There are 4 zero values in product_weight_g.</p></li>
+<li><p>There are 797 (95%) zero values in declared_monthly_revenue.</p></li>
+<li><p>The main part of zero values in freight_value occurred from April 22 to June 14, 2018. There might have been a free shipping promotion.</p></li>
+<li><p>All 4 products with zero weight have the category cama_mesa_banho (textile and home furnishings).</p></li>
+<li><p>Orders with zero payment amount have a payment type of either voucher or not_defined.</p></li>
+</ul>
+<p>Other Anomalies</p>
+<ul class="simple">
+<li><p>There are 65 orders for which reviews were created before the orders were created. This is strange. Out of these, 58 orders were canceled, 6 were delivered, and 1 was in the delivery process.</p></li>
+<li><p>6 orders were made outside South America, although the customer’s state is in South America.</p></li>
+<li><p>The table product_category_name has 71 unique product categories, whereas the table products has 73 categories.</p></li>
+<li><p>One user made orders totaling 13,664. This value clearly stands out from the general distribution.</p></li>
+<li><p>There are also several users who made purchases totaling 6,000 or more.</p></li>
+<li><p>In the column with the total order amount per user, around 10% are outliers. This exceeds the usual norm (usually 5%), but is not a critical value.</p></li>
+<li><p>In the product price and freight value, there are slightly less than 10% outliers. This exceeds the usual norm (usually 5%), but is not a critical value.</p></li>
+<li><p>In the payment value, there are 10% outliers. This exceeds the usual norm (usually 5%), but is not a critical value.</p></li>
+<li><p>In the number of installments, there are less than 1% outliers. This is a normal value.</p></li>
+<li><p>On November 24, 2017, there were many outliers in the payment value.</p></li>
+<li><p>The proportion of outliers in the number of product photos, length, and width is within the norm.</p></li>
+<li><p>The proportion of outliers in weight (9.95%) and height (8.97%) of the product exceeds the norm (usually 5%), but is not critical.</p></li>
+<li><p>There is a strange maximum date in shipping_limit_dt. The value is significantly large compared to other time variables.</p></li>
+<li><p>Four orders have an abnormally large shipping_limit_dt. However, the estimated delivery time for these orders is normal.</p></li>
+<li><p>In the table with orders, there are 1,359 orders where order_delivered_carrier_dt is earlier than order_approved_dt.</p></li>
+<li><p>In the table with orders, there are 23 orders where order_delivered_customer_dt is earlier than order_delivered_carrier_dt.</p></li>
+<li><p>The dataset contains 8,707 orders where the payment amount does not match the order amount.</p></li>
+<li><p>In the table with orders, there are orders with the status canceled, but they also have a delivery time to the customer.</p></li>
+<li><p>In the table with order items, there are product IDs that were sold by different sellers. There are more than 1,000 such products. Additionally, there are products sold by sellers located in different states.</p></li>
+</ul>
+<p>Key Observations</p>
+<ul class="simple">
+<li><p>All orders created after August 2018 were canceled, except for one order.</p></li>
+<li><p>There were few orders before 2017. Either the data is incomplete or there were few orders.</p></li>
+<li><p>97% of orders have the status “delivered”.</p></li>
+<li><p>Most customers are from the city of sao paulo (16%).</p></li>
+<li><p>Most customers are from the state SP (42%).</p></li>
+<li><p>geolocation_city has the most records for the city of sao paulo (14%).</p></li>
+<li><p>geolocation_state has the most records for the state SP (40%).</p></li>
+<li><p>The maximum number of product units in an order is 21.</p></li>
+<li><p>Product prices range from 0.85 to 6.74k.</p></li>
+<li><p>Most products are sold for prices ranging from 39.9 to 134.9.</p></li>
+<li><p>The median product price is 74.99.</p></li>
+<li><p>The maximum number of payment methods for one order is 29.</p></li>
+<li><p>The maximum number of installments for one product is 24.</p></li>
+<li><p>The median number of installments is 1.</p></li>
+<li><p>75% of orders have installment plans of 4 or fewer parts.</p></li>
+<li><p>The maximum payment is 13.66k. The median payment is 100.</p></li>
+<li><p>74% of payments were made using credit cards.</p></li>
+<li><p>The payment_type column has undefined payment types (&lt;1%).</p></li>
+<li><p>The review_creation_dt column has 9% missing days.</p></li>
+<li><p>The review_answer_dt column has 5% missing days.</p></li>
+<li><p>More than half of the reviews (57%) have maximum ratings of 5.</p></li>
+<li><p>Most reviews (8%) have the title ‘recomendo’.</p></li>
+<li><p>58% of orders do not have reviews.</p></li>
+<li><p>Only 36% of unique comments in reviews.</p></li>
+<li><p>Most comments in reviews contain the word “muito bom” (1%).</p></li>
+<li><p>The maximum length of a product name is 76 characters.</p></li>
+<li><p>The maximum length of a product description is 3.99k characters.</p></li>
+<li><p>The minimum length of a product description is 4 characters.</p></li>
+<li><p>The maximum number of photos for one product is 20.</p></li>
+<li><p>51% of products have 1 photo.</p></li>
+<li><p>The maximum product weight is 40.42k grams.</p></li>
+<li><p>The maximum product length is 105 cm. The minimum length is 7 cm. The median length is 25 cm.</p></li>
+<li><p>The maximum product height is 105 cm. The minimum height is 2 cm. The median height is 13 cm.</p></li>
+<li><p>The maximum product width is 118 cm. The minimum width is 6 cm. The median width is 20 cm.</p></li>
+<li><p>There are a total of 73 unique product categories.</p></li>
+<li><p>Most sellers are from the city of sao paulo (22%).</p></li>
+<li><p>Most sellers are from the state SP (60%).</p></li>
+</ul>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="03_data_exploration.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Data Exploration</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../02_data_preprocessing/01_initial_data_filtering.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Initial Data Filtering</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Pavel Grigoryev
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025, Pavel Grigoryev.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

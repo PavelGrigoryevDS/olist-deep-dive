@@ -1,0 +1,1390 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Geographical Analysis &#8212; 🌊 Deep Sales Analysis of Olist Marketplace</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=aa5847ba" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/custom.js?v=f9582d1e"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'contents/03_data_analysis/10_geographical_analysis';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Cohort Analysis" href="11_cohort_analysis.html" />
+    <link rel="prev" title="Payment Analysis" href="09_payment_analysis.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo-light.png" class="logo__image only-light" alt="🌊 Deep Sales Analysis of Olist Marketplace - Home"/>
+    <script>document.write(`<img src="../../_static/logo-dark.png" class="logo__image only-dark" alt="🌊 Deep Sales Analysis of Olist Marketplace - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Description and Exploration</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../01_data_description_and_exploration/01_data_description.html">Data Description</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_data_description_and_exploration/02_data_loading.html">Data Loading</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_data_description_and_exploration/03_data_exploration.html">Data Exploration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_data_description_and_exploration/04_intermediate_conclusion.html">Intermediate Conclusion</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Preprocessing</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../02_data_preprocessing/01_initial_data_filtering.html">Initial Data Filtering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_data_preprocessing/02_outlier_handling.html">Outlier Handling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_data_preprocessing/03_missing_value_handling.html">Missing Value Handling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_data_preprocessing/04_duplicate_handling.html">Duplicate Handling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_data_preprocessing/05_creating_new_metrics.html">Creating New Metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_data_preprocessing/06_creating_new_dimensions.html">Creating New Dimensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_data_preprocessing/07_converting_data_to_a_convenient_format.html">Converting Data to a Convenient Format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_data_preprocessing/08_data_merging.html">Data Merging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_data_preprocessing/09_intermediate_conclusion.html">Intermediate Conclusion</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Analysis</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_creating_analysis_class.html">Creating Analysis Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_time_series_analysis.html">Time Series Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_customer_analysis.html">Customer Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_seller_analysis.html">Seller Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_sales_analysis.html">Sales Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_product_analysis.html">Product Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_review_analysis.html">Review Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_delivery_analysis.html">Delivery Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_payment_analysis.html">Payment Analysis</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Geographical Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_cohort_analysis.html">Cohort Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_correlation_analysis.html">Correlation Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_slice_analysis.html">Slice Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14_analysis_of_customer_segments.html">Analysis of Customer Segments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15_rfm_analysis.html">RFM Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="16_customer_clustering.html">Customer Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="17_hypothesis_testing.html">Hypothesis Testing</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">General Conclusion</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/01_time_dynamics.html">Time Dynamics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/02_customers.html">Customers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/03_sales.html">Sales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/04_products.html">Products</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/05_reviews.html">Reviews</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/06_delivery.html">Delivery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/07_payments.html">Payments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/08_sellers.html">Sellers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/09_cohort_analysis.html">Cohort Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/10_correlation_analysis.html">Correlation Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/11_black_friday.html">Black Friday</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/12_cancelled_orders.html">Cancelled Orders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/13_hypothesis_testing_results.html">Hypothesis Testing Results</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/14_detected_anomalies.html">Detected Anomalies</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Recommendations</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/01_product_market_fit.html">Product market fit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/02_customer_loyalty_enhancement.html">Customer loyalty Enhancement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/03_customer_experience_improvement.html">Customer Experience Improvement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/04_logistics_and_delivery_optimization.html">Logistics and Delivery Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/05_financial_optimization.html">Financial optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/06_average_order_value_and_basket_optimization.html">Average Order Value and Basket Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/07_segment_specific_strategies.html">Segment-Specific Strategies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/08_product_and_assortment_management.html">Product and Assortment Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/09_marketing_and_promotion.html">Marketing and Promotion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/10_peak_season_preparedness.html">Peak Season Preparedness</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/11_analytics_and_monitoring.html">Analytics and Monitoring</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/12_ab_testing.html">A/B Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/13_anomaly.html">Anomaly</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/PavelGrigoryevDS/olist-deep-dive" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/contents/03_data_analysis/10_geographical_analysis.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Geographical Analysis</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> On this page </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#geo-analysis-by-zip-codes">Geo-analysis by ZIP Codes</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-preparation">Data Preparation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-visualization">Data Visualization</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#geo-analysis-by-state">Geo-analysis by State</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Data Preparation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Data Visualization</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="geographical-analysis">
+<h1>Geographical Analysis<a class="headerlink" href="#geographical-analysis" title="Link to this heading">#</a></h1>
+<section id="geo-analysis-by-zip-codes">
+<h2>Geo-analysis by ZIP Codes<a class="headerlink" href="#geo-analysis-by-zip-codes" title="Link to this heading">#</a></h2>
+<section id="data-preparation">
+<h3>Data Preparation<a class="headerlink" href="#data-preparation" title="Link to this heading">#</a></h3>
+<p>We will aggregate data by the first 3 digits of the customer’s ZIP code. Each point on the map will represent a unique truncated ZIP code.</p>
+<p>Without truncation, we would get excessive detail and no noticeable differences.</p>
+<p>We will prepare the data for visualization.</p>
+<p>We have 6 orders that were made outside South America.</p>
+<p>After truncating the prefixes, we may get additional coordinates outside South America.</p>
+<p>We will remove them to avoid interfering with the map analysis.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tmp_df_res</span> <span class="o">=</span> <span class="n">df_sales</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">tmp_df_res</span><span class="p">[</span><span class="s1">&#39;is_delayed&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tmp_df_res</span><span class="p">[</span><span class="s1">&#39;is_delayed&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Delayed&#39;</span>
+<span class="n">tmp_df_res</span><span class="p">[</span><span class="s1">&#39;order_has_installment&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tmp_df_res</span><span class="p">[</span><span class="s1">&#39;order_has_installment&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Has Installments&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tmp_df_res</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">tmp_df_res</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df_customers_origin</span><span class="p">[[</span><span class="s1">&#39;customer_id&#39;</span><span class="p">,</span> <span class="s1">&#39;customer_zip_code_prefix_3_digits&#39;</span><span class="p">]],</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;customer_id&#39;</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;customer_zip_code_prefix_3_digits&#39;</span><span class="p">,</span> <span class="n">as_index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">agg</span><span class="p">(</span>
+        <span class="n">total_orders</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;order_id&#39;</span><span class="p">,</span> <span class="s1">&#39;nunique&#39;</span><span class="p">)</span>
+        <span class="p">,</span> <span class="n">orders_delayed_share</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;is_delayed&#39;</span><span class="p">,</span> <span class="s1">&#39;mean&#39;</span><span class="p">)</span>
+        <span class="p">,</span> <span class="n">total_payment</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;total_payment&#39;</span><span class="p">,</span> <span class="s1">&#39;sum&#39;</span><span class="p">)</span>
+        <span class="p">,</span> <span class="n">aov</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;total_payment&#39;</span><span class="p">,</span> <span class="s1">&#39;mean&#39;</span><span class="p">)</span>
+        <span class="p">,</span> <span class="n">avg_installments</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;total_installments_cnt&#39;</span><span class="p">,</span> <span class="s1">&#39;mean&#39;</span><span class="p">)</span>
+        <span class="p">,</span> <span class="n">first_orders_cnt</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;sale_is_customer_first_purchase&#39;</span><span class="p">,</span> <span class="s1">&#39;sum&#39;</span><span class="p">)</span>
+        <span class="p">,</span> <span class="n">installment_orders_cnt</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;order_has_installment&#39;</span><span class="p">,</span> <span class="s1">&#39;sum&#39;</span><span class="p">)</span>
+        <span class="p">,</span> <span class="n">total_reviews</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;reviews_cnt&#39;</span><span class="p">,</span> <span class="s1">&#39;sum&#39;</span><span class="p">)</span>
+        <span class="p">,</span> <span class="n">avg_review_score</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;order_avg_reviews_score&#39;</span><span class="p">,</span> <span class="s1">&#39;mean&#39;</span><span class="p">)</span>
+        <span class="p">,</span> <span class="n">avg_delivery_delay_days</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;delivery_delay_days&#39;</span><span class="p">,</span> <span class="s1">&#39;mean&#39;</span><span class="p">)</span>
+        <span class="p">,</span> <span class="n">avg_delivery_time_days</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;delivery_time_days&#39;</span><span class="p">,</span> <span class="s1">&#39;mean&#39;</span><span class="p">)</span>
+        <span class="p">,</span> <span class="n">avg_products_cnt</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;products_cnt&#39;</span><span class="p">,</span> <span class="s1">&#39;mean&#39;</span><span class="p">)</span>
+        <span class="p">,</span> <span class="n">avg_freight_ratio</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;freight_ratio&#39;</span><span class="p">,</span> <span class="s1">&#39;mean&#39;</span><span class="p">)</span>
+        <span class="p">,</span> <span class="n">avg_order_weight_kg</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;total_weight_kg&#39;</span><span class="p">,</span> <span class="s1">&#39;mean&#39;</span><span class="p">)</span>
+        <span class="p">,</span> <span class="n">avg_order_volume_cm3</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;total_volume_cm3&#39;</span><span class="p">,</span> <span class="s1">&#39;mean&#39;</span><span class="p">)</span>
+    <span class="p">)</span> 
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tmp_df_res</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">df_orders</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span>
+        <span class="n">is_canceled</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">order_status</span><span class="o">==</span><span class="s1">&#39;Canceled&#39;</span>
+    <span class="p">)</span>
+    <span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df_customers_origin</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;customer_unique_id&#39;</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;customer_zip_code_prefix_3_digits&#39;</span><span class="p">,</span> <span class="n">as_index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">agg</span><span class="p">(</span>
+        <span class="n">cancel_rate</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;is_canceled&#39;</span><span class="p">,</span> <span class="s1">&#39;mean&#39;</span><span class="p">)</span>
+    <span class="p">)</span>
+    <span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">tmp_df_res</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;customer_zip_code_prefix_3_digits&#39;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df_geolocations</span><span class="p">[</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span><span class="n">x</span><span class="o">.</span><span class="n">in_south_america</span><span class="p">],</span> <span class="n">left_on</span> <span class="o">=</span> <span class="s1">&#39;customer_zip_code_prefix_3_digits&#39;</span><span class="p">,</span> <span class="n">right_on</span><span class="o">=</span><span class="s1">&#39;geolocation_zip_code_prefix_3_digits&#39;</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tmp_df_res</span><span class="p">[</span><span class="s1">&#39;repeat_purchase_rate&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">tmp_df_res</span><span class="p">[</span><span class="s1">&#39;total_orders&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">tmp_df_res</span><span class="p">[</span><span class="s1">&#39;first_orders_cnt&#39;</span><span class="p">])</span> <span class="o">/</span> <span class="n">tmp_df_res</span><span class="p">[</span><span class="s1">&#39;total_orders&#39;</span><span class="p">]</span>
+<span class="n">tmp_df_res</span><span class="p">[</span><span class="s1">&#39;installment_orders_rate&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tmp_df_res</span><span class="p">[</span><span class="s1">&#39;installment_orders_cnt&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">tmp_df_res</span><span class="p">[</span><span class="s1">&#39;total_orders&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We will calculate the average MAU by the truncated ZIP code.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">temp_mau</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">df_sales</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df_customers_origin</span><span class="p">[[</span><span class="s1">&#39;customer_id&#39;</span><span class="p">,</span> <span class="s1">&#39;customer_zip_code_prefix_3_digits&#39;</span><span class="p">]],</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;customer_id&#39;</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;customer_zip_code_prefix_3_digits&#39;</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">Grouper</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="s1">&#39;order_purchase_dt&#39;</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s1">&#39;ME&#39;</span><span class="p">)],</span> <span class="n">observed</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="n">mau</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;customer_unique_id&#39;</span><span class="p">,</span> <span class="s1">&#39;nunique&#39;</span><span class="p">))</span>
+    <span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;customer_zip_code_prefix_3_digits&#39;</span><span class="p">,</span> <span class="n">observed</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="p">)</span>
+<span class="n">tmp_df_res</span> <span class="o">=</span> <span class="n">tmp_df_res</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">temp_mau</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;customer_zip_code_prefix_3_digits&#39;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">del</span> <span class="n">temp_mau</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="data-visualization">
+<h3>Data Visualization<a class="headerlink" href="#data-visualization" title="Link to this heading">#</a></h3>
+<p>We will create labels for displaying on the maps.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">labels_for_map</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+    <span class="n">total_orders</span> <span class="o">=</span> <span class="s1">&#39;Number of Sales&#39;</span>
+    <span class="p">,</span> <span class="n">total_payment</span> <span class="o">=</span> <span class="s1">&#39;Sales Amount, R$&#39;</span>
+    <span class="p">,</span> <span class="n">aov</span> <span class="o">=</span> <span class="s1">&#39;Average Order Value, R$&#39;</span>
+    <span class="p">,</span> <span class="n">mau</span> <span class="o">=</span> <span class="s1">&#39;MAU&#39;</span>
+    <span class="p">,</span> <span class="n">avg_freight_ratio</span> <span class="o">=</span> <span class="s1">&#39;Average Freight Ratio&#39;</span>
+    <span class="p">,</span> <span class="n">avg_delivery_time_days</span> <span class="o">=</span> <span class="s1">&#39;Average Delivery Time, days&#39;</span>
+    <span class="p">,</span> <span class="n">avg_review_score</span> <span class="o">=</span> <span class="s1">&#39;Average Review Score&#39;</span>
+    <span class="p">,</span> <span class="n">orders_delayed_share</span> <span class="o">=</span> <span class="s1">&#39;Percentage of Delayed Orders&#39;</span>
+    <span class="p">,</span> <span class="n">avg_products_cnt</span> <span class="o">=</span> <span class="s1">&#39;Average Number of Products in Order&#39;</span>
+    <span class="p">,</span> <span class="n">installment_orders_rate</span> <span class="o">=</span> <span class="s1">&#39;Installment Payment Rate&#39;</span>
+    <span class="p">,</span> <span class="n">avg_installments</span> <span class="o">=</span> <span class="s1">&#39;Average Number of Installments in Order&#39;</span>
+    <span class="p">,</span> <span class="n">avg_order_weight_kg</span> <span class="o">=</span> <span class="s1">&#39;Average Order Weight, kg&#39;</span>
+    <span class="p">,</span> <span class="n">avg_order_volume_cm3</span> <span class="o">=</span> <span class="s1">&#39;Average Order Volume, cm3&#39;</span>
+    <span class="p">,</span> <span class="n">repeat_purchase_rate</span> <span class="o">=</span> <span class="s1">&#39;Repeat Purchase Rate&#39;</span>
+    <span class="p">,</span> <span class="n">cancel_rate</span> <span class="o">=</span> <span class="s1">&#39;Cancel Rate&#39;</span>
+    <span class="p">,</span> <span class="n">geolocation_lat</span> <span class="o">=</span> <span class="s1">&#39;Latitude&#39;</span>
+    <span class="p">,</span> <span class="n">geolocation_lng</span> <span class="o">=</span> <span class="s1">&#39;Longitude&#39;</span>
+    <span class="p">,</span> <span class="n">customer_zip_code_prefix_3_digits</span> <span class="o">=</span> <span class="s1">&#39;Zip Code Prefix&#39;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We will create a function for visualization.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">plot_map_zip</span><span class="p">(</span><span class="n">metric</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Create plotly map by 3-digit zip code prefix&quot;&quot;&quot;</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Distribution of </span><span class="si">{</span><span class="n">labels_for_map</span><span class="p">[</span><span class="n">metric</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2"> by 3-Digit Zip Code Prefix&quot;</span>
+    <span class="n">colorbar_title</span> <span class="o">=</span> <span class="n">labels_for_map</span><span class="p">[</span><span class="n">metric</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span> <span class="k">if</span> <span class="s1">&#39;,&#39;</span> <span class="ow">in</span> <span class="n">labels_for_map</span><span class="p">[</span><span class="n">metric</span><span class="p">]</span> <span class="k">else</span> <span class="kc">None</span>
+    <span class="n">hover_data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;geolocation_lat&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;geolocation_lng&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;customer_zip_code_prefix_3_digits&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}</span>
+    <span class="n">is_percentage</span> <span class="o">=</span> <span class="n">metric</span> <span class="ow">in</span> <span class="p">[</span>
+        <span class="s1">&#39;avg_freight_ratio&#39;</span><span class="p">,</span> <span class="s1">&#39;orders_delayed_share&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;installment_orders_rate&#39;</span><span class="p">,</span> <span class="s1">&#39;repeat_purchase_rate&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;cancel_rate&#39;</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">metric</span> <span class="o">!=</span> <span class="s1">&#39;total_orders&#39;</span><span class="p">:</span>
+        <span class="n">hover_data</span><span class="p">[</span><span class="s1">&#39;total_orders&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;:.2s&#39;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">is_percentage</span><span class="p">:</span>
+        <span class="n">hover_data</span><span class="p">[</span><span class="n">metric</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;:.2s&#39;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">hover_data</span><span class="p">[</span><span class="n">metric</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;:.1%&#39;</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">scatter_map</span><span class="p">(</span>
+        <span class="n">tmp_df_res</span><span class="p">,</span>
+        <span class="n">lat</span><span class="o">=</span><span class="s1">&#39;geolocation_lat&#39;</span><span class="p">,</span>
+        <span class="n">lon</span><span class="o">=</span><span class="s1">&#39;geolocation_lng&#39;</span><span class="p">,</span>
+        <span class="n">color</span><span class="o">=</span><span class="n">metric</span><span class="p">,</span>
+        <span class="n">labels</span><span class="o">=</span><span class="n">labels_for_map</span><span class="p">,</span>
+        <span class="n">zoom</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+        <span class="n">height</span><span class="o">=</span><span class="mi">650</span><span class="p">,</span>
+        <span class="n">hover_data</span><span class="o">=</span><span class="n">hover_data</span><span class="p">,</span>
+        <span class="n">width</span><span class="o">=</span><span class="mi">700</span><span class="p">,</span>
+        <span class="n">title</span><span class="o">=</span><span class="n">title</span><span class="p">,</span>
+        <span class="n">color_continuous_scale</span><span class="o">=</span><span class="s2">&quot;matter&quot;</span><span class="p">,</span>
+        <span class="n">center</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;lat&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mf">14.235004</span><span class="p">,</span> <span class="s2">&quot;lon&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mf">55.92528</span><span class="p">}</span>
+    <span class="p">)</span>
+    <span class="k">if</span> <span class="n">is_percentage</span><span class="p">:</span>
+        <span class="n">fig</span><span class="o">.</span><span class="n">update_coloraxes</span><span class="p">(</span>
+            <span class="n">colorbar_tickformat</span><span class="o">=</span><span class="s2">&quot;.0%&quot;</span>
+        <span class="p">)</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span>
+        <span class="n">margin</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">l</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+        <span class="p">,</span> <span class="n">title_y</span><span class="o">=</span><span class="mf">0.99</span>
+        <span class="p">,</span> <span class="n">coloraxis_colorbar_title_text</span> <span class="o">=</span> <span class="n">colorbar_title</span>
+    <span class="p">)</span>
+    <span class="n">pb</span><span class="o">.</span><span class="n">to_slide</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">fig</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Where are the sales volume higher?</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_map_zip</span><span class="p">(</span><span class="s1">&#39;total_orders&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/ed8250e9c89918aa810b0a1e0e791d787c75138f9bd6a9b34fbdfd6af5cba876.jpg" src="../../_images/ed8250e9c89918aa810b0a1e0e791d787c75138f9bd6a9b34fbdfd6af5cba876.jpg" />
+</div>
+</div>
+<p><strong>Where is the sales amount higher?</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_map_zip</span><span class="p">(</span><span class="s1">&#39;total_payment&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/34a1b9175c8e72bb2ee23a2315fa4ce88ce5e05bed34c0591c8f78dd6055764e.jpg" src="../../_images/34a1b9175c8e72bb2ee23a2315fa4ce88ce5e05bed34c0591c8f78dd6055764e.jpg" />
+</div>
+</div>
+<p><strong>Where is the average order value higher?</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_map_zip</span><span class="p">(</span><span class="s1">&#39;aov&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/5c241030b7454a6b957f249ee381eb37ed556d374fd66f13ef8d88b57403c11b.jpg" src="../../_images/5c241030b7454a6b957f249ee381eb37ed556d374fd66f13ef8d88b57403c11b.jpg" />
+</div>
+</div>
+<p><strong>Where is average MAU higher?</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_map_zip</span><span class="p">(</span><span class="s1">&#39;mau&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/0a963da4532f9a2185e9ac5e6c2167fad0fd91a3cca24a7b492e808e78f1507c.jpg" src="../../_images/0a963da4532f9a2185e9ac5e6c2167fad0fd91a3cca24a7b492e808e78f1507c.jpg" />
+</div>
+</div>
+<p><strong>Where do customers pay more for delivery?</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_map_zip</span><span class="p">(</span><span class="s1">&#39;avg_freight_ratio&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/8823d62dd1f24aafeba29ab3611aec633bee01463fb6782afa2ce98f865843f2.jpg" src="../../_images/8823d62dd1f24aafeba29ab3611aec633bee01463fb6782afa2ce98f865843f2.jpg" />
+</div>
+</div>
+<p><strong>How is delivery time distributed across regions?</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_map_zip</span><span class="p">(</span><span class="s1">&#39;avg_delivery_time_days&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/dffaadac01934417a46111d52bc08e5adf10a99d2d6074321c9183173471ba91.jpg" src="../../_images/dffaadac01934417a46111d52bc08e5adf10a99d2d6074321c9183173471ba91.jpg" />
+</div>
+</div>
+<p><strong>What is the average rating by regions?</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_map_zip</span><span class="p">(</span><span class="s1">&#39;avg_review_score&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/ed7975a9fbe2904f743ed77017d32d8f22c50cfe5fe04f2bdef3c61ed5b3e711.jpg" src="../../_images/ed7975a9fbe2904f743ed77017d32d8f22c50cfe5fe04f2bdef3c61ed5b3e711.jpg" />
+</div>
+</div>
+<p><strong>How are delayed orders distributed across regions?</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_map_zip</span><span class="p">(</span><span class="s1">&#39;orders_delayed_share&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/cbc9782c3bf6187f59ceda564d01b0aaa3ddf368af871289f5e74a8a85340c59.jpg" src="../../_images/cbc9782c3bf6187f59ceda564d01b0aaa3ddf368af871289f5e74a8a85340c59.jpg" />
+</div>
+</div>
+<p><strong>How is the number of items per order distributed across regions?</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_map_zip</span><span class="p">(</span><span class="s1">&#39;avg_products_cnt&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/f52b7cce8e059769b372b91d90e8eb8c0bdfd429463bf3b5bbd914b1c67a29e1.jpg" src="../../_images/f52b7cce8e059769b372b91d90e8eb8c0bdfd429463bf3b5bbd914b1c67a29e1.jpg" />
+</div>
+</div>
+<p><strong>What is the higher proportion of installment payments in which regions?</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_map_zip</span><span class="p">(</span><span class="s1">&#39;installment_orders_rate&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/19a8c191699f0824cbfc11955ff1e1908673139fb491bf4c8493ea54382cb55a.jpg" src="../../_images/19a8c191699f0824cbfc11955ff1e1908673139fb491bf4c8493ea54382cb55a.jpg" />
+</div>
+</div>
+<p><strong>What regions have more installments per order?</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_map_zip</span><span class="p">(</span><span class="s1">&#39;avg_installments&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/22149e4a185cbdeacb6d70c4142fbf18be59c71dd2b64aaf9cf0a3645cce283a.jpg" src="../../_images/22149e4a185cbdeacb6d70c4142fbf18be59c71dd2b64aaf9cf0a3645cce283a.jpg" />
+</div>
+</div>
+<p><strong>What regions have the heaviest orders?</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_map_zip</span><span class="p">(</span><span class="s1">&#39;avg_order_weight_kg&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/1c453d13d7a68255bb30c86119ad1080598f1abc2ccc5881742a0d3875c43ba2.jpg" src="../../_images/1c453d13d7a68255bb30c86119ad1080598f1abc2ccc5881742a0d3875c43ba2.jpg" />
+</div>
+</div>
+<p><strong>What regions have the largest volume orders?</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_map_zip</span><span class="p">(</span><span class="s1">&#39;avg_order_volume_cm3&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/4577cec52be4b116c1b48c24b393b7988daf430ef52e743e91966c15cdc75418.jpg" src="../../_images/4577cec52be4b116c1b48c24b393b7988daf430ef52e743e91966c15cdc75418.jpg" />
+</div>
+</div>
+<p><strong>What regions have a higher repeat purchases rate?</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_map_zip</span><span class="p">(</span><span class="s1">&#39;repeat_purchase_rate&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/929e6d4198d9d0683255aa3e49d0c0666b700ab29b3e25fde7c8707764071549.jpg" src="../../_images/929e6d4198d9d0683255aa3e49d0c0666b700ab29b3e25fde7c8707764071549.jpg" />
+</div>
+</div>
+<p><strong>What regions have a higher proportion of canceled orders?</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_map_zip</span><span class="p">(</span><span class="s1">&#39;cancel_rate&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/70f17f0d501ca05a0a79b36e2b72f3d44dcfb5233452fcc9caee8f1b65333311.jpg" src="../../_images/70f17f0d501ca05a0a79b36e2b72f3d44dcfb5233452fcc9caee8f1b65333311.jpg" />
+</div>
+</div>
+</section>
+</section>
+<section id="geo-analysis-by-state">
+<h2>Geo-analysis by State<a class="headerlink" href="#geo-analysis-by-state" title="Link to this heading">#</a></h2>
+<section id="id1">
+<h3>Data Preparation<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<p>Creating dataframe for visualization</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tmp_df_res</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">df_sales</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df_customers_origin</span><span class="p">[[</span><span class="s1">&#39;customer_id&#39;</span><span class="p">,</span> <span class="s1">&#39;customer_state_short&#39;</span><span class="p">,</span> <span class="s1">&#39;population&#39;</span><span class="p">,</span> <span class="p">]],</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;customer_id&#39;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="n">tmp_df_res</span><span class="p">[</span><span class="s1">&#39;is_delayed&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tmp_df_res</span><span class="p">[</span><span class="s1">&#39;is_delayed&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Delayed&#39;</span>
+<span class="n">tmp_df_res</span><span class="p">[</span><span class="s1">&#39;order_has_installment&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tmp_df_res</span><span class="p">[</span><span class="s1">&#39;order_has_installment&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Has Installments&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Calculate average MAU by state.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">temp_mau</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">tmp_df_res</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;customer_state_short&#39;</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">Grouper</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="s1">&#39;order_purchase_dt&#39;</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s1">&#39;ME&#39;</span><span class="p">)],</span> <span class="n">observed</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="n">mau</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;customer_unique_id&#39;</span><span class="p">,</span> <span class="s1">&#39;nunique&#39;</span><span class="p">))</span>
+    <span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;customer_state_short&#39;</span><span class="p">,</span> <span class="n">observed</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tmp_df_res</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">tmp_df_res</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;customer_state_short&#39;</span><span class="p">,</span> <span class="n">observed</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">as_index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">agg</span><span class="p">(</span>
+        <span class="n">total_orders</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;order_id&#39;</span><span class="p">,</span> <span class="s1">&#39;nunique&#39;</span><span class="p">)</span>
+        <span class="p">,</span> <span class="n">total_payment</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;total_payment&#39;</span><span class="p">,</span> <span class="s1">&#39;sum&#39;</span><span class="p">)</span>
+        <span class="p">,</span> <span class="n">aov</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;total_payment&#39;</span><span class="p">,</span> <span class="s1">&#39;mean&#39;</span><span class="p">)</span>
+        <span class="p">,</span> <span class="n">first_orders_cnt</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;sale_is_customer_first_purchase&#39;</span><span class="p">,</span> <span class="s1">&#39;sum&#39;</span><span class="p">)</span>
+        <span class="p">,</span> <span class="n">installment_orders_cnt</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;order_has_installment&#39;</span><span class="p">,</span> <span class="s1">&#39;sum&#39;</span><span class="p">)</span>
+        <span class="p">,</span> <span class="n">total_reviews</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;reviews_cnt&#39;</span><span class="p">,</span> <span class="s1">&#39;sum&#39;</span><span class="p">)</span>
+        <span class="p">,</span> <span class="n">avg_review_score</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;order_avg_reviews_score&#39;</span><span class="p">,</span> <span class="s1">&#39;mean&#39;</span><span class="p">)</span>
+        <span class="p">,</span> <span class="n">avg_delivery_time_days</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;delivery_time_days&#39;</span><span class="p">,</span> <span class="s1">&#39;mean&#39;</span><span class="p">)</span>
+        <span class="p">,</span> <span class="n">avg_delivery_delay_days</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;delivery_delay_days&#39;</span><span class="p">,</span> <span class="s1">&#39;mean&#39;</span><span class="p">)</span>
+        <span class="p">,</span> <span class="n">avg_installments</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;total_installments_cnt&#39;</span><span class="p">,</span> <span class="s1">&#39;mean&#39;</span><span class="p">)</span>
+        <span class="p">,</span> <span class="n">avg_products_cnt</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;products_cnt&#39;</span><span class="p">,</span> <span class="s1">&#39;mean&#39;</span><span class="p">)</span>
+        <span class="p">,</span> <span class="n">population</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;population&#39;</span><span class="p">,</span> <span class="s1">&#39;first&#39;</span><span class="p">)</span>
+        <span class="p">,</span> <span class="n">avg_order_weight_kg</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;total_weight_kg&#39;</span><span class="p">,</span> <span class="s1">&#39;mean&#39;</span><span class="p">)</span>
+        <span class="p">,</span> <span class="n">avg_order_volume_cm3</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;total_volume_cm3&#39;</span><span class="p">,</span> <span class="s1">&#39;mean&#39;</span><span class="p">)</span>
+    <span class="p">)</span>
+    <span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">temp_mau</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;customer_state_short&#39;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tmp_df_res</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">df_orders</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span>
+        <span class="n">is_canceled</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">order_status</span><span class="o">==</span><span class="s1">&#39;Canceled&#39;</span>
+    <span class="p">)</span>
+    <span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df_customers_origin</span><span class="p">[[</span><span class="s1">&#39;customer_id&#39;</span><span class="p">,</span> <span class="s1">&#39;customer_state_short&#39;</span><span class="p">]],</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;customer_id&#39;</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;customer_state_short&#39;</span><span class="p">,</span> <span class="n">as_index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">agg</span><span class="p">(</span>
+        <span class="n">cancel_rate</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;is_canceled&#39;</span><span class="p">,</span> <span class="s1">&#39;mean&#39;</span><span class="p">)</span>
+    <span class="p">)</span>
+    <span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">tmp_df_res</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;customer_state_short&#39;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tmp_df_res</span><span class="p">[</span><span class="s1">&#39;orders_per_thousand_person&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tmp_df_res</span><span class="p">[</span><span class="s1">&#39;total_orders&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">1000</span> <span class="o">/</span> <span class="n">tmp_df_res</span><span class="p">[</span><span class="s1">&#39;population&#39;</span><span class="p">]</span>
+<span class="n">tmp_df_res</span><span class="p">[</span><span class="s1">&#39;total_payment_per_thousand_person&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tmp_df_res</span><span class="p">[</span><span class="s1">&#39;total_payment&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">1000</span> <span class="o">/</span> <span class="n">tmp_df_res</span><span class="p">[</span><span class="s1">&#39;population&#39;</span><span class="p">]</span>
+<span class="n">tmp_df_res</span><span class="p">[</span><span class="s1">&#39;repeat_purchase_rate&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">tmp_df_res</span><span class="p">[</span><span class="s1">&#39;total_orders&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">tmp_df_res</span><span class="p">[</span><span class="s1">&#39;first_orders_cnt&#39;</span><span class="p">])</span> <span class="o">/</span> <span class="n">tmp_df_res</span><span class="p">[</span><span class="s1">&#39;total_orders&#39;</span><span class="p">]</span>
+<span class="n">tmp_df_res</span><span class="p">[</span><span class="s1">&#39;installment_orders_rate&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tmp_df_res</span><span class="p">[</span><span class="s1">&#39;installment_orders_cnt&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">tmp_df_res</span><span class="p">[</span><span class="s1">&#39;total_orders&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">del</span> <span class="n">temp_mau</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s calculate the median retention of the first lifetime by state through cohorts. We will define the period as 30 days.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">retention_1st_month_state</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">df_sales</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df_customers_origin</span><span class="p">[[</span><span class="s1">&#39;customer_id&#39;</span><span class="p">,</span> <span class="s1">&#39;customer_state_short&#39;</span><span class="p">]],</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;customer_id&#39;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">retention_1st_month_state</span><span class="p">[</span><span class="s1">&#39;cohort&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">retention_1st_month_state</span><span class="p">[</span><span class="s1">&#39;customer_first_purchase_dt&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">to_period</span><span class="p">(</span><span class="s1">&#39;M&#39;</span><span class="p">)</span>
+<span class="n">retention_1st_month_state</span><span class="p">[</span><span class="s1">&#39;lifetime&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">retention_1st_month_state</span><span class="p">[</span><span class="s1">&#39;order_purchase_dt&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">retention_1st_month_state</span><span class="p">[</span><span class="s1">&#39;customer_first_purchase_dt&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">days</span> <span class="o">//</span> <span class="mi">30</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">retention_1st_month_state</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">retention_1st_month_state</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;customer_state_short&#39;</span><span class="p">,</span> <span class="s1">&#39;cohort&#39;</span><span class="p">,</span> <span class="s1">&#39;lifetime&#39;</span><span class="p">])[</span><span class="s1">&#39;customer_unique_id&#39;</span><span class="p">]</span>
+    <span class="o">.</span><span class="n">nunique</span><span class="p">()</span>
+    <span class="o">.</span><span class="n">unstack</span><span class="p">()</span>
+    <span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">retention_1st_month_state</span> <span class="o">=</span> <span class="n">retention_1st_month_state</span><span class="o">.</span><span class="n">div</span><span class="p">(</span><span class="n">retention_1st_month_state</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">retention_1st_month_state</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">retention_1st_month_state</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;customer_state_short&#39;</span><span class="p">,</span> <span class="n">as_index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">observed</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">median</span><span class="p">()</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">retention_1st_month_state</span><span class="p">[</span><span class="s1">&#39;retention_1st_month_state&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">retention_1st_month_state</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">retention_1st_month_state</span> <span class="o">=</span> <span class="n">retention_1st_month_state</span><span class="p">[[</span><span class="s1">&#39;customer_state_short&#39;</span><span class="p">,</span> <span class="s1">&#39;retention_1st_month_state&#39;</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tmp_df_res</span> <span class="o">=</span> <span class="n">tmp_df_res</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">retention_1st_month_state</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;customer_state_short&#39;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id2">
+<h3>Data Visualization<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<p>Add some metrics in labels_for_map</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">labels_for_map</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span>
+    <span class="n">total_reviews</span> <span class="o">=</span> <span class="s1">&#39;Number of Reviews&#39;</span>
+    <span class="p">,</span> <span class="n">avg_delivery_delay_days</span> <span class="o">=</span> <span class="s1">&#39;Average Delivery Delay, days&#39;</span>
+    <span class="p">,</span> <span class="n">orders_per_thousand_person</span> <span class="o">=</span> <span class="s1">&#39;Number of Orders per Thousand Residents&#39;</span>
+    <span class="p">,</span> <span class="n">total_payment_per_thousand_person</span> <span class="o">=</span> <span class="s1">&#39;Sales Amount per Thousand Residents, R$&#39;</span>
+    <span class="p">,</span> <span class="n">retention_1st_month_state</span> <span class="o">=</span> <span class="s1">&#39;Retention 1st Month by State&#39;</span>
+    <span class="p">,</span> <span class="n">customer_state_short</span> <span class="o">=</span> <span class="s1">&#39;Customer State&#39;</span>
+<span class="p">))</span>
+<span class="n">labels_for_map</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;mau&#39;</span><span class="p">:</span> <span class="s1">&#39;Average MAU&#39;</span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s calculate the centroids of the states.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">brazil_states_geojson</span> <span class="o">=</span> <span class="s2">&quot;https://raw.githubusercontent.com/codeforamerica/click_that_hood/master/public/data/brazil-states.geojson&quot;</span>
+<span class="k">with</span> <span class="n">urlopen</span><span class="p">(</span><span class="n">brazil_states_geojson</span><span class="p">)</span> <span class="k">as</span> <span class="n">response</span><span class="p">:</span>
+    <span class="n">geojson</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+
+<span class="n">gdf</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="o">.</span><span class="n">from_features</span><span class="p">(</span><span class="n">geojson</span><span class="p">[</span><span class="s1">&#39;features&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gdf</span><span class="p">[</span><span class="s1">&#39;centroid&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">gdf</span><span class="p">[</span><span class="s1">&#39;geometry&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">centroid</span>
+<span class="n">gdf</span><span class="p">[</span><span class="s1">&#39;centroid_lon&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">gdf</span><span class="p">[</span><span class="s1">&#39;centroid&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">x</span>
+<span class="n">gdf</span><span class="p">[</span><span class="s1">&#39;centroid_lat&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">gdf</span><span class="p">[</span><span class="s1">&#39;centroid&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">y</span>
+
+<span class="n">state_centroids</span> <span class="o">=</span> <span class="n">gdf</span><span class="p">[[</span><span class="s1">&#39;sigla&#39;</span><span class="p">,</span> <span class="s1">&#39;centroid_lon&#39;</span><span class="p">,</span> <span class="s1">&#39;centroid_lat&#39;</span><span class="p">]]</span>
+<span class="n">state_centroids</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>sigla</th>
+      <th>centroid_lon</th>
+      <th>centroid_lat</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>AC</td>
+      <td>-70.44</td>
+      <td>-9.31</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">plot_map_state</span><span class="p">(</span><span class="n">metric</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Create plotly map by states&quot;&quot;&quot;</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Distribution of </span><span class="si">{</span><span class="n">labels_for_map</span><span class="p">[</span><span class="n">metric</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2"> by State&quot;</span>
+    <span class="n">colorbar_title</span> <span class="o">=</span> <span class="n">labels_for_map</span><span class="p">[</span><span class="n">metric</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span> <span class="k">if</span> <span class="s1">&#39;,&#39;</span> <span class="ow">in</span> <span class="n">labels_for_map</span><span class="p">[</span><span class="n">metric</span><span class="p">]</span> <span class="k">else</span> <span class="kc">None</span>
+    <span class="n">df_for_color_text</span> <span class="o">=</span> <span class="n">tmp_df_res</span><span class="p">[[</span><span class="s1">&#39;customer_state_short&#39;</span><span class="p">,</span> <span class="n">metric</span><span class="p">]]</span>
+    <span class="n">color_level</span> <span class="o">=</span> <span class="p">(</span><span class="n">tmp_df_res</span><span class="p">[</span><span class="n">metric</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">-</span> <span class="n">tmp_df_res</span><span class="p">[</span><span class="n">metric</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">())</span> <span class="o">*</span> <span class="mf">0.7</span> <span class="o">+</span> <span class="n">tmp_df_res</span><span class="p">[</span><span class="n">metric</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+    <span class="n">df_for_color_text</span><span class="p">[</span><span class="s1">&#39;color&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_for_color_text</span><span class="p">[</span><span class="n">metric</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="s1">&#39;rgba(255, 255, 255, 0.8)&#39;</span>  <span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="n">color_level</span> <span class="k">else</span> <span class="s1">&#39;rgba(50, 50, 50, 0.8)&#39;</span><span class="p">)</span>
+
+    <span class="c1"># print(tmp_df_res)</span>
+    <span class="n">hover_data</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+    <span class="n">is_percentage</span> <span class="o">=</span> <span class="n">metric</span> <span class="ow">in</span> <span class="p">[</span>
+        <span class="s1">&#39;avg_freight_ratio&#39;</span><span class="p">,</span> <span class="s1">&#39;orders_delayed_share&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;installment_orders_rate&#39;</span><span class="p">,</span> <span class="s1">&#39;repeat_purchase_rate&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;cancel_rate&#39;</span><span class="p">,</span> <span class="s1">&#39;retention_1st_month_state&#39;</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">metric</span> <span class="o">!=</span> <span class="s1">&#39;total_orders&#39;</span><span class="p">:</span>
+        <span class="n">hover_data</span><span class="p">[</span><span class="s1">&#39;total_orders&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;:.2s&#39;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">is_percentage</span><span class="p">:</span>
+        <span class="n">hover_data</span><span class="p">[</span><span class="n">metric</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;:.2s&#39;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">metric</span> <span class="o">==</span> <span class="s1">&#39;retention_1st_month_state&#39;</span><span class="p">:</span>
+            <span class="n">hover_data</span><span class="p">[</span><span class="n">metric</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;:.2%&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">hover_data</span><span class="p">[</span><span class="n">metric</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;:.1%&#39;</span>
+
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">choropleth</span><span class="p">(</span>
+        <span class="n">tmp_df_res</span><span class="p">,</span>
+        <span class="n">geojson</span><span class="o">=</span><span class="n">brazil_states_geojson</span><span class="p">,</span>
+        <span class="n">locations</span><span class="o">=</span><span class="s1">&#39;customer_state_short&#39;</span><span class="p">,</span>  
+        <span class="n">featureidkey</span><span class="o">=</span><span class="s2">&quot;properties.sigla&quot;</span><span class="p">,</span> 
+        <span class="n">color</span><span class="o">=</span><span class="n">metric</span><span class="p">,</span>
+        <span class="n">color_continuous_scale</span><span class="o">=</span><span class="s2">&quot;Viridis&quot;</span><span class="p">,</span>
+        <span class="n">title</span><span class="o">=</span><span class="n">title</span><span class="p">,</span>
+        <span class="n">labels</span><span class="o">=</span><span class="n">labels_for_map</span><span class="p">,</span>
+        <span class="n">hover_data</span><span class="o">=</span><span class="n">hover_data</span>
+    <span class="p">)</span>
+
+    <span class="n">fig</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span>
+        <span class="n">go</span><span class="o">.</span><span class="n">Scattergeo</span><span class="p">(</span>
+            <span class="n">lon</span><span class="o">=</span><span class="n">state_centroids</span><span class="p">[</span><span class="s1">&#39;centroid_lon&#39;</span><span class="p">],</span>
+            <span class="n">lat</span><span class="o">=</span><span class="n">state_centroids</span><span class="p">[</span><span class="s1">&#39;centroid_lat&#39;</span><span class="p">],</span>
+            <span class="n">text</span><span class="o">=</span><span class="n">state_centroids</span><span class="p">[</span><span class="s1">&#39;sigla&#39;</span><span class="p">],</span>
+            <span class="n">hoverinfo</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span>
+            <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;text&#39;</span><span class="p">,</span>
+            <span class="n">textfont</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>
+                <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span>
+                <span class="n">size</span><span class="o">=</span><span class="mi">10</span>
+            <span class="p">),</span>
+            <span class="n">showlegend</span><span class="o">=</span><span class="kc">False</span>
+        <span class="p">)</span>
+    <span class="p">)</span>
+
+    <span class="n">color_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">df_for_color_text</span><span class="p">[</span><span class="s1">&#39;customer_state_short&#39;</span><span class="p">],</span> <span class="n">df_for_color_text</span><span class="p">[</span><span class="s1">&#39;color&#39;</span><span class="p">]))</span>
+    <span class="k">for</span> <span class="n">trace</span> <span class="ow">in</span> <span class="n">fig</span><span class="o">.</span><span class="n">data</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">trace</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="s1">&#39;scattergeo&#39;</span><span class="p">:</span>
+            <span class="n">states_in_trace</span> <span class="o">=</span> <span class="n">trace</span><span class="o">.</span><span class="n">text</span>
+            <span class="n">ordered_colors</span> <span class="o">=</span> <span class="p">[</span><span class="n">color_dict</span><span class="p">[</span><span class="n">state</span><span class="p">]</span> <span class="k">for</span> <span class="n">state</span> <span class="ow">in</span> <span class="n">states_in_trace</span><span class="p">]</span>
+            <span class="n">trace</span><span class="o">.</span><span class="n">textfont</span><span class="o">.</span><span class="n">color</span> <span class="o">=</span> <span class="n">ordered_colors</span>
+
+    <span class="k">if</span> <span class="n">is_percentage</span><span class="p">:</span>
+        <span class="n">fig</span><span class="o">.</span><span class="n">update_coloraxes</span><span class="p">(</span>
+            <span class="n">colorbar_tickformat</span><span class="o">=</span><span class="s2">&quot;.0%&quot;</span> <span class="k">if</span> <span class="n">metric</span> <span class="o">!=</span> <span class="s1">&#39;retention_1st_month_state&#39;</span> <span class="k">else</span> <span class="s2">&quot;.2%&quot;</span>
+        <span class="p">)</span>
+        
+    <span class="n">fig</span><span class="o">.</span><span class="n">update_geos</span><span class="p">(</span>
+        <span class="n">visible</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">lataxis_range</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">40.7</span><span class="p">,</span> <span class="mf">7.3</span><span class="p">],</span>  
+        <span class="n">lonaxis_range</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">85</span><span class="p">,</span> <span class="o">-</span><span class="mf">34.5</span><span class="p">],</span>  
+        <span class="n">projection_scale</span><span class="o">=</span><span class="mf">1.2</span><span class="p">,</span>        
+        <span class="n">center</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">lat</span><span class="o">=-</span><span class="mi">15</span><span class="p">,</span> <span class="n">lon</span><span class="o">=-</span><span class="mi">55</span><span class="p">)</span>  
+    <span class="p">)</span>
+    
+    <span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span>
+        <span class="n">margin</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;r&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="s2">&quot;t&quot;</span><span class="p">:</span><span class="mi">50</span><span class="p">,</span><span class="s2">&quot;l&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="s2">&quot;b&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">}</span>
+        <span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">550</span>
+        <span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">500</span>
+        <span class="p">,</span> <span class="n">coloraxis_colorbar_title_text</span> <span class="o">=</span> <span class="n">colorbar_title</span>
+    <span class="p">)</span>    
+    <span class="n">pb</span><span class="o">.</span><span class="n">to_slide</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">fig</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>In which states is the sales volume higher?</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_map_state</span><span class="p">(</span><span class="s1">&#39;total_orders&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/bf60cb24df813b952bbaab4883b982aae899d9b4b4cba2a679f2361ef49c1741.jpg" src="../../_images/bf60cb24df813b952bbaab4883b982aae899d9b4b4cba2a679f2361ef49c1741.jpg" />
+</div>
+</div>
+<p><strong>What is the number of orders per resident?</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_map_state</span><span class="p">(</span><span class="s1">&#39;orders_per_thousand_person&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/0683bb11aae7bb4127b6b4bd30e2f46ce4ee7848770125a3c92fc5ca0e6e70a4.jpg" src="../../_images/0683bb11aae7bb4127b6b4bd30e2f46ce4ee7848770125a3c92fc5ca0e6e70a4.jpg" />
+</div>
+</div>
+<p><strong>In which states is the sales amount higher?</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_map_state</span><span class="p">(</span><span class="s1">&#39;total_payment&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/1d22c401adb8e11eee35d146c3116c395275a91dc1e4d93d326fde7fe59ec96f.jpg" src="../../_images/1d22c401adb8e11eee35d146c3116c395275a91dc1e4d93d326fde7fe59ec96f.jpg" />
+</div>
+</div>
+<p><strong>What is the sales amount per resident?</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_map_state</span><span class="p">(</span><span class="s1">&#39;total_payment_per_thousand_person&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/99f84e015f27c2df82f2aef736e4c9c310c0405ffabb005f429211622fa7552e.jpg" src="../../_images/99f84e015f27c2df82f2aef736e4c9c310c0405ffabb005f429211622fa7552e.jpg" />
+</div>
+</div>
+<p><strong>In which states is the average MAU higher?</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_map_state</span><span class="p">(</span><span class="s1">&#39;mau&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/b297e35d9bfa7ca48d7abe561b4d1d6c0d9d4152f090ce2992e0013954b5b0f7.jpg" src="../../_images/b297e35d9bfa7ca48d7abe561b4d1d6c0d9d4152f090ce2992e0013954b5b0f7.jpg" />
+</div>
+</div>
+<p><strong>What is the average order value higher in which states?</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_map_state</span><span class="p">(</span><span class="s1">&#39;aov&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/d38bd53386baceda4796f984a98a649f164fdeabd99e8e3b1ce44acfc7482b6c.jpg" src="../../_images/d38bd53386baceda4796f984a98a649f164fdeabd99e8e3b1ce44acfc7482b6c.jpg" />
+</div>
+</div>
+<p><strong>What is the proportion of repeat purchases by states?</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_map_state</span><span class="p">(</span><span class="s1">&#39;repeat_purchase_rate&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/75fb5fb6741d5cdd00d998060c5a64e35a7886349b48b38789633affacd7656e.jpg" src="../../_images/75fb5fb6741d5cdd00d998060c5a64e35a7886349b48b38789633affacd7656e.jpg" />
+</div>
+</div>
+<p><strong>In which states is the number of reviews higher?</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_map_state</span><span class="p">(</span><span class="s1">&#39;total_reviews&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/84a5ed3ab09b04ef490b8c74e9fa0709f96adfa6a913031a8222f2845a86beca.jpg" src="../../_images/84a5ed3ab09b04ef490b8c74e9fa0709f96adfa6a913031a8222f2845a86beca.jpg" />
+</div>
+</div>
+<p><strong>What is the review score higher in which states?</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_map_state</span><span class="p">(</span><span class="s1">&#39;avg_review_score&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/5d175ea08eb20fd12c8c3597cf18f9f71b06f4fae6634c1754f5b432a1770a0a.jpg" src="../../_images/5d175ea08eb20fd12c8c3597cf18f9f71b06f4fae6634c1754f5b432a1770a0a.jpg" />
+</div>
+</div>
+<p><strong>What is the average delivery time higher in which states?</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_map_state</span><span class="p">(</span><span class="s1">&#39;avg_delivery_time_days&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/49a82b943bb7a5411a4832f0d3b438482b0f218c8fb6a7be262fc4709d2ee3d2.jpg" src="../../_images/49a82b943bb7a5411a4832f0d3b438482b0f218c8fb6a7be262fc4709d2ee3d2.jpg" />
+</div>
+</div>
+<p><strong>What is the average delivery delay higher in which states?</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_map_state</span><span class="p">(</span><span class="s1">&#39;avg_delivery_delay_days&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/1c3c8f2927a0a7427f5a0ad4d3bc64f099be5f7539d148f6d43bdf16438eb578.jpg" src="../../_images/1c3c8f2927a0a7427f5a0ad4d3bc64f099be5f7539d148f6d43bdf16438eb578.jpg" />
+</div>
+</div>
+<p><strong>What is the proportion of canceled orders higher in which states?</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_map_state</span><span class="p">(</span><span class="s1">&#39;cancel_rate&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/31625b716f43ce6457e59969c6b0fac0940f30820f58ec66df2f6ba987d95f94.jpg" src="../../_images/31625b716f43ce6457e59969c6b0fac0940f30820f58ec66df2f6ba987d95f94.jpg" />
+</div>
+</div>
+<p><strong>What is the proportion of orders with installment payments higher in which states?</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_map_state</span><span class="p">(</span><span class="s1">&#39;installment_orders_rate&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/b3efd86cf356751be8e7d0a60d77120cefc0104267d5e13378b873f76744b82c.jpg" src="../../_images/b3efd86cf356751be8e7d0a60d77120cefc0104267d5e13378b873f76744b82c.jpg" />
+</div>
+</div>
+<p><strong>What is the number of installments higher in which states?</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_map_state</span><span class="p">(</span><span class="s1">&#39;avg_installments&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/f8ddb6c17aeac0709e0d37cc68552c6c5f1e6915973cc35aab74db4b8c1ab9b9.jpg" src="../../_images/f8ddb6c17aeac0709e0d37cc68552c6c5f1e6915973cc35aab74db4b8c1ab9b9.jpg" />
+</div>
+</div>
+<p><strong>What is the number of items per order higher in which states?</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_map_state</span><span class="p">(</span><span class="s1">&#39;avg_products_cnt&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/144fcafc1f322d5a93d952b645a8d1526359c4e85c2be2380b6faf4df572f0f4.jpg" src="../../_images/144fcafc1f322d5a93d952b645a8d1526359c4e85c2be2380b6faf4df572f0f4.jpg" />
+</div>
+</div>
+<p><strong>In which states are the heaviest orders?</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_map_state</span><span class="p">(</span><span class="s1">&#39;avg_order_weight_kg&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/54b44738f8f8e436d54d93c6913bdc18dd0fc22bde8d189c7392c0771b81716a.jpg" src="../../_images/54b44738f8f8e436d54d93c6913bdc18dd0fc22bde8d189c7392c0771b81716a.jpg" />
+</div>
+</div>
+<p><strong>In which states are the largest volume orders?</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_map_state</span><span class="p">(</span><span class="s1">&#39;avg_order_volume_cm3&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/c6050b9f1131317d0f27c6f04a3308976b7f78ff6c0b6f34efa75b1e7c53271e.jpg" src="../../_images/c6050b9f1131317d0f27c6f04a3308976b7f78ff6c0b6f34efa75b1e7c53271e.jpg" />
+</div>
+</div>
+<p><strong>What is the median retention of the first month higher in which states?</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_map_state</span><span class="p">(</span><span class="s1">&#39;retention_1st_month_state&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/3870f51deca9481761ec76929b31964521b1a1393253b3c1cbb2b676f368e2d0.jpg" src="../../_images/3870f51deca9481761ec76929b31964521b1a1393253b3c1cbb2b676f368e2d0.jpg" />
+</div>
+</div>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="09_payment_analysis.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Payment Analysis</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="11_cohort_analysis.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Cohort Analysis</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#geo-analysis-by-zip-codes">Geo-analysis by ZIP Codes</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-preparation">Data Preparation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-visualization">Data Visualization</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#geo-analysis-by-state">Geo-analysis by State</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Data Preparation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Data Visualization</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Pavel Grigoryev
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025, Pavel Grigoryev.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,1428 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Creating New Dimensions &#8212; 🌊 Deep Sales Analysis of Olist Marketplace</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=aa5847ba" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/custom.js?v=f9582d1e"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'contents/02_data_preprocessing/06_creating_new_dimensions';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Converting Data to a Convenient Format" href="07_converting_data_to_a_convenient_format.html" />
+    <link rel="prev" title="Creating New Metrics" href="05_creating_new_metrics.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo-light.png" class="logo__image only-light" alt="🌊 Deep Sales Analysis of Olist Marketplace - Home"/>
+    <script>document.write(`<img src="../../_static/logo-dark.png" class="logo__image only-dark" alt="🌊 Deep Sales Analysis of Olist Marketplace - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Description and Exploration</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../01_data_description_and_exploration/01_data_description.html">Data Description</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_data_description_and_exploration/02_data_loading.html">Data Loading</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_data_description_and_exploration/03_data_exploration.html">Data Exploration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_data_description_and_exploration/04_intermediate_conclusion.html">Intermediate Conclusion</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Preprocessing</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_initial_data_filtering.html">Initial Data Filtering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_outlier_handling.html">Outlier Handling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_missing_value_handling.html">Missing Value Handling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_duplicate_handling.html">Duplicate Handling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_creating_new_metrics.html">Creating New Metrics</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Creating New Dimensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_converting_data_to_a_convenient_format.html">Converting Data to a Convenient Format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_data_merging.html">Data Merging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_intermediate_conclusion.html">Intermediate Conclusion</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Analysis</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../03_data_analysis/01_creating_analysis_class.html">Creating Analysis Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_analysis/02_time_series_analysis.html">Time Series Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_analysis/03_customer_analysis.html">Customer Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_analysis/04_seller_analysis.html">Seller Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_analysis/05_sales_analysis.html">Sales Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_analysis/06_product_analysis.html">Product Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_analysis/07_review_analysis.html">Review Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_analysis/08_delivery_analysis.html">Delivery Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_analysis/09_payment_analysis.html">Payment Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_analysis/10_geographical_analysis.html">Geographical Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_analysis/11_cohort_analysis.html">Cohort Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_analysis/12_correlation_analysis.html">Correlation Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_analysis/13_slice_analysis.html">Slice Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_analysis/14_analysis_of_customer_segments.html">Analysis of Customer Segments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_analysis/15_rfm_analysis.html">RFM Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_analysis/16_customer_clustering.html">Customer Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_analysis/17_hypothesis_testing.html">Hypothesis Testing</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">General Conclusion</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/01_time_dynamics.html">Time Dynamics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/02_customers.html">Customers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/03_sales.html">Sales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/04_products.html">Products</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/05_reviews.html">Reviews</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/06_delivery.html">Delivery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/07_payments.html">Payments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/08_sellers.html">Sellers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/09_cohort_analysis.html">Cohort Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/10_correlation_analysis.html">Correlation Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/11_black_friday.html">Black Friday</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/12_cancelled_orders.html">Cancelled Orders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/13_hypothesis_testing_results.html">Hypothesis Testing Results</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/14_detected_anomalies.html">Detected Anomalies</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Recommendations</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/01_product_market_fit.html">Product market fit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/02_customer_loyalty_enhancement.html">Customer loyalty Enhancement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/03_customer_experience_improvement.html">Customer Experience Improvement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/04_logistics_and_delivery_optimization.html">Logistics and Delivery Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/05_financial_optimization.html">Financial optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/06_average_order_value_and_basket_optimization.html">Average Order Value and Basket Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/07_segment_specific_strategies.html">Segment-Specific Strategies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/08_product_and_assortment_management.html">Product and Assortment Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/09_marketing_and_promotion.html">Marketing and Promotion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/10_peak_season_preparedness.html">Peak Season Preparedness</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/11_analytics_and_monitoring.html">Analytics and Monitoring</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/12_ab_testing.html">A/B Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/13_anomaly.html">Anomaly</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/PavelGrigoryevDS/olist-deep-dive" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/contents/02_data_preprocessing/06_creating_new_dimensions.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Creating New Dimensions</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> On this page </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#table-payments">Table payments</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#table-orders">Table orders</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#table-reviews">Table reviews</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#table-products">Table products</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#table-df-geolocations">Table df_geolocations</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="creating-new-dimensions">
+<h1>Creating New Dimensions<a class="headerlink" href="#creating-new-dimensions" title="Link to this heading">#</a></h1>
+<p>We’ll create new dimensions for future analysis.</p>
+<section id="table-payments">
+<h2>Table payments<a class="headerlink" href="#table-payments" title="Link to this heading">#</a></h2>
+<p>Create a new dimension indicating installment payments.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_payments</span><span class="p">[</span><span class="s1">&#39;has_installments&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">df_payments</span><span class="o">.</span><span class="n">payment_installments</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_payments</span><span class="p">[</span><span class="s1">&#39;has_installments&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_payments</span><span class="o">.</span><span class="n">has_installments</span><span class="o">.</span><span class="n">map</span><span class="p">({</span><span class="kc">True</span><span class="p">:</span> <span class="s1">&#39;Has Installments&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">:</span> <span class="s1">&#39;No Installments&#39;</span><span class="p">})</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;category&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="table-orders">
+<h2>Table orders<a class="headerlink" href="#table-orders" title="Link to this heading">#</a></h2>
+<p><strong>Delivery Failure Reason</strong></p>
+<p>Categorize as follows (note: “approved” could fit both categories - we’ll classify it as service-side):</p>
+<ul class="simple">
+<li><p>Service-side issues: shipped, processing, unavailable, approved</p></li>
+<li><p>Customer-side issues: created, invoiced, canceled</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rules</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;No Issues&quot;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">==</span> <span class="s1">&#39;Delivered&#39;</span><span class="p">,</span>
+    <span class="s2">&quot;Service Issue&quot;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="s1">&#39;Approved&#39;</span><span class="p">,</span> <span class="s1">&#39;Shipped&#39;</span><span class="p">,</span> <span class="s1">&#39;Processing&#39;</span><span class="p">,</span> <span class="s1">&#39;Unavailable&#39;</span><span class="p">]),</span>
+    <span class="s1">&#39;Customer Issue&#39;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="s1">&#39;Created&#39;</span><span class="p">,</span> <span class="s1">&#39;Invoiced&#39;</span><span class="p">,</span> <span class="s1">&#39;Canceled&#39;</span><span class="p">]),</span>
+    <span class="s2">&quot;Missing Status&quot;</span><span class="p">:</span> <span class="s2">&quot;default&quot;</span>
+<span class="p">}</span>
+<span class="n">df_orders</span><span class="p">[</span><span class="s1">&#39;delivery_issue_reason&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_orders</span><span class="o">.</span><span class="n">order_status</span><span class="o">.</span><span class="n">preproc</span><span class="o">.</span><span class="n">to_categorical</span><span class="p">(</span><span class="n">rules</span><span class="o">=</span><span class="n">rules</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Count</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>No Issues</th>
+      <td>96211</td>
+    </tr>
+    <tr>
+      <th>Service Issue</th>
+      <td>2000</td>
+    </tr>
+    <tr>
+      <th>Customer Issue</th>
+      <td>881</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<hr class="docutils" />
+<p><strong>Delivery Delay Status</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rules</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;Missing Delivery Dt&quot;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">df_orders</span><span class="p">[</span><span class="s1">&#39;order_delivered_customer_dt&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span> <span class="o">|</span> <span class="n">df_orders</span><span class="p">[</span><span class="s1">&#39;order_estimated_delivery_dt&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">(),</span>
+    <span class="s2">&quot;Delayed&quot;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">df_orders</span><span class="p">[</span><span class="s1">&#39;order_delivered_customer_dt&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">df_orders</span><span class="p">[</span><span class="s1">&#39;order_estimated_delivery_dt&#39;</span><span class="p">],</span> 
+    <span class="s1">&#39;Not Delayed&#39;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">df_orders</span><span class="p">[</span><span class="s1">&#39;order_delivered_customer_dt&#39;</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">df_orders</span><span class="p">[</span><span class="s1">&#39;order_estimated_delivery_dt&#39;</span><span class="p">],</span>    
+    <span class="s2">&quot;Missing Delivery Dt&quot;</span><span class="p">:</span> <span class="s2">&quot;default&quot;</span>
+<span class="p">}</span>
+<span class="n">df_orders</span><span class="p">[</span><span class="s1">&#39;is_delayed&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_orders</span><span class="o">.</span><span class="n">order_delivered_customer_dt</span><span class="o">.</span><span class="n">preproc</span><span class="o">.</span><span class="n">to_categorical</span><span class="p">(</span><span class="n">rules</span><span class="o">=</span><span class="n">rules</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Count</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Not Delayed</th>
+      <td>88389</td>
+    </tr>
+    <tr>
+      <th>Delayed</th>
+      <td>7823</td>
+    </tr>
+    <tr>
+      <th>Missing Delivery Dt</th>
+      <td>2880</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<hr class="docutils" />
+<p><strong>Delivery Status</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rules</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;Delivered&quot;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">==</span> <span class="s1">&#39;Delivered&#39;</span><span class="p">,</span>
+    <span class="s2">&quot;Not Delivered&quot;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">!=</span> <span class="s1">&#39;Delivered&#39;</span><span class="p">,</span> 
+    <span class="s2">&quot;Missing Status&quot;</span><span class="p">:</span> <span class="s2">&quot;default&quot;</span>
+<span class="p">}</span>
+<span class="n">df_orders</span><span class="p">[</span><span class="s1">&#39;is_delivered&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_orders</span><span class="o">.</span><span class="n">order_status</span><span class="o">.</span><span class="n">preproc</span><span class="o">.</span><span class="n">to_categorical</span><span class="p">(</span><span class="n">rules</span><span class="o">=</span><span class="n">rules</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Count</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Delivered</th>
+      <td>96211</td>
+    </tr>
+    <tr>
+      <th>Not Delivered</th>
+      <td>2881</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<hr class="docutils" />
+<p><strong>Season</strong></p>
+<p>Create a season variable.</p>
+<p>Note: South American seasons differ from Europe due to hemispheric positioning.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rules</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;Summer&quot;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">month</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="mi">12</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]),</span>
+    <span class="s2">&quot;Autumn&quot;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">month</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]),</span>
+    <span class="s2">&quot;Winter&quot;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">month</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">]),</span>
+    <span class="s2">&quot;Spring&quot;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">month</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">]),</span>
+    <span class="s2">&quot;Missing Purchase Dt&quot;</span><span class="p">:</span> <span class="s2">&quot;default&quot;</span>
+<span class="p">}</span>
+<span class="n">df_orders</span><span class="p">[</span><span class="s1">&#39;purchase_season&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_orders</span><span class="o">.</span><span class="n">order_purchase_dt</span><span class="o">.</span><span class="n">preproc</span><span class="o">.</span><span class="n">to_categorical</span><span class="p">(</span><span class="n">rules</span><span class="o">=</span><span class="n">rules</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Count</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Winter</th>
+      <td>30573</td>
+    </tr>
+    <tr>
+      <th>Autumn</th>
+      <td>29809</td>
+    </tr>
+    <tr>
+      <th>Summer</th>
+      <td>22250</td>
+    </tr>
+    <tr>
+      <th>Spring</th>
+      <td>16460</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<hr class="docutils" />
+<p><strong>Year</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_orders</span><span class="p">[</span><span class="s1">&#39;purchase_year&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_orders</span><span class="p">[</span><span class="s1">&#39;order_purchase_dt&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">year</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="s1">&#39;Missing Purchase Dt&#39;</span><span class="p">)</span>
+<span class="n">df_orders</span><span class="p">[</span><span class="s1">&#39;purchase_year&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_orders</span><span class="p">[</span><span class="s1">&#39;purchase_year&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;category&#39;</span><span class="p">)</span>
+<span class="n">df_orders</span><span class="p">[</span><span class="s1">&#39;purchase_year&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>purchase_year
+2018    53991
+2017    45101
+Name: count, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<p><strong>Month Name</strong></p>
+<p>Create a month name variable for the orders table.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_orders</span><span class="p">[</span><span class="s1">&#39;purchase_month&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_orders</span><span class="p">[</span><span class="s1">&#39;order_purchase_dt&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">month_name</span><span class="p">()</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="s1">&#39;Missing Purchase Dt&#39;</span><span class="p">)</span>
+<span class="n">month_order</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;January&#39;</span><span class="p">,</span> <span class="s1">&#39;February&#39;</span><span class="p">,</span> <span class="s1">&#39;March&#39;</span><span class="p">,</span> <span class="s1">&#39;April&#39;</span><span class="p">,</span> <span class="s1">&#39;May&#39;</span><span class="p">,</span> <span class="s1">&#39;June&#39;</span><span class="p">,</span> <span class="s1">&#39;July&#39;</span><span class="p">,</span> <span class="s1">&#39;August&#39;</span><span class="p">,</span> <span class="s1">&#39;September&#39;</span><span class="p">,</span> <span class="s1">&#39;October&#39;</span><span class="p">,</span> <span class="s1">&#39;November&#39;</span><span class="p">,</span> <span class="s1">&#39;December&#39;</span><span class="p">]</span>
+<span class="n">df_orders</span><span class="p">[</span><span class="s1">&#39;purchase_month&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_orders</span><span class="p">[</span><span class="s1">&#39;purchase_month&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;category&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">cat</span><span class="o">.</span><span class="n">reorder_categories</span><span class="p">(</span><span class="n">month_order</span><span class="p">,</span> <span class="n">ordered</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">df_orders</span><span class="p">[</span><span class="s1">&#39;purchase_month&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>purchase_month
+August       10843
+May          10573
+July         10318
+March         9893
+June          9412
+April         9343
+February      8508
+January       8069
+November      7544
+December      5673
+October       4631
+September     4285
+Name: count, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<p><strong>Day Type</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rules</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;Weekend&quot;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">day_of_week</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]),</span>
+    <span class="s2">&quot;Weekday&quot;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">day_of_week</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)),</span>
+    <span class="s2">&quot;Missing Purchase Dt&quot;</span><span class="p">:</span> <span class="s2">&quot;default&quot;</span>
+<span class="p">}</span>
+<span class="n">df_orders</span><span class="p">[</span><span class="s1">&#39;purchase_day_type&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_orders</span><span class="o">.</span><span class="n">order_purchase_dt</span><span class="o">.</span><span class="n">preproc</span><span class="o">.</span><span class="n">to_categorical</span><span class="p">(</span><span class="n">rules</span><span class="o">=</span><span class="n">rules</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Count</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Weekday</th>
+      <td>76317</td>
+    </tr>
+    <tr>
+      <th>Weekend</th>
+      <td>22775</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<hr class="docutils" />
+<p><strong>Day of Week</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_orders</span><span class="p">[</span><span class="s1">&#39;purchase_weekday&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_orders</span><span class="p">[</span><span class="s1">&#39;order_purchase_dt&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">day_name</span><span class="p">()</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="s1">&#39;Missing Purchase Dt&#39;</span><span class="p">)</span>
+<span class="n">weekday_order</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Monday&#39;</span><span class="p">,</span> <span class="s1">&#39;Tuesday&#39;</span><span class="p">,</span> <span class="s1">&#39;Wednesday&#39;</span><span class="p">,</span> <span class="s1">&#39;Thursday&#39;</span><span class="p">,</span> <span class="s1">&#39;Friday&#39;</span><span class="p">,</span> <span class="s1">&#39;Saturday&#39;</span><span class="p">,</span> <span class="s1">&#39;Sunday&#39;</span><span class="p">]</span>
+<span class="n">df_orders</span><span class="p">[</span><span class="s1">&#39;purchase_weekday&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_orders</span><span class="p">[</span><span class="s1">&#39;purchase_weekday&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;category&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">cat</span><span class="o">.</span><span class="n">reorder_categories</span><span class="p">(</span><span class="n">weekday_order</span><span class="p">,</span> <span class="n">ordered</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">df_orders</span><span class="p">[</span><span class="s1">&#39;purchase_weekday&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">dropna</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>purchase_weekday
+Monday       16141
+Tuesday      15896
+Wednesday    15501
+Thursday     14704
+Friday       14075
+Sunday       11932
+Saturday     10843
+Name: count, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<p><strong>Time of Day</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rules</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;Morning&quot;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">hour</span><span class="o">.</span><span class="n">between</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">11</span><span class="p">),</span>
+    <span class="s2">&quot;Afternoon&quot;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">hour</span><span class="o">.</span><span class="n">between</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">16</span><span class="p">),</span>
+    <span class="s2">&quot;Evening&quot;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">hour</span><span class="o">.</span><span class="n">between</span><span class="p">(</span><span class="mi">17</span><span class="p">,</span><span class="mi">22</span><span class="p">),</span>
+    <span class="s2">&quot;Night&quot;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">hour</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="mi">23</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]),</span>
+    <span class="s2">&quot;Missing Purchase Dt&quot;</span><span class="p">:</span> <span class="s2">&quot;default&quot;</span>
+<span class="p">}</span>
+<span class="n">df_orders</span><span class="p">[</span><span class="s1">&#39;purchase_time_of_day&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_orders</span><span class="o">.</span><span class="n">order_purchase_dt</span><span class="o">.</span><span class="n">preproc</span><span class="o">.</span><span class="n">to_categorical</span><span class="p">(</span><span class="n">rules</span><span class="o">=</span><span class="n">rules</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Count</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Evening</th>
+      <td>36015</td>
+    </tr>
+    <tr>
+      <th>Afternoon</th>
+      <td>32095</td>
+    </tr>
+    <tr>
+      <th>Morning</th>
+      <td>22338</td>
+    </tr>
+    <tr>
+      <th>Night</th>
+      <td>8644</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<hr class="docutils" />
+<p><strong>Hour</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_orders</span><span class="p">[</span><span class="s1">&#39;purchase_hour&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_orders</span><span class="p">[</span><span class="s1">&#39;order_purchase_dt&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">hour</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="s1">&#39;Missing Purchase Dt&#39;</span><span class="p">)</span>
+<span class="n">df_orders</span><span class="p">[</span><span class="s1">&#39;purchase_hour&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_orders</span><span class="p">[</span><span class="s1">&#39;purchase_hour&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;category&#39;</span><span class="p">)</span>
+<span class="n">df_orders</span><span class="p">[</span><span class="s1">&#39;purchase_hour&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>purchase_hour
+16    6655
+11    6554
+14    6547
+13    6494
+15    6426
+21    6201
+20    6178
+10    6151
+17    6130
+12    5973
+19    5971
+22    5782
+18    5753
+9     4765
+23    4108
+8     2953
+0     2387
+7     1225
+1     1168
+2      506
+6      502
+3      272
+4      203
+5      188
+Name: count, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<p><strong>Delivery Time Category</strong></p>
+<p>Let’s look at quantiles</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_orders</span><span class="o">.</span><span class="n">delivery_time_days</span><span class="o">.</span><span class="n">quantile</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">,</span> <span class="mf">0.95</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.00     0.53
+0.05     3.01
+0.25     6.76
+0.50    10.21
+0.75    15.68
+0.95    29.22
+1.00   209.63
+Name: delivery_time_days, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Based on quantile analysis:</p>
+<ul class="simple">
+<li><p>Fast: ≤5 days</p></li>
+<li><p>Medium: 5-15 days</p></li>
+<li><p>Long: &gt;15 days</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Fast&#39;</span><span class="p">,</span> <span class="s1">&#39;Medium&#39;</span><span class="p">,</span> <span class="s1">&#39;Long&#39;</span><span class="p">]</span>
+<span class="n">bins</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_orders</span><span class="p">[</span><span class="s1">&#39;delivery_time_days_cat&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_orders</span><span class="o">.</span><span class="n">delivery_time_days</span><span class="o">.</span><span class="n">preproc</span><span class="o">.</span><span class="n">to_categorical</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;custom_bins&#39;</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">labels</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">bins</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Count</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Medium</th>
+      <td>56558</td>
+    </tr>
+    <tr>
+      <th>Long</th>
+      <td>26226</td>
+    </tr>
+    <tr>
+      <th>Fast</th>
+      <td>13428</td>
+    </tr>
+    <tr>
+      <th>NaN</th>
+      <td>2880</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="table-reviews">
+<h2>Table reviews<a class="headerlink" href="#table-reviews" title="Link to this heading">#</a></h2>
+<p><strong>Season</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rules</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;Summer&quot;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">month</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="mi">12</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]),</span>
+    <span class="s2">&quot;Autumn&quot;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">month</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]),</span>
+    <span class="s2">&quot;Winter&quot;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">month</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">]),</span>
+    <span class="s2">&quot;Spring&quot;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">month</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">]),</span>
+    <span class="s2">&quot;Missing Review Dt&quot;</span><span class="p">:</span> <span class="s2">&quot;default&quot;</span>
+<span class="p">}</span>
+<span class="n">df_reviews</span><span class="p">[</span><span class="s1">&#39;review_season&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_reviews</span><span class="o">.</span><span class="n">review_creation_dt</span><span class="o">.</span><span class="n">preproc</span><span class="o">.</span><span class="n">to_categorical</span><span class="p">(</span><span class="n">rules</span><span class="o">=</span><span class="n">rules</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Count</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Winter</th>
+      <td>32975</td>
+    </tr>
+    <tr>
+      <th>Autumn</th>
+      <td>31031</td>
+    </tr>
+    <tr>
+      <th>Summer</th>
+      <td>22124</td>
+    </tr>
+    <tr>
+      <th>Spring</th>
+      <td>13518</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<hr class="docutils" />
+<p><strong>Day Type</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rules</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;Weekend&quot;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">day_of_week</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]),</span>
+    <span class="s2">&quot;Weekday&quot;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">day_of_week</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)),</span>
+    <span class="s2">&quot;Missing Review Dt&quot;</span><span class="p">:</span> <span class="s2">&quot;default&quot;</span>
+<span class="p">}</span>
+<span class="n">df_reviews</span><span class="p">[</span><span class="s1">&#39;review_day_type&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_reviews</span><span class="o">.</span><span class="n">review_creation_dt</span><span class="o">.</span><span class="n">preproc</span><span class="o">.</span><span class="n">to_categorical</span><span class="p">(</span><span class="n">rules</span><span class="o">=</span><span class="n">rules</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Count</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Weekday</th>
+      <td>75263</td>
+    </tr>
+    <tr>
+      <th>Weekend</th>
+      <td>24385</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<hr class="docutils" />
+<p><strong>Day of Week</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_reviews</span><span class="p">[</span><span class="s1">&#39;review_creation_weekday&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_reviews</span><span class="p">[</span><span class="s1">&#39;review_creation_dt&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">day_name</span><span class="p">()</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="s1">&#39;Missing Review Dt&#39;</span><span class="p">)</span>
+<span class="n">weekday_order</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Monday&#39;</span><span class="p">,</span> <span class="s1">&#39;Tuesday&#39;</span><span class="p">,</span> <span class="s1">&#39;Wednesday&#39;</span><span class="p">,</span> <span class="s1">&#39;Thursday&#39;</span><span class="p">,</span> <span class="s1">&#39;Friday&#39;</span><span class="p">,</span> <span class="s1">&#39;Saturday&#39;</span><span class="p">,</span> <span class="s1">&#39;Sunday&#39;</span><span class="p">]</span>
+<span class="n">df_reviews</span><span class="p">[</span><span class="s1">&#39;review_creation_weekday&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_reviews</span><span class="p">[</span><span class="s1">&#39;review_creation_weekday&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;category&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">cat</span><span class="o">.</span><span class="n">reorder_categories</span><span class="p">(</span><span class="n">weekday_order</span><span class="p">,</span> <span class="n">ordered</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">df_reviews</span><span class="p">[</span><span class="s1">&#39;review_creation_weekday&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>review_creation_weekday
+Wednesday    19232
+Thursday     18907
+Tuesday      18163
+Friday       17858
+Saturday     17846
+Sunday        6539
+Monday        1103
+Name: count, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="table-products">
+<h2>Table products<a class="headerlink" href="#table-products" title="Link to this heading">#</a></h2>
+<p><strong>Translate category names to English</strong></p>
+<p>Verify key consistency.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fron</span><span class="o">.</span><span class="n">analyze_join_keys</span><span class="p">(</span><span class="n">df_products</span><span class="p">,</span> <span class="n">df_categories</span><span class="p">,</span> <span class="s1">&#39;product_category_name&#39;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style type="text/css">
+#T_e8ec3 caption {
+  font-size: 16px;
+  text-align: left;
+  font-weight: bold;
+  white-space: nowrap;
+}
+#T_e8ec3 th {
+  text-align: left;
+}
+#T_e8ec3_row0_col0, #T_e8ec3_row0_col1, #T_e8ec3_row0_col2, #T_e8ec3_row0_col3, #T_e8ec3_row0_col4, #T_e8ec3_row0_col5 {
+  text-align: left;
+}
+</style>
+<table id="T_e8ec3">
+  <caption>Join info</caption>
+  <thead>
+    <tr>
+      <th id="T_e8ec3_level0_col0" class="col_heading level0 col0" >Type</th>
+      <th id="T_e8ec3_level0_col1" class="col_heading level0 col1" >Left-only keys</th>
+      <th id="T_e8ec3_level0_col2" class="col_heading level0 col2" >Right-only keys</th>
+      <th id="T_e8ec3_level0_col3" class="col_heading level0 col3" >Left size</th>
+      <th id="T_e8ec3_level0_col4" class="col_heading level0 col4" >Right size</th>
+      <th id="T_e8ec3_level0_col5" class="col_heading level0 col5" >Left join size</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td id="T_e8ec3_row0_col0" class="data row0 col0" >N:1</td>
+      <td id="T_e8ec3_row0_col1" class="data row0 col1" >3</td>
+      <td id="T_e8ec3_row0_col2" class="data row0 col2" >0</td>
+      <td id="T_e8ec3_row0_col3" class="data row0 col3" >32,951</td>
+      <td id="T_e8ec3_row0_col4" class="data row0 col4" >71</td>
+      <td id="T_e8ec3_row0_col5" class="data row0 col5" >32,951</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p>Examine category discrepancies.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">setdiff1d</span><span class="p">(</span><span class="n">df_products</span><span class="o">.</span><span class="n">product_category_name</span><span class="o">.</span><span class="n">unique</span><span class="p">(),</span> <span class="n">df_categories</span><span class="o">.</span><span class="n">product_category_name</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;Missing in Products&#39;, &#39;pc_gamer&#39;,
+       &#39;portateis_cozinha_e_preparadores_de_alimentos&#39;], dtype=object)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Add English translations.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_categories</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df_categories</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;pc_gamer&#39;</span><span class="p">,</span> <span class="s1">&#39;Gaming Pc&#39;</span><span class="p">)</span>
+<span class="n">df_categories</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df_categories</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;portateis_cozinha_e_preparadores_de_alimentos&#39;</span><span class="p">,</span> <span class="s1">&#39;Kitchen Appliances And Food Preparers&#39;</span><span class="p">)</span>
+<span class="n">df_categories</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df_categories</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;Missing in Products&#39;</span><span class="p">,</span> <span class="s1">&#39;Missing in Products&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Replace categories with English versions.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_products</span> <span class="o">=</span> <span class="p">(</span><span class="n">df_products</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df_categories</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;product_category_name&#39;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
+               <span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;product_category_name&#39;</span><span class="p">])</span>
+               <span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;product_category_name_english&#39;</span><span class="p">:</span><span class="s1">&#39;product_category&#39;</span><span class="p">})</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Check for missing values.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_products</span><span class="o">.</span><span class="n">explore</span><span class="o">.</span><span class="n">detect_anomalies</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style type="text/css">
+#T_e02ef caption {
+  font-size: 16px;
+  text-align: left;
+  font-weight: bold;
+  white-space: nowrap;
+}
+#T_e02ef th {
+  text-align: left;
+}
+#T_e02ef_row0_col0, #T_e02ef_row0_col1, #T_e02ef_row1_col0, #T_e02ef_row1_col1 {
+  text-align: left;
+}
+</style>
+<table id="T_e02ef">
+  <caption>Missings by Column</caption>
+  <thead>
+    <tr>
+      <th class="blank level0" >&nbsp;</th>
+      <th id="T_e02ef_level0_col0" class="col_heading level0 col0" >Count</th>
+      <th id="T_e02ef_level0_col1" class="col_heading level0 col1" >Percent</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_e02ef_level0_row0" class="row_heading level0 row0" >product_name_lenght</th>
+      <td id="T_e02ef_row0_col0" class="data row0 col0" >610</td>
+      <td id="T_e02ef_row0_col1" class="data row0 col1" >1.85%</td>
+    </tr>
+    <tr>
+      <th id="T_e02ef_level0_row1" class="row_heading level0 row1" >product_description_lenght</th>
+      <td id="T_e02ef_row1_col0" class="data row1 col0" >610</td>
+      <td id="T_e02ef_row1_col1" class="data row1 col1" >1.85%</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<hr class="docutils" />
+<p><strong>Generalized Product Categories</strong></p>
+<p>Create broader product categories for visualization.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">category_mapping</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;Furniture&#39;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s1">&#39;Office Furniture&#39;</span><span class="p">,</span> <span class="s1">&#39;Furniture Decor&#39;</span><span class="p">,</span> <span class="s1">&#39;Furniture Living Room&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;Kitchen Dining Laundry Garden Furniture&#39;</span><span class="p">,</span> <span class="s1">&#39;Bed Bath Table&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;Home Comfort&#39;</span><span class="p">,</span> <span class="s1">&#39;Home Comfort 2&#39;</span><span class="p">,</span> <span class="s1">&#39;Home Construction&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;Garden Tools&#39;</span><span class="p">,</span> <span class="s1">&#39;Furniture Bedroom&#39;</span><span class="p">,</span> <span class="s1">&#39;Furniture Mattress And Upholstery&#39;</span>
+    <span class="p">],</span>
+    <span class="s1">&#39;Electronics&#39;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s1">&#39;Auto&#39;</span><span class="p">,</span> <span class="s1">&#39;Computers Accessories&#39;</span><span class="p">,</span> <span class="s1">&#39;Gaming Pc&#39;</span><span class="p">,</span> <span class="s1">&#39;Musical Instruments&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;Consoles Games&#39;</span><span class="p">,</span> <span class="s1">&#39;Watches Gifts&#39;</span><span class="p">,</span> <span class="s1">&#39;Air Conditioning&#39;</span><span class="p">,</span> <span class="s1">&#39;Telephony&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;Electronics&#39;</span><span class="p">,</span> <span class="s1">&#39;Fixed Telephony&#39;</span><span class="p">,</span> <span class="s1">&#39;Tablets Printing Image&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;Computers&#39;</span><span class="p">,</span> <span class="s1">&#39;Small Appliances Home Oven And Coffee&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;Small Appliances&#39;</span><span class="p">,</span> <span class="s1">&#39;Audio&#39;</span><span class="p">,</span> <span class="s1">&#39;Signaling And Security&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;Security And Services&#39;</span>
+    <span class="p">],</span>
+    <span class="s1">&#39;Fashion&#39;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s1">&#39;Fashio Female Clothing&#39;</span><span class="p">,</span> <span class="s1">&#39;Fashion Male Clothing&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;Fashion Bags Accessories&#39;</span><span class="p">,</span> <span class="s1">&#39;Fashion Shoes&#39;</span><span class="p">,</span> <span class="s1">&#39;Fashion Sport&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;Fashion Underwear Beach&#39;</span><span class="p">,</span> <span class="s1">&#39;Fashion Childrens Clothes&#39;</span><span class="p">,</span> <span class="s1">&#39;Baby&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;Cool Stuff&#39;</span>
+    <span class="p">],</span>
+    <span class="s1">&#39;Home &amp; Garden&#39;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s1">&#39;Housewares&#39;</span><span class="p">,</span> <span class="s1">&#39;Kitchen Appliances And Food Preparers&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;Home Confort&#39;</span><span class="p">,</span> <span class="s1">&#39;Home Appliances&#39;</span><span class="p">,</span> <span class="s1">&#39;Home Appliances 2&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;Flowers&#39;</span><span class="p">,</span> <span class="s1">&#39;Costruction Tools Garden&#39;</span><span class="p">,</span> <span class="s1">&#39;Garden Tools&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;Construction Tools Lights&#39;</span><span class="p">,</span> <span class="s1">&#39;Costruction Tools Tools&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;Luggage Accessories&#39;</span><span class="p">,</span> <span class="s1">&#39;La Cuisine&#39;</span><span class="p">,</span> <span class="s1">&#39;Pet Shop&#39;</span><span class="p">,</span> <span class="s1">&#39;Market Place&#39;</span>
+    <span class="p">],</span>
+    <span class="s1">&#39;Entertainment&#39;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s1">&#39;Sports Leisure&#39;</span><span class="p">,</span> <span class="s1">&#39;Toys&#39;</span><span class="p">,</span> <span class="s1">&#39;Cds Dvds Musicals&#39;</span><span class="p">,</span> <span class="s1">&#39;Music&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;Dvds Blu Ray&#39;</span><span class="p">,</span> <span class="s1">&#39;Cine Photo&#39;</span><span class="p">,</span> <span class="s1">&#39;Party Supplies&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;Christmas Supplies&#39;</span><span class="p">,</span> <span class="s1">&#39;Arts And Craftmanship&#39;</span><span class="p">,</span> <span class="s1">&#39;Art&#39;</span>
+    <span class="p">],</span>
+    <span class="s1">&#39;Beauty &amp; Health&#39;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s1">&#39;Health Beauty&#39;</span><span class="p">,</span> <span class="s1">&#39;Perfumery&#39;</span><span class="p">,</span> <span class="s1">&#39;Diapers And Hygiene&#39;</span>
+    <span class="p">],</span>
+    <span class="s1">&#39;Food &amp; Drinks&#39;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s1">&#39;Food Drink&#39;</span><span class="p">,</span> <span class="s1">&#39;Drinks&#39;</span><span class="p">,</span> <span class="s1">&#39;Food&#39;</span>
+    <span class="p">],</span>
+    <span class="s1">&#39;Books &amp; Stationery&#39;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s1">&#39;Books General Interest&#39;</span><span class="p">,</span> <span class="s1">&#39;Books Technical&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;Books Imported&#39;</span><span class="p">,</span> <span class="s1">&#39;Stationery&#39;</span>
+    <span class="p">],</span>
+    <span class="s1">&#39;Industry &amp; Construction&#39;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s1">&#39;Construction Tools Construction&#39;</span><span class="p">,</span> <span class="s1">&#39;Construction Tools Safety&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;Industry Commerce And Business&#39;</span><span class="p">,</span> <span class="s1">&#39;Agro Industry And Commerce&#39;</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+
+<span class="n">category_dict</span> <span class="o">=</span> <span class="p">{</span><span class="n">item</span><span class="p">:</span> <span class="n">category</span> <span class="k">for</span> <span class="n">category</span><span class="p">,</span> <span class="n">items</span> <span class="ow">in</span> <span class="n">category_mapping</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">items</span><span class="p">}</span>
+<span class="n">df_products</span><span class="p">[</span><span class="s1">&#39;general_product_category&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_products</span><span class="p">[</span><span class="s1">&#39;product_category&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">category_dict</span><span class="p">)</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="s1">&#39;Missing in Products&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;category&#39;</span><span class="p">)</span>
+<span class="n">df_products</span><span class="p">[</span><span class="s1">&#39;general_product_category&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">dropna</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>general_product_category
+Electronics                7822
+Furniture                  6530
+Home &amp; Garden              5070
+Entertainment              4547
+Beauty &amp; Health            3324
+Fashion                    2929
+Books &amp; Stationery         1219
+Industry &amp; Construction     633
+Missing in Products         610
+Food &amp; Drinks               267
+Name: count, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="table-df-geolocations">
+<h2>Table df_geolocations<a class="headerlink" href="#table-df-geolocations" title="Link to this heading">#</a></h2>
+<p>Add a field indicating South American coordinates.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_geolocations</span><span class="p">[</span><span class="s1">&#39;in_south_america&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="p">(</span><span class="n">df_geolocations</span><span class="o">.</span><span class="n">geolocation_lat</span> <span class="o">&gt;=</span> <span class="o">-</span><span class="mf">53.90</span><span class="p">)</span> <span class="o">&amp;</span>  <span class="c1"># Southern border</span>
+    <span class="p">(</span><span class="n">df_geolocations</span><span class="o">.</span><span class="n">geolocation_lat</span> <span class="o">&lt;=</span> <span class="mf">12.45</span><span class="p">)</span> <span class="o">&amp;</span>   <span class="c1"># Northern border</span>
+    <span class="p">(</span><span class="n">df_geolocations</span><span class="o">.</span><span class="n">geolocation_lng</span> <span class="o">&gt;=</span> <span class="o">-</span><span class="mf">81.32</span><span class="p">)</span> <span class="o">&amp;</span>  <span class="c1"># Western border</span>
+    <span class="p">(</span><span class="n">df_geolocations</span><span class="o">.</span><span class="n">geolocation_lng</span> <span class="o">&lt;=</span> <span class="o">-</span><span class="mf">34.79</span><span class="p">)</span>    <span class="c1"># Eastern border</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="05_creating_new_metrics.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Creating New Metrics</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="07_converting_data_to_a_convenient_format.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Converting Data to a Convenient Format</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#table-payments">Table payments</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#table-orders">Table orders</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#table-reviews">Table reviews</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#table-products">Table products</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#table-df-geolocations">Table df_geolocations</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Pavel Grigoryev
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025, Pavel Grigoryev.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

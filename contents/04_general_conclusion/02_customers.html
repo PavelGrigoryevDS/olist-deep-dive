@@ -1,0 +1,995 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Customers &#8212; 🌊 Deep Sales Analysis of Olist Marketplace</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=aa5847ba" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/custom.js?v=f9582d1e"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'contents/04_general_conclusion/02_customers';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Sales" href="03_sales.html" />
+    <link rel="prev" title="Time Dynamics" href="01_time_dynamics.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo-light.png" class="logo__image only-light" alt="🌊 Deep Sales Analysis of Olist Marketplace - Home"/>
+    <script>document.write(`<img src="../../_static/logo-dark.png" class="logo__image only-dark" alt="🌊 Deep Sales Analysis of Olist Marketplace - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Description and Exploration</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../01_data_description_and_exploration/01_data_description.html">Data Description</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_data_description_and_exploration/02_data_loading.html">Data Loading</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_data_description_and_exploration/03_data_exploration.html">Data Exploration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_data_description_and_exploration/04_intermediate_conclusion.html">Intermediate Conclusion</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Preprocessing</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../02_data_preprocessing/01_initial_data_filtering.html">Initial Data Filtering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_data_preprocessing/02_outlier_handling.html">Outlier Handling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_data_preprocessing/03_missing_value_handling.html">Missing Value Handling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_data_preprocessing/04_duplicate_handling.html">Duplicate Handling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_data_preprocessing/05_creating_new_metrics.html">Creating New Metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_data_preprocessing/06_creating_new_dimensions.html">Creating New Dimensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_data_preprocessing/07_converting_data_to_a_convenient_format.html">Converting Data to a Convenient Format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_data_preprocessing/08_data_merging.html">Data Merging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_data_preprocessing/09_intermediate_conclusion.html">Intermediate Conclusion</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Analysis</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../03_data_analysis/01_creating_analysis_class.html">Creating Analysis Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_analysis/02_time_series_analysis.html">Time Series Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_analysis/03_customer_analysis.html">Customer Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_analysis/04_seller_analysis.html">Seller Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_analysis/05_sales_analysis.html">Sales Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_analysis/06_product_analysis.html">Product Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_analysis/07_review_analysis.html">Review Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_analysis/08_delivery_analysis.html">Delivery Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_analysis/09_payment_analysis.html">Payment Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_analysis/10_geographical_analysis.html">Geographical Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_analysis/11_cohort_analysis.html">Cohort Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_analysis/12_correlation_analysis.html">Correlation Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_analysis/13_slice_analysis.html">Slice Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_analysis/14_analysis_of_customer_segments.html">Analysis of Customer Segments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_analysis/15_rfm_analysis.html">RFM Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_analysis/16_customer_clustering.html">Customer Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_analysis/17_hypothesis_testing.html">Hypothesis Testing</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">General Conclusion</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_time_dynamics.html">Time Dynamics</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Customers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_sales.html">Sales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_products.html">Products</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_reviews.html">Reviews</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_delivery.html">Delivery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_payments.html">Payments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_sellers.html">Sellers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_cohort_analysis.html">Cohort Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_correlation_analysis.html">Correlation Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_black_friday.html">Black Friday</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_cancelled_orders.html">Cancelled Orders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_hypothesis_testing_results.html">Hypothesis Testing Results</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14_detected_anomalies.html">Detected Anomalies</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Recommendations</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/01_product_market_fit.html">Product market fit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/02_customer_loyalty_enhancement.html">Customer loyalty Enhancement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/03_customer_experience_improvement.html">Customer Experience Improvement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/04_logistics_and_delivery_optimization.html">Logistics and Delivery Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/05_financial_optimization.html">Financial optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/06_average_order_value_and_basket_optimization.html">Average Order Value and Basket Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/07_segment_specific_strategies.html">Segment-Specific Strategies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/08_product_and_assortment_management.html">Product and Assortment Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/09_marketing_and_promotion.html">Marketing and Promotion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/10_peak_season_preparedness.html">Peak Season Preparedness</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/11_analytics_and_monitoring.html">Analytics and Monitoring</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/12_ab_testing.html">A/B Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/13_anomaly.html">Anomaly</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/PavelGrigoryevDS/olist-deep-dive" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/contents/04_general_conclusion/02_customers.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Customers</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> On this page </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#typical-customer-profile">Typical Customer Profile</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rfm">RFM</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#customer-segmentation">Customer Segmentation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#customer-profiling">Customer Profiling</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#customer-clustering">Customer Clustering</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#all-customers">All Customers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#customers-with-multiple-purchases">Customers with Multiple Purchases</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="customers">
+<h1>Customers<a class="headerlink" href="#customers" title="Link to this heading">#</a></h1>
+<section id="typical-customer-profile">
+<h2>Typical Customer Profile<a class="headerlink" href="#typical-customer-profile" title="Link to this heading">#</a></h2>
+<p><strong>Daily Activity</strong>:</p>
+<ul class="simple">
+<li><p>Typical daily customers: 100-215</p></li>
+<li><p>5% of days had ≤45 customers; 5% had ≥291 customers</p></li>
+</ul>
+<p><strong>Purchase Behavior</strong>:</p>
+<ul class="simple">
+<li><p>97% made only 1 successful purchase</p></li>
+<li><p>Only 3% made &gt;1 purchase</p></li>
+<li><p>0.24% made ≥3 purchases</p></li>
+<li><p>0.05% made ≥4 purchases</p></li>
+<li><p>0.02% made ≥5 purchases</p></li>
+<li><p>0.01% made ≥6 purchases</p></li>
+<li><p>30% made repeat purchases within 24h (likely multiple orders in one session)</p></li>
+</ul>
+<p><strong>Financial Metrics</strong>:</p>
+<ul class="simple">
+<li><p>75% have lifetime spend &lt;185 R$</p></li>
+<li><p>5% have lifetime spend ≥470 R$</p></li>
+<li><p>75% have average shipping cost ≤24 R$</p></li>
+<li><p>5% have average shipping cost ≥54 R$</p></li>
+</ul>
+<p><strong>Order Characteristics</strong>:</p>
+<ul class="simple">
+<li><p>87% average 1 product per order</p></li>
+<li><p>1% average ≥3 products per order</p></li>
+<li><p>75% have average order weight ≤2kg</p></li>
+<li><p>5% have average order weight ≥10kg</p></li>
+</ul>
+<p><strong>Delivery Experience</strong>:</p>
+<ul class="simple">
+<li><p>75% experience average delivery time ≤16 days</p></li>
+<li><p>5% experience ≥29 days delivery</p></li>
+<li><p>Median delivery acceleration: 6-16 days</p></li>
+<li><p>5% experience ≥4 days delivery delay</p></li>
+</ul>
+<p><strong>Customer Retention</strong>:</p>
+<ul class="simple">
+<li><p>Median time between purchases: ≤125 days (75% of customers)</p></li>
+<li><p>Maximum consecutive months purchasing: 6 months (1 customer)</p></li>
+<li><p>Customers with consecutive month purchases:</p></li>
+<li><p>3 months: 8 customers</p></li>
+<li><p>2 months: 438 customers</p></li>
+</ul>
+</section>
+<section id="rfm">
+<h2>RFM<a class="headerlink" href="#rfm" title="Link to this heading">#</a></h2>
+<p><strong>Top Segments</strong>:</p>
+<ul class="simple">
+<li><p>High frequency + recent (fr33): Highest spenders</p></li>
+<li><p>High frequency + monetary (fm33): Most customers with r3 (frequent, recent, high-value)</p></li>
+</ul>
+<p><strong>Loyalty Distribution</strong>:</p>
+<ul class="simple">
+<li><p>Hibernating: 22%</p></li>
+<li><p>About to Sleep: 18%</p></li>
+<li><p>Promising: 14%</p></li>
+<li><p>Champions: 4%</p></li>
+<li><p>Loyal: 7%</p></li>
+<li><p>Lost: 4%</p></li>
+</ul>
+</section>
+<section id="customer-segmentation">
+<h2>Customer Segmentation<a class="headerlink" href="#customer-segmentation" title="Link to this heading">#</a></h2>
+<p><strong>By Activity Segment</strong></p>
+<ul class="simple">
+<li><p>3% (of all customers) did not make a single successful purchase.</p></li>
+<li><p>94% of successful customers made only one purchase.</p></li>
+<li><p>1% each in the Potential Core Audience and Short-Lived Repeat segments.</p></li>
+<li><p>The Core Audience accounts for less than 1%.</p></li>
+<li><p>The highest metric values are in the Core segment. Potential Core ranks second.</p></li>
+<li><p>The median average rating is higher among those who made only one purchase.</p></li>
+<li><p>Delivery time outperformance is highest in the Core segment and lowest in the One-Time segment.</p></li>
+</ul>
+<hr class="docutils" />
+<p><strong>By Purchase Amount Segment</strong></p>
+<ul class="simple">
+<li><p>49% of customers fall into the medium purchase amount segment. 24% each in the high and low segments.</p></li>
+<li><p>The high purchase amount segment spends the most. This is logical.</p></li>
+<li><p>The high purchase amount segment has a higher median value for average order weight.</p></li>
+</ul>
+<hr class="docutils" />
+<p><strong>By Purchase Frequency Segment</strong></p>
+<ul class="simple">
+<li><p>Among those who made repeat purchases, the most common frequency is once a week (1%).</p></li>
+<li><p>Segments with quarterly or semi-annual purchases have higher metric values than other segments.</p></li>
+</ul>
+<hr class="docutils" />
+<p><strong>By Time to Repeat Purchase Segment</strong></p>
+<ul class="simple">
+<li><p>In terms of time to repeat purchase, among those who made repeat purchases, the medium segment is the smallest (&lt;1%).</p></li>
+<li><p>The segment with quick repeat purchases has worse metric performance than segments with medium or long times to the second purchase.</p></li>
+</ul>
+<hr class="docutils" />
+<p><strong>By Loyalty Segment</strong></p>
+<ul class="simple">
+<li><p>Promoters dominate the loyalty segment (58%). Critics are the smallest group (13%).</p></li>
+<li><p>Critics (review score below 3) have higher total payment amounts and average order values than promoters and neutrals.</p></li>
+<li><p>Critics have a very low time between first and last purchase, meaning they rarely return.</p></li>
+<li><p>Critics, on average, purchase heavier orders.</p></li>
+<li><p>Critics also have the worst median delivery time outperformance, meaning their deliveries take longer.</p></li>
+</ul>
+<hr class="docutils" />
+<p><strong>By Risk Segment</strong></p>
+<ul class="simple">
+<li><p>99.5% of customers are in the reliable category, meaning they did not cancel orders.</p></li>
+<li><p>The segment that canceled at least one order has a much lower time between first and second purchases compared to the segment without cancellations.</p></li>
+<li><p>However, the segment with order cancellations has higher median values for total purchase amounts and average order values.</p></li>
+</ul>
+<hr class="docutils" />
+<p><strong>By Day of Week Segment</strong></p>
+<ul class="simple">
+<li><p>75% of customers made purchases only on weekdays.</p></li>
+<li><p>The segment that made purchases not only on weekends has a significantly higher time between first and last purchases.</p></li>
+</ul>
+<hr class="docutils" />
+<p><strong>By Installment Segment</strong></p>
+<ul class="simple">
+<li><p>50% of customers used installments at least once. 47% always paid in full upfront.</p></li>
+<li><p>The installment segment has significantly higher median values for total purchase amounts, average order values, order weight, and time between first and lastpurchases.</p></li>
+</ul>
+<hr class="docutils" />
+<p><strong>By Average Number of Products per Order Segment</strong></p>
+<ul class="simple">
+<li><p>88% of customers had no more than one product per order.</p></li>
+<li><p>8% had an average of 1 to 2 products.</p></li>
+<li><p>Only 2% of customers had an average of more than 2 products per order.</p></li>
+<li><p>The segment with 2 or more products per order has significantly higher values for average order weight, total purchase amounts, and average order values. They alsohave a longer time between first and last purchases.</p></li>
+</ul>
+<hr class="docutils" />
+<p><strong>By Average Order Weight Segment</strong></p>
+<ul class="simple">
+<li><p>39% of customers purchased lightweight products on average. 37% - medium. 21% - heavy.</p></li>
+<li><p>The segment with heavy orders has significantly higher total purchase amounts and average order values.</p></li>
+<li><p>The lightweight segment has a shorter time between first and last purchases compared to the medium and heavy segments.</p></li>
+</ul>
+<hr class="docutils" />
+<p><strong>By Top Days of Week</strong></p>
+<ul class="simple">
+<li><p>Most customers made purchases on only one day of the week. This is logical, given the low number of repeat purchases.</p></li>
+<li><p>The top 3 days by customer count: Monday, Tuesday, and Wednesday.</p></li>
+<li><p>Interestingly, customers who made purchases only on Monday have a longer time between first and last purchases than others in the top 5 segments. But this is likelycoincidental.</p></li>
+</ul>
+<hr class="docutils" />
+<p><strong>By Top Payment Types</strong></p>
+<ul class="simple">
+<li><p>The most common payment method was credit card only (73%). Boleto ranks second (19%).</p></li>
+<li><p>The segment that used only vouchers has lower total purchase amounts and average order values than other segments in the top 5 payment types.</p></li>
+</ul>
+<hr class="docutils" />
+<p><strong>By Top Product Categories</strong></p>
+<ul class="simple">
+<li><p>The largest number of customers purchased only from the Bed Bath Table and Health Beauty categories.</p></li>
+<li><p>Customers who purchased only sports goods have a longer time between first and last purchases than other segments by product category.</p></li>
+</ul>
+<hr class="docutils" />
+<p><strong>By Top Generalized Product Categories</strong></p>
+<ul class="simple">
+<li><p>Among the top 5 segments by generalized product category, the largest share of customers purchased only from</p>
+<ul>
+<li><p>Electronics (26%)</p></li>
+<li><p>Furniture (17%)</p></li>
+<li><p>Home &amp; Garden (14%).</p></li>
+</ul>
+</li>
+</ul>
+<hr class="docutils" />
+<p><strong>By Customer State</strong></p>
+<ul class="simple">
+<li><p>42% of customers are from São Paulo.</p></li>
+<li><p>13% - Rio de Janeiro.</p></li>
+<li><p>12% - Minas Gerais.</p></li>
+</ul>
+<hr class="docutils" />
+<p><strong>By Customer City</strong></p>
+<ul class="simple">
+<li><p>16% of customers are from São Paulo.</p></li>
+<li><p>7% - Rio de Janeiro.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="customer-profiling">
+<h2>Customer Profiling<a class="headerlink" href="#customer-profiling" title="Link to this heading">#</a></h2>
+<p><strong>By Purchase Frequency and Loyalty</strong></p>
+<ul class="simple">
+<li><p>One-Time Buyers (94%):</p>
+<ul>
+<li><p>Make only one purchase.</p></li>
+<li><p>Low engagement (short time between purchases).</p></li>
+</ul>
+</li>
+<li><p>Potential Core (1%):</p>
+<ul>
+<li><p>Potentially loyal but not yet part of the core.</p></li>
+<li><p>High metrics (second only to Core).</p></li>
+</ul>
+</li>
+<li><p>Core (&lt;1%):</p>
+<ul>
+<li><p>Core audience: most loyal, high spending, best metrics.</p></li>
+</ul>
+</li>
+<li><p>Short-Lived Repeat (1%):</p>
+<ul>
+<li><p>Short-term loyalty.</p></li>
+</ul>
+</li>
+</ul>
+<p>Recommendations:</p>
+<ul class="simple">
+<li><p>Focus on converting One-Time buyers into Potential Core (loyalty programs, personalized offers).</p></li>
+<li><p>Retain Core through premium service.</p></li>
+</ul>
+<hr class="docutils" />
+<p><strong>By Purchase Amount</strong></p>
+<ul class="simple">
+<li><p>High-Spend (24%):</p>
+<ul>
+<li><p>Large order values, heavy orders.</p></li>
+<li><p>Despite high spending, ratings are not above median (risk of losing critics).</p></li>
+</ul>
+</li>
+<li><p>Medium-Spend (49%):</p>
+<ul>
+<li><p>The majority, “stable” customers.</p></li>
+</ul>
+</li>
+<li><p>Low-Spend (24%):</p>
+<ul>
+<li><p>Small order values, possibly trial purchases.</p></li>
+</ul>
+</li>
+</ul>
+<p>Recommendations:</p>
+<ul class="simple">
+<li><p>For High-Spend: Improve delivery (they have low time outperformance) and service to reduce critic share.</p></li>
+<li><p>For Low-Spend: Encourage higher order values (discounts on additional items).</p></li>
+</ul>
+<hr class="docutils" />
+<p><strong>By Time Between Purchases</strong></p>
+<ul class="simple">
+<li><p>Quick Repeat Purchases (&lt;1%):</p>
+<ul>
+<li><p>Low metrics (possibly impulse purchases or dissatisfaction).</p></li>
+</ul>
+</li>
+<li><p>Quarterly/Semi-Annual (1%):</p>
+<ul>
+<li><p>High metrics—“planned” purchases (e.g., seasonal items).</p></li>
+</ul>
+</li>
+</ul>
+<p>Recommendations:</p>
+<ul class="simple">
+<li><p>For the quick repeat segment: Improve post-purchase experience (to prevent loss after the first purchase).</p></li>
+<li><p>For “quarterly” buyers: Target reminders before seasons.</p></li>
+</ul>
+<hr class="docutils" />
+<p><strong>By Loyalty</strong></p>
+<ul class="simple">
+<li><p>Promoters (58%):</p>
+<ul>
+<li><p>Satisfied but few repeat purchases (94% are one-time).</p></li>
+<li><p>Paradox: high ratings but low retention.</p></li>
+</ul>
+</li>
+<li><p>Critics (13%):</p>
+<ul>
+<li><p>High order values but quick churn (short time between purchases).</p></li>
+<li><p>Delivery issues (low delivery time outperformance).</p></li>
+</ul>
+</li>
+</ul>
+<p>Recommendations:</p>
+<ul class="simple">
+<li><p>Analyze reasons for low promoter retention (e.g., lack of motivation for repeat purchases).</p></li>
+<li><p>Address critics: Improve logistics and service (they are potentially valuable due to high order values).</p></li>
+</ul>
+<hr class="docutils" />
+<p><strong>By Behavioral Patterns</strong></p>
+<ul class="simple">
+<li><p>Customers who made purchases not only on weekends (25%):</p>
+<ul>
+<li><p>More loyal (longer time between purchases).</p></li>
+</ul>
+</li>
+<li><p>Customers using installments (50%):</p>
+<ul>
+<li><p>High order values, long lifecycle—“serious” customers.</p></li>
+</ul>
+</li>
+<li><p>Customers with 2+ items per order (2%):</p>
+<ul>
+<li><p>Key for profitability (high metrics).</p></li>
+</ul>
+</li>
+<li><p>Customers who use only vouchers:</p>
+<ul>
+<li><p>Have lower total purchase amounts and average order values.</p></li>
+</ul>
+</li>
+</ul>
+<p>Recommendations:</p>
+<ul class="simple">
+<li><p>Promote installments to increase average order value.</p></li>
+<li><p>Encourage multi-item orders (free shipping for N items).</p></li>
+<li><p>For voucher-paying customers, develop strategies to increase average order value.</p></li>
+</ul>
+<hr class="docutils" />
+<p><strong>By Geography</strong></p>
+<ul class="simple">
+<li><p>São Paulo (42%) and Rio de Janeiro (13%):</p>
+<ul>
+<li><p>Key markets.</p></li>
+</ul>
+</li>
+</ul>
+<p>Recommendations:</p>
+<ul class="simple">
+<li><p>Localized marketing campaigns (e.g., Furniture promotions in São Paulo).</p></li>
+</ul>
+</section>
+<section id="customer-clustering">
+<h2>Customer Clustering<a class="headerlink" href="#customer-clustering" title="Link to this heading">#</a></h2>
+<section id="all-customers">
+<h3>All Customers<a class="headerlink" href="#all-customers" title="Link to this heading">#</a></h3>
+<p><strong>Cluster Distribution:</strong></p>
+<ul class="simple">
+<li><p>Cluster 1 (53%): Neutral characteristics (baseline group)</p></li>
+<li><p>Cluster 2 (39%): High Recency (recent purchases)</p></li>
+<li><p>Cluster 3 (2.5%): High Monetary Value</p></li>
+<li><p>Cluster 4 (3%): High number of unique products per order</p></li>
+<li><p>Cluster 5 (3%): High purchase frequency (Frequency)</p></li>
+</ul>
+<hr class="docutils" />
+<p><strong>Key Features:</strong></p>
+<ul class="simple">
+<li><p>Cluster 1</p>
+<ul>
+<li><p>One-time purchases.</p></li>
+<li><p>Medium purchase amount segment.</p></li>
+<li><p>Dominates the value segment.</p></li>
+<li><p>Dominates the loyalty segment.</p></li>
+<li><p>Dominates lightweight orders.</p></li>
+<li><p>Dominates the debit card segment.</p></li>
+</ul>
+</li>
+<li><p>Cluster 2</p>
+<ul>
+<li><p>One-time purchases.</p></li>
+<li><p>Medium purchase amount segment.</p></li>
+<li><p>Dominates the value segment.</p></li>
+<li><p>Dominates the loyalty segment.</p></li>
+<li><p>Dominates the state of Rio De Janeiro.</p></li>
+</ul>
+</li>
+<li><p>Cluster 3</p>
+<ul>
+<li><p>One-time purchases.</p></li>
+<li><p>Entirely consists of the high-value segment.</p></li>
+<li><p>Highest share of installment payments among all clusters.</p></li>
+<li><p>Noticeably more heavy-weight orders than other clusters.</p></li>
+<li><p>Dominates the generalized Electronics category.</p></li>
+</ul>
+</li>
+<li><p>Cluster 4</p>
+<ul>
+<li><p>One-time purchases.</p></li>
+<li><p>Predominantly critics.</p></li>
+<li><p>Lower share of promoters compared to other clusters.</p></li>
+<li><p>Dominates the high-risk segment (customers who canceled at least one order).</p></li>
+<li><p>Dominates installment payments.</p></li>
+<li><p>Entirely consists of customers with an average of more than one product per order.</p></li>
+<li><p>Dominates the Bed Bath Table product category.</p></li>
+<li><p>Dominates the generalized Furniture category.</p></li>
+</ul>
+</li>
+<li><p>Cluster 5</p>
+<ul>
+<li><p>Predominantly repeat buyers.</p></li>
+<li><p>Higher share of neutral loyalty segment than other clusters.</p></li>
+<li><p>Dominates the high-risk segment (customers who canceled at least one order).</p></li>
+<li><p>Dominates installment payments.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="customers-with-multiple-purchases">
+<h3>Customers with Multiple Purchases<a class="headerlink" href="#customers-with-multiple-purchases" title="Link to this heading">#</a></h3>
+<p><strong>Cluster Distribution:</strong></p>
+<ul class="simple">
+<li><p>Cluster 4 (43%): Stable buyers</p></li>
+<li><p>Cluster 3 (34%): Average across all metrics</p></li>
+<li><p>Cluster 5 (9%): High share of critics</p></li>
+<li><p>Cluster 1 (8%): High Recency (recent purchases)</p></li>
+<li><p>Cluster 2 (4%): High Monetary Value</p></li>
+<li><p>Cluster 7 (3%): Diverse product buyers</p></li>
+<li><p>Cluster 6 (0.1%): Core Audience (Frequency + Monetary)</p></li>
+</ul>
+<hr class="docutils" />
+<p><strong>Key Features:</strong></p>
+<ul class="simple">
+<li><p>Cluster 1</p>
+<ul>
+<li><p>Dominates the core audience.</p></li>
+<li><p>Dominates the “watches gifts” category.</p></li>
+</ul>
+</li>
+<li><p>Cluster 2</p>
+<ul>
+<li><p>Entirely consists of the high-value segment (purchase amount).</p></li>
+<li><p>Dominates the “bulk” segment (average of more than 2 products per order).</p></li>
+<li><p>Dominates heavy-weight orders.</p></li>
+<li><p>Dominates the “watches gifts” category.</p></li>
+<li><p>Dominates the generalized Electronics category.</p></li>
+</ul>
+</li>
+<li><p>Cluster 3</p>
+<ul>
+<li><p>Dominates orders with a single product.</p></li>
+</ul>
+</li>
+<li><p>Cluster 4</p>
+<ul>
+<li><p>Dominates the Potential Core segment.</p></li>
+<li><p>Dominates the medium-value segment.</p></li>
+<li><p>Dominates critics.</p></li>
+<li><p>Dominates orders with a single product.</p></li>
+</ul>
+</li>
+<li><p>Cluster 5</p>
+<ul>
+<li><p>Dominates critics.</p></li>
+<li><p>Higher share of “multi” segment (1-2 products per order).</p></li>
+</ul>
+</li>
+<li><p>Cluster 6</p>
+<ul>
+<li><p>Entirely consists of the core audience.</p></li>
+<li><p>Entirely consists of the high-value segment (purchase amount).</p></li>
+<li><p>Entirely consists of promoters.</p></li>
+<li><p>Entirely consists of installment users.</p></li>
+<li><p>Entirely consists of orders with a single product.</p></li>
+<li><p>Entirely consists of lightweight orders.</p></li>
+<li><p>Entirely consists of credit card payments.</p></li>
+<li><p>Entirely consists of customers from São Paulo (top 5 cities by sales volume).</p></li>
+</ul>
+</li>
+<li><p>Cluster 7</p>
+<ul>
+<li><p>Higher average number of unique products.</p></li>
+<li><p>Higher share of full upfront payments compared to other clusters.</p></li>
+<li><p>No single-product orders.</p></li>
+<li><p>Dominates the “bulk” segment (average of more than 2 products per order).</p></li>
+<li><p>Dominates “boleto” payment method.</p></li>
+<li><p>Dominates the Bed Bath Table category.</p></li>
+<li><p>Dominates the generalized Furniture and Home &amp; Garden categories.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="01_time_dynamics.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Time Dynamics</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="03_sales.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Sales</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#typical-customer-profile">Typical Customer Profile</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rfm">RFM</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#customer-segmentation">Customer Segmentation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#customer-profiling">Customer Profiling</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#customer-clustering">Customer Clustering</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#all-customers">All Customers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#customers-with-multiple-purchases">Customers with Multiple Purchases</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Pavel Grigoryev
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025, Pavel Grigoryev.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

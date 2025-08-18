@@ -1,0 +1,911 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Correlation Analysis &#8212; 🌊 Deep Sales Analysis of Olist Marketplace</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=aa5847ba" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/custom.js?v=f9582d1e"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'contents/03_data_analysis/12_correlation_analysis';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Slice Analysis" href="13_slice_analysis.html" />
+    <link rel="prev" title="Cohort Analysis" href="11_cohort_analysis.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo-light.png" class="logo__image only-light" alt="🌊 Deep Sales Analysis of Olist Marketplace - Home"/>
+    <script>document.write(`<img src="../../_static/logo-dark.png" class="logo__image only-dark" alt="🌊 Deep Sales Analysis of Olist Marketplace - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Description and Exploration</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../01_data_description_and_exploration/01_data_description.html">Data Description</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_data_description_and_exploration/02_data_loading.html">Data Loading</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_data_description_and_exploration/03_data_exploration.html">Data Exploration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_data_description_and_exploration/04_intermediate_conclusion.html">Intermediate Conclusion</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Preprocessing</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../02_data_preprocessing/01_initial_data_filtering.html">Initial Data Filtering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_data_preprocessing/02_outlier_handling.html">Outlier Handling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_data_preprocessing/03_missing_value_handling.html">Missing Value Handling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_data_preprocessing/04_duplicate_handling.html">Duplicate Handling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_data_preprocessing/05_creating_new_metrics.html">Creating New Metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_data_preprocessing/06_creating_new_dimensions.html">Creating New Dimensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_data_preprocessing/07_converting_data_to_a_convenient_format.html">Converting Data to a Convenient Format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_data_preprocessing/08_data_merging.html">Data Merging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_data_preprocessing/09_intermediate_conclusion.html">Intermediate Conclusion</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Analysis</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_creating_analysis_class.html">Creating Analysis Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_time_series_analysis.html">Time Series Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_customer_analysis.html">Customer Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_seller_analysis.html">Seller Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_sales_analysis.html">Sales Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_product_analysis.html">Product Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_review_analysis.html">Review Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_delivery_analysis.html">Delivery Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_payment_analysis.html">Payment Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_geographical_analysis.html">Geographical Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_cohort_analysis.html">Cohort Analysis</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Correlation Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_slice_analysis.html">Slice Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14_analysis_of_customer_segments.html">Analysis of Customer Segments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15_rfm_analysis.html">RFM Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="16_customer_clustering.html">Customer Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="17_hypothesis_testing.html">Hypothesis Testing</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">General Conclusion</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/01_time_dynamics.html">Time Dynamics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/02_customers.html">Customers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/03_sales.html">Sales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/04_products.html">Products</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/05_reviews.html">Reviews</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/06_delivery.html">Delivery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/07_payments.html">Payments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/08_sellers.html">Sellers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/09_cohort_analysis.html">Cohort Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/10_correlation_analysis.html">Correlation Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/11_black_friday.html">Black Friday</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/12_cancelled_orders.html">Cancelled Orders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/13_hypothesis_testing_results.html">Hypothesis Testing Results</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/14_detected_anomalies.html">Detected Anomalies</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Recommendations</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/01_product_market_fit.html">Product market fit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/02_customer_loyalty_enhancement.html">Customer loyalty Enhancement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/03_customer_experience_improvement.html">Customer Experience Improvement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/04_logistics_and_delivery_optimization.html">Logistics and Delivery Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/05_financial_optimization.html">Financial optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/06_average_order_value_and_basket_optimization.html">Average Order Value and Basket Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/07_segment_specific_strategies.html">Segment-Specific Strategies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/08_product_and_assortment_management.html">Product and Assortment Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/09_marketing_and_promotion.html">Marketing and Promotion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/10_peak_season_preparedness.html">Peak Season Preparedness</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/11_analytics_and_monitoring.html">Analytics and Monitoring</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/12_ab_testing.html">A/B Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/13_anomaly.html">Anomaly</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/PavelGrigoryevDS/olist-deep-dive" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/contents/03_data_analysis/12_correlation_analysis.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Correlation Analysis</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> On this page </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#table-df-sales">Table df_sales</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#table-df-customers">Table df_customers</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="correlation-analysis">
+<h1>Correlation Analysis<a class="headerlink" href="#correlation-analysis" title="Link to this heading">#</a></h1>
+<p>Here we will build a correlation matrix for all numerical variables.</p>
+<p>We will also create scatter plots for those with a correlation coefficient greater than 0.3.</p>
+<p>Additionally, we can create scatter plots for specific pairs even if the correlation coefficient is low, as we are focused on the relationship rather than the correlation coefficient itself.</p>
+<section id="table-df-sales">
+<h2>Table df_sales<a class="headerlink" href="#table-df-sales" title="Link to this heading">#</a></h2>
+<p>We will create labels for column names.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">labels</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;from_purchase_to_approved_hours&#39;</span><span class="p">:</span> <span class="s1">&#39;Purchase To Approved&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;from_purchase_to_carrier_days&#39;</span><span class="p">:</span> <span class="s1">&#39;Purchase To Carrier&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;delivery_time_days&#39;</span><span class="p">:</span> <span class="s1">&#39;Delivery Time&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;delivery_time_estimated_days&#39;</span><span class="p">:</span> <span class="s1">&#39;Estimated Delivery&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;delivery_delay_days&#39;</span><span class="p">:</span> <span class="s1">&#39;Delivery Delay&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;from_approved_to_carrier_days&#39;</span><span class="p">:</span> <span class="s1">&#39;Approved To Carrier&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;from_carrier_to_customer_days&#39;</span><span class="p">:</span> <span class="s1">&#39;Carrier To Customer&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;payments_cnt&#39;</span><span class="p">:</span> <span class="s1">&#39;Payments Cnt&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;total_payment&#39;</span><span class="p">:</span> <span class="s1">&#39;Total Payment&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;avg_payment&#39;</span><span class="p">:</span> <span class="s1">&#39;Avg Payment&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;total_installments_cnt&#39;</span><span class="p">:</span> <span class="s1">&#39;Total Installments&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;products_cnt&#39;</span><span class="p">:</span> <span class="s1">&#39;Products Cnt&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;unique_products_cnt&#39;</span><span class="p">:</span> <span class="s1">&#39;Unique Products Cnt&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;sellers_cnt&#39;</span><span class="p">:</span> <span class="s1">&#39;Sellers Cnt&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;product_categories_cnt&#39;</span><span class="p">:</span> <span class="s1">&#39;Categories Cnt&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;total_products_price&#39;</span><span class="p">:</span> <span class="s1">&#39;Total Products Price&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;avg_products_price&#39;</span><span class="p">:</span> <span class="s1">&#39;Avg Product Price&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;total_freight_value&#39;</span><span class="p">:</span> <span class="s1">&#39;Total Freight Value&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;total_order_price&#39;</span><span class="p">:</span> <span class="s1">&#39;Total Order Price&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;total_weight_kg&#39;</span><span class="p">:</span> <span class="s1">&#39;Total Weight&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;total_volume_cm3&#39;</span><span class="p">:</span> <span class="s1">&#39;Total Volume&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;avg_distance_km&#39;</span><span class="p">:</span> <span class="s1">&#39;Avg Distance&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;avg_carrier_delivery_delay_days&#39;</span><span class="p">:</span> <span class="s1">&#39;Avg Carrier Delay&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;freight_ratio&#39;</span><span class="p">:</span> <span class="s1">&#39;Freight Ratio&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;reviews_cnt&#39;</span><span class="p">:</span> <span class="s1">&#39;Reviews Cnt&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;order_avg_reviews_score&#39;</span><span class="p">:</span> <span class="s1">&#39;Avg Review Score&#39;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s look at the correlation between the metrics.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_sales</span><span class="o">.</span><span class="n">analysis</span><span class="o">.</span><span class="n">corr_matrix</span><span class="p">(</span><span class="n">labels</span><span class="o">=</span><span class="n">labels</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/pagri/.cache/pypoetry/virtualenvs/olist-deep-dive-kC-yxADm-py3.13/lib/python3.13/site-packages/frameon/dataframe/analysis/correlation.py:283: ConstantInputWarning:
+
+An input array is constant; the correlation coefficient is not defined.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/pagri/.cache/pypoetry/virtualenvs/olist-deep-dive-kC-yxADm-py3.13/lib/python3.13/site-packages/frameon/dataframe/analysis/correlation.py:283: ConstantInputWarning:
+
+An input array is constant; the correlation coefficient is not defined.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/pagri/.cache/pypoetry/virtualenvs/olist-deep-dive-kC-yxADm-py3.13/lib/python3.13/site-packages/frameon/dataframe/analysis/correlation.py:283: ConstantInputWarning:
+
+An input array is constant; the correlation coefficient is not defined.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/pagri/.cache/pypoetry/virtualenvs/olist-deep-dive-kC-yxADm-py3.13/lib/python3.13/site-packages/frameon/dataframe/analysis/correlation.py:283: ConstantInputWarning:
+
+An input array is constant; the correlation coefficient is not defined.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/pagri/.cache/pypoetry/virtualenvs/olist-deep-dive-kC-yxADm-py3.13/lib/python3.13/site-packages/frameon/dataframe/analysis/correlation.py:283: ConstantInputWarning:
+
+An input array is constant; the correlation coefficient is not defined.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/pagri/.cache/pypoetry/virtualenvs/olist-deep-dive-kC-yxADm-py3.13/lib/python3.13/site-packages/frameon/dataframe/analysis/correlation.py:283: ConstantInputWarning:
+
+An input array is constant; the correlation coefficient is not defined.
+</pre></div>
+</div>
+<img alt="../../_images/9b0d086541d1882529200fe0b2b18cd9d01f918b62134a6d8403d30877b04644.jpg" src="../../_images/9b0d086541d1882529200fe0b2b18cd9d01f918b62134a6d8403d30877b04644.jpg" />
+</div>
+</div>
+<p><strong>Key Observations:</strong></p>
+<ul class="simple">
+<li><p>There is a moderate positive correlation (0.4) between the total delivery time and the delivery time to the carrier. Therefore, the delivery time to the carrier affects the total delivery time, which is logical.</p></li>
+<li><p>There is a moderate positive correlation (0.6) between the total delivery time and the delivery time from the carrier. The delivery time from the carrier has a higher correlation with the total delivery time compared to the delivery time to the carrier. This suggests that the delivery time from the carrier affects the total delivery time more significantly.</p></li>
+<li><p>There is a moderate positive correlation (0.5) between the total number of products in an order and the number of unique products in an order. This indicates that the total number of products in an order often increases due to the addition of unique products rather than by increasing the quantity of already existing products in the order.</p></li>
+<li><p>There is also a moderate positive correlation (0.6) between the number of sellers in an order and the number of unique products in an order. This means that if customers buy more unique products, they are likely to buy from different sellers.</p></li>
+<li><p>There is also a moderate positive correlation (0.6) between the number of sellers in an order and the number of categories in an order. This indicates that if customers buy products from more categories, they are likely to buy from different sellers.</p></li>
+<li><p>There is a moderate positive correlation (0.5) between the delivery cost of an order and the order amount. This means that the more expensive the order, the higher the delivery cost, which is logical.</p></li>
+<li><p>There is a moderate positive correlation (0.6) between the delivery cost of an order and the weight/volume of the order. This suggests that the heavier or larger the order, the higher the delivery cost.</p></li>
+<li><p>There is a strong positive correlation (0.8) between the volume and weight of the order. This indicates that the heavier the order, the larger it is usually.</p></li>
+</ul>
+<p><strong>Does the order cost affect the delivery cost?</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_sales</span><span class="o">.</span><span class="n">viz</span><span class="o">.</span><span class="n">pairplot</span><span class="p">(</span>
+    <span class="n">pairs</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;total_payment&#39;</span><span class="p">,</span> <span class="s1">&#39;total_freight_value&#39;</span><span class="p">]</span>
+    <span class="p">,</span> <span class="n">transforms</span><span class="o">=</span><span class="s1">&#39;log&#39;</span>
+    <span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">labels</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/8967e80adc6a56f66022c7f7baa34ebe41fee13449b105aa5c7e72870b6aed62.jpg" src="../../_images/8967e80adc6a56f66022c7f7baa34ebe41fee13449b105aa5c7e72870b6aed62.jpg" />
+</div>
+</div>
+<p><strong>Key Observations:</strong></p>
+<ul class="simple">
+<li><p>Higher order value → higher shipping cost</p></li>
+</ul>
+<p><strong>Does the order weight affect the delivery cost?</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_sales</span><span class="o">.</span><span class="n">viz</span><span class="o">.</span><span class="n">pairplot</span><span class="p">(</span>
+    <span class="n">pairs</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;total_weight_kg&#39;</span><span class="p">,</span> <span class="s1">&#39;total_freight_value&#39;</span><span class="p">]</span>
+    <span class="p">,</span> <span class="n">transforms</span><span class="o">=</span><span class="s1">&#39;log&#39;</span>
+    <span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">labels</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/bdd53ddc0d5c0d4d542d5c38beeb6c6f1d74eaf0c342a26d1b3f42bf6a229ede.jpg" src="../../_images/bdd53ddc0d5c0d4d542d5c38beeb6c6f1d74eaf0c342a26d1b3f42bf6a229ede.jpg" />
+</div>
+</div>
+<p><strong>Key Observations:</strong></p>
+<ul class="simple">
+<li><p>Heavier orders → higher shipping cost</p></li>
+</ul>
+<hr class="docutils" />
+<p><strong>Does the order volume affect the delivery cost?</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_sales</span><span class="o">.</span><span class="n">viz</span><span class="o">.</span><span class="n">pairplot</span><span class="p">(</span>
+    <span class="n">pairs</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;total_volume_cm3&#39;</span><span class="p">,</span> <span class="s1">&#39;total_freight_value&#39;</span><span class="p">]</span>
+    <span class="p">,</span> <span class="n">transforms</span><span class="o">=</span><span class="s1">&#39;log&#39;</span>
+    <span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">labels</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/3828cbb13475f0cd8f5bb8c91427622472889a610e291a3db65a7eabc443682d.jpg" src="../../_images/3828cbb13475f0cd8f5bb8c91427622472889a610e291a3db65a7eabc443682d.jpg" />
+</div>
+</div>
+<p><strong>Key Observations:</strong></p>
+<ul class="simple">
+<li><p>Larger volume → higher shipping cost</p></li>
+</ul>
+<hr class="docutils" />
+<p><strong>Does the distance affect the delivery cost?</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_sales</span><span class="o">.</span><span class="n">viz</span><span class="o">.</span><span class="n">pairplot</span><span class="p">(</span>
+    <span class="n">pairs</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;avg_distance_km&#39;</span><span class="p">,</span> <span class="s1">&#39;total_freight_value&#39;</span><span class="p">]</span>
+    <span class="p">,</span> <span class="n">transforms</span><span class="o">=</span><span class="s1">&#39;log&#39;</span>
+    <span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">labels</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/81b6f257281cbf6c55c8469fb2f042c81c0eea7e2b9a44badfd43a413462d5bb.jpg" src="../../_images/81b6f257281cbf6c55c8469fb2f042c81c0eea7e2b9a44badfd43a413462d5bb.jpg" />
+</div>
+</div>
+<p><strong>Key Observations:</strong></p>
+<ul class="simple">
+<li><p>Greater distance → higher shipping cost</p></li>
+</ul>
+<hr class="docutils" />
+<p><strong>Does the order cost affect the delivery time?</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_sales</span><span class="o">.</span><span class="n">viz</span><span class="o">.</span><span class="n">pairplot</span><span class="p">(</span>
+    <span class="n">pairs</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;total_payment&#39;</span><span class="p">,</span> <span class="s1">&#39;delivery_time_days&#39;</span><span class="p">]</span>
+    <span class="p">,</span> <span class="n">transforms</span><span class="o">=</span><span class="s1">&#39;log&#39;</span>
+    <span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">labels</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/45bea2bcdc745c6b9cc7bfbbdb4ffc030a4fd0c7b6c52cd0ead01f8dfd31fa8e.jpg" src="../../_images/45bea2bcdc745c6b9cc7bfbbdb4ffc030a4fd0c7b6c52cd0ead01f8dfd31fa8e.jpg" />
+</div>
+</div>
+<p><strong>Key Observations:</strong></p>
+<ul class="simple">
+<li><p>Order value has minimal impact on delivery time</p></li>
+</ul>
+<p><strong>Does the order weight affect the delivery time?</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_sales</span><span class="o">.</span><span class="n">viz</span><span class="o">.</span><span class="n">pairplot</span><span class="p">(</span>
+    <span class="n">pairs</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;total_weight_kg&#39;</span><span class="p">,</span> <span class="s1">&#39;delivery_time_days&#39;</span><span class="p">]</span>
+    <span class="p">,</span> <span class="n">transforms</span><span class="o">=</span><span class="s1">&#39;log&#39;</span>
+    <span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">labels</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/82c11ab62f97fc7dde328d2deeedc74c79ed0f5f8ff1708d40504ce017b62cc8.jpg" src="../../_images/82c11ab62f97fc7dde328d2deeedc74c79ed0f5f8ff1708d40504ce017b62cc8.jpg" />
+</div>
+</div>
+<p><strong>Key Observations:</strong></p>
+<ul class="simple">
+<li><p>Weight has minimal impact on delivery time</p></li>
+</ul>
+<hr class="docutils" />
+<p><strong>Does the order volume affect the delivery time?</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_sales</span><span class="o">.</span><span class="n">viz</span><span class="o">.</span><span class="n">pairplot</span><span class="p">(</span>
+    <span class="n">pairs</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;total_volume_cm3&#39;</span><span class="p">,</span> <span class="s1">&#39;delivery_time_days&#39;</span><span class="p">]</span>
+    <span class="p">,</span> <span class="n">transforms</span><span class="o">=</span><span class="s1">&#39;log&#39;</span>
+    <span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">labels</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/23a7d939c039b0c862d28761330e21dcb8e9345ba6c92539ee95ba6203c50816.jpg" src="../../_images/23a7d939c039b0c862d28761330e21dcb8e9345ba6c92539ee95ba6203c50816.jpg" />
+</div>
+</div>
+<p><strong>Key Observations:</strong></p>
+<ul class="simple">
+<li><p>Volume doesn’t affect delivery time</p></li>
+</ul>
+<hr class="docutils" />
+<p><strong>Does the distance affect the delivery time?</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_sales</span><span class="o">.</span><span class="n">viz</span><span class="o">.</span><span class="n">pairplot</span><span class="p">(</span>
+    <span class="n">pairs</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;avg_distance_km&#39;</span><span class="p">,</span> <span class="s1">&#39;delivery_time_days&#39;</span><span class="p">]</span>
+    <span class="p">,</span> <span class="n">transforms</span><span class="o">=</span><span class="s1">&#39;log&#39;</span>
+    <span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">labels</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/4bd4856977730b65262370b1fa3532b4fdac81712ef2e6bfd51f17287a06d7c1.jpg" src="../../_images/4bd4856977730b65262370b1fa3532b4fdac81712ef2e6bfd51f17287a06d7c1.jpg" />
+</div>
+</div>
+<p><strong>Key Observations:</strong></p>
+<ul class="simple">
+<li><p>Greater distance → longer delivery time</p></li>
+</ul>
+<hr class="docutils" />
+<p><strong>Is the heavier the order, the larger its volume?</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_sales</span><span class="o">.</span><span class="n">viz</span><span class="o">.</span><span class="n">pairplot</span><span class="p">(</span>
+    <span class="n">pairs</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;total_weight_kg&#39;</span><span class="p">,</span> <span class="s1">&#39;total_volume_cm3&#39;</span><span class="p">]</span>
+    <span class="p">,</span> <span class="n">transforms</span><span class="o">=</span><span class="s1">&#39;log&#39;</span>
+    <span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">labels</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/72123c0e0f3ec3bbdf23f3fe53ac7f6c2397ceaa008d1a5586e56114597c7ddb.jpg" src="../../_images/72123c0e0f3ec3bbdf23f3fe53ac7f6c2397ceaa008d1a5586e56114597c7ddb.jpg" />
+</div>
+</div>
+<p><strong>Key Observations:</strong></p>
+<ul class="simple">
+<li><p>Heavier items tend to be larger</p></li>
+</ul>
+</section>
+<section id="table-df-customers">
+<h2>Table df_customers<a class="headerlink" href="#table-df-customers" title="Link to this heading">#</a></h2>
+<p>We will create labels for column names.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">labels</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;orders_cnt&#39;</span><span class="p">:</span> <span class="s1">&#39;Total Orders&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;canceled_share&#39;</span><span class="p">:</span> <span class="s1">&#39;Canceled Share&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;canceled_orders_cnt&#39;</span><span class="p">:</span> <span class="s1">&#39;Canceled Orders&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;not_delivered_share&#39;</span><span class="p">:</span> <span class="s1">&#39;Not Delivered Share&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;customer_issue_share&#39;</span><span class="p">:</span> <span class="s1">&#39;Customer Issue Share&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;service_issue_share&#39;</span><span class="p">:</span> <span class="s1">&#39;Service Issue Share&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;buys_cnt&#39;</span><span class="p">:</span> <span class="s1">&#39;Total Purchases&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;avg_delivery_time_days&#39;</span><span class="p">:</span> <span class="s1">&#39;Avg Delivery Time&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;avg_delivery_delay_days&#39;</span><span class="p">:</span> <span class="s1">&#39;Avg Delivery Delay&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;delayed_orders_share&#39;</span><span class="p">:</span> <span class="s1">&#39;Delayed Orders Share&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;purchase_weekend_share&#39;</span><span class="p">:</span> <span class="s1">&#39;Weekend Purchase Share&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;repeat_purchase_share&#39;</span><span class="p">:</span> <span class="s1">&#39;Repeat Purchase Share&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;avg_payments_cnt&#39;</span><span class="p">:</span> <span class="s1">&#39;Avg Payments Cnt&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;total_customer_payment&#39;</span><span class="p">:</span> <span class="s1">&#39;Total Payment&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;avg_total_order_payment&#39;</span><span class="p">:</span> <span class="s1">&#39;Avg Order Payment&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;avg_individual_payment&#39;</span><span class="p">:</span> <span class="s1">&#39;Avg Individual Payment&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;installment_orders_share&#39;</span><span class="p">:</span> <span class="s1">&#39;Installment Orders Share&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;avg_products_cnt&#39;</span><span class="p">:</span> <span class="s1">&#39;Avg Products Cnt&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;avg_unique_products_cnt&#39;</span><span class="p">:</span> <span class="s1">&#39;Avg Unique Products&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;avg_sellers_cnt&#39;</span><span class="p">:</span> <span class="s1">&#39;Avg Sellers Cnt&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;avg_order_total_products_price&#39;</span><span class="p">:</span> <span class="s1">&#39;Avg Order Products Price&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;avg_total_order_price&#39;</span><span class="p">:</span> <span class="s1">&#39;Avg Total Order Price&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;avg_products_price&#39;</span><span class="p">:</span> <span class="s1">&#39;Avg Product Price&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;total_products_price&#39;</span><span class="p">:</span> <span class="s1">&#39;Total Products Price&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;avg_order_total_freight_value&#39;</span><span class="p">:</span> <span class="s1">&#39;Avg Order Freight Value&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;avg_order_total_weight_kg&#39;</span><span class="p">:</span> <span class="s1">&#39;Avg Order Weight&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;avg_order_total_volume_cm3&#39;</span><span class="p">:</span> <span class="s1">&#39;Avg Order Volume&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;free_shipping_share&#39;</span><span class="p">:</span> <span class="s1">&#39;Free Shipping Share&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;reviews_cnt&#39;</span><span class="p">:</span> <span class="s1">&#39;Reviews Cnt&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;customer_avg_reviews_score&#39;</span><span class="p">:</span> <span class="s1">&#39;Avg Review Score&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;avg_distance_km&#39;</span><span class="p">:</span> <span class="s1">&#39;Avg Distance&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;avg_buys_diff_days&#39;</span><span class="p">:</span> <span class="s1">&#39;Days Between Purchases&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;months_with_buys&#39;</span><span class="p">:</span> <span class="s1">&#39;Active Months&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;max_consecutive_months_with_buys&#39;</span><span class="p">:</span> <span class="s1">&#39;Max Consecutive Active Months&#39;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s look at the correlation between the metrics.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">exclude_cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;lat_customer&#39;</span><span class="p">,</span> <span class="s1">&#39;lng_customer&#39;</span><span class="p">,</span> <span class="s1">&#39;customer_zip_code_prefix_3_digits&#39;</span><span class="p">,</span> <span class="s1">&#39;population&#39;</span><span class="p">,</span> <span class="s1">&#39;customer_zip_code_prefix&#39;</span><span class="p">]</span>
+<span class="p">(</span>
+    <span class="n">df_customers</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">exclude_cols</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">analysis</span><span class="o">.</span><span class="n">corr_matrix</span><span class="p">(</span><span class="n">text_size</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">labels</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/16ead0b50a53e64a1ce42c06b7707ac09220ecfe8adee8c1e70e4d7853a85fc9.jpg" src="../../_images/16ead0b50a53e64a1ce42c06b7707ac09220ecfe8adee8c1e70e4d7853a85fc9.jpg" />
+</div>
+</div>
+<p><strong>Key Observations:</strong></p>
+<ul class="simple">
+<li><p>There is a high positive correlation (0.8) between the number of canceled orders and the proportion of issues due to the customer. This is logical, as the Canceled status is included in the proportion of customer issues.</p></li>
+<li><p>There is a high positive correlation (0.9) between the number of orders and the number of reviews. Therefore, the more orders a customer makes, the more reviews they leave.</p></li>
+</ul>
+<p><strong>Are there “loyal” customers with high activity?</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_customers</span><span class="o">.</span><span class="n">viz</span><span class="o">.</span><span class="n">pairplot</span><span class="p">(</span>
+    <span class="n">pairs</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;max_consecutive_months_with_buys&#39;</span><span class="p">,</span> <span class="s1">&#39;orders_cnt&#39;</span><span class="p">]</span>
+    <span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">labels</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/c5d6ef78c702dda48266b9ed64c49d78f0f5c4f821e7fd7def3cab0eaae2bb78.jpg" src="../../_images/c5d6ef78c702dda48266b9ed64c49d78f0f5c4f821e7fd7def3cab0eaae2bb78.jpg" />
+</div>
+</div>
+<p><strong>Key Observations:</strong></p>
+<ul class="simple">
+<li><p>More active months → more orders</p></li>
+</ul>
+<hr class="docutils" />
+<p><strong>If customers buy many unique products, are the orders from different sellers?</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_customers</span><span class="o">.</span><span class="n">viz</span><span class="o">.</span><span class="n">pairplot</span><span class="p">(</span>
+    <span class="n">pairs</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;avg_unique_products_cnt&#39;</span><span class="p">,</span> <span class="s1">&#39;avg_sellers_cnt&#39;</span><span class="p">]</span>
+    <span class="p">,</span> <span class="n">transforms</span><span class="o">=</span><span class="s1">&#39;log&#39;</span>
+    <span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">labels</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/cbeb1a429184f49c07b453329953e60d099609044a7e709dc1de2535e2cd38a3.jpg" src="../../_images/cbeb1a429184f49c07b453329953e60d099609044a7e709dc1de2535e2cd38a3.jpg" />
+</div>
+</div>
+<p><strong>Key Observations:</strong></p>
+<ul class="simple">
+<li><p>The higher the average number of unique products in an order for a customer, the higher the average number of sellers. This means that different products are more often bought from different sellers.</p></li>
+</ul>
+<hr class="docutils" />
+<p><strong>Are active customers more likely to write reviews?</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_customers</span><span class="o">.</span><span class="n">viz</span><span class="o">.</span><span class="n">pairplot</span><span class="p">(</span>
+    <span class="n">pairs</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;reviews_cnt&#39;</span><span class="p">,</span> <span class="s1">&#39;orders_cnt&#39;</span><span class="p">]</span>
+    <span class="p">,</span> <span class="n">transforms</span><span class="o">=</span><span class="s1">&#39;log&#39;</span>
+    <span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">labels</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/c9de9a8fbe9f9c4011c038c6e3fa494bd254736d695e659c23480f5692c380a6.jpg" src="../../_images/c9de9a8fbe9f9c4011c038c6e3fa494bd254736d695e659c23480f5692c380a6.jpg" />
+</div>
+</div>
+<p><strong>Key Observations:</strong></p>
+<ul class="simple">
+<li><p>More purchases → more reviews left</p></li>
+</ul>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="11_cohort_analysis.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Cohort Analysis</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="13_slice_analysis.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Slice Analysis</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#table-df-sales">Table df_sales</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#table-df-customers">Table df_customers</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Pavel Grigoryev
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025, Pavel Grigoryev.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

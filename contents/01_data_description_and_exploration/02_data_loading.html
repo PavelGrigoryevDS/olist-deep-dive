@@ -1,0 +1,1533 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Data Loading &#8212; 🌊 Deep Sales Analysis of Olist Marketplace</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=aa5847ba" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/custom.js?v=f9582d1e"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'contents/01_data_description_and_exploration/02_data_loading';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Data Exploration" href="03_data_exploration.html" />
+    <link rel="prev" title="Data Description" href="01_data_description.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo-light.png" class="logo__image only-light" alt="🌊 Deep Sales Analysis of Olist Marketplace - Home"/>
+    <script>document.write(`<img src="../../_static/logo-dark.png" class="logo__image only-dark" alt="🌊 Deep Sales Analysis of Olist Marketplace - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Description and Exploration</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_data_description.html">Data Description</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Data Loading</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_data_exploration.html">Data Exploration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_intermediate_conclusion.html">Intermediate Conclusion</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Preprocessing</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../02_data_preprocessing/01_initial_data_filtering.html">Initial Data Filtering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_data_preprocessing/02_outlier_handling.html">Outlier Handling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_data_preprocessing/03_missing_value_handling.html">Missing Value Handling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_data_preprocessing/04_duplicate_handling.html">Duplicate Handling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_data_preprocessing/05_creating_new_metrics.html">Creating New Metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_data_preprocessing/06_creating_new_dimensions.html">Creating New Dimensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_data_preprocessing/07_converting_data_to_a_convenient_format.html">Converting Data to a Convenient Format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_data_preprocessing/08_data_merging.html">Data Merging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_data_preprocessing/09_intermediate_conclusion.html">Intermediate Conclusion</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Analysis</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../03_data_analysis/01_creating_analysis_class.html">Creating Analysis Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_analysis/02_time_series_analysis.html">Time Series Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_analysis/03_customer_analysis.html">Customer Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_analysis/04_seller_analysis.html">Seller Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_analysis/05_sales_analysis.html">Sales Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_analysis/06_product_analysis.html">Product Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_analysis/07_review_analysis.html">Review Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_analysis/08_delivery_analysis.html">Delivery Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_analysis/09_payment_analysis.html">Payment Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_analysis/10_geographical_analysis.html">Geographical Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_analysis/11_cohort_analysis.html">Cohort Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_analysis/12_correlation_analysis.html">Correlation Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_analysis/13_slice_analysis.html">Slice Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_analysis/14_analysis_of_customer_segments.html">Analysis of Customer Segments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_analysis/15_rfm_analysis.html">RFM Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_analysis/16_customer_clustering.html">Customer Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_analysis/17_hypothesis_testing.html">Hypothesis Testing</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">General Conclusion</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/01_time_dynamics.html">Time Dynamics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/02_customers.html">Customers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/03_sales.html">Sales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/04_products.html">Products</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/05_reviews.html">Reviews</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/06_delivery.html">Delivery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/07_payments.html">Payments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/08_sellers.html">Sellers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/09_cohort_analysis.html">Cohort Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/10_correlation_analysis.html">Correlation Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/11_black_friday.html">Black Friday</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/12_cancelled_orders.html">Cancelled Orders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/13_hypothesis_testing_results.html">Hypothesis Testing Results</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/14_detected_anomalies.html">Detected Anomalies</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Recommendations</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/01_product_market_fit.html">Product market fit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/02_customer_loyalty_enhancement.html">Customer loyalty Enhancement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/03_customer_experience_improvement.html">Customer Experience Improvement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/04_logistics_and_delivery_optimization.html">Logistics and Delivery Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/05_financial_optimization.html">Financial optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/06_average_order_value_and_basket_optimization.html">Average Order Value and Basket Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/07_segment_specific_strategies.html">Segment-Specific Strategies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/08_product_and_assortment_management.html">Product and Assortment Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/09_marketing_and_promotion.html">Marketing and Promotion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/10_peak_season_preparedness.html">Peak Season Preparedness</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/11_analytics_and_monitoring.html">Analytics and Monitoring</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/12_ab_testing.html">A/B Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/13_anomaly.html">Anomaly</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/PavelGrigoryevDS/olist-deep-dive" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/contents/01_data_description_and_exploration/02_data_loading.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Data Loading</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="data-loading">
+<h1>Data Loading<a class="headerlink" href="#data-loading" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>Load the data.</p></li>
+<li><p>Assign data types to columns where possible. Columns with missing values cannot be immediately converted to integer type. Leave such columns as is for now.</p></li>
+<li><p>Display the first few rows of each dataframe.</p></li>
+<li><p>Examine column types.</p></li>
+<li><p>For categorical variables, perform normalization and convert to Title Case format for consistency and better visual presentation.</p></li>
+<li><p>For text variables, normalize and convert to lowercase to eliminate implicit duplicates.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">base_url</span> <span class="o">=</span> <span class="s2">&quot;https://raw.githubusercontent.com/PavelGrigoryevDS/olist-deep-dive/main/data/&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Table df_orders</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dtype</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;order_status&#39;</span><span class="p">:</span> <span class="s1">&#39;category&#39;</span><span class="p">}</span>
+<span class="n">df_orders</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">base_url</span><span class="si">}</span><span class="s1">olist_orders_dataset.csv.gz&#39;</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span>
+                <span class="p">,</span> <span class="n">parse_dates</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;order_purchase_timestamp&#39;</span><span class="p">,</span> <span class="s1">&#39;order_approved_at&#39;</span><span class="p">,</span> <span class="s1">&#39;order_delivered_carrier_date&#39;</span><span class="p">,</span> <span class="s1">&#39;order_delivered_customer_date&#39;</span><span class="p">,</span> <span class="s1">&#39;order_estimated_delivery_date&#39;</span><span class="p">],</span> <span class="n">date_format</span><span class="o">=</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1"> %H:%M:%S&#39;</span><span class="p">)</span>
+<span class="n">df_orders</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;order_purchase_timestamp&#39;</span><span class="p">:</span> <span class="s1">&#39;order_purchase_dt&#39;</span>
+                          <span class="p">,</span> <span class="s1">&#39;order_approved_at&#39;</span><span class="p">:</span> <span class="s1">&#39;order_approved_dt&#39;</span>
+                          <span class="p">,</span> <span class="s1">&#39;order_delivered_carrier_date&#39;</span><span class="p">:</span> <span class="s1">&#39;order_delivered_carrier_dt&#39;</span>
+                          <span class="p">,</span> <span class="s1">&#39;order_delivered_customer_date&#39;</span><span class="p">:</span> <span class="s1">&#39;order_delivered_customer_dt&#39;</span>
+                          <span class="p">,</span> <span class="s1">&#39;order_estimated_delivery_date&#39;</span><span class="p">:</span> <span class="s1">&#39;order_estimated_delivery_dt&#39;</span><span class="p">},</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">df_orders</span> <span class="o">=</span> <span class="n">fo</span><span class="p">(</span><span class="n">df_orders</span><span class="p">)</span>
+<span class="n">df_orders</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>order_id</th>
+      <th>customer_id</th>
+      <th>order_status</th>
+      <th>order_purchase_dt</th>
+      <th>order_approved_dt</th>
+      <th>order_delivered_carrier_dt</th>
+      <th>order_delivered_customer_dt</th>
+      <th>order_estimated_delivery_dt</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>77007</th>
+      <td>f68550a60fc010eda8ef9a1e5cd4d651</td>
+      <td>4314121fb5cfec01588f42ef6bbb3db3</td>
+      <td>delivered</td>
+      <td>2018-04-13 16:19:20</td>
+      <td>2018-04-13 16:35:28</td>
+      <td>2018-04-18 19:02:40</td>
+      <td>2018-04-23 17:14:33</td>
+      <td>2018-05-08</td>
+    </tr>
+    <tr>
+      <th>34012</th>
+      <td>bebbbe90253dadf5c7d8dbacfaf446f4</td>
+      <td>9709ffa24c12b2fb47c3ec2470b16952</td>
+      <td>delivered</td>
+      <td>2018-05-14 15:29:32</td>
+      <td>2018-05-14 15:56:40</td>
+      <td>2018-05-15 14:42:00</td>
+      <td>2018-06-04 17:28:51</td>
+      <td>2018-06-08</td>
+    </tr>
+    <tr>
+      <th>48017</th>
+      <td>417e44a3df3ce085aeafc1976354af8e</td>
+      <td>39b0a374b8bbb7f162a55a042a3c2f50</td>
+      <td>delivered</td>
+      <td>2018-08-04 10:45:34</td>
+      <td>2018-08-04 11:55:17</td>
+      <td>2018-08-10 14:13:00</td>
+      <td>2018-08-21 16:16:42</td>
+      <td>2018-09-03</td>
+    </tr>
+    <tr>
+      <th>32469</th>
+      <td>ec8cbb2f067bf3af1cdf3c82ce77e1c9</td>
+      <td>9dadc4bfa2ec469a923c2ac8ffdc3a0f</td>
+      <td>delivered</td>
+      <td>2018-01-22 22:03:53</td>
+      <td>2018-01-22 22:16:24</td>
+      <td>2018-01-24 19:22:11</td>
+      <td>2018-01-26 21:33:24</td>
+      <td>2018-02-14</td>
+    </tr>
+    <tr>
+      <th>53647</th>
+      <td>f31cf521d461f5b8b5b1456a0448495e</td>
+      <td>7d9fd47eeb21776ed93f070d71499e0a</td>
+      <td>delivered</td>
+      <td>2017-05-28 15:50:05</td>
+      <td>2017-05-29 21:45:10</td>
+      <td>2017-05-31 09:07:45</td>
+      <td>2017-06-07 11:51:24</td>
+      <td>2017-06-21</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_orders</span><span class="o">.</span><span class="n">dtypes</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>order_id                               object
+customer_id                            object
+order_status                         category
+order_purchase_dt              datetime64[ns]
+order_approved_dt              datetime64[ns]
+order_delivered_carrier_dt     datetime64[ns]
+order_delivered_customer_dt    datetime64[ns]
+order_estimated_delivery_dt    datetime64[ns]
+dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_orders</span><span class="o">.</span><span class="n">order_status</span><span class="o">.</span><span class="n">preproc</span><span class="o">.</span><span class="n">normalize_string_series</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Table df_payments</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dtype</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;payment_type&#39;</span><span class="p">:</span> <span class="s1">&#39;category&#39;</span><span class="p">}</span>
+<span class="n">df_payments</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">base_url</span><span class="si">}</span><span class="s1">olist_order_payments_dataset.csv.gz&#39;</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">)</span>
+<span class="n">df_payments</span> <span class="o">=</span> <span class="n">fo</span><span class="p">(</span><span class="n">df_payments</span><span class="p">)</span>
+<span class="n">df_payments</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>order_id</th>
+      <th>payment_sequential</th>
+      <th>payment_type</th>
+      <th>payment_installments</th>
+      <th>payment_value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>39797</th>
+      <td>deb8ce115f74e504ae38e7db9bdd42e6</td>
+      <td>1</td>
+      <td>credit_card</td>
+      <td>3</td>
+      <td>65.94</td>
+    </tr>
+    <tr>
+      <th>76821</th>
+      <td>f6089c47bab18faae3d90c64cfb08481</td>
+      <td>1</td>
+      <td>credit_card</td>
+      <td>8</td>
+      <td>127.50</td>
+    </tr>
+    <tr>
+      <th>97070</th>
+      <td>9da5902b9f9210f370a81ff8edeafe62</td>
+      <td>1</td>
+      <td>boleto</td>
+      <td>1</td>
+      <td>35.38</td>
+    </tr>
+    <tr>
+      <th>24825</th>
+      <td>ccd7d6d23c5d29de6367dd5332aab16d</td>
+      <td>1</td>
+      <td>credit_card</td>
+      <td>1</td>
+      <td>22.77</td>
+    </tr>
+    <tr>
+      <th>79754</th>
+      <td>99ca8b25a7b584ec1b48b0a857a9211b</td>
+      <td>1</td>
+      <td>voucher</td>
+      <td>1</td>
+      <td>110.26</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_payments</span><span class="o">.</span><span class="n">dtypes</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>order_id                  object
+payment_sequential         int64
+payment_type            category
+payment_installments       int64
+payment_value            float64
+dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_payments</span><span class="o">.</span><span class="n">payment_type</span><span class="o">.</span><span class="n">preproc</span><span class="o">.</span><span class="n">normalize_string_series</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Table df_items</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_items</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">base_url</span><span class="si">}</span><span class="s1">olist_order_items_dataset.csv.gz&#39;</span>
+                <span class="p">,</span> <span class="n">parse_dates</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;shipping_limit_date&#39;</span><span class="p">],</span> <span class="n">date_format</span><span class="o">=</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1"> %H:%M:%S&#39;</span><span class="p">)</span>
+<span class="n">df_items</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;shipping_limit_date&#39;</span><span class="p">:</span> <span class="s1">&#39;shipping_limit_dt&#39;</span><span class="p">},</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">df_items</span> <span class="o">=</span> <span class="n">fo</span><span class="p">(</span><span class="n">df_items</span><span class="p">)</span>
+<span class="n">df_items</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>order_id</th>
+      <th>order_item_id</th>
+      <th>product_id</th>
+      <th>seller_id</th>
+      <th>shipping_limit_dt</th>
+      <th>price</th>
+      <th>freight_value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>64487</th>
+      <td>935879cc26cb79cd663525d2425c57dc</td>
+      <td>1</td>
+      <td>94ad63831117fac82c6054d2056ed118</td>
+      <td>54a1852d1b8f10312c55e906355666ee</td>
+      <td>2017-09-21 18:25:39</td>
+      <td>65.99</td>
+      <td>16.22</td>
+    </tr>
+    <tr>
+      <th>13892</th>
+      <td>1f9acfb03ed5bcc65242f54f6fec83a6</td>
+      <td>1</td>
+      <td>f0e1372ab5cfef5ea974b45e419851cb</td>
+      <td>270297ead4c65a6cd2593960d2af6b21</td>
+      <td>2017-09-01 20:35:10</td>
+      <td>329.99</td>
+      <td>17.07</td>
+    </tr>
+    <tr>
+      <th>17302</th>
+      <td>27a530fa8ac219ee1e453ccc7c575a07</td>
+      <td>1</td>
+      <td>389d119b48cf3043d311335e499d9c6b</td>
+      <td>1f50f920176fa81dab994f9023523100</td>
+      <td>2017-12-20 22:36:31</td>
+      <td>59.00</td>
+      <td>17.66</td>
+    </tr>
+    <tr>
+      <th>95956</th>
+      <td>d9b4c8cac94d984efe16ca1492bf3457</td>
+      <td>1</td>
+      <td>760bc344cfd2b318b8bf388fa995d3e4</td>
+      <td>d91fb3b7d041e83b64a00a3edfb37e4f</td>
+      <td>2017-06-27 02:26:05</td>
+      <td>159.10</td>
+      <td>15.86</td>
+    </tr>
+    <tr>
+      <th>8138</th>
+      <td>127b06830315a6224e76085943d1f565</td>
+      <td>1</td>
+      <td>746191562977a60292922c316e21720b</td>
+      <td>d65f31d2413268e671989503f6cf9993</td>
+      <td>2017-02-11 17:57:14</td>
+      <td>159.90</td>
+      <td>23.89</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_items</span><span class="o">.</span><span class="n">dtypes</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>order_id                     object
+order_item_id                 int64
+product_id                   object
+seller_id                    object
+shipping_limit_dt    datetime64[ns]
+price                       float64
+freight_value               float64
+dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Table df_customers</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dtype</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;customer_city&#39;</span><span class="p">:</span> <span class="s1">&#39;category&#39;</span><span class="p">,</span> <span class="s1">&#39;customer_state&#39;</span><span class="p">:</span> <span class="s1">&#39;category&#39;</span><span class="p">}</span>
+<span class="n">df_customers</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">base_url</span><span class="si">}</span><span class="s1">olist_customers_dataset.csv.gz&#39;</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">)</span>
+<span class="n">df_customers</span> <span class="o">=</span> <span class="n">fo</span><span class="p">(</span><span class="n">df_customers</span><span class="p">)</span>
+<span class="n">df_customers</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>customer_id</th>
+      <th>customer_unique_id</th>
+      <th>customer_zip_code_prefix</th>
+      <th>customer_city</th>
+      <th>customer_state</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>77007</th>
+      <td>c70ebd6d93654220aed313d7c3130d13</td>
+      <td>5df8710e0e69a1b21ec96bca50cc6c64</td>
+      <td>4548</td>
+      <td>sao paulo</td>
+      <td>SP</td>
+    </tr>
+    <tr>
+      <th>34012</th>
+      <td>bcad4bc4532c5833aa4ab073b2284d12</td>
+      <td>9b74a120a375eb707c4f17c801d3e9b1</td>
+      <td>41680</td>
+      <td>salvador</td>
+      <td>BA</td>
+    </tr>
+    <tr>
+      <th>48017</th>
+      <td>5094c0bd47f5fe28ddd902de34ebdd4d</td>
+      <td>b0dbb4f6439fc8a9bf1ddea6553272e0</td>
+      <td>15056</td>
+      <td>sao jose do rio preto</td>
+      <td>SP</td>
+    </tr>
+    <tr>
+      <th>32469</th>
+      <td>d401ce7f8ea08b0b3f591933e07e3778</td>
+      <td>6638dd079cc44519923ac6c0e0059463</td>
+      <td>22210</td>
+      <td>rio de janeiro</td>
+      <td>RJ</td>
+    </tr>
+    <tr>
+      <th>53647</th>
+      <td>b34983585f48f0c976e7694292618592</td>
+      <td>5f767d103332ebefbce36dd1581acafb</td>
+      <td>8771</td>
+      <td>mogi das cruzes</td>
+      <td>SP</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_customers</span><span class="o">.</span><span class="n">dtypes</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>customer_id                   object
+customer_unique_id            object
+customer_zip_code_prefix       int64
+customer_city               category
+customer_state              category
+dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_customers</span><span class="o">.</span><span class="n">customer_city</span><span class="o">.</span><span class="n">preproc</span><span class="o">.</span><span class="n">normalize_string_series</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">df_customers</span><span class="o">.</span><span class="n">customer_state</span><span class="o">.</span><span class="n">preproc</span><span class="o">.</span><span class="n">normalize_string_series</span><span class="p">(</span><span class="n">case_format</span><span class="o">=</span><span class="s1">&#39;upper&#39;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Table df_reviews</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_reviews</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">base_url</span><span class="si">}</span><span class="s1">olist_order_reviews_dataset_translated.csv.gz&#39;</span>
+                <span class="p">,</span> <span class="n">parse_dates</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;review_creation_date&#39;</span><span class="p">,</span> <span class="s1">&#39;review_answer_timestamp&#39;</span><span class="p">]</span>
+                <span class="p">,</span> <span class="n">date_format</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;review_creation_date&#39;</span><span class="p">:</span> <span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;review_answer_timestamp&#39;</span><span class="p">:</span> <span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1"> %H:%M:%S&#39;</span><span class="p">})</span>
+<span class="n">df_reviews</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;review_creation_date&#39;</span><span class="p">:</span> <span class="s1">&#39;review_creation_dt&#39;</span>
+                           <span class="p">,</span> <span class="s1">&#39;review_answer_timestamp&#39;</span><span class="p">:</span> <span class="s1">&#39;review_answer_dt&#39;</span><span class="p">},</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">df_reviews</span> <span class="o">=</span> <span class="n">fo</span><span class="p">(</span><span class="n">df_reviews</span><span class="p">)</span>
+<span class="n">df_reviews</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>review_id</th>
+      <th>order_id</th>
+      <th>review_score</th>
+      <th>review_comment_title</th>
+      <th>review_comment_message</th>
+      <th>review_creation_dt</th>
+      <th>review_answer_dt</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>33909</th>
+      <td>7f7bf3668353655e6db2e427e2215340</td>
+      <td>8ef63805460994636446a1e1012ee8b6</td>
+      <td>5</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>2018-07-25</td>
+      <td>2018-07-27 13:45:02</td>
+    </tr>
+    <tr>
+      <th>92307</th>
+      <td>798203ad7e72182cecac941da9ef0df1</td>
+      <td>4dac0c9aec5f460f203ce439f8af0f8c</td>
+      <td>5</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>2018-05-24</td>
+      <td>2018-05-24 21:42:59</td>
+    </tr>
+    <tr>
+      <th>89107</th>
+      <td>d04ee3fbd4d019d9a116c111de74e524</td>
+      <td>f1ffa84db833c490ced2c3bc52b1b833</td>
+      <td>5</td>
+      <td>Good buy, I recommend!</td>
+      <td>NaN</td>
+      <td>2018-08-10</td>
+      <td>2018-08-13 12:29:28</td>
+    </tr>
+    <tr>
+      <th>9538</th>
+      <td>9b9ce7ab5c8c8c1f162e69c34c31339c</td>
+      <td>4cc00a9ac85dee3a197d788b827da7e8</td>
+      <td>1</td>
+      <td>NaN</td>
+      <td>I didn't receive the product</td>
+      <td>2017-12-30</td>
+      <td>2018-01-01 06:23:37</td>
+    </tr>
+    <tr>
+      <th>31008</th>
+      <td>7e5553ec57494e7cd98c3c95c1a56bca</td>
+      <td>0644bbc829f241622c4c83b08436c465</td>
+      <td>5</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>2018-06-29</td>
+      <td>2018-07-02 01:52:38</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_reviews</span><span class="o">.</span><span class="n">dtypes</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>review_id                         object
+order_id                          object
+review_score                       int64
+review_comment_title              object
+review_comment_message            object
+review_creation_dt        datetime64[ns]
+review_answer_dt          datetime64[ns]
+dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_reviews</span><span class="o">.</span><span class="n">review_comment_title</span><span class="o">.</span><span class="n">preproc</span><span class="o">.</span><span class="n">normalize_string_series</span><span class="p">(</span><span class="n">case_format</span><span class="o">=</span><span class="s1">&#39;lower&#39;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">df_reviews</span><span class="o">.</span><span class="n">review_comment_message</span><span class="o">.</span><span class="n">preproc</span><span class="o">.</span><span class="n">normalize_string_series</span><span class="p">(</span><span class="n">case_format</span><span class="o">=</span><span class="s1">&#39;lower&#39;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Table df_products</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dtype</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;product_category_name&#39;</span><span class="p">:</span> <span class="s1">&#39;category&#39;</span><span class="p">}</span>
+<span class="n">df_products</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">base_url</span><span class="si">}</span><span class="s1">olist_products_dataset.csv.gz&#39;</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">)</span>
+<span class="n">df_products</span> <span class="o">=</span> <span class="n">fo</span><span class="p">(</span><span class="n">df_products</span><span class="p">)</span>
+<span class="n">df_products</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>product_id</th>
+      <th>product_category_name</th>
+      <th>product_name_lenght</th>
+      <th>product_description_lenght</th>
+      <th>product_photos_qty</th>
+      <th>product_weight_g</th>
+      <th>product_length_cm</th>
+      <th>product_height_cm</th>
+      <th>product_width_cm</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>21978</th>
+      <td>6139fa69b55f0d2940a87602dd20892d</td>
+      <td>automotivo</td>
+      <td>49.00</td>
+      <td>329.00</td>
+      <td>2.00</td>
+      <td>100.00</td>
+      <td>24.00</td>
+      <td>2.00</td>
+      <td>17.00</td>
+    </tr>
+    <tr>
+      <th>24632</th>
+      <td>150c699262a053229e89213dc9c358d2</td>
+      <td>sinalizacao_e_seguranca</td>
+      <td>60.00</td>
+      <td>480.00</td>
+      <td>1.00</td>
+      <td>300.00</td>
+      <td>16.00</td>
+      <td>14.00</td>
+      <td>15.00</td>
+    </tr>
+    <tr>
+      <th>24489</th>
+      <td>c773bee67e093ae2c47a883109b577b1</td>
+      <td>beleza_saude</td>
+      <td>59.00</td>
+      <td>1,566.00</td>
+      <td>1.00</td>
+      <td>1,200.00</td>
+      <td>16.00</td>
+      <td>16.00</td>
+      <td>16.00</td>
+    </tr>
+    <tr>
+      <th>18870</th>
+      <td>d69f56b9e4b6d98bc1521db5ba96846a</td>
+      <td>esporte_lazer</td>
+      <td>47.00</td>
+      <td>1,198.00</td>
+      <td>4.00</td>
+      <td>400.00</td>
+      <td>20.00</td>
+      <td>34.00</td>
+      <td>44.00</td>
+    </tr>
+    <tr>
+      <th>9265</th>
+      <td>09e9d1c1a370af902b1b7175400021ee</td>
+      <td>automotivo</td>
+      <td>56.00</td>
+      <td>1,040.00</td>
+      <td>1.00</td>
+      <td>150.00</td>
+      <td>16.00</td>
+      <td>11.00</td>
+      <td>11.00</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_products</span><span class="o">.</span><span class="n">dtypes</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>product_id                      object
+product_category_name         category
+product_name_lenght            float64
+product_description_lenght     float64
+product_photos_qty             float64
+product_weight_g               float64
+product_length_cm              float64
+product_height_cm              float64
+product_width_cm               float64
+dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<p>We will not normalize the product_category_name column because we will replace it with an English version.</p>
+<p><strong>Table df_categories</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dtype</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;product_category_name&#39;</span><span class="p">:</span> <span class="s1">&#39;category&#39;</span><span class="p">,</span> <span class="s1">&#39;product_category_name_english&#39;</span><span class="p">:</span> <span class="s1">&#39;category&#39;</span><span class="p">}</span>
+<span class="n">df_categories</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">base_url</span><span class="si">}</span><span class="s1">product_category_name_translation.csv.gz&#39;</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">)</span>
+<span class="n">df_categories</span> <span class="o">=</span> <span class="n">fo</span><span class="p">(</span><span class="n">df_categories</span><span class="p">)</span>
+<span class="n">df_categories</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>product_category_name</th>
+      <th>product_category_name_english</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>18</th>
+      <td>eletroportateis</td>
+      <td>small_appliances</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>automotivo</td>
+      <td>auto</td>
+    </tr>
+    <tr>
+      <th>53</th>
+      <td>pcs</td>
+      <td>computers</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>construcao_ferramentas_jardim</td>
+      <td>costruction_tools_garden</td>
+    </tr>
+    <tr>
+      <th>45</th>
+      <td>alimentos</td>
+      <td>food</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_categories</span><span class="o">.</span><span class="n">dtypes</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>product_category_name            category
+product_category_name_english    category
+dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<p>We will perform normalization only for the English version of the column because we will be working with it exclusively.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_categories</span><span class="o">.</span><span class="n">product_category_name_english</span><span class="o">.</span><span class="n">preproc</span><span class="o">.</span><span class="n">normalize_string_series</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Table df_sellers</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dtype</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;seller_city&#39;</span><span class="p">:</span> <span class="s1">&#39;category&#39;</span><span class="p">,</span> <span class="s1">&#39;seller_state&#39;</span><span class="p">:</span> <span class="s1">&#39;category&#39;</span><span class="p">}</span>
+<span class="n">df_sellers</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">base_url</span><span class="si">}</span><span class="s1">olist_sellers_dataset.csv.gz&#39;</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">)</span>
+<span class="n">df_sellers</span> <span class="o">=</span> <span class="n">fo</span><span class="p">(</span><span class="n">df_sellers</span><span class="p">)</span>
+<span class="n">df_sellers</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>seller_id</th>
+      <th>seller_zip_code_prefix</th>
+      <th>seller_city</th>
+      <th>seller_state</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1251</th>
+      <td>cfd7ddab722b902f7ac5b5f3ba6d723d</td>
+      <td>32372</td>
+      <td>contagem</td>
+      <td>MG</td>
+    </tr>
+    <tr>
+      <th>2098</th>
+      <td>1fa2d3def6adfa70e58c276bb64fe5bb</td>
+      <td>4106</td>
+      <td>sao paulo</td>
+      <td>SP</td>
+    </tr>
+    <tr>
+      <th>1805</th>
+      <td>0936e1837d0c79253456bbb2ffaaef10</td>
+      <td>2050</td>
+      <td>sao paulo</td>
+      <td>SP</td>
+    </tr>
+    <tr>
+      <th>2593</th>
+      <td>5a4236931428800e9d9cc04af0987118</td>
+      <td>2916</td>
+      <td>sao paulo</td>
+      <td>SP</td>
+    </tr>
+    <tr>
+      <th>419</th>
+      <td>528ce32f560edd11add4169f6a5b65be</td>
+      <td>18130</td>
+      <td>sao roque</td>
+      <td>SP</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_sellers</span><span class="o">.</span><span class="n">dtypes</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>seller_id                   object
+seller_zip_code_prefix       int64
+seller_city               category
+seller_state              category
+dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_sellers</span><span class="o">.</span><span class="n">seller_city</span><span class="o">.</span><span class="n">preproc</span><span class="o">.</span><span class="n">normalize_string_series</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">df_sellers</span><span class="o">.</span><span class="n">seller_state</span><span class="o">.</span><span class="n">preproc</span><span class="o">.</span><span class="n">normalize_string_series</span><span class="p">(</span><span class="n">case_format</span><span class="o">=</span><span class="s1">&#39;upper&#39;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Table df_geolocations</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dtype</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;geolocation_city&#39;</span><span class="p">:</span> <span class="s1">&#39;category&#39;</span><span class="p">,</span> <span class="s1">&#39;geolocation_state&#39;</span><span class="p">:</span> <span class="s1">&#39;category&#39;</span><span class="p">}</span>
+<span class="n">df_geolocations</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">base_url</span><span class="si">}</span><span class="s1">olist_geolocation_dataset.csv.gz&#39;</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">)</span>
+<span class="n">df_geolocations</span> <span class="o">=</span> <span class="n">fo</span><span class="p">(</span><span class="n">df_geolocations</span><span class="p">)</span>
+<span class="n">df_geolocations</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>geolocation_zip_code_prefix</th>
+      <th>geolocation_lat</th>
+      <th>geolocation_lng</th>
+      <th>geolocation_city</th>
+      <th>geolocation_state</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>39817</th>
+      <td>2976</td>
+      <td>-23.47</td>
+      <td>-46.72</td>
+      <td>sao paulo</td>
+      <td>SP</td>
+    </tr>
+    <tr>
+      <th>198962</th>
+      <td>8131</td>
+      <td>-23.50</td>
+      <td>-46.38</td>
+      <td>sao paulo</td>
+      <td>SP</td>
+    </tr>
+    <tr>
+      <th>582845</th>
+      <td>34600</td>
+      <td>-19.86</td>
+      <td>-43.86</td>
+      <td>sabara</td>
+      <td>MG</td>
+    </tr>
+    <tr>
+      <th>193875</th>
+      <td>7901</td>
+      <td>-23.28</td>
+      <td>-46.74</td>
+      <td>francisco morato</td>
+      <td>SP</td>
+    </tr>
+    <tr>
+      <th>238522</th>
+      <td>9751</td>
+      <td>-23.69</td>
+      <td>-46.54</td>
+      <td>são bernardo do campo</td>
+      <td>SP</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_geolocations</span><span class="o">.</span><span class="n">dtypes</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>geolocation_zip_code_prefix       int64
+geolocation_lat                 float64
+geolocation_lng                 float64
+geolocation_city               category
+geolocation_state              category
+dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_geolocations</span><span class="o">.</span><span class="n">geolocation_city</span><span class="o">.</span><span class="n">preproc</span><span class="o">.</span><span class="n">normalize_string_series</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">df_geolocations</span><span class="o">.</span><span class="n">geolocation_state</span><span class="o">.</span><span class="n">preproc</span><span class="o">.</span><span class="n">normalize_string_series</span><span class="p">(</span><span class="n">case_format</span><span class="o">=</span><span class="s1">&#39;upper&#39;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We will combine all dataframes into a class for easier further work.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Dfs</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">orders</span> <span class="o">=</span> <span class="n">df_orders</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">items</span> <span class="o">=</span> <span class="n">df_items</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reviews</span> <span class="o">=</span> <span class="n">df_reviews</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">products</span> <span class="o">=</span> <span class="n">df_products</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">geolocations</span> <span class="o">=</span> <span class="n">df_geolocations</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sellers</span> <span class="o">=</span> <span class="n">df_sellers</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">payments</span> <span class="o">=</span> <span class="n">df_payments</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">customers</span> <span class="o">=</span> <span class="n">df_customers</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">categories</span> <span class="o">=</span> <span class="n">df_categories</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">iter</span><span class="p">([</span>
+            <span class="p">(</span><span class="s1">&#39;orders&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">orders</span><span class="p">),</span>
+            <span class="p">(</span><span class="s1">&#39;items&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">),</span>
+            <span class="p">(</span><span class="s1">&#39;reviews&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">reviews</span><span class="p">),</span>
+            <span class="p">(</span><span class="s1">&#39;products&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">products</span><span class="p">),</span>
+            <span class="p">(</span><span class="s1">&#39;geolocations&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">geolocations</span><span class="p">),</span>
+            <span class="p">(</span><span class="s1">&#39;sellers&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">sellers</span><span class="p">),</span>
+            <span class="p">(</span><span class="s1">&#39;payments&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">payments</span><span class="p">),</span>
+            <span class="p">(</span><span class="s1">&#39;customers&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">customers</span><span class="p">),</span>
+            <span class="p">(</span><span class="s1">&#39;categories&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">categories</span><span class="p">),</span>
+        <span class="p">])</span>
+<span class="n">dfs</span> <span class="o">=</span> <span class="n">Dfs</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="01_data_description.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Data Description</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="03_data_exploration.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Data Exploration</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Pavel Grigoryev
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025, Pavel Grigoryev.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

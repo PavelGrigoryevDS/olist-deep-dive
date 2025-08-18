@@ -1,0 +1,1181 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Initial Data Filtering &#8212; 🌊 Deep Sales Analysis of Olist Marketplace</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=aa5847ba" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/custom.js?v=f9582d1e"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'contents/02_data_preprocessing/01_initial_data_filtering';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Outlier Handling" href="02_outlier_handling.html" />
+    <link rel="prev" title="Intermediate Conclusion" href="../01_data_description_and_exploration/04_intermediate_conclusion.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo-light.png" class="logo__image only-light" alt="🌊 Deep Sales Analysis of Olist Marketplace - Home"/>
+    <script>document.write(`<img src="../../_static/logo-dark.png" class="logo__image only-dark" alt="🌊 Deep Sales Analysis of Olist Marketplace - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Description and Exploration</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../01_data_description_and_exploration/01_data_description.html">Data Description</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_data_description_and_exploration/02_data_loading.html">Data Loading</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_data_description_and_exploration/03_data_exploration.html">Data Exploration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_data_description_and_exploration/04_intermediate_conclusion.html">Intermediate Conclusion</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Preprocessing</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Initial Data Filtering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_outlier_handling.html">Outlier Handling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_missing_value_handling.html">Missing Value Handling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_duplicate_handling.html">Duplicate Handling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_creating_new_metrics.html">Creating New Metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_creating_new_dimensions.html">Creating New Dimensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_converting_data_to_a_convenient_format.html">Converting Data to a Convenient Format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_data_merging.html">Data Merging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_intermediate_conclusion.html">Intermediate Conclusion</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Analysis</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../03_data_analysis/01_creating_analysis_class.html">Creating Analysis Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_analysis/02_time_series_analysis.html">Time Series Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_analysis/03_customer_analysis.html">Customer Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_analysis/04_seller_analysis.html">Seller Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_analysis/05_sales_analysis.html">Sales Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_analysis/06_product_analysis.html">Product Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_analysis/07_review_analysis.html">Review Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_analysis/08_delivery_analysis.html">Delivery Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_analysis/09_payment_analysis.html">Payment Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_analysis/10_geographical_analysis.html">Geographical Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_analysis/11_cohort_analysis.html">Cohort Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_analysis/12_correlation_analysis.html">Correlation Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_analysis/13_slice_analysis.html">Slice Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_analysis/14_analysis_of_customer_segments.html">Analysis of Customer Segments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_analysis/15_rfm_analysis.html">RFM Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_analysis/16_customer_clustering.html">Customer Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_analysis/17_hypothesis_testing.html">Hypothesis Testing</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">General Conclusion</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/01_time_dynamics.html">Time Dynamics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/02_customers.html">Customers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/03_sales.html">Sales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/04_products.html">Products</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/05_reviews.html">Reviews</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/06_delivery.html">Delivery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/07_payments.html">Payments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/08_sellers.html">Sellers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/09_cohort_analysis.html">Cohort Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/10_correlation_analysis.html">Correlation Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/11_black_friday.html">Black Friday</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/12_cancelled_orders.html">Cancelled Orders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/13_hypothesis_testing_results.html">Hypothesis Testing Results</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_general_conclusion/14_detected_anomalies.html">Detected Anomalies</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Recommendations</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/01_product_market_fit.html">Product market fit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/02_customer_loyalty_enhancement.html">Customer loyalty Enhancement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/03_customer_experience_improvement.html">Customer Experience Improvement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/04_logistics_and_delivery_optimization.html">Logistics and Delivery Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/05_financial_optimization.html">Financial optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/06_average_order_value_and_basket_optimization.html">Average Order Value and Basket Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/07_segment_specific_strategies.html">Segment-Specific Strategies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/08_product_and_assortment_management.html">Product and Assortment Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/09_marketing_and_promotion.html">Marketing and Promotion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/10_peak_season_preparedness.html">Peak Season Preparedness</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/11_analytics_and_monitoring.html">Analytics and Monitoring</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/12_ab_testing.html">A/B Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_recommendations/13_anomaly.html">Anomaly</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/PavelGrigoryevDS/olist-deep-dive" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/contents/02_data_preprocessing/01_initial_data_filtering.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Initial Data Filtering</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="initial-data-filtering">
+<h1>Initial Data Filtering<a class="headerlink" href="#initial-data-filtering" title="Link to this heading">#</a></h1>
+<p><strong>Selecting the Time Period for Analysis</strong></p>
+<p>Let’s see how many orders there were before 2017.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_orders</span><span class="p">[</span><span class="n">df_orders</span><span class="o">.</span><span class="n">order_approved_dt</span> <span class="o">&lt;</span> <span class="s1">&#39;2017-04-01&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Grouper</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="s1">&#39;order_approved_dt&#39;</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s1">&#39;ME&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">agg</span><span class="p">({</span><span class="s1">&#39;order_id&#39;</span><span class="p">:</span> <span class="s1">&#39;nunique&#39;</span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>order_id</th>
+    </tr>
+    <tr>
+      <th>order_approved_dt</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2016-09-30</th>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2016-10-31</th>
+      <td>320</td>
+    </tr>
+    <tr>
+      <th>2016-11-30</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2016-12-31</th>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2017-01-31</th>
+      <td>760</td>
+    </tr>
+    <tr>
+      <th>2017-02-28</th>
+      <td>1765</td>
+    </tr>
+    <tr>
+      <th>2017-03-31</th>
+      <td>2689</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p><strong>Key Observations:</strong></p>
+<ul class="simple">
+<li><p>Before 2017, either there were very few orders or the data is incomplete. It would be reasonable to use data starting from 2017.</p></li>
+<li><p>If we include data before 2017, the results for this period will not be statistically significant, as only October 2016 had a somewhat sufficient number of orders. This will manifest as anomalous values in average metrics on graphs due to small sample sizes in groups.</p></li>
+</ul>
+<p>Let’s see how many orders were approved after September 2018.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_orders</span><span class="p">[</span><span class="n">df_orders</span><span class="o">.</span><span class="n">order_approved_dt</span> <span class="o">&gt;</span> <span class="s1">&#39;2018-09-01&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>order_id</th>
+      <th>customer_id</th>
+      <th>order_status</th>
+      <th>order_purchase_dt</th>
+      <th>order_approved_dt</th>
+      <th>order_delivered_carrier_dt</th>
+      <th>order_delivered_customer_dt</th>
+      <th>order_estimated_delivery_dt</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>62360</th>
+      <td>54282e97f61c23b78330c15b154c867d</td>
+      <td>4b7decb9b58e2569548b8b4c8e20e8d7</td>
+      <td>Shipped</td>
+      <td>2018-09-03 09:06:57</td>
+      <td>2018-09-03 17:40:06</td>
+      <td>2018-09-04 15:25:00</td>
+      <td>NaT</td>
+      <td>2018-09-06</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p><strong>Key Observations:</strong></p>
+<ul class="simple">
+<li><p>Only one order. We conclude that data after August 2018 is incomplete.</p></li>
+</ul>
+<p>Let’s examine what orders were created after August 2018.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_orders</span><span class="p">[</span><span class="n">df_orders</span><span class="o">.</span><span class="n">order_purchase_dt</span> <span class="o">&gt;</span> <span class="s1">&#39;2018-09-01&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>order_id</th>
+      <th>customer_id</th>
+      <th>order_status</th>
+      <th>order_purchase_dt</th>
+      <th>order_approved_dt</th>
+      <th>order_delivered_carrier_dt</th>
+      <th>order_delivered_customer_dt</th>
+      <th>order_estimated_delivery_dt</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1801</th>
+      <td>ed3efbd3a87bea76c2812c66a0b32219</td>
+      <td>191984a8ba4cbb2145acb4fe35b69664</td>
+      <td>Canceled</td>
+      <td>2018-09-20 13:54:16</td>
+      <td>NaT</td>
+      <td>NaT</td>
+      <td>NaT</td>
+      <td>2018-10-17</td>
+    </tr>
+    <tr>
+      <th>5149</th>
+      <td>ea844c92cf978ea23321fa7fe5871761</td>
+      <td>6ddc45ad08e6a2c885ca2255fc52d6df</td>
+      <td>Canceled</td>
+      <td>2018-09-13 09:56:12</td>
+      <td>NaT</td>
+      <td>NaT</td>
+      <td>NaT</td>
+      <td>2018-09-27</td>
+    </tr>
+    <tr>
+      <th>9976</th>
+      <td>87ae60ef8b08ae0e5f903cacb53a6904</td>
+      <td>fea4d57ed3a45455f89c25ef3dae8ee8</td>
+      <td>Canceled</td>
+      <td>2018-09-11 16:45:54</td>
+      <td>NaT</td>
+      <td>NaT</td>
+      <td>NaT</td>
+      <td>2018-09-26</td>
+    </tr>
+    <tr>
+      <th>16366</th>
+      <td>bd35b677fd239386e9861d11ae98ab56</td>
+      <td>ad2eb5d02c0808bcd8743117f6383cf6</td>
+      <td>Canceled</td>
+      <td>2018-09-17 17:21:16</td>
+      <td>NaT</td>
+      <td>NaT</td>
+      <td>NaT</td>
+      <td>2018-10-01</td>
+    </tr>
+    <tr>
+      <th>20778</th>
+      <td>4d59cc2a2e7bb6c0a851725f5888a9b5</td>
+      <td>ead83a4f8f7be8c3034b2e98754a6147</td>
+      <td>Canceled</td>
+      <td>2018-09-06 14:50:07</td>
+      <td>NaT</td>
+      <td>NaT</td>
+      <td>NaT</td>
+      <td>2018-09-21</td>
+    </tr>
+    <tr>
+      <th>24410</th>
+      <td>0d3adebce4bebc1f80a7f36e9833f497</td>
+      <td>a7c87c25dbdded68c26c640582cb5ddb</td>
+      <td>Canceled</td>
+      <td>2018-09-03 18:40:50</td>
+      <td>NaT</td>
+      <td>NaT</td>
+      <td>NaT</td>
+      <td>2018-10-02</td>
+    </tr>
+    <tr>
+      <th>31170</th>
+      <td>21a00b08cbeb5716bbb66105e3dbd850</td>
+      <td>002b5342c72978cf0aba6aae1f5d5293</td>
+      <td>Canceled</td>
+      <td>2018-09-10 17:51:25</td>
+      <td>NaT</td>
+      <td>NaT</td>
+      <td>NaT</td>
+      <td>2018-09-20</td>
+    </tr>
+    <tr>
+      <th>31891</th>
+      <td>a2ac6dad85cf8af5b0afb510a240fe8c</td>
+      <td>4c2ec60c29d10c34bd49cb88aa85cfc4</td>
+      <td>Canceled</td>
+      <td>2018-10-03 18:55:29</td>
+      <td>NaT</td>
+      <td>NaT</td>
+      <td>NaT</td>
+      <td>2018-10-16</td>
+    </tr>
+    <tr>
+      <th>33979</th>
+      <td>5aac76cf7b07dd06fa4d50bf461d2f40</td>
+      <td>7a8a02e54cf3472df427e927f8b9c046</td>
+      <td>Canceled</td>
+      <td>2018-09-25 11:59:18</td>
+      <td>NaT</td>
+      <td>NaT</td>
+      <td>NaT</td>
+      <td>2018-10-11</td>
+    </tr>
+    <tr>
+      <th>37003</th>
+      <td>869997fbe01f39d184956b5c6bccfdbe</td>
+      <td>55c9dad94ec1a2ba57998bdb376c230a</td>
+      <td>Canceled</td>
+      <td>2018-09-26 08:40:15</td>
+      <td>NaT</td>
+      <td>NaT</td>
+      <td>NaT</td>
+      <td>2018-10-25</td>
+    </tr>
+    <tr>
+      <th>39919</th>
+      <td>4637ca194b6387e2d538dc89b124b0ee</td>
+      <td>a73c1f73f5772cf801434bf984b0b1a7</td>
+      <td>Canceled</td>
+      <td>2018-09-03 14:14:25</td>
+      <td>NaT</td>
+      <td>NaT</td>
+      <td>NaT</td>
+      <td>2018-09-10</td>
+    </tr>
+    <tr>
+      <th>50387</th>
+      <td>392ed9afd714e3c74767d0c4d3e3f477</td>
+      <td>2823ffda607a2316375088e0d00005ec</td>
+      <td>Canceled</td>
+      <td>2018-09-29 09:13:03</td>
+      <td>NaT</td>
+      <td>NaT</td>
+      <td>NaT</td>
+      <td>2018-10-15</td>
+    </tr>
+    <tr>
+      <th>53501</th>
+      <td>afb61112fb99b07fe17e591c68c0c84c</td>
+      <td>36b182c39933d55e307096ccc3fd2970</td>
+      <td>Canceled</td>
+      <td>2018-09-06 10:48:12</td>
+      <td>NaT</td>
+      <td>NaT</td>
+      <td>NaT</td>
+      <td>2018-09-19</td>
+    </tr>
+    <tr>
+      <th>60938</th>
+      <td>10a045cdf6a5650c21e9cfeb60384c16</td>
+      <td>a4b417188addbc05b26b72d5e44837a1</td>
+      <td>Canceled</td>
+      <td>2018-10-17 17:30:18</td>
+      <td>NaT</td>
+      <td>NaT</td>
+      <td>NaT</td>
+      <td>2018-10-30</td>
+    </tr>
+    <tr>
+      <th>62360</th>
+      <td>54282e97f61c23b78330c15b154c867d</td>
+      <td>4b7decb9b58e2569548b8b4c8e20e8d7</td>
+      <td>Shipped</td>
+      <td>2018-09-03 09:06:57</td>
+      <td>2018-09-03 17:40:06</td>
+      <td>2018-09-04 15:25:00</td>
+      <td>NaT</td>
+      <td>2018-09-06</td>
+    </tr>
+    <tr>
+      <th>68373</th>
+      <td>b059ee4de278302d550a3035c4cdb740</td>
+      <td>856336203359aa6a61bf3826f7d84c49</td>
+      <td>Canceled</td>
+      <td>2018-10-16 20:16:02</td>
+      <td>NaT</td>
+      <td>NaT</td>
+      <td>NaT</td>
+      <td>2018-11-12</td>
+    </tr>
+    <tr>
+      <th>73341</th>
+      <td>cfdfd7862e532c4ec1ed1c6a1b56d320</td>
+      <td>0ab5ac09913dfd3f247c7929a3799799</td>
+      <td>Canceled</td>
+      <td>2018-09-03 18:45:34</td>
+      <td>NaT</td>
+      <td>NaT</td>
+      <td>NaT</td>
+      <td>2018-09-14</td>
+    </tr>
+    <tr>
+      <th>80019</th>
+      <td>1ad22e16129698e1a3cc11e4350d2cb7</td>
+      <td>d6441eef3f37c3edb0d5634c3c85120b</td>
+      <td>Canceled</td>
+      <td>2018-09-12 15:32:16</td>
+      <td>NaT</td>
+      <td>NaT</td>
+      <td>NaT</td>
+      <td>2018-09-26</td>
+    </tr>
+    <tr>
+      <th>88500</th>
+      <td>616fa7d4871b87832197b2a137a115d2</td>
+      <td>bf6181a85bbb4115736c0a8db1a53be3</td>
+      <td>Canceled</td>
+      <td>2018-10-01 15:30:09</td>
+      <td>NaT</td>
+      <td>NaT</td>
+      <td>NaT</td>
+      <td>2018-10-23</td>
+    </tr>
+    <tr>
+      <th>99347</th>
+      <td>a89abace0dcc01eeb267a9660b5ac126</td>
+      <td>2f0524a7b1b3845a1a57fcf3910c4333</td>
+      <td>Canceled</td>
+      <td>2018-09-06 18:45:47</td>
+      <td>NaT</td>
+      <td>NaT</td>
+      <td>NaT</td>
+      <td>2018-09-27</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p><strong>Key Observations:</strong></p>
+<ul class="simple">
+<li><p>All orders created after August 2018 were canceled, except for one. This means we can safely trim the data up to September 2018.</p></li>
+</ul>
+<p>As we determined, there were very few sales before January 2017, or the data is incomplete, so for more accurate analysis, we will consider data from January 2017.</p>
+<p>Additionally, there is only one approved order after August 2018. Very few were created, and all were canceled, so we will analyze data up to and including August 2018 to avoid distorting results with incomplete data.</p>
+<p>At the same time, it’s important not to lose rows with missing values in order_approved_dt.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_orders</span> <span class="o">=</span> <span class="n">df_orders</span><span class="p">[</span>
+    <span class="n">df_orders</span><span class="o">.</span><span class="n">order_purchase_dt</span><span class="o">.</span><span class="n">between</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="s1">&#39;2017-01-01&#39;</span><span class="p">),</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="s1">&#39;2018-09-01&#39;</span><span class="p">),</span> <span class="n">inclusive</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
+    <span class="o">|</span> <span class="n">df_orders</span><span class="o">.</span><span class="n">order_purchase_dt</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We’ll do the same for the reviews table. But we’ll only trim the lower date since reviews are created later than orders.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_reviews</span> <span class="o">=</span> <span class="n">df_reviews</span><span class="p">[</span>
+    <span class="p">(</span><span class="n">df_reviews</span><span class="o">.</span><span class="n">review_creation_dt</span> <span class="o">&gt;=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="s1">&#39;2017-01-01&#39;</span><span class="p">))</span>
+    <span class="o">|</span> <span class="n">df_reviews</span><span class="o">.</span><span class="n">review_creation_dt</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<p><strong>Filtering by Order Presence</strong></p>
+<p>To ensure data integrity, we kept only those records in related tables that have a corresponding order_id in the orders table.</p>
+<p>We’ll keep only users present in the orders table.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fron</span><span class="o">.</span><span class="n">analyze_join_keys</span><span class="p">(</span><span class="n">df_customers</span><span class="p">,</span> <span class="n">df_orders</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;customer_id&#39;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;inner&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style type="text/css">
+#T_e24f9 caption {
+  font-size: 16px;
+  text-align: left;
+  font-weight: bold;
+  white-space: nowrap;
+}
+#T_e24f9 th {
+  text-align: left;
+}
+#T_e24f9_row0_col0, #T_e24f9_row0_col1, #T_e24f9_row0_col2, #T_e24f9_row0_col3, #T_e24f9_row0_col4, #T_e24f9_row0_col5 {
+  text-align: left;
+}
+</style>
+<table id="T_e24f9">
+  <caption>Join info</caption>
+  <thead>
+    <tr>
+      <th id="T_e24f9_level0_col0" class="col_heading level0 col0" >Type</th>
+      <th id="T_e24f9_level0_col1" class="col_heading level0 col1" >Left-only keys</th>
+      <th id="T_e24f9_level0_col2" class="col_heading level0 col2" >Right-only keys</th>
+      <th id="T_e24f9_level0_col3" class="col_heading level0 col3" >Left size</th>
+      <th id="T_e24f9_level0_col4" class="col_heading level0 col4" >Right size</th>
+      <th id="T_e24f9_level0_col5" class="col_heading level0 col5" >Inner join size</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td id="T_e24f9_row0_col0" class="data row0 col0" >1:1</td>
+      <td id="T_e24f9_row0_col1" class="data row0 col1" >349</td>
+      <td id="T_e24f9_row0_col2" class="data row0 col2" >0</td>
+      <td id="T_e24f9_row0_col3" class="data row0 col3" >99,441</td>
+      <td id="T_e24f9_row0_col4" class="data row0 col4" >99,092</td>
+      <td id="T_e24f9_row0_col5" class="data row0 col5" >99,092</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_customers</span> <span class="o">=</span> <span class="n">df_customers</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df_orders</span><span class="p">[[</span><span class="s1">&#39;customer_id&#39;</span><span class="p">]],</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;customer_id&#39;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;inner&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fron</span><span class="o">.</span><span class="n">analyze_join_keys</span><span class="p">(</span><span class="n">df_customers</span><span class="p">,</span> <span class="n">df_orders</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;customer_id&#39;</span><span class="p">,</span> <span class="n">only_coverage</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Left only keys: 0
+Right only keys: 0
+</pre></div>
+</div>
+</div>
+</div>
+<p>We’ll keep only payments present in the orders table.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fron</span><span class="o">.</span><span class="n">analyze_join_keys</span><span class="p">(</span><span class="n">df_payments</span><span class="p">,</span> <span class="n">df_orders</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;order_id&#39;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;inner&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style type="text/css">
+#T_66987 caption {
+  font-size: 16px;
+  text-align: left;
+  font-weight: bold;
+  white-space: nowrap;
+}
+#T_66987 th {
+  text-align: left;
+}
+#T_66987_row0_col0, #T_66987_row0_col1, #T_66987_row0_col2, #T_66987_row0_col3, #T_66987_row0_col4, #T_66987_row0_col5 {
+  text-align: left;
+}
+</style>
+<table id="T_66987">
+  <caption>Join info</caption>
+  <thead>
+    <tr>
+      <th id="T_66987_level0_col0" class="col_heading level0 col0" >Type</th>
+      <th id="T_66987_level0_col1" class="col_heading level0 col1" >Left-only keys</th>
+      <th id="T_66987_level0_col2" class="col_heading level0 col2" >Right-only keys</th>
+      <th id="T_66987_level0_col3" class="col_heading level0 col3" >Left size</th>
+      <th id="T_66987_level0_col4" class="col_heading level0 col4" >Right size</th>
+      <th id="T_66987_level0_col5" class="col_heading level0 col5" >Inner join size</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td id="T_66987_row0_col0" class="data row0 col0" >N:1</td>
+      <td id="T_66987_row0_col1" class="data row0 col1" >348</td>
+      <td id="T_66987_row0_col2" class="data row0 col2" >0</td>
+      <td id="T_66987_row0_col3" class="data row0 col3" >103,886</td>
+      <td id="T_66987_row0_col4" class="data row0 col4" >99,092</td>
+      <td id="T_66987_row0_col5" class="data row0 col5" >103,520</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_payments</span> <span class="o">=</span> <span class="n">df_payments</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df_orders</span><span class="p">[[</span><span class="s1">&#39;order_id&#39;</span><span class="p">]],</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;order_id&#39;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;inner&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fron</span><span class="o">.</span><span class="n">analyze_join_keys</span><span class="p">(</span><span class="n">df_payments</span><span class="p">,</span> <span class="n">df_orders</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;order_id&#39;</span><span class="p">,</span> <span class="n">only_coverage</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Left only keys: 0
+Right only keys: 0
+</pre></div>
+</div>
+</div>
+</div>
+<p>We’ll keep only reviews present in the orders table.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fron</span><span class="o">.</span><span class="n">analyze_join_keys</span><span class="p">(</span><span class="n">df_reviews</span><span class="p">,</span> <span class="n">df_orders</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;order_id&#39;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;inner&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style type="text/css">
+#T_ecf40 caption {
+  font-size: 16px;
+  text-align: left;
+  font-weight: bold;
+  white-space: nowrap;
+}
+#T_ecf40 th {
+  text-align: left;
+}
+#T_ecf40_row0_col0, #T_ecf40_row0_col1, #T_ecf40_row0_col2, #T_ecf40_row0_col3, #T_ecf40_row0_col4, #T_ecf40_row0_col5 {
+  text-align: left;
+}
+</style>
+<table id="T_ecf40">
+  <caption>Join info</caption>
+  <thead>
+    <tr>
+      <th id="T_ecf40_level0_col0" class="col_heading level0 col0" >Type</th>
+      <th id="T_ecf40_level0_col1" class="col_heading level0 col1" >Left-only keys</th>
+      <th id="T_ecf40_level0_col2" class="col_heading level0 col2" >Right-only keys</th>
+      <th id="T_ecf40_level0_col3" class="col_heading level0 col3" >Left size</th>
+      <th id="T_ecf40_level0_col4" class="col_heading level0 col4" >Right size</th>
+      <th id="T_ecf40_level0_col5" class="col_heading level0 col5" >Inner join size</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td id="T_ecf40_row0_col0" class="data row0 col0" >N:1</td>
+      <td id="T_ecf40_row0_col1" class="data row0 col1" >21</td>
+      <td id="T_ecf40_row0_col2" class="data row0 col2" >0</td>
+      <td id="T_ecf40_row0_col3" class="data row0 col3" >99,669</td>
+      <td id="T_ecf40_row0_col4" class="data row0 col4" >99,092</td>
+      <td id="T_ecf40_row0_col5" class="data row0 col5" >99,648</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_reviews</span> <span class="o">=</span> <span class="n">df_reviews</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df_orders</span><span class="p">[[</span><span class="s1">&#39;order_id&#39;</span><span class="p">]],</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;order_id&#39;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;inner&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fron</span><span class="o">.</span><span class="n">analyze_join_keys</span><span class="p">(</span><span class="n">df_reviews</span><span class="p">,</span> <span class="n">df_orders</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;order_id&#39;</span><span class="p">,</span> <span class="n">only_coverage</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Left only keys: 0
+Right only keys: 0
+</pre></div>
+</div>
+</div>
+</div>
+<p>We’ll keep only order items present in the orders table.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fron</span><span class="o">.</span><span class="n">analyze_join_keys</span><span class="p">(</span><span class="n">df_items</span><span class="p">,</span> <span class="n">df_orders</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;order_id&#39;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;inner&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style type="text/css">
+#T_0dbe9 caption {
+  font-size: 16px;
+  text-align: left;
+  font-weight: bold;
+  white-space: nowrap;
+}
+#T_0dbe9 th {
+  text-align: left;
+}
+#T_0dbe9_row0_col0, #T_0dbe9_row0_col1, #T_0dbe9_row0_col2, #T_0dbe9_row0_col3, #T_0dbe9_row0_col4, #T_0dbe9_row0_col5 {
+  text-align: left;
+}
+</style>
+<table id="T_0dbe9">
+  <caption>Join info</caption>
+  <thead>
+    <tr>
+      <th id="T_0dbe9_level0_col0" class="col_heading level0 col0" >Type</th>
+      <th id="T_0dbe9_level0_col1" class="col_heading level0 col1" >Left-only keys</th>
+      <th id="T_0dbe9_level0_col2" class="col_heading level0 col2" >Right-only keys</th>
+      <th id="T_0dbe9_level0_col3" class="col_heading level0 col3" >Left size</th>
+      <th id="T_0dbe9_level0_col4" class="col_heading level0 col4" >Right size</th>
+      <th id="T_0dbe9_level0_col5" class="col_heading level0 col5" >Inner join size</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td id="T_0dbe9_row0_col0" class="data row0 col0" >N:1</td>
+      <td id="T_0dbe9_row0_col1" class="data row0 col1" >313</td>
+      <td id="T_0dbe9_row0_col2" class="data row0 col2" >739</td>
+      <td id="T_0dbe9_row0_col3" class="data row0 col3" >112,650</td>
+      <td id="T_0dbe9_row0_col4" class="data row0 col4" >99,092</td>
+      <td id="T_0dbe9_row0_col5" class="data row0 col5" >112,279</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_items</span> <span class="o">=</span> <span class="n">df_items</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df_orders</span><span class="p">[[</span><span class="s1">&#39;order_id&#39;</span><span class="p">]],</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;order_id&#39;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;inner&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fron</span><span class="o">.</span><span class="n">analyze_join_keys</span><span class="p">(</span><span class="n">df_items</span><span class="p">,</span> <span class="n">df_orders</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;order_id&#39;</span><span class="p">,</span> <span class="n">only_coverage</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Left only keys: 0
+Right only keys: 739
+</pre></div>
+</div>
+</div>
+</div>
+<p>Orders that exist in the orders table but not in the order items table cannot be deleted.</p>
+<p>We’ll keep all products to identify which ones were never purchased.</p>
+<p>We’ll also keep all sellers to see whose products didn’t sell.</p>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../01_data_description_and_exploration/04_intermediate_conclusion.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Intermediate Conclusion</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="02_outlier_handling.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Outlier Handling</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Pavel Grigoryev
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025, Pavel Grigoryev.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
