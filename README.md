@@ -9,12 +9,16 @@
 
 Comprehensive analysis of Brazilian e-commerce data, uncovering key insights and actionable business recommendations.
 
+## 🔗 Project Resources
+
 - **[Web Report](https://pavelgrigoryevds.github.io/olist-deep-dive/)** - Best for comfortable reading  
 - **[Presentation Slides](https://docs.google.com/presentation/d/1sOYi3MWXedIEnuSn41H8lBeZ9aGnnTi5iV-DEMbfCvc/present)** - Key findings summary  
 - **[Kaggle Notebook](https://www.kaggle.com/code/pavelgrigoryev/deep-sales-analysis-eda-viz-rfm-nlp-geo)** - Kaggle-integrated version
 - **[Source Notebook](https://github.com/PavelGrigoryevDS/olist-deep-dive/blob/main/olist_deep_dive/olist_deep_dive.ipynb)** - Raw Jupyter notebook *(code only, no outputs)*  
 
-**Tech Stack:**  
+---
+
+## 🛠️ Tech Stack
 
 `Python` | `Pandas` | `Plotly` | `StatsModels` | `SciPy` | `NLTK` | `TextBlob` | `Sklearn` | `Pingouin`
 
@@ -61,13 +65,13 @@ This analysis aims to:
 
 ---
 
-## 📂 Dataset
+## 🗃️ Dataset
 
 The analysis uses the **Olist Brazilian E-Commerce Dataset** ([Kaggle](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce)) 
 
 ---
 
-## 🔍 Main Conclusions
+## 🎯 Main Conclusions
 
 ### Sales Trends:
   - **Growth & Stabilization**: Sales volume and revenue grew until 2018, then stabilized at 6–7K orders and 1–1.2M R$ per month.
@@ -117,7 +121,7 @@ The analysis uses the **Olist Brazilian E-Commerce Dataset** ([Kaggle](https://w
 
 ---
 
-## 🚀 Key Recommendations
+## ✨ Key Recommendations
 
 ### Boost Customer Retention & Repeat Purchases:
 
@@ -153,7 +157,7 @@ The analysis uses the **Olist Brazilian E-Commerce Dataset** ([Kaggle](https://w
 
 ---
 
-## 🛠️ How to Run
+## 🚀 How to Run
 
 ### Prerequisites
 - Python 3.11+
@@ -175,7 +179,7 @@ pip install -e .
 jupyter notebook olist_deep_dive/olist_deep_dive.ipynb
 ```
 
-#### Option 2: Poetry
+### Option 2: Poetry
 
 ```bash
 poetry install
