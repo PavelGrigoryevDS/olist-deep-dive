@@ -14,7 +14,7 @@ Comprehensive analysis of Brazilian e-commerce data, uncovering key insights and
 - [🔗 Project Resources](#-project-resources)
 - [🛠️ Tech Stack \& Methods](#-tech-stack--methods)
 - [📌 Project Overview](#-project-overview)
-- [🗃️ Data Source](#-dataset)
+- [🗃️ Data Source](#-data-source)
 - [🎯 Main Conclusions](#-main-conclusions)
 - [✨ Key Recommendations](#-key-recommendations)
 - [🚀 How to Run This Project](#-how-to-run-this-project)
@@ -32,7 +32,7 @@ Comprehensive analysis of Brazilian e-commerce data, uncovering key insights and
 
 ---
 
-## 🛠️ Tech Stack & Methods 
+## 🛠️ Tech Stack & Methods
 
 **Stack:**
 
