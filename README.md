@@ -160,8 +160,8 @@ The analysis uses the **Olist Brazilian E-Commerce Dataset** ([Kaggle](https://w
 ## 🚀 How to Run
 
 ### Prerequisites
+
 - Python 3.11+
-- Jupyter Notebook
 
 ### Clone the repository
 
