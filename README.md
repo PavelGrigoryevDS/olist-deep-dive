@@ -9,6 +9,18 @@
 
 Comprehensive analysis of Brazilian e-commerce data, uncovering key insights and actionable business recommendations.
 
+## 📑 Contents
+
+- [🔗 Project Resources](#-project-resources)
+- [🛠️ Tech Stack & Methods ](#-tech-stack--methods)
+- [📌 Project Overview](#-project-overview)
+- [🗃️ Dataset](#️-dataset)
+- [🎯 Main Conclusions](#-main-conclusions)
+- [✨ Key Recommendations](#-key-recommendations)
+- [🚀 How to Run This Project](#-how-to-run-this-project)
+
+---
+
 ## 🔗 Project Resources
 
 - **[Web Report](https://pavelgrigoryevds.github.io/olist-deep-dive/)** - Best for comfortable reading  
@@ -18,13 +30,13 @@ Comprehensive analysis of Brazilian e-commerce data, uncovering key insights and
 
 ---
 
-## 🛠️ Tech Stack
+## 🛠️ Tech Stack & Methods 
+
+**Stack:**
 
 `Python` | `Pandas` | `Plotly` | `StatsModels` | `SciPy` | `NLTK` | `TextBlob` | `Sklearn` | `Pingouin`
 
----
-
-## 🔬 Methods
+**Methods**:
 
 - **Exploratory Data Analysis (EDA)**: Statistical summaries, missing value analysis, and outlier detection
 - **Data Preprocessing**: Feature engineering, missing value handling, and creation of new metrics and dimensions
@@ -65,7 +77,7 @@ This analysis aims to:
 
 ---
 
-## 🗃️ Dataset
+## 🗃️ Data Source
 
 The analysis uses the **Olist Brazilian E-Commerce Dataset** ([Kaggle](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce)) 
 
