@@ -157,11 +157,12 @@ The analysis uses the **Olist Brazilian E-Commerce Dataset** ([Kaggle](https://w
 
 ---
 
-## 🚀 How to Run
+## 🚀 How to Run This Project
 
 ### Prerequisites
 
-- Python 3.11+
+- Python 3.11+ installed
+- Git (for cloning)
 
 ### Clone the repository
 
@@ -170,23 +171,28 @@ git clone https://github.com/PavelGrigoryevDS/olist-deep-dive.git
 cd olist-deep-dive
 ```
 
-### Option 1: Using pip + virtualenv
+### Install and run
+
+- If Poetry is NOT installed on your system, use Option 1
+- If Poetry IS installed, use Option 2
+
+#### Option 1: Using pip + virtualenv
 
 ```bash
-python -m venv olist_venv
-source olist_venv/bin/activate  
+python -m venv .venv
+source .venv/bin/activate  
 pip install poetry
 poetry config virtualenvs.in-project true --local
 poetry install
-jupyter notebook olist_deep_dive/olist_deep_dive.ipynb
+jupyter lab olist_deep_dive/olist_deep_dive.ipynb
 ```
 
-### Option 2: Poetry
+#### Option 2: Poetry
 
 ```bash
 poetry config virtualenvs.in-project true --local
 poetry install
-poetry run jupyter notebook olist_deep_dive/olist_deep_dive.ipynb
+poetry run jupyter lab olist_deep_dive/olist_deep_dive.ipynb
 ```
 
 ## 📜 License  

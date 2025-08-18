@@ -1,3 +1,5 @@
 dashboard.ipynb
 Scheme.drawio
 .$Scheme.drawio.bkp
+.venv
+poetry.toml
