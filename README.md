@@ -2,6 +2,7 @@
 
 [![Python](https://img.shields.io/badge/Python-3.11+-blue?logo=python)](https://github.com/PavelGrigoryevDS/olist-deep-dive/blob/main/pyproject.toml)
 [![Web Report](https://img.shields.io/badge/📚_Web_Report-2563EB?logoColor=white)](https://pavelgrigoryevds.github.io/olist-deep-dive/)
+[![Tableau](https://img.shields.io/badge/📊_Tableau_Dashboard-254E6B?logo=tableau&logoColor=white)](https://public.tableau.com/app/profile/pavel.grigoryev/viz/Inwork/PageSales)
 [![Open In Kaggle](https://kaggle.com/static/images/open-in-kaggle.svg)](https://www.kaggle.com/code/pavelgrigoryev/deep-sales-analysis-eda-viz-rfm-nlp-geo)
 [![Presentation](https://img.shields.io/badge/Slides-Google%20Slides-red)](https://docs.google.com/presentation/d/1sOYi3MWXedIEnuSn41H8lBeZ9aGnnTi5iV-DEMbfCvc/present)
 [![Jupyter Notebook](https://img.shields.io/badge/-Notebook-F37626?logo=jupyter&logoColor=white)](https://github.com/PavelGrigoryevDS/olist-deep-dive/blob/main/olist_deep_dive/olist_deep_dive.ipynb)
@@ -28,6 +29,7 @@ Comprehensive analysis of Brazilian e-commerce data, uncovering key insights and
 ## 🔗 Project Resources
 
 - **[Web Report](https://pavelgrigoryevds.github.io/olist-deep-dive/)** - Best for comfortable reading  
+- **[Tableau Dashboard](https://public.tableau.com/app/profile/pavel.grigoryev/viz/Inwork/PageSales)** - Olist Performance dashboard
 - **[Presentation Slides](https://docs.google.com/presentation/d/1sOYi3MWXedIEnuSn41H8lBeZ9aGnnTi5iV-DEMbfCvc/present)** - Key findings summary  
 - **[Kaggle Notebook](https://www.kaggle.com/code/pavelgrigoryev/deep-sales-analysis-eda-viz-rfm-nlp-geo)** - Kaggle-integrated version
 - **[Source Notebook](https://github.com/PavelGrigoryevDS/olist-deep-dive/blob/main/olist_deep_dive/olist_deep_dive.ipynb)** - Raw Jupyter notebook *(code only, no outputs)*  
@@ -42,7 +44,7 @@ Comprehensive analysis of Brazilian e-commerce data, uncovering key insights and
 
 **Stack:**
 
-`Python` | `Pandas` | `Plotly` | `StatsModels` | `SciPy` | `NLTK` | `TextBlob` | `Sklearn` | `Pingouin`
+`Python` | `Pandas` | `Plotly` | `Tableau` | `StatsModels` | `SciPy` | `NLTK` | `TextBlob` | `Sklearn` | `Pingouin`
 
 **Methods**:
 
