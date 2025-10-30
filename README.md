@@ -44,18 +44,29 @@ Comprehensive analysis of Brazilian e-commerce data, uncovering key insights and
 
 **Stack:**
 
-`Python` | `Pandas` | `Plotly` | `Tableau` | `StatsModels` | `SciPy` | `NLTK` | `TextBlob` | `Sklearn` | `Pingouin`
+- **Data Analysis:** `Python` `Pandas` `NumPy`
+- **Visualization:** `Plotly` `Tableau`
+- **Statistics & ML:** `StatsModels` `SciPy` `Sklearn` `Pingouin`
+- **NLP & Text Processing:** `NLTK` `TextBlob`
 
 **Methods**:
 
-- **Exploratory Data Analysis (EDA)**: Statistical summaries, missing value analysis, and outlier detection
-- **Data Preprocessing**: Feature engineering, missing value handling, and creation of new metrics and dimensions
-- **Time Series Analysis**: Revenue/order trends, seasonality decomposition
-- **RFM Segmentation**: Customer value clustering (Recency, Frequency, Monetary)
-- **Clustering**: sklearn-based customer behavior segmentation  
-- **Geospatial Analysis**: Sales heatmaps and delivery performance by region
-- **NLP Sentiment Analysis**: Review text processing with NLTK and TextBlob
-- **Statistical Testing**: correlation analysis and hypothesis testing
+- **Exploratory Data Analysis (EDA):** 
+  - Statistical summaries, missing value analysis, and outlier detection
+- **Data Preprocessing:** 
+  - Feature engineering, missing value handling, and creation of new metrics and dimensions
+- **Time Series Analysis:** 
+  - Revenue/order trends, seasonality decomposition
+- **RFM Segmentation:** 
+  - Customer value clustering (Recency, Frequency, Monetary)
+- **Clustering:** 
+  - sklearn-based customer behavior segmentation  
+- **Geospatial Analysis:** 
+  - Sales heatmaps and delivery performance by region
+- **NLP Sentiment Analysis:** 
+  - Review text processing with NLTK and TextBlob
+- **Statistical Testing:** 
+  - correlation analysis and hypothesis testing
   
 [⬆ back to top](#contents)
 
