@@ -10,6 +10,8 @@
 
 Comprehensive analysis of Brazilian e-commerce data, uncovering key insights and actionable business recommendations.
 
+**📖 For comfortable reading:** [Web version](https://pavelgrigoryevds.github.io/olist-deep-dive/)
+
 <a id="contents"></a>
 
 ## 📑 Contents
@@ -28,7 +30,6 @@ Comprehensive analysis of Brazilian e-commerce data, uncovering key insights and
 
 ## 🔗 Project Resources
 
-- **[Web Report](https://pavelgrigoryevds.github.io/olist-deep-dive/)** - Best for comfortable reading  
 - **[Tableau Dashboard](https://public.tableau.com/app/profile/pavel.grigoryev/viz/Inwork/PageSales)** - Olist Performance dashboard
 - **[Presentation Slides](https://docs.google.com/presentation/d/1sOYi3MWXedIEnuSn41H8lBeZ9aGnnTi5iV-DEMbfCvc/present)** - Key findings summary  
 - **[Kaggle Notebook](https://www.kaggle.com/code/pavelgrigoryev/deep-sales-analysis-eda-viz-rfm-nlp-geo)** - Kaggle-integrated version
