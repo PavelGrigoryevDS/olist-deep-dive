@@ -1,7 +1,7 @@
 # 🌊 Deep Sales Analysis of Olist Marketplace
 
 [![Python](https://img.shields.io/badge/Python-3.11+-blue?logo=python)](https://github.com/PavelGrigoryevDS/olist-deep-dive/blob/main/pyproject.toml)
-[![Web Report](https://img.shields.io/badge/📚_Web_Report-2563EB?logoColor=white)](https://pavelgrigoryevds.github.io/olist-deep-dive/)
+[![Web Report](https://img.shields.io/badge/🌐_Web_Report-blue?logoColor=white)](https://pavelgrigoryevds.github.io/olist-deep-dive/)
 [![Tableau](https://img.shields.io/badge/📊_Tableau_Dashboard-254E6B?logo=tableau&logoColor=white)](https://public.tableau.com/app/profile/pavel.grigoryev/viz/Inwork/PageSales)
 [![Open In Kaggle](https://kaggle.com/static/images/open-in-kaggle.svg)](https://www.kaggle.com/code/pavelgrigoryev/deep-sales-analysis-eda-viz-rfm-nlp-geo)
 [![Presentation](https://img.shields.io/badge/Slides-Google%20Slides-red)](https://docs.google.com/presentation/d/1sOYi3MWXedIEnuSn41H8lBeZ9aGnnTi5iV-DEMbfCvc/present)
